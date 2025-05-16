@@ -28,10 +28,10 @@ const CardRenderer = (() => {
         try {
             // Carica tutti i template in parallelo
             const templatePromises = [
-                fetch('svg-templates/card-character.svg').then(res => res.text()),
-                fetch('svg-templates/card-spell.svg').then(res => res.text()),
-                fetch('svg-templates/card-structure.svg').then(res => res.text()),
-                fetch('svg-templates/cart-equipment.svg').then(res => res.text())
+                fetch('./svg-templates/card-character.svg').then(res => res.text()),
+                fetch('./svg-templates/card-spell.svg').then(res => res.text()),
+                fetch('./svg-templates/card-structure.svg').then(res => res.text()),
+                fetch('./svg-templates/card-equipment.svg').then(res => res.text())
             ];
 
             const [personaggio, incantesimo, struttura, equipaggiamento] = await Promise.all(templatePromises);
@@ -67,6 +67,10 @@ const CardRenderer = (() => {
         let svg = template;
 
         // Sostituisci i valori nel template
+
+        // Nome della carta
+        svg = svg.replace(/{{id}}/g, card.id || '');
+
         // Nome della carta
         svg = svg.replace(/{{nome}}/g, card.name || '');
 
@@ -76,12 +80,33 @@ const CardRenderer = (() => {
         // Costo
         svg = svg.replace(/{{costo}}/g, card.cost || '0');
 
+        // Immagine
+        svg = svg.replace(/{{immagine}}/g, card.immagine || '0');
+
         // Elemento e classe
         svg = svg.replace(/{{elemento}}/g, card.element || '');
         svg = svg.replace(/{{classe}}/g, card.class || '');
 
         // Rarità
-        svg = svg.replace(/{{rarita}}/g, card.rarity || '');
+        switch (card.rarity) {
+            case "Comune":
+                svg = svg.replace(/{{rarita}}/g, 'C');
+                break;
+            case "Non Comune":
+                svg = svg.replace(/{{rarita}}/g, 'NC');
+                break;
+            case "Rara":
+                svg = svg.replace(/{{rarita}}/g, 'R');
+                break;
+            case "Ultra Rara":
+                svg = svg.replace(/{{rarita}}/g, 'UR');
+                break;
+            case "Leggenda":
+                svg = svg.replace(/{{rarita}}/g, 'L');
+                break;
+            default:
+                svg = svg.replace(/{{rarita}}/g, '');
+        }
 
         // Testo di ambientazione
         svg = svg.replace(/{{flavor_text}}/g, card.flavor_text || '');

@@ -21,7 +21,7 @@
     "flavor_text": "Sentinella di Emberhold, il suo corpo è stato temprato nelle fornaci ardenti.",
     "placement": "Prima Linea",
     "set": "Le Terre Divise di Lirya",
-    "img": "../images/5_guardia_della_fornace.png"
+    "img": "../../card_generator/images/5_guardia_della_fornace.png"
   },
   {
     "id": 6,

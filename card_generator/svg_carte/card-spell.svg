@@ -39,8 +39,8 @@
          
   <!-- Numero di serie e Set di appartenenza -->
   <rect x="60" y="610" width="630" height="30" rx="5" ry="5" fill="#c0d0f0" stroke="#333" stroke-width="0.5" stroke-dasharray="5,5"/>
-  <text id="card-id" x="650" y="630" font-family="Arial" font-size="16" text-anchor="end" fill="#666">226/288</text>
-  <text id="card-series" x="100" y="630" font-family="Arial" font-size="16" font-style="italic" text-anchor="start" fill="#666">Lirya</text>
+  <text id="card-id" x="650" y="630" font-family="Arial" font-size="16" text-anchor="end" fill="#666">{{id}}</text>
+  <text id="card-series" x="100" y="630" font-family="Arial" font-size="16" font-style="italic" text-anchor="start" fill="#666">{{set}}</text>
   
   <!-- Tipo di carta ed elemento -->
   <rect x="60" y="650" width="630" height="50" rx="8" ry="8" fill="#80a0e0" stroke="#333" stroke-width="1"/>

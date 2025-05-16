@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const loadCards = async () => {
         try {
-            const response = await fetch('js/cards.json');
+            const response = await fetch('./data/cards.json');
 
             if (!response.ok) {
                 throw new Error('Errore nel caricamento dei dati');
