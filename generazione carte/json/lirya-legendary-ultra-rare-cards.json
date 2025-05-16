@@ -1,0 +1,362 @@
+[
+  {
+    "id": 254,
+    "name": "Forge",
+    "type": "Personaggio",
+    "rarity": "Ultra-Rara",
+    "cost": 6,
+    "class": "Guerriero",
+    "element": "Fuoco",
+    "stats": {
+      "attack": 6,
+      "defense": 3,
+      "health": 7
+    },
+    "ability": {
+      "name": "Braccio Infuso",
+      "effect": "Quando attacca, può subire 1 danno per infliggere +3 danni extra."
+    },
+    "flavor_text": "Gladiatore leggendario con un braccio trasformato attraverso antichi rituali di fuoco.",
+    "placement": "Prima Linea",
+    "set": "Le Terre Divise di Lirya",
+    "img": "../images/254_forge.png"
+  },
+  {
+    "id": 255,
+    "name": "Thalassa",
+    "type": "Personaggio",
+    "rarity": "Ultra-Rara",
+    "cost": 6,
+    "class": "Chierico",
+    "element": "Acqua",
+    "stats": {
+      "attack": 3,
+      "defense": 4,
+      "health": 7
+    },
+    "ability": {
+      "name": "Respiro Abissale",
+      "effect": "Può rimanere in seconda linea anche se non ci sono personaggi in prima linea. Se lo fa, guarisce completamente all'inizio del tuo turno."
+    },
+    "flavor_text": "Mistica sacerdotessa che può respirare sott'acqua indefinitamente e comunica con le antiche creature marine.",
+    "placement": "Seconda Linea",
+    "set": "Le Terre Divise di Lirya",
+    "img": "../images/255_thalassa.png"
+  },
+  {
+    "id": 256,
+    "name": "Skarn",
+    "type": "Personaggio",
+    "rarity": "Ultra-Rara",
+    "cost": 7,
+    "class": "Guerriero",
+    "element": "Terra",
+    "stats": {
+      "attack": 5,
+      "defense": 6,
+      "health": 8
+    },
+    "ability": {
+      "name": "Armatura Vivente",
+      "effect": "Quando difende, guadagna +1 DIF permanente. Se ha più di 10 DIF, è immune agli incantesimi."
+    },
+    "flavor_text": "Leader selvaggio della tribù delle Montagne di Grimspire, la sua pelle si indurisce progressivamente in battaglia.",
+    "placement": "Prima Linea",
+    "set": "Le Terre Divise di Lirya",
+    "img": "../images/256_skarn.png"
+  },
+  {
+    "id": 257,
+    "name": "Zephyria",
+    "type": "Personaggio",
+    "rarity": "Ultra-Rara",
+    "cost": 6,
+    "class": "Mago",
+    "element": "Aria",
+    "stats": {
+      "attack": 7,
+      "defense": 2,
+      "health": 5
+    },
+    "ability": {
+      "name": "Voce del Vento",
+      "effect": "All'inizio del tuo turno, guarda la prima carta del mazzo avversario. Puoi scartarla pagando 2 energie."
+    },
+    "flavor_text": "Potente sciamana delle tribù nomadi, capace di ascoltare i sussurri del vento e prevedere i futuri cambiamenti.",
+    "placement": "Seconda Linea",
+    "set": "Le Terre Divise di Lirya",
+    "img": "../images/257_zephyria.png"
+  },
+  {
+    "id": 258,
+    "name": "Lumina",
+    "type": "Personaggio",
+    "rarity": "Ultra-Rara",
+    "cost": 6,
+    "class": "Ranger",
+    "element": "Luce",
+    "stats": {
+      "attack": 6,
+      "defense": 3,
+      "health": 5
+    },
+    "ability": {
+      "name": "Visione Arcana",
+      "effect": "Può attaccare personaggi anche se sono in Stealth. Quando attacca, rivela tutte le carte nemiche in mano dello stesso elemento."
+    },
+    "flavor_text": "Misteriosa cacciatrice che può vedere perfettamente nel buio più totale e percepire la vera natura di qualsiasi creatura.",
+    "placement": "Prima o Seconda Linea",
+    "set": "Le Terre Divise di Lirya",
+    "img": "../images/258_lumina.png"
+  },
+  {
+    "id": 259,
+    "name": "Raven",
+    "type": "Personaggio",
+    "rarity": "Ultra-Rara",
+    "cost": 7,
+    "class": "Ranger",
+    "element": "Ombra",
+    "stats": {
+      "attack": 8,
+      "defense": 2,
+      "health": 4
+    },
+    "ability": {
+      "name": "Manto d'Ombra",
+      "effect": "Può essere evocata direttamente in seconda linea. Non può essere bersaglio di attacchi o abilità finché non attacca."
+    },
+    "flavor_text": "L'assassina più temuta di Lirya, può diventare quasi invisibile nell'ombra.",
+    "placement": "Prima o Seconda Linea",
+    "set": "Le Terre Divise di Lirya",
+    "img": "../images/259_raven.png"
+  },
+  {
+    "id": 260,
+    "name": "Magmar il Plasmatore",
+    "type": "Personaggio",
+    "rarity": "Ultra-Rara",
+    "cost": 6,
+    "class": "Mago",
+    "element": "Fuoco",
+    "stats": {
+      "attack": 6,
+      "defense": 2,
+      "health": 4
+    },
+    "ability": {
+      "name": "Plasma Vitale",
+      "effect": "Quando evochi un personaggio Fuoco, puoi pagare 1 energia per dargli +2 ATT fino alla fine del turno. Se quel personaggio distrugge un nemico, guadagna permanentemente +1 ATT."
+    },
+    "flavor_text": "Primo consigliere di Keldor e potente manipolatore delle energie primordiali del fuoco.",
+    "placement": "Seconda Linea",
+    "set": "Le Terre Divise di Lirya",
+    "img": "../images/260_magmar_il_plasmatore.png"
+  },
+  {
+    "id": 261,
+    "name": "Serafina Oracolo",
+    "type": "Personaggio",
+    "rarity": "Ultra-Rara",
+    "cost": 7,
+    "class": "Chierico",
+    "element": "Luce",
+    "stats": {
+      "attack": 3,
+      "defense": 4,
+      "health": 6
+    },
+    "ability": {
+      "name": "Visione Trascendente",
+      "effect": "Quando questa carta entra in gioco, guarda le prime 5 carte del tuo mazzo. Puoi rivelare un personaggio Luce e aggiungerlo alla tua mano."
+    },
+    "flavor_text": "Venerata veggente e consigliera spirituale di Aurelian, può percepire le connessioni tra tutti gli esseri viventi.",
+    "placement": "Seconda Linea",
+    "set": "Le Terre Divise di Lirya",
+    "img": "../images/261_serafina_oracolo.png"
+  },
+  {
+    "id": 262,
+    "name": "Rovine di Eldenroot",
+    "type": "Struttura",
+    "rarity": "Ultra-Rara",
+    "cost": 5,
+    "class": "Neutrale",
+    "element": "Neutrale",
+    "stats": {
+      "health": 10
+    },
+    "ability": {
+      "name": "Conoscenza Ancestrale",
+      "effect": "Una volta per turno, puoi scartare un personaggio dalla tua mano per cercare nel tuo mazzo un personaggio dello stesso elemento ma di classe diversa e aggiungerlo alla tua mano."
+    },
+    "flavor_text": "Antiche rovine recentemente scoperte nella Foresta di Eldenroot, contenenti iscrizioni che rivelano tecniche arcane dimenticate, precedenti alla formazione del Patto Ancestrale.",
+    "placement": "Zona Strutture",
+    "set": "Le Terre Divise di Lirya",
+    "img": "../images/262_rovine_di_eldenroot.png"
+  },
+  {
+    "id": 263,
+    "name": "Convergenza degli Elementi",
+    "type": "Incantesimo",
+    "rarity": "Ultra-Rara",
+    "cost": 8,
+    "class": "Neutrale",
+    "element": "Neutrale",
+    "ability": {
+      "name": "Potere Primordiale",
+      "effect": "Scarta fino a 6 carte dalla tua mano. Per ogni elemento diverso scartato, scegli e attiva uno dei seguenti effetti: infliggi 3 danni, guarisci 4 PV, pesca 2 carte, distruggi una struttura, stordisci un personaggio per un turno, evoca un token personaggio 2/2/2 dell'elemento scelto."
+    },
+    "flavor_text": "Rituale arcano leggendario che combina le energie di tutti gli elementi per creare effetti catastrofici o miracolosi, a seconda dell'intenzione del lanciatore.",
+    "set": "Le Terre Divise di Lirya",
+    "img": "../images/263_convergenza_degli_elementi.png"
+  },
+  {
+    "id": 264,
+    "name": "Pietra di Nascita del Reggente",
+    "type": "Equipaggiamento",
+    "rarity": "Ultra-Rara",
+    "cost": 5,
+    "class": "Neutrale",
+    "element": "Neutrale",
+    "ability": {
+      "name": "Legame Primordiale",
+      "effect": "Il personaggio equipaggiato ottiene +1/+1/+1 e l'abilità di un altro personaggio in gioco a tua scelta. Se equipaggiato a un Reggente, ottiene anche 'Non può essere distrutto dagli effetti delle carte nemiche'."
+    },
+    "flavor_text": "Artefatto di potere incommensurabile, creato durante la formazione del Patto Ancestrale. Contiene frammenti delle energie primordiali che diedero origine a Lirya.",
+    "set": "Le Terre Divise di Lirya",
+    "img": "../images/264_pietra_di_nascita_del_reggente.png"
+  },
+  {
+    "id": 265,
+    "name": "Keldor Ironhand",
+    "type": "Personaggio",
+    "rarity": "Leggendaria",
+    "cost": 8,
+    "class": "Guerriero",
+    "element": "Fuoco",
+    "stats": {
+      "attack": 7,
+      "defense": 5,
+      "health": 8
+    },
+    "ability": {
+      "name": "Giudizio del Fabbro",
+      "effect": "Una volta per partita, distrugge tutte le strutture nemiche e infligge 2 danni per ogni struttura distrutta."
+    },
+    "flavor_text": "Signore di Emberhold, la sua spada Furialama è stata temprata nel cuore del vulcano attivo.",
+    "placement": "Prima Linea",
+    "set": "Le Terre Divise di Lirya",
+    "img": "../images/265_keldor_ironhand.png"
+  },
+  {
+    "id": 266,
+    "name": "Nerissa Tidespeaker",
+    "type": "Personaggio",
+    "rarity": "Leggendaria",
+    "cost": 9,
+    "class": "Mago",
+    "element": "Acqua",
+    "stats": {
+      "attack": 8,
+      "defense": 2,
+      "health": 5
+    },
+    "ability": {
+      "name": "Profezia delle Maree",
+      "effect": "All'inizio del tuo turno, guarda le prime 3 carte del tuo mazzo, riorganizzale in qualsiasi ordine."
+    },
+    "flavor_text": "Regina visionaria di Tidemire, capace di prevedere eventi futuri attraverso complessi rituali acquatici.",
+    "placement": "Seconda Linea",
+    "set": "Le Terre Divise di Lirya",
+    "img": "../images/266_nerissa_tidespeaker.png"
+  },
+  {
+    "id": 267,
+    "name": "Gorlok Mountainheart",
+    "type": "Personaggio",
+    "rarity": "Leggendaria",
+    "cost": 8,
+    "class": "Guerriero",
+    "element": "Terra",
+    "stats": {
+      "attack": 6,
+      "defense": 7,
+      "health": 9
+    },
+    "ability": {
+      "name": "Pelle di Granito",
+      "effect": "Riduce di 2 tutti i danni ricevuti. Una volta per partita, tutti i tuoi personaggi guadagnano questa abilità fino al tuo prossimo turno."
+    },
+    "flavor_text": "Re di Stonereach, si dice che la sua pelle sia dura come il granito dopo anni di rituali con cristalli delle profondità.",
+    "placement": "Prima Linea",
+    "set": "Le Terre Divise di Lirya",
+    "img": "../images/267_gorlok_mountainheart.png"
+  },
+  {
+    "id": 268,
+    "name": "Sylphia Stormrider",
+    "type": "Personaggio",
+    "rarity": "Leggendaria",
+    "cost": 7,
+    "class": "Ranger",
+    "element": "Aria",
+    "stats": {
+      "attack": 7,
+      "defense": 3,
+      "health": 6
+    },
+    "ability": {
+      "name": "Cavalca-Tempeste",
+      "effect": "Può attaccare immediatamente quando evocata. Può colpire qualsiasi personaggio nemico indipendentemente dalla sua posizione."
+    },
+    "flavor_text": "Regina dei venti di Mistral, si muove con tale agilità che sembra quasi volare.",
+    "placement": "Prima o Seconda Linea",
+    "set": "Le Terre Divise di Lirya",
+    "img": "../images/268_sylphia_stormrider.png"
+  },
+  {
+    "id": 269,
+    "name": "Aurelian Truthseer",
+    "type": "Personaggio",
+    "rarity": "Leggendaria",
+    "cost": 8,
+    "class": "Chierico",
+    "element": "Luce",
+    "stats": {
+      "attack": 4,
+      "defense": 4,
+      "health": 7
+    },
+    "ability": {
+      "name": "Giudizio Divino",
+      "effect": "Quando questa carta entra in gioco, scegli un elemento. Tutti i personaggi di quell'elemento perdono le loro abilità fino al tuo prossimo turno."
+    },
+    "flavor_text": "Illuminato leader spirituale di Dawnfield, la cui intuizione soprannaturale gli permette di discernere verità e menzogne.",
+    "placement": "Seconda Linea",
+    "set": "Le Terre Divise di Lirya",
+    "img": "../images/269_aurelian_truthseer.png"
+  },
+  {
+    "id": 270,
+    "name": "Malachai Nightweaver",
+    "type": "Personaggio",
+    "rarity": "Leggendaria",
+    "cost": 10,
+    "class": "Mago",
+    "element": "Ombra",
+    "stats": {
+      "attack": 9,
+      "defense": 1,
+      "health": 6
+    },
+    "ability": {
+      "name": "Velo di Inganni",
+      "effect": "Puoi evocare questa carta nella seconda linea avversaria. Se lo fai, prendi il controllo di un personaggio nemico in seconda linea fino alla fine della partita."
+    },
+    "flavor_text": "Enigmatico leader di Veilcrest, il cui vero volto è sempre celato da maschere elaborate.",
+    "placement": "Seconda Linea",
+    "set": "Le Terre Divise di Lirya",
+    "img": "../images/270_malachai_nightweaver.png"
+  }
+]
