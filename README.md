@@ -1,1 +1,1 @@
-# lirya
+# lirya-script
