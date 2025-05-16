@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg viewBox="0 0 750 1050" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bordo della carta -->
+  <rect x="25" y="25" width="700" height="1000" rx="35" ry="35" fill="#f8f6e9" stroke="#333" stroke-width="2"/>
+  
+  <!-- Bordi elementali decorativi -->
+  <rect x="40" y="40" width="670" height="970" rx="25" ry="25" fill="none" stroke="#b26e59" stroke-width="10" stroke-dasharray="0, 20" stroke-linecap="round"/>
+  
+  <!-- Cornice superiore -->
+  <rect x="60" y="60" width="630" height="60" rx="10" ry="10" fill="#d9ae7e" stroke="#333" stroke-width="1"/>
+  
+  <!-- Nome della carta -->
+  <rect x="130" y="65" width="490" height="50" rx="5" ry="5" fill="#e8d4b5" stroke="#333" stroke-width="1"/>
+  <text id="card-name" x="375" y="100" font-family="Arial" font-size="32" font-weight="bold" text-anchor="middle" fill="#333">{{nome}}</text>
+  
+  <!-- Costo di energia -->
+  <circle cx="90" cy="90" r="35" fill="#f0d75d" stroke="#333" stroke-width="2"/>
+  <text id="card-cost" x="90" y="100" font-family="Arial" font-size="32" font-weight="bold" text-anchor="middle" fill="#333">{{costo}}</text>
+  
+  <!-- Rarità -->
+  <circle cx="660" cy="90" r="25" fill="#e0aa40" stroke="#333" stroke-width="1"/>
+  <text id="card-rarity" x="660" y="100" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#333">{{rarita}}</text>
+
+  <!-- Illustrazione -->
+  <defs>
+    <clipPath id="rounded-rect">
+      <rect x="60" y="130" width="630" height="470" rx="10" ry="10"/>
+    </clipPath>
+  </defs>
+  
+  <!-- Rettangolo di sfondo -->
+  <rect x="60" y="130" width="630" height="470" rx="10" ry="10" fill="#f0e5d0" stroke="#333" stroke-width="2"/>
+  
+  <!-- Immagine con clipPath applicato -->
+  <image href="{{immagine}}"
+         width="630" height="400" x="60" y="130" 
+         clip-path="url(#rounded-rect)" 
+         preserveAspectRatio="xMidYMid slice"/>
+         
+  <!-- Numero di serie e Set di appartenenza -->
+  <rect x="60" y="540" width="630" height="30" rx="5" ry="5" fill="#e8d4b5" stroke="#333" stroke-width="0.5" stroke-dasharray="5,5"/>
+  <text id="card-id" x="650" y="560" font-family="Arial" font-size="16" text-anchor="end" fill="#666">169/288</text>
+  <text id="card-series" x="100" y="560" font-family="Arial" font-size="16" font-style="italic" text-anchor="start" fill="#666">Lirya</text>
+  
+  <!-- Tipo di carta, classe ed elemento -->
+  <rect x="60" y="580" width="630" height="50" rx="8" ry="8" fill="#d9ae7e" stroke="#333" stroke-width="1"/>
+  
+  <!-- Elemento (simbolo Fuoco) -->
+  <circle cx="90" cy="605" r="20" fill="#e05c41" stroke="#333" stroke-width="1"/>
+  <path id="card-element" d="M90,595 Q85,585 82,600 Q75,585 80,610 Q75,600 90,620 Q105,600 100,610 Q105,585 98,600 Q95,585 90,595" fill="white"/>
+  
+  <!-- Classe (simbolo Guerriero) -->
+  <circle cx="150" cy="605" r="20" fill="#8a4b20" stroke="#333" stroke-width="1"/>
+  <path id="card-class" d="M140,595 L160,595 M150,589 L150,621 M143,600 L157,610 M143,610 L157,600" stroke="white" stroke-width="2"/>
+  
+  <!-- Tipo della carta (simbolo Personaggio) -->
+  <circle cx="660" cy="605" r="20" fill="#6b568c" stroke="#333" stroke-width="1"/>
+  <!-- Simbolo stilizzato di una persona -->
+  <circle cx="660" cy="595" r="6" fill="white"/>
+  <path id="card-type" d="M660,615 L600,600 L650,615 M660,600 L650,620" stroke="white" stroke-width="2.5" fill="none"/>
+  
+  <!-- Simbolo città-stato (Emberhold) -->
+<!-- 
+  <circle cx="660" cy="605" r="20" fill="#e05c41" stroke="#333" stroke-width="1"/>
+  <path d="M660,595 L650,605 L660,615 L670,605 Z" fill="white"/>
+  <circle cx="660" cy="605" r="5" fill="white"/>
+ -->
+
+
+  <!-- Riquadro per il testo delle abilità -->
+  <rect x="60" y="640" width="630" height="200" rx="10" ry="10" fill="#f0e5d0" stroke="#333" stroke-width="2"/>
+  
+  <!-- Abilità -->
+  <text id="card-ability-name" x="375" y="670" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#333">{{abilita_nome}}</text>
+  <rect x="100" y="680" width="550" height="1" fill="#333"/>
+  <text id="card-ability-effect" x="375" y="715" font-family="Arial" font-size="20" text-anchor="middle" fill="#333">
+    <tspan x="375" dy="0">{{abilita_effetto}}</tspan>
+<!--   	<tspan x="375" dy="30">elit. Sed do eiusmod tempor incididunt ut labore</tspan> -->
+  </text>
+  
+  <!-- Testo di ambientazione -->
+  <rect x="60" y="850" width="630" height="80" rx="8" ry="8" fill="#f0e5d0" stroke="#333" stroke-width="0.5" stroke-dasharray="5,5"/>
+  <text id="card-flavor-text" x="375" y="880" font-family="Arial" font-size="18" font-style="italic" text-anchor="middle" fill="#666">
+    <tspan x="375" dy="0">{{flavor_text}}</tspan>
+<!--   	<tspan x="375" dy="30">Ut enim ad minim veniam, quis nostrud exercitation</tspan> -->
+  </text>
+  
+  <!-- Statistiche -->
+  <rect x="60" y="940" width="630" height="60" rx="10" ry="10" fill="#d9ae7e" stroke="#333" stroke-width="1"/>
+  
+  <!-- ATT -->
+  <circle cx="160" cy="970" r="30" fill="#e05c41" stroke="#333" stroke-width="2"/>
+  <text id="card-attack" x="160" y="980" font-family="Arial" font-size="28" font-weight="bold" text-anchor="middle" fill="white">{{attacco}}</text>
+  
+  <!-- DIF -->
+  <circle cx="375" cy="970" r="30" fill="#5c7fe0" stroke="#333" stroke-width="2"/>
+  <text id="card-defense" x="375" y="980" font-family="Arial" font-size="28" font-weight="bold" text-anchor="middle" fill="white">{{difesa}}</text>
+  
+  <!-- PV -->
+  <circle cx="590" cy="970" r="30" fill="#5cbe41" stroke="#333" stroke-width="2"/>
+  <text id="card-health" x="590" y="980" font-family="Arial" font-size="28" font-weight="bold" text-anchor="middle" fill="white">{{punti_vita}}</text>
+</svg>

@@ -11,15 +11,15 @@
   
   <!-- Nome della carta -->
   <rect x="130" y="65" width="490" height="50" rx="5" ry="5" fill="#e8d080" stroke="#333" stroke-width="1"/>
-  <text id="card-name" x="375" y="100" font-family="Arial" font-size="32" font-weight="bold" text-anchor="middle" fill="#333">SPADA DEL VALOROSO</text>
+  <text id="card-name" x="375" y="100" font-family="Arial" font-size="32" font-weight="bold" text-anchor="middle" fill="#333">{{nome}}</text>
   
   <!-- Costo di energia -->
   <circle cx="90" cy="90" r="35" fill="#f0d75d" stroke="#333" stroke-width="2"/>
-  <text id="card-cost" x="90" y="100" font-family="Arial" font-size="32" font-weight="bold" text-anchor="middle" fill="#333">2</text>
+  <text id="card-cost" x="90" y="100" font-family="Arial" font-size="32" font-weight="bold" text-anchor="middle" fill="#333">{{costo}}</text>
   
   <!-- Rarità -->
   <circle cx="660" cy="90" r="25" fill="#7a9a7a" stroke="#333" stroke-width="1"/>
-  <text id="card-rarity" x="660" y="100" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="white">C</text>
+  <text id="card-rarity" x="660" y="100" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="white">{{rarita}}</text>
 
   <!-- Illustrazione -->
   <defs>
@@ -58,10 +58,10 @@
   
   <!-- Effetto -->
   <rect x="90" y="730" width="570" height="190" rx="10" ry="10" fill="#e8d080" stroke="#333" stroke-width="1" opacity="0.6"/>
-  <text id="card-ability-name" x="375" y="780" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#333">LOREM IPSUM</text>
+  <text id="card-ability-name" x="375" y="780" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#333">{{abilita_nome}}</text>
   <rect x="150" y="790" width="450" height="1" fill="#333"/>
   <text id="card-ability-effect" x="375" y="820" font-family="Arial" font-size="20" text-anchor="middle" fill="#333">
-  	<tspan x="375" dy="0">Lorem ipsum dolor sit amet, consectetur adipiscing</tspan>
+  	<tspan x="375" dy="0">{{abilita_effetto}}</tspan>
   	<!--   	<tspan x="375" dy="30">elit. Sed do eiusmod tempor incididunt ut labore</tspan> -->
   </text>
 <!-- 
@@ -72,7 +72,7 @@
   <!-- Testo di ambientazione -->
   <rect x="90" y="930" width="570" height="45" rx="8" ry="8" fill="#f0e5d0" stroke="#333" stroke-width="0.5" stroke-dasharray="5,5"/>
   <text id="card-flavor-text" x="375 " y="958" font-family="Arial" font-size="16" font-style="italic" text-anchor="middle" fill="#666">
-  	<tspan x="375" dy="0">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</tspan>
+  	<tspan x="375" dy="0">{{flavor_text}}</tspan>
   </text>
   
 </svg>

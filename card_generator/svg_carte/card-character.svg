@@ -11,15 +11,15 @@
   
   <!-- Nome della carta -->
   <rect x="130" y="65" width="490" height="50" rx="5" ry="5" fill="#e8d4b5" stroke="#333" stroke-width="1"/>
-  <text id="card-name" x="375" y="100" font-family="Arial" font-size="32" font-weight="bold" text-anchor="middle" fill="#333">KELDOR IRONHAND</text>
+  <text id="card-name" x="375" y="100" font-family="Arial" font-size="32" font-weight="bold" text-anchor="middle" fill="#333">{{nome}}</text>
   
   <!-- Costo di energia -->
   <circle cx="90" cy="90" r="35" fill="#f0d75d" stroke="#333" stroke-width="2"/>
-  <text id="card-cost" x="90" y="100" font-family="Arial" font-size="32" font-weight="bold" text-anchor="middle" fill="#333">8</text>
+  <text id="card-cost" x="90" y="100" font-family="Arial" font-size="32" font-weight="bold" text-anchor="middle" fill="#333">{{costo}}</text>
   
   <!-- Rarità -->
   <circle cx="660" cy="90" r="25" fill="#e0aa40" stroke="#333" stroke-width="1"/>
-  <text id="card-rarity" x="660" y="100" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#333">L</text>
+  <text id="card-rarity" x="660" y="100" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="#333">{{rarita}}</text>
 
   <!-- Illustrazione -->
   <defs>
@@ -32,7 +32,7 @@
   <rect x="60" y="130" width="630" height="470" rx="10" ry="10" fill="#f0e5d0" stroke="#333" stroke-width="2"/>
   
   <!-- Immagine con clipPath applicato -->
-  <image href="/Users/gianlucaricaldone/Downloads/1_guardiano_della_fornace.png" 
+  <image href="{{immagine}}"
          width="630" height="400" x="60" y="130" 
          clip-path="url(#rounded-rect)" 
          preserveAspectRatio="xMidYMid slice"/>
@@ -71,17 +71,17 @@
   <rect x="60" y="640" width="630" height="200" rx="10" ry="10" fill="#f0e5d0" stroke="#333" stroke-width="2"/>
   
   <!-- Abilità -->
-  <text id="card-ability-name" x="375" y="670" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#333">LOREM IPSUM</text>
+  <text id="card-ability-name" x="375" y="670" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#333">{{abilita_nome}}</text>
   <rect x="100" y="680" width="550" height="1" fill="#333"/>
   <text id="card-ability-effect" x="375" y="715" font-family="Arial" font-size="20" text-anchor="middle" fill="#333">
-    <tspan x="375" dy="0">Lorem ipsum dolor sit amet, consectetur adipiscing</tspan>
+    <tspan x="375" dy="0">{{abilita_effetto}}</tspan>
 <!--   	<tspan x="375" dy="30">elit. Sed do eiusmod tempor incididunt ut labore</tspan> -->
   </text>
   
   <!-- Testo di ambientazione -->
   <rect x="60" y="850" width="630" height="80" rx="8" ry="8" fill="#f0e5d0" stroke="#333" stroke-width="0.5" stroke-dasharray="5,5"/>
   <text id="card-flavor-text" x="375" y="880" font-family="Arial" font-size="18" font-style="italic" text-anchor="middle" fill="#666">
-    <tspan x="375" dy="0">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</tspan>
+    <tspan x="375" dy="0">{{flavor_text}}</tspan>
 <!--   	<tspan x="375" dy="30">Ut enim ad minim veniam, quis nostrud exercitation</tspan> -->
   </text>
   
@@ -90,13 +90,13 @@
   
   <!-- ATT -->
   <circle cx="160" cy="970" r="30" fill="#e05c41" stroke="#333" stroke-width="2"/>
-  <text id="card-attack" x="160" y="980" font-family="Arial" font-size="28" font-weight="bold" text-anchor="middle" fill="white">7</text>
+  <text id="card-attack" x="160" y="980" font-family="Arial" font-size="28" font-weight="bold" text-anchor="middle" fill="white">{{attacco}}</text>
   
   <!-- DIF -->
   <circle cx="375" cy="970" r="30" fill="#5c7fe0" stroke="#333" stroke-width="2"/>
-  <text id="card-defense" x="375" y="980" font-family="Arial" font-size="28" font-weight="bold" text-anchor="middle" fill="white">5</text>
+  <text id="card-defense" x="375" y="980" font-family="Arial" font-size="28" font-weight="bold" text-anchor="middle" fill="white">{{difesa}}</text>
   
   <!-- PV -->
   <circle cx="590" cy="970" r="30" fill="#5cbe41" stroke="#333" stroke-width="2"/>
-  <text id="card-health" x="590" y="980" font-family="Arial" font-size="28" font-weight="bold" text-anchor="middle" fill="white">8</text>
+  <text id="card-health" x="590" y="980" font-family="Arial" font-size="28" font-weight="bold" text-anchor="middle" fill="white">{{punti_vita}}</text>
 </svg>
