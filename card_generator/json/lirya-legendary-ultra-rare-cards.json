@@ -18,7 +18,7 @@
     },
     "flavor_text": "Gladiatore leggendario con un braccio trasformato attraverso antichi rituali di fuoco.",
     "placement": "Prima Linea",
-    "set": "Le Terre Divise di Lirya",
+    "espansione": "Le Terre Divise di Lirya",
     "img": "../images/254_forge.png"
   },
   {
@@ -40,7 +40,7 @@
     },
     "flavor_text": "Mistica sacerdotessa che può respirare sott'acqua indefinitamente e comunica con le antiche creature marine.",
     "placement": "Seconda Linea",
-    "set": "Le Terre Divise di Lirya",
+    "espansione": "Le Terre Divise di Lirya",
     "img": "../images/255_thalassa.png"
   },
   {
@@ -62,7 +62,7 @@
     },
     "flavor_text": "Leader selvaggio della tribù delle Montagne di Grimspire, la sua pelle si indurisce progressivamente in battaglia.",
     "placement": "Prima Linea",
-    "set": "Le Terre Divise di Lirya",
+    "espansione": "Le Terre Divise di Lirya",
     "img": "../images/256_skarn.png"
   },
   {
@@ -84,7 +84,7 @@
     },
     "flavor_text": "Potente sciamana delle tribù nomadi, capace di ascoltare i sussurri del vento e prevedere i futuri cambiamenti.",
     "placement": "Seconda Linea",
-    "set": "Le Terre Divise di Lirya",
+    "espansione": "Le Terre Divise di Lirya",
     "img": "../images/257_zephyria.png"
   },
   {
@@ -106,7 +106,7 @@
     },
     "flavor_text": "Misteriosa cacciatrice che può vedere perfettamente nel buio più totale e percepire la vera natura di qualsiasi creatura.",
     "placement": "Prima o Seconda Linea",
-    "set": "Le Terre Divise di Lirya",
+    "espansione": "Le Terre Divise di Lirya",
     "img": "../images/258_lumina.png"
   },
   {
@@ -128,7 +128,7 @@
     },
     "flavor_text": "L'assassina più temuta di Lirya, può diventare quasi invisibile nell'ombra.",
     "placement": "Prima o Seconda Linea",
-    "set": "Le Terre Divise di Lirya",
+    "espansione": "Le Terre Divise di Lirya",
     "img": "../images/259_raven.png"
   },
   {
@@ -150,7 +150,7 @@
     },
     "flavor_text": "Primo consigliere di Keldor e potente manipolatore delle energie primordiali del fuoco.",
     "placement": "Seconda Linea",
-    "set": "Le Terre Divise di Lirya",
+    "espansione": "Le Terre Divise di Lirya",
     "img": "../images/260_magmar_il_plasmatore.png"
   },
   {
@@ -172,7 +172,7 @@
     },
     "flavor_text": "Venerata veggente e consigliera spirituale di Aurelian, può percepire le connessioni tra tutti gli esseri viventi.",
     "placement": "Seconda Linea",
-    "set": "Le Terre Divise di Lirya",
+    "espansione": "Le Terre Divise di Lirya",
     "img": "../images/261_serafina_oracolo.png"
   },
   {
@@ -192,7 +192,7 @@
     },
     "flavor_text": "Antiche rovine recentemente scoperte nella Foresta di Eldenroot, contenenti iscrizioni che rivelano tecniche arcane dimenticate, precedenti alla formazione del Patto Ancestrale.",
     "placement": "Zona Strutture",
-    "set": "Le Terre Divise di Lirya",
+    "espansione": "Le Terre Divise di Lirya",
     "img": "../images/262_rovine_di_eldenroot.png"
   },
   {
@@ -208,7 +208,7 @@
       "effect": "Scarta fino a 6 carte dalla tua mano. Per ogni elemento diverso scartato, scegli e attiva uno dei seguenti effetti: infliggi 3 danni, guarisci 4 PV, pesca 2 carte, distruggi una struttura, stordisci un personaggio per un turno, evoca un token personaggio 2/2/2 dell'elemento scelto."
     },
     "flavor_text": "Rituale arcano leggendario che combina le energie di tutti gli elementi per creare effetti catastrofici o miracolosi, a seconda dell'intenzione del lanciatore.",
-    "set": "Le Terre Divise di Lirya",
+    "espansione": "Le Terre Divise di Lirya",
     "img": "../images/263_convergenza_degli_elementi.png"
   },
   {
@@ -224,7 +224,7 @@
       "effect": "Il personaggio equipaggiato ottiene +1/+1/+1 e l'abilità di un altro personaggio in gioco a tua scelta. Se equipaggiato a un Reggente, ottiene anche 'Non può essere distrutto dagli effetti delle carte nemiche'."
     },
     "flavor_text": "Artefatto di potere incommensurabile, creato durante la formazione del Patto Ancestrale. Contiene frammenti delle energie primordiali che diedero origine a Lirya.",
-    "set": "Le Terre Divise di Lirya",
+    "espansione": "Le Terre Divise di Lirya",
     "img": "../images/264_pietra_di_nascita_del_reggente.png"
   },
   {
@@ -246,7 +246,7 @@
     },
     "flavor_text": "Signore di Emberhold, la sua spada Furialama è stata temprata nel cuore del vulcano attivo.",
     "placement": "Prima Linea",
-    "set": "Le Terre Divise di Lirya",
+    "espansione": "Le Terre Divise di Lirya",
     "img": "../images/265_keldor_ironhand.png"
   },
   {
@@ -268,7 +268,7 @@
     },
     "flavor_text": "Regina visionaria di Tidemire, capace di prevedere eventi futuri attraverso complessi rituali acquatici.",
     "placement": "Seconda Linea",
-    "set": "Le Terre Divise di Lirya",
+    "espansione": "Le Terre Divise di Lirya",
     "img": "../images/266_nerissa_tidespeaker.png"
   },
   {
@@ -290,7 +290,7 @@
     },
     "flavor_text": "Re di Stonereach, si dice che la sua pelle sia dura come il granito dopo anni di rituali con cristalli delle profondità.",
     "placement": "Prima Linea",
-    "set": "Le Terre Divise di Lirya",
+    "espansione": "Le Terre Divise di Lirya",
     "img": "../images/267_gorlok_mountainheart.png"
   },
   {
@@ -312,7 +312,7 @@
     },
     "flavor_text": "Regina dei venti di Mistral, si muove con tale agilità che sembra quasi volare.",
     "placement": "Prima o Seconda Linea",
-    "set": "Le Terre Divise di Lirya",
+    "espansione": "Le Terre Divise di Lirya",
     "img": "../images/268_sylphia_stormrider.png"
   },
   {
@@ -334,7 +334,7 @@
     },
     "flavor_text": "Illuminato leader spirituale di Dawnfield, la cui intuizione soprannaturale gli permette di discernere verità e menzogne.",
     "placement": "Seconda Linea",
-    "set": "Le Terre Divise di Lirya",
+    "espansione": "Le Terre Divise di Lirya",
     "img": "../images/269_aurelian_truthseer.png"
   },
   {
@@ -356,7 +356,7 @@
     },
     "flavor_text": "Enigmatico leader di Veilcrest, il cui vero volto è sempre celato da maschere elaborate.",
     "placement": "Seconda Linea",
-    "set": "Le Terre Divise di Lirya",
+    "espansione": "Le Terre Divise di Lirya",
     "img": "../images/270_malachai_nightweaver.png"
   }
 ]

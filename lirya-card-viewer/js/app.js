@@ -68,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (allCards.cards) {
                 allCards = allCards.cards;
             }
-
             console.log(`Caricate ${allCards.length} carte`);
 
         } catch (error) {

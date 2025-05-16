@@ -20,7 +20,7 @@
   ],
   "flavor_text": "Sentinella di Emberhold, il suo corpo è stato temprato nelle fornaci ardenti.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/5_guardia_della_fornace.png"
 },
 {
@@ -44,7 +44,7 @@
   ],
   "flavor_text": "Guardia di Tidemire, pattuglia le coste alla ricerca di intrusi e naufraghi.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/6_pattugliatore_costiero.png"
 },
 {
@@ -68,7 +68,7 @@
   ],
   "flavor_text": "Soldato di Stonereach, la sua pelle sembra fatta di pietra viva.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/7_sentinella_di_roccia.png"
 },
 {
@@ -92,7 +92,7 @@
   ],
   "flavor_text": "Guardia delle torri di Mistral, addestrata a reagire rapidamente a qualsiasi minaccia.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/8_sentinella_del_cielo.png"
 },
 {
@@ -116,7 +116,7 @@
   ],
   "flavor_text": "Difensore del tempio di Dawnfield, benedetto con protezione contro le arti oscure.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/9_guardia_del_santuario.png"
 },
 {
@@ -140,7 +140,7 @@
   ],
   "flavor_text": "Sentinella di Veilcrest, i suoi occhi possono vedere attraverso la più fitta oscurità.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/10_guardia_notturna.png"
 },
 {
@@ -164,7 +164,7 @@
   ],
   "flavor_text": "Studente dell'Accademia della Fiamma Superiore, ancora insicuro nel controllo del fuoco.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/11_apprendista_della_fiamma.png"
 },
 {
@@ -188,7 +188,7 @@
   ],
   "flavor_text": "Ricercatore del Collegium, dedica la sua vita allo studio dei flussi acquatici e delle loro proprietà.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/12_studioso_delle_correnti.png"
 },
 {
@@ -212,7 +212,7 @@
   ],
   "flavor_text": "Studente della Gilda della Pietra Vivente, sta imparando a manipolare la materia solida.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/13_apprendista_geomante.png"
 },
 {
@@ -236,7 +236,7 @@
   ],
   "flavor_text": "Apprendista del Consorzio, capace di creare piccole correnti d'aria con un gesto della mano.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/14_manipolatore_di_venti.png"
 },
 {
@@ -260,7 +260,7 @@
   ],
   "flavor_text": "Studente del Prisma, specializzato nella creazione di illusioni luminose per confondere i nemici.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/15_illusionista_novizio.png"
 },
 {
@@ -284,7 +284,7 @@
   ],
   "flavor_text": "Iniziato della Congrega, impara a fondersi con le ombre per passare inosservato.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/16_apprendista_delle_ombre.png"
 },
 {
@@ -308,7 +308,7 @@
   ],
   "flavor_text": "Esploratore delle terre di Emberhold, guida viaggiatori attraverso i pericolosi campi di lava.",
   "placement": "Flessibile",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/17_guida_vulcanica.png"
 },
 {
@@ -332,7 +332,7 @@
   ],
   "flavor_text": "Guida delle zone paludose, conosce ogni ruscello e corrente dei territori di Tidemire.",
   "placement": "Flessibile",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/18_navigatore_fluviale.png"
 },
 {
@@ -356,7 +356,7 @@
   ],
   "flavor_text": "Sentinella di Stonereach, scalatore esperto in grado di arrampicarsi sulle pareti più impervie.",
   "placement": "Flessibile",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/19_esploratore_montano.png"
 },
 {
@@ -380,7 +380,7 @@
   ],
   "flavor_text": "Scout di Mistral, utilizza aquiloni avanzati per sorvolare il territorio e individuare minacce.",
   "placement": "Flessibile",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/20_esploratore_dei_cieli.png"
 },
 {
@@ -404,7 +404,7 @@
   ],
   "flavor_text": "Cacciatore di segreti al servizio di Dawnfield, determinato a portare alla luce ogni verità nascosta.",
   "placement": "Flessibile",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/21_cercatore_di_verita.png"
 },
 {
@@ -428,7 +428,7 @@
   ],
   "flavor_text": "Scout di Veilcrest, si muove invisibile tra le ombre per raccogliere informazioni.",
   "placement": "Flessibile",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/22_ricognitore_delle_ombre.png"
 },
 {
@@ -452,7 +452,7 @@
   ],
   "flavor_text": "Praticante dell'Ordine della Purificazione, utilizza le ceneri nei suoi rituali di benedizione.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/23_ritualista_della_cenere.png"
 },
 {
@@ -476,7 +476,7 @@
   ],
   "flavor_text": "Iniziato del Culto delle Maree, canalizza il potere purificatore dell'acqua per guarire corpo e spirito.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/24_sacerdote_delle_onde.png"
 },
 {
@@ -500,7 +500,7 @@
   ],
   "flavor_text": "Apprendista del Circolo della Montagna, in grado di infondere la resistenza della terra nelle persone.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/25_custode_della_pietra.png"
 },
 {
@@ -524,7 +524,7 @@
   ],
   "flavor_text": "Membro della Fratellanza del Soffio Vitale, interpreta i messaggi degli spiriti portati dal vento.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/26_oratore_dei_venti.png"
 },
 {
@@ -548,7 +548,7 @@
   ],
   "flavor_text": "Novizio della Chiesa della Visione Interiore, le sue mani emettono una calda luce curativa.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/27_iniziato_luminoso.png"
 },
 {
@@ -572,7 +572,7 @@
   ],
   "flavor_text": "Adepto dei Sussurratori del Mistero, versato nei rituali che richiedono offerte di sangue.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/28_cultista_del_mistero.png"
 },
 {
@@ -591,7 +591,7 @@
   "abilities": [],
   "flavor_text": "Giovane soldato appena arruolato nella guardia cittadina di Emberhold.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/29_recluta_di_emberhold.png"
 },
 {
@@ -610,7 +610,7 @@
   "abilities": [],
   "flavor_text": "Navigatore esperto delle correnti di Tidemire, sa leggere le acque come un libro aperto.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/30_marinaio_di_tidemire.png"
 },
 {
@@ -629,7 +629,7 @@
   "abilities": [],
   "flavor_text": "Lavoratore nelle profonde miniere di Stonereach, con braccia forti come il ferro che estrae.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/31_minatore_di_stonereach.png"
 },
 {
@@ -648,7 +648,7 @@
   "abilities": [],
   "flavor_text": "Corriere rapido che sfrutta le correnti d'aria di Mistral per consegnare messaggi importanti.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/32_messaggero_di_mistral.png"
 },
 {
@@ -667,7 +667,7 @@
   "abilities": [],
   "flavor_text": "Giovane cavaliere in addestramento, studia le arti della guerra alla luce del sole.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/33_iniziato_di_dawnfield.png"
 },
 {
@@ -686,7 +686,7 @@
   "abilities": [],
   "flavor_text": "Mercenario al servizio dei signori dell'ombra, esegue ordini senza fare domande.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/34_scagnozzo_di_veilcrest.png"
 },
 {
@@ -710,7 +710,7 @@
   ],
   "flavor_text": "Soldato di fanteria di Emberhold, la sua lancia è infusa con schegge di cristallo vulcanico.",
   "placement": "Flessibile",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/35_lanciere_di_emberhold.png"
 },
 {
@@ -734,7 +734,7 @@
   ],
   "flavor_text": "Difensore dei territori marini di Tidemire, addestrato a combattere sia sulla terra che in acqua.",
   "placement": "Flessibile",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/36_guerriero_del_reef.png"
 },
 {
@@ -758,7 +758,7 @@
   ],
   "flavor_text": "Minatore esperto che ha convertito i suoi strumenti in armi letali.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/37_picconiere_di_stonereach.png"
 },
 {
@@ -782,7 +782,7 @@
   ],
   "flavor_text": "Combattente degli Altipiani di Aeros, si muove con la leggerezza di una piuma trasportata dal vento.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/38_guerriero_del_vento.png"
 },
 {
@@ -806,7 +806,7 @@
   ],
   "flavor_text": "Membro della guardia d'élite di Dawnfield, la sua armatura riflette e amplifica la luce.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/39_soldato_di_luce.png"
 },
 {
@@ -830,7 +830,7 @@
   ],
   "flavor_text": "Membro della Confraternita del Velo, colpisce rapidamente per poi sparire nelle ombre.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/40_assassino_del_velo.png"
 },
 {
@@ -854,7 +854,7 @@
   ],
   "flavor_text": "Giovane studioso dell'Accademia della Fiamma, il cui talento promette un futuro brillante.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/41_iniziato_del_fuoco.png"
 },
 {
@@ -878,7 +878,7 @@
   ],
   "flavor_text": "Studioso del Collegium delle Profondità, specializzato nella manipolazione delle correnti acquatiche.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/42_invocatore_d_acqua.png"
 },
 {
@@ -902,7 +902,7 @@
   ],
   "flavor_text": "Studente della Gilda della Pietra Vivente, può infondere la resistenza della terra negli oggetti.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/43_apprendista_della_pietra.png"
 },
 {
@@ -926,7 +926,7 @@
   ],
   "flavor_text": "Membro del Consorzio dei Venti, può manipolare le correnti d'aria con un semplice gesto.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/44_evocatore_di_brezze.png"
 },
 {
@@ -950,7 +950,7 @@
   ],
   "flavor_text": "Studioso del Prisma, dedito allo studio dell'illuminazione sia fisica che spirituale.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/45_chierico_della_luce.png"
 },
 {
@@ -974,7 +974,7 @@
   ],
   "flavor_text": "Praticante delle arti oscure di Veilcrest, capace di avvolgere i propri segreti in un velo impenetrabile.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/46_stregone_oscuro.png"
 },
 {
@@ -998,7 +998,7 @@
   ],
   "flavor_text": "Addestratore di falchi delle terre di Emberhold, i suoi compagni pennuti hanno occhi che non temono il calore.",
   "placement": "Flessibile",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/47_falconiere_di_emberhold.png"
 },
 {
@@ -1022,7 +1022,7 @@
   ],
   "flavor_text": "Esperto pescatore delle acque profonde, capace di catturare prede che altri considerano irraggiungibili.",
   "placement": "Flessibile",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/48_pescatore_di_tidemire.png"
 },
 {
@@ -1046,7 +1046,7 @@
   ],
   "flavor_text": "Guardiano delle caverne sacre di Stonereach, i suoi occhi sono abituati all'oscurità più totale.",
   "placement": "Flessibile",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/49_sentinella_delle_caverne.png"
 },
 {
@@ -1070,7 +1070,7 @@
   ],
   "flavor_text": "Scout delle valli ventose, sfrutta le correnti ascensionali per viaggiare rapidamente tra le montagne.",
   "placement": "Flessibile",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/50_esploratore_delle_correnti.png"
 },
 {
@@ -1094,7 +1094,7 @@
   ],
   "flavor_text": "Guardiano delle albe di Dawnfield, i suoi occhi possono discernere la verità anche nel crepuscolo.",
   "placement": "Flessibile",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/51_sentinella_dell_alba.png"
 },
 {
@@ -1118,7 +1118,7 @@
   ],
   "flavor_text": "Predatore notturno di Veilcrest, preferisce colpire vittime ignare della sua presenza.",
   "placement": "Flessibile",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/52_cacciatore_del_crepuscolo.png"
 },
 {
@@ -1142,7 +1142,7 @@
   ],
   "flavor_text": "Iniziato dell'Ordine della Purificazione, usa il fuoco come simbolo di rinnovamento e rinascita.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/53_accolito_della_fiamma.png"
 },
 {
@@ -1166,7 +1166,7 @@
   ],
   "flavor_text": "Sacerdote del Culto delle Maree Eterne, la sua magia fluisce come l'acqua per guarire corpo e spirito.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/54_guaritore_marittimo.png"
 },
 {
@@ -1190,7 +1190,7 @@
   ],
   "flavor_text": "Anziano del Circolo della Montagna, può entrare in comunione con gli spiriti della terra per ricevere forza.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/55_sciamano_di_terra.png"
 },
 {
@@ -1214,7 +1214,7 @@
   ],
   "flavor_text": "Membro della Fratellanza del Soffio Vitale, canalizza le energie dell'aria per donare leggerezza e rapidità.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/56_sacerdote_del_vento.png"
 },
 {
@@ -1238,7 +1238,7 @@
   ],
   "flavor_text": "Praticante della Chiesa della Visione Interiore, le sue mani irradiano una calda luce risanatrice.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/57_guaritore_di_dawnfield.png"
 },
 {
@@ -1262,7 +1262,7 @@
   ],
   "flavor_text": "Adepto dei Sussurratori del Mistero, ascolta confessioni che nessun altro dovrebbe udire.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/58_sussurratore_di_segreti.png"
 },
 {
@@ -1286,7 +1286,7 @@
   ],
   "flavor_text": "Giovane avventuriero all'inizio della sua carriera, ansioso di mappare terre inesplorate.",
   "placement": "Flessibile",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/59_esploratore_novizio.png"
 },
 {
@@ -1305,7 +1305,7 @@
   "abilities": [],
   "flavor_text": "Giovane combattente con addestramento minimo ma grande entusiasmo.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/60_recluta.png"
 },
 {
@@ -1329,7 +1329,7 @@
   ],
   "flavor_text": "Studente di magia al primo anno di accademia, ancora incerto ma pieno di potenziale.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/61_apprendista_arcano.png"
 },
 {
@@ -1353,7 +1353,7 @@
   ],
   "flavor_text": "Giovane devoto agli inizi del suo percorso spirituale, le sue preghiere mostrano un talento innato.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/62_novizio_del_tempio.png"
 },
 {
@@ -1372,7 +1372,7 @@
   "abilities": [],
   "flavor_text": "Soldato di professione che ha servito in diverse milizie cittadine di Lirya.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/63_soldato_di_fanteria.png"
 },
 {
@@ -1396,7 +1396,7 @@
   ],
   "flavor_text": "Viaggiatore che porta merci da una città all'altra, sempre pronto a un buon affare.",
   "placement": "Prima Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/64_mercante_ambulante.png"
 },
 {
@@ -1420,7 +1420,7 @@
   ],
   "flavor_text": "Studioso di miscele ed elisir, alla continua ricerca della formula perfetta.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/65_alchimista.png"
 },
 {
@@ -1444,7 +1444,7 @@
   ],
   "flavor_text": "Predicatore itinerante che porta la sua fede in ogni angolo di Lirya.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/66_missionario.png"
 },
 {
@@ -1468,7 +1468,7 @@
   ],
   "flavor_text": "Tiratore esperto che ha perfezionato la sua mira in numerose battaglie.",
   "placement": "Flessibile",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/67_arciere_da_battaglia.png"
 },
 {
@@ -1492,7 +1492,7 @@
   ],
   "flavor_text": "Praticante autodidatta di magia, offre i suoi servizi ai villaggi privi di veri maghi.",
   "placement": "Seconda Linea",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/68_stregone_di_villaggio.png"
 },
 {
@@ -1514,7 +1514,7 @@
   ],
   "flavor_text": "Luogo di formazione per generazioni di combattenti di Lirya.",
   "placement": "Zona Strutture",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/69_campo_di_addestramento.png"
 },
 {
@@ -1536,7 +1536,7 @@
   ],
   "flavor_text": "Deposito di antichi tomi contenenti segreti arcani e potenti incantesimi.",
   "placement": "Zona Strutture",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/70_biblioteca_arcana.png"
 },
 {
@@ -1558,7 +1558,7 @@
   ],
   "flavor_text": "Un punto d'osservazione nascosto, perfetto per studiare il territorio e pianificare l'attacco.",
   "placement": "Zona Strutture",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/71_avamposto_di_caccia.png"
 },
 {
@@ -1580,7 +1580,7 @@
   ],
   "flavor_text": "Un luogo sacro dove i devoti si radunano per richiedere la benedizione degli antichi spiriti di Lirya.",
   "placement": "Zona Strutture",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/72_altare_di_preghiera.png"
 },
 {
@@ -1601,7 +1601,7 @@
   ],
   "flavor_text": "Ultimo baluardo di difesa ai confini delle città-stato, sempre vigile contro i pericoli esterni.",
   "placement": "Zona Strutture",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/73_avamposto_di_frontiera.png"
 },
 {
@@ -1622,7 +1622,7 @@
   ],
   "flavor_text": "La sua luce guida i viaggiatori attraverso i pericolosi passaggi costieri di Tidemire.",
   "placement": "Zona Strutture",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/74_faro_di_navigazione.png"
 },
 {
@@ -1643,7 +1643,7 @@
   ],
   "flavor_text": "Punto d'incontro per commercianti di tutte le città-stato, dove si scambiano merci e storie.",
   "placement": "Zona Strutture",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/75_emporio_del_mercante.png"
 },
 {
@@ -1664,7 +1664,7 @@
   ],
   "flavor_text": "Rifugio rinfrescante nel cuore del Deserto di Kharram, conosciuto solo dai più esperti viaggiatori.",
   "placement": "Zona Strutture",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/76_oasi_nascosta.png"
 },
 {
@@ -1685,7 +1685,7 @@
   ],
   "flavor_text": "Fonte preziosa di cristalli energetici utilizzati dai maghi di Stonereach per potenziare i loro incantesimi.",
   "placement": "Zona Strutture",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/77_miniera_di_cristalli.png"
 },
 {
@@ -1706,7 +1706,7 @@
   ],
   "flavor_text": "Le sue acque cristalline riflettono non solo l'immagine, ma anche l'essenza di chi vi si specchia.",
   "placement": "Zona Strutture",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/78_lago_specchio.png"
 },
 {
@@ -1727,7 +1727,7 @@
   ],
   "flavor_text": "I visitatori giurano di sentire voci tra gli alberi, ma nessuno ha mai visto chi sussurra.",
   "placement": "Zona Strutture",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/79_foresta_sussurrante.png"
 },
 {
@@ -1748,7 +1748,7 @@
   ],
   "flavor_text": "Vulcano attivo che ha forgiato lo spirito combattivo di Emberhold nelle sue fiamme perenni.",
   "placement": "Zona Strutture",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/80_monte_kazan.png"
 },
 {
@@ -1769,7 +1769,7 @@
   ],
   "flavor_text": "Le scogliere ventose dove si erge Mistral, attraversate da correnti d'aria che sembrano sussurrare antichi segreti.",
   "placement": "Zona Strutture",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/81_altipiani_di_aeros.png"
 },
 {
@@ -1785,7 +1785,7 @@
     }
   ],
   "flavor_text": "Un classico dell'Accademia della Fiamma, insegnato persino ai principianti per la sua semplicità ed efficacia.",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/82_palla_di_fuoco.png"
 },
 {
@@ -1805,7 +1805,7 @@
   },
   "flavor_text": "Un luogo di addestramento dove guerrieri di ogni provenienza affinano le proprie abilità e attendono l'offerta migliore.",
   "placement": "Zona Strutture",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/83_campo_dei_mercenari.png"
 },
 {
@@ -1821,7 +1821,7 @@
     }
   ],
   "flavor_text": "Le fiamme non proteggono solo respingendo, ma anche bruciando chi osa avvicinarsi troppo.",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/84_scudo_di_fiamme.png"
 },
 {
@@ -1837,7 +1837,7 @@
     }
   ],
   "flavor_text": "Una freccia di ghiaccio che congela parzialmente il bersaglio, limitandone i movimenti.",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/85_dardo_di_ghiaccio.png"
 },
 {
@@ -1853,7 +1853,7 @@
     }
   ],
   "flavor_text": "Le acque di Tidemire sono conosciute per le loro proprietà curative, specialmente durante le maree crescenti.",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/86_corrente_risanatrice.png"
 },
 {
@@ -1869,7 +1869,7 @@
     }
   ],
   "flavor_text": "Un semplice proiettile di pietra, reso letale dalla forza e precisione con cui viene scagliato.",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/87_dardo_di_pietra.png"
 },
 {
@@ -1885,7 +1885,7 @@
     }
   ],
   "flavor_text": "Una barriera di granito che emerge dal terreno, impenetrabile come le montagne di Stonereach.",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/88_scudo_di_pietra.png"
 },
 {
@@ -1901,7 +1901,7 @@
     }
   ],
   "flavor_text": "Un turbine controllato che solleva e sposta il bersaglio, lasciandolo disorientato.",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/89_raffica_di_vento.png"
 },
 {
@@ -1917,7 +1917,7 @@
     }
   ],
   "flavor_text": "Una fitta nebbia che nasconde completamente il bersaglio alla vista, rendendolo introvabile.",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/90_nebbia_velata.png"
 },
 {
@@ -1933,7 +1933,7 @@
     }
   ],
   "flavor_text": "Una calda luce dorata che allevia le ferite e ripristina la vitalità.",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/91_bagliore_curativo.png"
 },
 {
@@ -1949,7 +1949,7 @@
     }
   ],
   "flavor_text": "Un fascio di luce pura che dissolve ogni afflizione e rinvigorisce lo spirito.",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/92_raggio_purificante.png"
 },
 {
@@ -1965,7 +1965,7 @@
     }
   ],
   "flavor_text": "Un'oscura magia che drena la forza vitale della vittima per nutrire chi la evoca.",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/93_tocco_vampirico.png"
 },
 {
@@ -1981,7 +1981,7 @@
     }
   ],
   "flavor_text": "Un manto di ombre che avvolge il bersaglio, rendendolo invisibile agli occhi nemici.",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/94_velo_oscuro.png"
 },
 {
@@ -1997,7 +1997,7 @@
     }
   ],
   "flavor_text": "Una lama ben bilanciata, forgiata nelle fucine di Emberhold e temprata nel sangue di antiche battaglie.",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/95_spada_del_valoroso.png"
 },
 {
@@ -2013,7 +2013,7 @@
     }
   ],
   "flavor_text": "Un catalizzatore magico che amplifica la connessione del mago con il suo elemento naturale.",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/96_bastone_elementale.png"
 },
 {
@@ -2029,7 +2029,7 @@
     }
   ],
   "flavor_text": "Un arco di precisione costruito con legno flessibile degli Altipiani di Aeros, capace di colpire a distanze impressionanti.",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/97_arco_lungo.png"
 },
 {
@@ -2045,7 +2045,7 @@
     }
   ],
   "flavor_text": "Un emblema benedetto che amplifica i poteri curativi del portatore, incanalando energie divine.",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/98_simbolo_sacro.png"
 },
 {
@@ -2060,7 +2060,7 @@
     }
   ],
   "flavor_text": "Un semplice anello d'argento che, secondo la leggenda, è in grado di alterare leggermente il corso del destino.",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/99_anello_della_fortuna.png"
 },
 {
@@ -2075,7 +2075,7 @@
     }
   ],
   "flavor_text": "Calzature resistenti e confortevoli che permettono di muoversi rapidamente sul campo di battaglia.",
-  "set": "Le Terre Divise di Lirya",
+  "espansione": "Le Terre Divise di Lirya",
   "img": "../images/100_stivali_del_viaggiatore.png"
 }
 ]

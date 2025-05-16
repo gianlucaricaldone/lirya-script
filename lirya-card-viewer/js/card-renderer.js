@@ -81,7 +81,10 @@ const CardRenderer = (() => {
         svg = svg.replace(/{{costo}}/g, card.cost || '0');
 
         // Immagine
-        svg = svg.replace(/{{immagine}}/g, card.immagine || '0');
+        svg = svg.replace(/{{immagine}}/g, card.img || '0');
+
+        // Set
+        svg = svg.replace(/{{set}}/g, card.espansione || '');
 
         // Elemento e classe
         svg = svg.replace(/{{elemento}}/g, card.element || '');
