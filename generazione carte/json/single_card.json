@@ -1,0 +1,24 @@
+{
+   "id": 7,
+   "name": "Guardia della Fornace",
+   "type": "Personaggio",
+   "rarity": "Comune",
+   "cost": 1,
+   "class": "Guerriero",
+   "element": "Fuoco",
+   "stats": {
+     "attack": 2,
+     "defense": 1,
+     "health": 2
+   },
+   "abilities": [
+     {
+       "name": "Resistenza al Calore",
+       "effect": "Non può essere bersaglio di incantesimi Fuoco."
+     }
+   ],
+   "flavor_text": "Sentinella di Emberhold, il suo corpo è stato temprato nelle fornaci ardenti.",
+   "placement": "Prima Linea",
+   "set": "Le Terre Divise di Lirya",
+   "img": "../images/7_guardia_della_fornace.png"
+ },
