@@ -1,0 +1,287 @@
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Guardia della Fornace": Un soldato con armatura leggera e simboli di fuoco, in piedi davanti all'ingresso di una fornace ardente. Ha un'espressione concentrata mentre impugna una spada corta.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Pattugliatore Costiero": Un guerriero in armatura leggera blu-verde che pattuglia una costa rocciosa. Porta uno scudo circolare decorato con motivi ondulati e una lancia.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Sentinella di Roccia": Un soldato massiccio con armatura che sembra fatta di pietra, in posizione di guardia all'ingresso di una caverna montana. La sua pelle ha una texture simile alla roccia.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Sentinella del Cielo": Una guardia snella con armatura leggera dai toni azzurri, posizionata su una torre di avvistamento alta. Tiene in mano un arco corto e il suo mantello sventola al vento.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Guardia del Santuario": Un guerriero in armatura chiara con dettagli dorati, in piedi davanti all'ingresso di un tempio luminoso. Una tenue aura di luce circonda la sua figura.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Guardia Notturna": Una figura solitaria in armatura scura con cappuccio, che pattuglia un vicolo notturno. Gli occhi brillano leggermente sotto il cappuccio e impugna una spada corta.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Apprendista della Fiamma": Un giovane mago con vesti rosse, che pratica un semplice incantesimo di fuoco tra le mani. Una piccola fiamma danza tra le sue dita.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Studioso delle Correnti": Un mago in vesti blu che studia un modello di flussi d'acqua in miniatura su un tavolo. Un libro aperto mostra diagrammi di correnti marine.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Apprendista Geomante": Un giovane mago con vesti marroni e verdi che fa levitare piccole pietre e ciottoli con le mani. Il terreno sotto di lui mostra segni di manipolazione.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Manipolatore di Venti": Un apprendista in vesti azzurre leggere che crea una piccola corrente d'aria visibile che fa vorticare foglie e polvere intorno a sé.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Illusionista Novizio": Un giovane mago in vesti bianche e dorate che crea un piccolo spettacolo di luci colorate tra le mani. Un'espressione concentrata sul viso.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Apprendista delle Ombre": Un giovane mago in vesti viola scuro che manipola la propria ombra in una via cittadina in pieno giorno, facendola assumere una forma leggermente diversa dalla sua.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Guida Vulcanica": Un ranger con vesti resistenti al calore che conduce un gruppo attraverso un sentiero tra campi di lava. Porta una torcia e una mappa.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Navigatore Fluviale": Un ranger in vesti impermeabili blu-verdi, in piedi sulla prua di una piccola barca mentre naviga tra i canali di una zona paludosa.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Esploratore Montano": Un ranger robusto con equipaggiamento da scalata, corde e piccozze, che si arrampica su una parete rocciosa scoscesa.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Esploratore dei Cieli": Un ranger agile con equipaggiamento leggero e un cannocchiale, in piedi su un'alta scogliera ventosa mentre osserva l'orizzonte.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Cercatore di Verità": Un ranger in vesti chiare con simboli solari, che segue delle tracce luminose visibili solo a lui attraverso una foresta.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Ricognitore delle Ombre": Un ranger furtivo vestito di scuro, nascosto tra le ombre di un bosco mentre osserva un accampamento in lontananza.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Ritualista della Cenere": Un chierico in vesti rosse e nere che conduce un rituale usando ceneri vulcaniche, tracciando simboli rituali su un altare di pietra.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Sacerdote delle Onde": Un chierico in vesti blu con simboli ondulati che benedice un pescatore con acqua da un calice cerimoniale.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Custode della Pietra": Un chierico in vesti marroni e verdi davanti a un semplice altare di pietra, con le mani poggiate su una roccia che emette un debole bagliore.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Oratore dei Venti": Un chierico in vesti azzurre leggere che recita preghiere mentre il vento intorno a lui si muove in cerchi visibili, portando foglie e pollini.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Iniziato Luminoso": Un giovane chierico in vesti bianche e dorate, con le mani che emanano una calda luce curativa sopra un ferito.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Cultista del Mistero": Un chierico in vesti viola scuro e nere, con un piccolo taglio rituale sul palmo da cui gocciola sangue su un simbolo oscuro.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Recluta di Emberhold": Un giovane soldato con un'armatura semplice decorata con l'emblema di una fiamma, durante l'addestramento con una spada di legno.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Marinaio di Tidemire": Un marinaio esperto con vesti pratiche blu-verdi che legge le correnti marine da una piccola barca, una mano immersa nell'acqua.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Minatore di Stonereach": Un robusto lavoratore con strumenti da miniera e una lanterna, all'ingresso di un tunnel montano. Ha le braccia muscolose e sporche di terra.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Messaggero di Mistral": Un corridore agile in vesti leggere azzurre che corre con una pergamena sigillata, il suo mantello sventola dietro come se fosse spinto dal vento.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Iniziato di Dawnfield": Un giovane cavaliere in addestramento con un'armatura leggera bianca e oro, che pratica con uno scudo al sorgere del sole.
+
+-- Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Scagnozzo di Veilcrest": Un mercenario dall'aspetto poco raccomandabile con vesti scure logore, appoggiato a un muro in un vicolo buio mentre affila un pugnale.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Lanciere di Emberhold": Un soldato con armatura leggera rossa e nera che impugna una lunga lancia con punta infusa di cristalli luminosi rossi.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Guerriero del Reef": Un combattente in armatura a scaglie blu-verdi, con armi adatte sia al combattimento terrestre che acquatico, in piedi su uno scoglio bagnato.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Picconiere di Stonereach": Un minatore muscoloso che ha trasformato il suo piccone da lavoro in un'arma, con un'armatura improvvisata fatta di roccia.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Guerriero del Vento": Un combattente agile in vesti leggere che sembra quasi galleggiare mentre combatte, i suoi movimenti fluidi come l'aria.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Soldato di Luce": Un guerriero in armatura bianca e oro che riflette la luce, creando bagliori accecanti intorno a sé durante il combattimento.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Assassino del Velo": Un guerriero furtivo in vesti scure che emerge dalle ombre per sferrare un attacco silenzioso con due pugnali.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Iniziato del Fuoco": Un giovane mago con vesti rosse che genera una piccola sfera di fuoco dal palmo, con un'espressione di concentrazione.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Invocatore d'Acqua": Un mago in vesti blu che manipola un flusso d'acqua in forma di spirale intorno al suo corpo.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Apprendista della Pietra": Un giovane mago in vesti marroni e verdi che fa levitare un piccolo ciottolo, trasformandolo in un materiale più resistente.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Evocatore di Brezze": Un mago in vesti azzurre che crea una corrente d'aria visibile tra le mani, facendo volare foglie e piccoli oggetti.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Chierico della Luce": Un mago in vesti bianche e dorate che tiene in mano una sfera di luce brillante, illuminando una stanza oscura.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Stregone Oscuro": Un mago in vesti viola scuro e nere che manipola le ombre intorno a sé, facendole danzare tra le dita.
+
+-- ---------------------
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Falconiere di Emberhold": Un ranger con un falco dalle piume rosse e arancioni appollaiato sul braccio, in piedi su un'altura vulcanica.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Pescatore di Tidemire": Un ranger con equipaggiamento da pesca che lancia abilmente una rete verso l'acqua da una piccola imbarcazione.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Sentinella delle Caverne": Un ranger robusto con una torcia che illumina un passaggio sotterraneo, scrutando attentamente le ombre.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Esploratore delle Correnti": Un ranger agile che sfrutta una corrente ascensionale per salire rapidamente una parete rocciosa, il mantello che sventola.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Sentinella dell'Alba": Un ranger in vesti chiare che osserva l'orizzonte all'alba, mentre la luce rivela tracce e sentieri invisibili al buio.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Cacciatore del Crepuscolo": Un ranger furtivo che si muove nell'ora del crepuscolo, quasi invisibile tra le ombre allungate.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Accolito della Fiamma": Un giovane chierico in vesti rosse e arancioni che passa la mano sopra una fiamma per purificare un oggetto.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Guaritore Marittimo": Un chierico in vesti blu con simboli d'acqua che usa una pozione marina per curare un pescatore ferito.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Sciamano di Terra": Un chierico anziano in vesti marroni e verdi, seduto in meditazione su una roccia con piccole piante che crescono intorno a lui.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Sacerdote del Vento": Un chierico con vesti azzurre leggere che benedice un viaggiatore, mentre il vento sembra rispondere alle sue parole.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Guaritore di Dawnfield": Un chierico in vesti bianche e dorate le cui mani emanano una luce calda che cura le ferite di un gruppo di persone.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Sussurratore di Segreti": Un chierico in vesti scure che ascolta le confessioni di una figura inginocchiata, parzialmente avvolta dall'ombra.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Esploratore Novizio": Un giovane ranger con equipaggiamento base che consulta una mappa semplice in una radura, con un'espressione determinata.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Recluta": Un giovane guerriero con equipaggiamento basilare durante l'addestramento, mentre impara a maneggiare una spada semplice.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Apprendista Arcano": Un giovane mago che osserva con interesse un incantesimo lanciato dal suo mentore, prendendo appunti su un piccolo libro.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Novizio del Tempio": Un giovane chierico che recita preghiere davanti a un altare semplice, con una piccola aura di luce che inizia a formarsi.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Soldato di Fanteria": Un combattente con armatura standard che marcia in formazione con altri soldati, con uno sguardo disciplinato e attento.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Mercante Ambulante": Un viaggiatore con un carretto di merci varie che mostra i suoi prodotti in un mercato di villaggio.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Alchimista": Un mago con vesti pratiche e una borsa piena di fiale, che mescola ingredienti in un piccolo calderone portatile.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Missionario": Un chierico con simboli religiosi che predica a un piccolo gruppo di abitanti di un villaggio.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Arciere da Battaglia": Un ranger con un arco lungo che prende mira da una posizione elevata, con frecce pronte nella faretra.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA PERSONAGGIO] "Stregone di Villaggio": Un mago con vesti semplici che dimostra un piccolo trucco di magia per intrattenere i bambini di un villaggio.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA STRUTTURA] "Campo di Addestramento": Un'area aperta circondata da palizzate dove soldati si allenano con diverse armi e attrezzature.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA STRUTTURA] "Biblioteca Arcana": Una sala con scaffali pieni di libri magici e pergamene, con alcune pagine che brillano debolmente nell'oscurità.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA STRUTTURA] "Avamposto di Caccia": Una piccola struttura di legno in una radura boschiva, con pelli di animali stese ad asciugare e armi da caccia.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA STRUTTURA] "Altare di Preghiera": Un semplice altare di pietra con simboli sacri, circondato da piccole offerte e candele accese.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA STRUTTURA] "Lago Specchio": Un lago dalla superficie perfettamente calma che riflette il cielo e le montagne circostanti come uno specchio.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA STRUTTURA] "Foresta Sussurrante": Un bosco denso e ombroso dove gli alberi sembrano muoversi leggermente anche senza vento.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA STRUTTURA] "Monte Kazan": Un vulcano attivo con fiumi di lava che scorrono lungo i fianchi e una colonna di fumo che sale dalla cima.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA STRUTTURA] "Altipiani di Aeros": Un vasto altopiano ventoso con formazioni rocciose bizzarre, scolpite dall'incessante vento.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA STRUTTURA] "Avamposto di Frontiera": Un piccolo fortino di confine con torri di guardia e un cancello rinforzato, situato in una zona isolata.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA STRUTTURA] "Faro di Navigazione": Una torre alta con un fuoco o luce magica sulla cima, che guida le navi attraverso acque pericolose.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA STRUTTURA] "Emporio del Mercante": Un negozio accogliente pieno di merci esotiche da tutto il mondo di Lirya, con un vivace mercante dietro il bancone.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA STRUTTURA] "Oasi Nascosta": Un piccolo specchio d'acqua circondato da vegetazione lussureggiante in mezzo a un ambiente arido e ostile.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA STRUTTURA] "Miniera di Cristalli": L'ingresso di una miniera con cristalli colorati che sporgono dalle pareti, e minatori al lavoro.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA INCANTESIMO] "Palla di Fuoco": Una sfera di fiamme concentrate che vola verso un bersaglio, lasciando una scia di scintille.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA INCANTESIMO] "Scudo di Fiamme": Un guerriero circondato da un'aura protettiva fatta di fiamme danzanti che respinge gli attacchi.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA INCANTESIMO] "Dardo di Ghiaccio": Un proiettile di ghiaccio affilato che vola verso un bersaglio, lasciando cristalli gelati nell'aria.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA INCANTESIMO] "Corrente Risanatrice": Acqua luminosa che fluisce intorno a una figura ferita, guarendo visibilmente le sue ferite.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA INCANTESIMO] "Dardo di Pietra": Un proiettile di roccia che si forma dalla terra e viene scagliato verso un nemico.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA INCANTESIMO] "Scudo di Pietra": Un'aura protettiva di roccia che circonda un personaggio, formando placche difensive.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA INCANTESIMO] "Raffica di Vento": Una potente corrente d'aria che spinge un nemico da una posizione all'altra.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA INCANTESIMO] "Nebbia Velata": Una nebbia traslucida che avvolge un personaggio, rendendolo difficile da individuare.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA INCANTESIMO] "Bagliore Curativo": Un raggio di luce calda e dorata che avvolge una ferita, facendola guarire visibilmente.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA INCANTESIMO] "Raggio Purificante": Un fascio di luce intensa che dissolve effetti negativi visibili come miasmi o aure oscure.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA INCANTESIMO] "Tocco Vampirico": Una mano avvolta da energia oscura che drena vita da un bersaglio, trasferendola all'incantatore.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA INCANTESIMO] "Velo Oscuro": Tendrils di ombra che avvolgono un personaggio, rendendolo quasi invisibile nell'oscurità.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA EQUIPAGGIAMENTO] "Spada del Valoroso": Una spada ben forgiata ma semplice, con un'elsa decorata con simboli di coraggio.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA EQUIPAGGIAMENTO] "Bastone Elementale": Un bastone di legno con cristalli colorati incastonati sulla cima, che brillano debolmente.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA EQUIPAGGIAMENTO] "Arco Lungo": Un arco di legno scuro ben costruito, con semplici decorazioni incise e una corda robusta.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA EQUIPAGGIAMENTO] "Simbolo Sacro": Un medaglione o amuleto con un simbolo religioso che emette una tenue aura luminosa.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA EQUIPAGGIAMENTO] "Anello della Fortuna": Un semplice anello di metallo con una piccola gemma che sembra cambiare colore occasionalmente.
+
+Crea un'illustrazione fantasy per una carta del gioco di carte collezionabili "Lirya". L'immagine deve avere bordi puliti, nessun testo e uno stile artistico coerente con l'estetica fantasy medievale. Mantieni le dimensioni in base al tipo di carta.
+[CARTA EQUIPAGGIAMENTO] "Stivali del Viaggiatore": Un paio di stivali robusti ma leggeri, perfetti per lunghi viaggi su terreni diversi.
