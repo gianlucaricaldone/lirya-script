@@ -1794,15 +1794,14 @@
     "type": "Struttura",
     "rarity": "Comune",
     "cost": 2,
-    "class": "Guerriero",
     "element": "Neutrale",
     "stats": {
       "health": 5
     },
-    "ability": {
+    "abilities": [ {
       "name": "Reclutamento",
       "effect": "Quando evochi un Guerriero, ha il 30% di possibilità di guadagnare +1 ATT permanentemente."
-    },
+    }],
     "flavor_text": "Un luogo di addestramento dove guerrieri di ogni provenienza affinano le proprie abilità e attendono l'offerta migliore.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -2091,10 +2090,10 @@
       "defense": 2,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Caccia alle Bestie",
       "effect": "Infligge +1 danno per ogni struttura nemica in gioco."
-    },
+    }],
     "flavor_text": "Cacciatrice di bestie delle terre vulcaniche, esperta nel sopravvivere tra lava e fiamme.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2113,10 +2112,10 @@
       "defense": 4,
       "health": 5
     },
-    "ability": {
+    "abilities": [ {
       "name": "Tattica Navale",
       "effect": "Se hai più personaggi in seconda linea dell'avversario, guadagna +2 ATT."
-    },
+    }],
     "flavor_text": "Generale della flotta di Tidemire, ha vinto decine di battaglie navali senza perdere una nave.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2135,10 +2134,10 @@
       "defense": 3,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Osservatore Vigile",
       "effect": "Finché questo personaggio è in prima linea, puoi guardare la prima carta del mazzo avversario all'inizio del tuo turno."
-    },
+    }],
     "flavor_text": "Capitano delle guardie di Mistral, niente sfugge al suo sguardo acuto.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2157,10 +2156,10 @@
       "defense": 2,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Studio delle Correnti",
       "effect": "Quando giochi un incantesimo Acqua, pesca una carta."
-    },
+    }],
     "flavor_text": "Studiosa di correnti marine del Collegium, ha messo a punto un sistema per prevedere le tempeste.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2179,10 +2178,10 @@
       "defense": 1,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Previsione Meteorologica",
       "effect": "All'inizio del tuo turno, puoi guardare la prima carta del tuo mazzo e decidere se tenerla in cima o metterla in fondo."
-    },
+    }],
     "flavor_text": "Divinatrice meteorologica di Mistral, i suoi avvertimenti hanno salvato innumerevoli vite.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2201,10 +2200,10 @@
       "defense": 1,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Maestra di Illusioni",
       "effect": "Quando questo personaggio viene bersagliato da un'abilità nemica, hai il 50% di possibilità di annullarla."
-    },
+    }],
     "flavor_text": "Maestra di illusioni della Congrega, può creare copie così perfette di sé stessa da ingannare persino i più esperti.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2223,10 +2222,10 @@
       "defense": 3,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Esploratore di Caverne",
       "effect": "Quando entra in gioco, puoi cercare nel tuo mazzo una carta Struttura e aggiungerla alla tua mano. Poi mescola il mazzo."
-    },
+    }],
     "flavor_text": "Esploratore delle caverne di Stonereach, conosce passaggi segreti che nemmeno i locali conoscono.",
     "placement": "Prima o Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2245,10 +2244,10 @@
       "defense": 2,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Messaggera Rapida",
       "effect": "Può cambiare linea senza costi. Quando lo fa, pesca una carta."
-    },
+    }],
     "flavor_text": "Messaggera d'élite di Mistral, sfrutta le correnti d'aria per viaggiare più velocemente di qualsiasi cavaliere.",
     "placement": "Prima o Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2267,10 +2266,10 @@
       "defense": 2,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Esploratore dell'Ignoto",
       "effect": "Se attacca direttamente il giocatore avversario, puoi guardare la sua mano."
-    },
+    }],
     "flavor_text": "Esploratore delle Paludi di Gloomwillow, è l'unico ad essere tornato vivo dal cuore della palude.",
     "placement": "Prima o Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2289,10 +2288,10 @@
       "defense": 2,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Antidoto",
       "effect": "Rimuove tutti gli effetti negativi da un personaggio bersaglio."
-    },
+    }],
     "flavor_text": "Guaritrice specializzata in veleni acquatici, ha sviluppato antidoti per le tossine più rare di Lirya.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2311,10 +2310,10 @@
       "defense": 3,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Esorcismo",
       "effect": "Quando entra in gioco, puoi rimuovere un token nemico dal gioco."
-    },
+    }],
     "flavor_text": "Esorcista della Chiesa della Visione Interiore, specializzata nella purificazione di luoghi infestati.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2333,10 +2332,10 @@
       "defense": 2,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Armi Infuocate",
       "effect": "Una volta per turno, può dare +1 ATT a un altro personaggio Fuoco fino alla fine del turno."
-    },
+    }],
     "flavor_text": "Artigiano di Emberhold, forgia le sue lame nel cuore stesso del vulcano Monte Kazan.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2355,10 +2354,10 @@
       "defense": 2,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Vigore Termico",
       "effect": "Guadagna +1 ATT per ogni altra carta Fuoco che controlli."
-    },
+    }],
     "flavor_text": "Difensore delle sacre fornaci di Emberhold, il suo corpo è resistente alle altissime temperature.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2377,10 +2376,10 @@
       "defense": 2,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Redirezione",
       "effect": "Una volta per turno, può spostare un personaggio nemico da una linea all'altra."
-    },
+    }],
     "flavor_text": "Studioso del Collegium, maestro nel manipolare i flussi d'acqua e le correnti arcane.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2399,10 +2398,10 @@
       "defense": 4,
       "health": 5
     },
-    "ability": {
+    "abilities": [ {
       "name": "Difesa Corallina",
       "effect": "Quando difende, riduce i danni ricevuti di 1."
-    },
+    }],
     "flavor_text": "Protettore delle barriere coralline sacre di Tidemire, indossa un'armatura vivente di corallo.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2421,10 +2420,10 @@
       "defense": 3,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Muro di Pietra",
       "effect": "Quando entra in gioco, un personaggio alleato guadagna +3 DIF fino alla fine del turno."
-    },
+    }],
     "flavor_text": "Manipolatore della materia terrestre, può modellare la roccia con il solo pensiero.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2443,10 +2442,10 @@
       "defense": 3,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Posizione Difensiva",
       "effect": "Se non si muove per un intero turno, guadagna +2 DIF fino al tuo prossimo turno."
-    },
+    }],
     "flavor_text": "Sentinella delle porte di Stonereach, forgiato nella roccia e nella disciplina.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2465,10 +2464,10 @@
       "defense": 2,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Sussurri del Vento",
       "effect": "All'inizio del tuo turno, puoi scambiare questa carta con un personaggio alleato in un'altra linea."
-    },
+    }],
     "flavor_text": "Anziano del Consorzio, può ascoltare i messaggi portati dal vento da ogni angolo di Lirya.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2487,10 +2486,10 @@
       "defense": 2,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Scansione Aerea",
       "effect": "Quando entra in gioco, puoi rivelare una carta dalla tua mano. Se è un personaggio Aria, evocalo pagando 1 energia in meno."
-    },
+    }],
     "flavor_text": "Esploratore degli Altipiani di Aeros, usa correnti ascensionali per pattugliare vaste aree.",
     "placement": "Prima o Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2509,10 +2508,10 @@
       "defense": 2,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Chiaroveggenza",
       "effect": "Quando entra in gioco, rivela le prime 3 carte del tuo mazzo. Puoi cambiare il loro ordine."
-    },
+    }],
     "flavor_text": "Studioso del Prisma, dedicato a portare chiarezza e verità nelle zone più oscure di Lirya.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2531,10 +2530,10 @@
       "defense": 3,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Protezione Minore",
       "effect": "Quando un personaggio alleato adiacente viene attaccato, puoi far subire 1 danno a questo personaggio per ridurre di 1 i danni all'alleato."
-    },
+    }],
     "flavor_text": "Giovane cavaliere al servizio di Dawnfield, ha giurato di proteggere i deboli a costo della propria vita.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2553,10 +2552,10 @@
       "defense": 1,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Manto Oscuro",
       "effect": "Una volta per turno, può dare Stealth a un personaggio alleato fino al suo prossimo attacco."
-    },
+    }],
     "flavor_text": "Artigiano delle ombre di Veilcrest, può tessere l'oscurità come fosse stoffa tangibile.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2575,10 +2574,10 @@
       "defense": 1,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Pugnalata alle Spalle",
       "effect": "Se attacca un personaggio che è stato danneggiato in questo turno, infligge +2 danni."
-    },
+    }],
     "flavor_text": "Mercenario della Confraternita del Velo, preferisce colpire bersagli già indeboliti.",
     "placement": "Prima o Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2597,10 +2596,10 @@
       "defense": 3,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Benedizione del Combattente",
       "effect": "All'inizio del tuo turno, un personaggio Guerriero alleato guadagna +1 ATT fino alla fine del turno."
-    },
+    }],
     "flavor_text": "Sacerdote che accompagna i soldati in battaglia, dispensando benedizioni e cure sul campo.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2619,10 +2618,10 @@
       "defense": 3,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Crescita Naturale",
       "effect": "All'inizio del tuo turno, aggiungi 1 segnalino crescita a questa carta. Per ogni segnalino, guadagna +1 PV."
-    },
+    }],
     "flavor_text": "Custode dei ritmi naturali, canalizza l'energia vitale delle piante e della terra.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2641,10 +2640,10 @@
       "defense": 2,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Rito delle Fiamme",
       "effect": "Quando un personaggio Fuoco alleato attacca, guarisce 1 PV."
-    },
+    }],
     "flavor_text": "Guaritore tribale che utilizza il fuoco purificatore nei suoi rituali di guarigione.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2663,10 +2662,10 @@
       "defense": 2,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Flusso Vitale",
       "effect": "All'inizio del tuo turno, guarisce 1 PV a tutti i personaggi Acqua alleati."
-    },
+    }],
     "flavor_text": "Custode dei rituali acquatici di Tidemire, in perfetta sintonia con le maree.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2685,10 +2684,10 @@
       "defense": 1,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Spirito del Vento",
       "effect": "Quando entra in gioco, crea un token Elementale dell'Aria 1/1/1 con Rapidità (può attaccare immediatamente)."
-    },
+    }],
     "flavor_text": "Giovane studioso del Consorzio, specializzato nell'evocazione di spiriti elementali minori.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2707,10 +2706,10 @@
       "defense": 2,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Sussurri Oscuri",
       "effect": "Quando entra in gioco, puoi guardare la mano dell'avversario."
-    },
+    }],
     "flavor_text": "Iniziato ai misteri dei Sussurratori del Mistero, può comunicare attraverso le ombre.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2729,10 +2728,10 @@
       "defense": 1,
       "health": 2
     },
-    "ability": {
+    "abilities": [ {
       "name": "Infuso di Fiamma",
       "effect": "Quando evochi un equipaggiamento, questo personaggio guadagna +1 ATT fino alla fine del turno."
-    },
+    }],
     "flavor_text": "Giovane studente della forgia di Emberhold, dimostra un talento naturale per le arti del fuoco.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2751,10 +2750,10 @@
       "defense": 1,
       "health": 2
     },
-    "ability": {
+    "abilities": [ {
       "name": "Divinazione Minore",
       "effect": "Quando entra in gioco, guarda la prima carta del tuo mazzo. Puoi metterla in fondo."
-    },
+    }],
     "flavor_text": "Studente del Collegium di Tidemire, alla sua prima missione di osservazione delle correnti marine.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2773,10 +2772,10 @@
       "defense": 2,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Scoperta",
       "effect": "Quando entra in gioco, puoi cercare nel tuo mazzo una carta Equipaggiamento e mostrarla. Mescola il mazzo e metti quella carta in cima."
-    },
+    }],
     "flavor_text": "Cercatore di gemme nelle miniere di Stonereach, ha un intuito naturale per trovare cristalli preziosi.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2795,10 +2794,10 @@
       "defense": 2,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Ricognizione",
       "effect": "Quando entra in gioco, guarda le prime 2 carte del tuo mazzo e rimettile in cima in qualsiasi ordine."
-    },
+    }],
     "flavor_text": "Guida esperta che conosce i sentieri più sicuri attraverso le terre selvagge di Lirya.",
     "placement": "Prima o Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2817,10 +2816,10 @@
       "defense": 1,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Pozione Minore",
       "effect": "Quando entra in gioco, guarisce 1 PV a un personaggio bersaglio."
-    },
+    }],
     "flavor_text": "Studente alla sua prima esperienza sul campo, porta con sé un kit di pozioni sperimentali.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2839,10 +2838,10 @@
       "defense": 3,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Vigilanza",
       "effect": "Finché è in prima linea, i tuoi personaggi in seconda linea guadagnano +1 DIF."
-    },
+    }],
     "flavor_text": "Protettore delle strade cittadine, addestrato a mantenere l'ordine e la sicurezza.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2861,10 +2860,10 @@
       "defense": 2,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Preghiera di Guarigione",
       "effect": "Quando entra in gioco, guarisce 2 PV a un personaggio bersaglio."
-    },
+    }],
     "flavor_text": "Guaritore errante che offre i suoi servizi ai villaggi troppo piccoli per avere un proprio tempio.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2883,10 +2882,10 @@
       "defense": 2,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Riparazione",
       "effect": "Una volta per turno, può aggiungere 1 PS a una struttura danneggiata."
-    },
+    }],
     "flavor_text": "Artigiano rispettato che forgia armi per i difensori del suo villaggio.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2905,10 +2904,10 @@
       "defense": 2,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Contatto Spirituale",
       "effect": "Quando un personaggio alleato viene distrutto, pesca una carta."
-    },
+    }],
     "flavor_text": "Sensitivo capace di comunicare con gli spiriti dei defunti per ottenere consigli e saggezza.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2927,10 +2926,10 @@
       "defense": 2,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Combattente a Pagamento",
       "effect": "Quando distrugge un personaggio nemico, guadagna +1 ATT fino alla fine della partita."
-    },
+    }],
     "flavor_text": "Soldato di ventura che vende la sua spada al miglior offerente, leale solo al suono delle monete.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2949,10 +2948,10 @@
       "defense": 1,
       "health": 2
     },
-    "ability": {
+    "abilities": [ {
       "name": "Studio Arcano",
       "effect": "Quando lanci un incantesimo, questo personaggio guadagna +1 ATT fino alla fine del turno."
-    },
+    }],
     "flavor_text": "Giovane studente di magia, ancora inesperto ma pieno di potenziale.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2971,10 +2970,10 @@
       "defense": 2,
       "health": 2
     },
-    "ability": {
+    "abilities": [ {
       "name": "Protezione",
       "effect": "Può subire 1 danno per prevenire 1 danno a un altro personaggio alleato."
-    },
+    }],
     "flavor_text": "Giovane in addestramento per diventare cavaliere, giura fedeltà al suo signore.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -2993,10 +2992,10 @@
       "defense": 2,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Medicina Naturale",
       "effect": "Quando entra in gioco, rimuove tutti gli effetti negativi da un personaggio alleato."
-    },
+    }],
     "flavor_text": "Raccoglitore di erbe medicinali, conosce i rimedi per ogni tipo di affezione.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -3015,10 +3014,10 @@
       "defense": 2,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Scoperta del Tesoro",
       "effect": "Quando entra in gioco, guarda le prime 4 carte del tuo mazzo. Puoi rivelare un Equipaggiamento e aggiungerlo alla tua mano. Rimescola le altre."
-    },
+    }],
     "flavor_text": "Avventuriero alla ricerca di antichi manufatti, sempre pronto a esplorare rovine dimenticate.",
     "placement": "Prima o Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -3037,10 +3036,10 @@
       "defense": 1,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Tiro di Precisione",
       "effect": "Può attaccare personaggi in seconda linea anche se ci sono personaggi in prima linea."
-    },
+    }],
     "flavor_text": "Tiratore addestrato sulle montagne di Stonereach, capace di colpire bersagli a distanze impossibili.",
     "placement": "Prima o Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -3059,10 +3058,10 @@
       "defense": 1,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Illuminazione",
       "effect": "Quando entra in gioco, pesca una carta se controlli un altro personaggio Luce."
-    },
+    }],
     "flavor_text": "Giovane devoto del Tempio di Dawnfield, il suo corpo emana una tenue luminescenza.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -3081,10 +3080,10 @@
       "defense": 2,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Messaggio del Vento",
       "effect": "Quando entra in gioco, guarda le prime 2 carte del tuo mazzo. Puoi aggiungerne una alla tua mano e mettere l'altra in fondo."
-    },
+    }],
     "flavor_text": "Interprete dei sussurri degli spiriti dell'aria, può percepire messaggi portati dalle brezze.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -3103,10 +3102,10 @@
       "defense": 2,
       "health": 3
     },
-    "ability": {
+    "abilities": [ {
       "name": "Sacrificio Oscuro",
       "effect": "Può essere scartato per far pescare 2 carte."
-    },
+    }],
     "flavor_text": "Membro di un culto segreto di Veilcrest, disposto a sacrificarsi per il bene della causa.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -3125,10 +3124,10 @@
       "defense": 1,
       "health": 2
     },
-    "ability": {
+    "abilities": [ {
       "name": "Mappatura",
       "effect": "Quando entra in gioco, guarda la prima carta del tuo mazzo."
-    },
+    }],
     "flavor_text": "Giovane esploratore che documenta le terre inesplorate di Lirya con meticolosa precisione.",
     "placement": "Prima o Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -3144,10 +3143,10 @@
     "stats": {
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Potere della Fiamma",
       "effect": "Livello 1: +1 ATT ai personaggi Fuoco\nLivello 2: +1 ATT e +1 DIF ai personaggi Fuoco\nLivello 3: +2 ATT, +1 DIF e \"Infligge +1 danno\" ai personaggi Fuoco"
-    },
+    }],
     "flavor_text": "Le fiamme perenni che ardono su questo altare risuonano con il fuoco interiore di ogni devoto di Emberhold.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -3164,10 +3163,10 @@
     "stats": {
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Amplificazione",
       "effect": "Quando lanci un incantesimo, infligge 1 danno extra se era offensivo o guarisce 1 PV extra se era curativo."
-    },
+    }],
     "flavor_text": "I simboli arcani incisi sul pavimento pulsano di energia, amplificando il potere di chi li utilizza.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -3184,10 +3183,10 @@
     "stats": {
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Intuizione Selvaggia",
       "effect": "Quando un Ranger alleato entra in gioco, puoi guardare le prime 2 carte del tuo mazzo e rimetterle in qualsiasi ordine."
-    },
+    }],
     "flavor_text": "Questo boschetto sacro affina i sensi di chi lo attraversa, rivelando percorsi nascosti agli occhi comuni.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -3204,10 +3203,10 @@
     "stats": {
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Armamento",
       "effect": "Quando un Guerriero alleato entra in gioco, puoi dargli +1/+1 fino alla fine del turno."
-    },
+    }],
     "flavor_text": "Il fragore della forgia non si interrompe mai, e i rifornimenti di armi fluiscono costanti verso il fronte.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -3224,10 +3223,10 @@
     "stats": {
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Protezione Divina",
       "effect": "Quando un personaggio alleato viene danneggiato, hai il 30% di possibilità di prevenire 1 danno."
-    },
+    }],
     "flavor_text": "Un'aura di calma avvolge questo luogo, dove le ferite guariscono più rapidamente e gli animi trovano pace.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -3244,10 +3243,10 @@
     "stats": {
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Sussurri Arcani",
       "effect": "Gli incantesimi che lanci costano 1 energia in meno. L'avversario non può vedere quali carte peschi."
-    },
+    }],
     "flavor_text": "In questa misteriosa valle, i suoni si amplificano naturalmente, e segreti di ogni tipo vengono sussurrati dall'aria stessa.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -3264,10 +3263,10 @@
     "stats": {
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Veleno della Palude",
       "effect": "I tuoi personaggi Ombra guadagnano +1 ATT e 'Attacco Velenoso' (quando danneggia un personaggio, quel personaggio subisce 1 danno all'inizio del prossimo turno)."
-    },
+    }],
     "flavor_text": "Gli alberi contorti e la nebbia perenne nascondono creature letali e piante dalle proprietà misteriose.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -3284,10 +3283,10 @@
     "stats": {
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Maree Rigeneranti",
       "effect": "I tuoi personaggi Acqua guadagnano +1 DIF. Una volta per turno, puoi riportare un personaggio Acqua dalla pila degli scarti alla tua mano."
-    },
+    }],
     "flavor_text": "Le acque di questo vasto mare contengono potenti energie rigenerative che penetrano nel corpo e nello spirito.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -3304,10 +3303,10 @@
     "stats": {
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Mobilità",
       "effect": "I tuoi personaggi Aria guadagnano \"Mobilità\" (possono cambiare linea senza costi). All'inizio del tuo turno, puoi guardare la prima carta del tuo mazzo."
-    },
+    }],
     "flavor_text": "Vaste praterie dove tribù nomadi allevano mandrie e praticano forme uniche di magia basate sui cicli naturali.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -3324,10 +3323,10 @@
     "stats": {
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Tempra Magica",
       "effect": "Una volta per turno, puoi pagare 1 energia per dare +1/+1 a un personaggio alleato fino alla fine del turno."
-    },
+    }],
     "flavor_text": "Una forgia dove si tempranol tanto le lame quanto gli spiriti, infondendo potere in entrambi.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -3344,10 +3343,10 @@
     "stats": {
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Eco Arcano",
       "effect": "Quando lanci un incantesimo, hai il 30% di possibilità di copiarlo."
-    },
+    }],
     "flavor_text": "Le antiche pietre disposte in cerchio riverberano di echi arcani, moltiplicando il potere di chi conosce i rituali giusti.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -3364,10 +3363,10 @@
     "stats": {
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Trasmutazione Vitale",
       "effect": "Quando un personaggio alleato viene distrutto, pesca una carta."
-    },
+    }],
     "flavor_text": "Alambicchi gorgogliano e fumi colorati si alzano dai tavoli ingombri di strani ingredienti e formule complesse.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -3384,10 +3383,10 @@
     "stats": {
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Scambio Commerciale",
       "effect": "Una volta per turno, puoi scartare due carte per pescarne tre."
-    },
+    }],
     "flavor_text": "Un luogo di intenso commercio dove merci di ogni tipo vengono scambiate, insieme a storie e segreti provenienti da ogni angolo di Lirya.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -3404,10 +3403,10 @@
     "stats": {
       "health": 8
     },
-    "ability": {
+    "abilities": [ {
       "name": "Baluardo Difensivo",
       "effect": "Livello 1: +1 DIF a tutti i tuoi personaggi in prima linea\nLivello 2: +2 DIF a tutti i tuoi personaggi in prima linea\nLivello 3: +2 DIF a tutti i tuoi personaggi e +2 PV ai personaggi in prima linea"
-    },
+    }],
     "flavor_text": "I suoi muri possenti hanno resistito a innumerevoli assedi, divenendo simbolo di sicurezza per tutti gli abitanti di Lirya.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -3420,10 +3419,10 @@
     "rarity": "Non Comune",
     "cost": 3,
     "element": "Fuoco",
-    "ability": {
+    "abilities": [ {
       "name": "Detonazione Controllata",
       "effect": "Infligge 2 danni a tutti i personaggi nemici in una linea."
-    },
+    }],
     "flavor_text": "\"Un fuoco ben controllato può essere più utile di un incendio furioso\" - Manuale dell'Accademia della Fiamma Superiore",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/163_esplosione_minore.png"
@@ -3436,10 +3435,10 @@
     "cost": 3,
     "class": "Neutrale",
     "element": "Acqua",
-    "ability": {
+    "abilities": [ {
       "name": "Cortina Nebbiosa",
       "effect": "Tutti i personaggi in prima linea non possono attaccare per un turno."
-    },
+    }],
     "flavor_text": "\"Non riesco a vedere la mia stessa spada... come posso colpire ciò che non vedo?\" - Soldato di Stonereach",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/164_nebbia.png"
@@ -3452,10 +3451,10 @@
     "cost": 3,
     "class": "Neutrale",
     "element": "Acqua",
-    "ability": {
+    "abilities": [ {
       "name": "Manipolazione Fluviale",
       "effect": "Sposta fino a due personaggi (tuoi o nemici) da una linea all'altra."
-    },
+    }],
     "flavor_text": "I maghi di Tidemire riescono a spostare non solo l'acqua, ma qualsiasi cosa si trovi sul suo percorso.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/165_deviazione_di_corrente.png"
@@ -3468,10 +3467,10 @@
     "cost": 3,
     "class": "Neutrale",
     "element": "Terra",
-    "ability": {
+    "abilities": [ {
       "name": "Fortificazione",
       "effect": "Un personaggio alleato guadagna +1/+1/+2 permanentemente."
-    },
+    }],
     "flavor_text": "La magia della terra fluisce nelle vene, rafforzando muscoli e ossa, rendendo la carne quasi come pietra.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/166_rinforzo.png"
@@ -3484,10 +3483,10 @@
     "cost": 3,
     "class": "Neutrale",
     "element": "Terra",
-    "ability": {
+    "abilities": [ {
       "name": "Formazione Minerale",
       "effect": "Una struttura alleata guadagna +3 PS e non può essere distrutta fino al tuo prossimo turno."
-    },
+    }],
     "flavor_text": "I cristalli si diffondono rapidamente, rinforzando muri e fondamenta con la loro struttura geometrica perfetta.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/167_crescita_cristallina.png"
@@ -3500,10 +3499,10 @@
     "cost": 3,
     "class": "Neutrale",
     "element": "Aria",
-    "ability": {
+    "abilities": [ {
       "name": "Raffiche Offensive",
       "effect": "Tutti i tuoi personaggi Aria possono cambiare linea immediatamente e guadagnano +1 ATT fino alla fine del turno."
-    },
+    }],
     "flavor_text": "\"Cavalca il vento, colpisci come il fulmine!\" - Motto dei guerrieri di Mistral",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/168_folata_impetuosa.png"
@@ -3516,10 +3515,10 @@
     "cost": 3,
     "class": "Neutrale",
     "element": "Aria",
-    "ability": {
+    "abilities": [ {
       "name": "Ascensione",
       "effect": "Riporta in mano un personaggio Aria alleato. Guadagna -1 al costo quando lo evochi nuovamente."
-    },
+    }],
     "flavor_text": "Il vento può portare via, ma riporta sempre ciò che gli appartiene, più forte di prima.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/169_richiamo_del_cielo.png"
@@ -3532,10 +3531,10 @@
     "cost": 3,
     "class": "Neutrale",
     "element": "Luce",
-    "ability": {
+    "abilities": [ {
       "name": "Infusione Radiosa",
       "effect": "Tutti i tuoi personaggi Luce guadagnano +1/+1 fino alla fine del turno."
-    },
+    }],
     "flavor_text": "La benedizione di Dawnfield rafforza corpo e spirito, facendo brillare il vero potenziale di ogni essere.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/170_benedizione_della_luce.png"
@@ -3548,10 +3547,10 @@
     "cost": 3,
     "class": "Neutrale",
     "element": "Luce",
-    "ability": {
+    "abilities": [ {
       "name": "Illuminazione Verità",
       "effect": "Guarda la mano dell'avversario. Scegli un personaggio nemico in gioco che perde tutte le sue abilità fino al prossimo turno."
-    },
+    }],
     "flavor_text": "La luce pura di Dawnfield rivela ogni segreto, ogni inganno, ogni debolezza nascosta.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/171_rivelazione.png"
@@ -3564,10 +3563,10 @@
     "cost": 3,
     "class": "Neutrale",
     "element": "Ombra",
-    "ability": {
+    "abilities": [ {
       "name": "Visioni Terrifiche",
       "effect": "Un personaggio nemico perde tutte le sue abilità e -1/-1 fino al prossimo turno."
-    },
+    }],
     "flavor_text": "Le ombre di Veilcrest ti mostrano ciò che temi di più, paralizzando la mente e indebolendo il corpo.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/172_incubo.png"
@@ -3580,10 +3579,10 @@
     "cost": 4,
     "class": "Neutrale",
     "element": "Ombra",
-    "ability": {
+    "abilities": [ {
       "name": "Corruzione Persistente",
       "effect": "Un personaggio nemico subisce 1 danno all'inizio di ogni turno fino a quando resta in gioco."
-    },
+    }],
     "flavor_text": "Una volta che l'oscurità si insinua nell'anima, la consuma lentamente, inesorabilmente.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/173_maledizione.png"
@@ -3596,10 +3595,10 @@
     "cost": 4,
     "class": "Neutrale",
     "element": "Neutrale",
-    "ability": {
+    "abilities": [ {
       "name": "Alterazione della Forma",
       "effect": "Trasforma un personaggio bersaglio in un token personaggio 2/2/2 senza abilità."
-    },
+    }],
     "flavor_text": "\"La materia è solo energia in una forma stabile... e tutte le forme possono essere cambiate.\" - Alchimista di Emberhold",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/174_trasmutazione.png"
@@ -3612,10 +3611,10 @@
     "cost": 3,
     "class": "Guerriero",
     "element": "Neutrale",
-    "ability": {
+    "abilities": [ {
       "name": "Difesa Impenetrabile",
       "effect": "+2 DIF, +1 PV"
-    },
+    }],
     "flavor_text": "Forgiato nelle fucine più profonde di Stonereach, questo scudo ha fermato migliaia di colpi senza mai incrinarsi.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/175_scudo_del_bastione.png"
@@ -3628,10 +3627,10 @@
     "cost": 2,
     "class": "Guerriero",
     "element": "Fuoco",
-    "ability": {
+    "abilities": [ {
       "name": "Furia Crescente",
       "effect": "+3 ATT, -1 DIF"
-    },
+    }],
     "flavor_text": "Un'arma brutale che spinge chi la impugna verso una furia cieca, sacrificando la prudenza per una potenza devastante.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/176_ascia_del_berserker.png"
@@ -3644,10 +3643,10 @@
     "cost": 3,
     "class": "Mago",
     "element": "Neutrale",
-    "ability": {
+    "abilities": [ {
       "name": "Catalizzatore Arcano",
       "effect": "+1 ATT, +1 DIF, \"Quando lanci un incantesimo, infligge 1 danno extra\""
-    },
+    }],
     "flavor_text": "Pietre rare incastonate in una montatura di metallo magico, pulsante di energia primordiale trattenuta a stento.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/177_amuleto_di_potere.png"
@@ -3660,10 +3659,10 @@
     "cost": 3,
     "class": "Mago",
     "element": "Neutrale",
-    "ability": {
+    "abilities": [ {
       "name": "Conoscenza Antica",
       "effect": "Una volta per turno, puoi scartare una carta per pescare una carta"
-    },
+    }],
     "flavor_text": "Le pagine di questo tomo sembrano sussurrare segreti dimenticati a chi ha il coraggio di ascoltare.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/178_grimorio_arcano.png"
@@ -3676,10 +3675,10 @@
     "cost": 2,
     "class": "Ranger",
     "element": "Neutrale",
-    "ability": {
+    "abilities": [ {
       "name": "Agilità Estrema",
       "effect": "+1 DIF, \"Può cambiare linea senza costi\""
-    },
+    }],
     "flavor_text": "Questo mantello leggero non ostacola i movimenti e sembra quasi anticipare i desideri del suo possessore.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/179_mantello_del_viaggiatore.png"
@@ -3692,10 +3691,10 @@
     "cost": 3,
     "class": "Ranger",
     "element": "Ombra",
-    "ability": {
+    "abilities": [ {
       "name": "Attacco Duplice",
       "effect": "+1 ATT, \"Può attaccare due volte se bersaglia personaggi diversi\""
-    },
+    }],
     "flavor_text": "Due lame perfettamente bilanciate, così simili che sembrano riflessi l'una dell'altra in uno specchio oscuro.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/180_pugnali_gemelli.png"
@@ -3708,10 +3707,10 @@
     "cost": 3,
     "class": "Chierico",
     "element": "Luce",
-    "ability": {
+    "abilities": [ {
       "name": "Aura Curativa",
       "effect": "All'inizio del tuo turno, guarisce 1 PV a tutti i personaggi adiacenti"
-    },
+    }],
     "flavor_text": "Il fumo aromatico di questo bruciatore sacro allevia il dolore e purifica l'aria circostante da influenze negative.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/181_incensiere_benedetto.png"
@@ -3724,10 +3723,10 @@
     "cost": 3,
     "class": "Chierico",
     "element": "Luce",
-    "ability": {
+    "abilities": [ {
       "name": "Barriera Protettiva",
       "effect": "+2 DIF, \"Impedisce il primo effetto di danno da incantesimo\""
-    },
+    }],
     "flavor_text": "Un amuleto sacro di Dawnfield che respinge le energie arcane negative come uno scudo respinge le frecce.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/182_talismano_di_protezione.png"
@@ -3740,10 +3739,10 @@
     "cost": 2,
     "class": "Neutrale",
     "element": "Acqua",
-    "ability": {
+    "abilities": [ {
       "name": "Rigenerazione Istantanea",
       "effect": "Quando giocato, guarisce completamente il personaggio equipaggiato"
-    },
+    }],
     "flavor_text": "Un liquido brillante che ribolle anche quando è immobile, capace di rimarginare ferite mortali in pochi istanti.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/183_elisir_di_vigore.png"
@@ -3761,10 +3760,10 @@
       "defense": 3,
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Maestro della Forgia",
       "effect": "Quando un personaggio Fuoco alleato attacca, guadagna +1 ATT fino alla fine del turno."
-    },
+    }],
     "flavor_text": "Maestro della Guardia della Forgia, insuperabile nel duello e addestratore di elite.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -3783,10 +3782,10 @@
       "defense": 1,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Esplosione Arcana",
       "effect": "Quando entra in gioco, infligge 2 danni a tutti i personaggi nemici."
-    },
+    }],
     "flavor_text": "Archimago dell'Accademia della Fiamma Superiore, ha scoperto nuove tecniche energetiche devastanti.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -3805,10 +3804,10 @@
       "defense": 3,
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Purificazione",
       "effect": "Una volta per turno, rimuove tutti gli effetti negativi da un personaggio alleato e lo guarisce di 2 PV."
-    },
+    }],
     "flavor_text": "Prima Sacerdotessa del Culto delle Maree Eterne, esperta di rituali di purificazione.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -3827,10 +3826,10 @@
       "defense": 4,
       "health": 5
     },
-    "ability": {
+    "abilities": [ {
       "name": "Combattimento Anfibio",
       "effect": "Quando attacca un personaggio Fuoco, guadagna +2 ATT. Quando difende contro un personaggio Fuoco, guadagna +2 DIF."
-    },
+    }],
     "flavor_text": "Campionessa di combattimento anfibio di Tidemire, addestrata nelle acque turbolente del delta.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -3849,10 +3848,10 @@
       "defense": 5,
       "health": 7
     },
-    "ability": {
+    "abilities": [ {
       "name": "Percezione Tellurica",
       "effect": "All'inizio del tuo turno, puoi guardare la prima carta del mazzo dell'avversario."
-    },
+    }],
     "flavor_text": "Anziano del Circolo della Montagna, può percepire vibrazioni a chilometri di distanza.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -3871,10 +3870,10 @@
       "defense": 6,
       "health": 7
     },
-    "ability": {
+    "abilities": [ {
       "name": "Pelle di Pietra",
       "effect": "Quando difende, riduce di 1 tutti i danni ricevuti."
-    },
+    }],
     "flavor_text": "Comandante della Falange di Granito, la sua pelle si trasforma in roccia durante il combattimento.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -3893,10 +3892,10 @@
       "defense": 2,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Manipolazione Sonora",
       "effect": "Può stordire un personaggio nemico per un turno pagando 2 energie."
-    },
+    }],
     "flavor_text": "Arcanista del Consorzio dei Venti, manipola i suoni e le vibrazioni con maestria incomparabile.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -3915,10 +3914,10 @@
       "defense": 3,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Compagno Alato",
       "effect": "Una volta per turno, puoi rivelare la prima carta del tuo mazzo. Se è un personaggio Aria, aggiungila alla tua mano."
-    },
+    }],
     "flavor_text": "Maestra dei Falchi delle Alture, può comunicare con gli uccelli creando legami profondi.",
     "placement": "Prima o Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -3937,10 +3936,10 @@
       "defense": 2,
       "health": 5
     },
-    "ability": {
+    "abilities": [ {
       "name": "Illusione Tangibile",
       "effect": "Quando evochi questa carta, crea un token copia di un personaggio alleato con 1 PV."
-    },
+    }],
     "flavor_text": "Prima Studiosa del Prisma dell'Illuminazione, esperta in illusioni tattili che sembrano reali.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -3959,10 +3958,10 @@
       "defense": 2,
       "health": 5
     },
-    "ability": {
+    "abilities": [ {
       "name": "Tracciatore Luminoso",
       "effect": "Quando attacca, puoi spostare un personaggio alleato da una linea all'altra."
-    },
+    }],
     "flavor_text": "Capo dei Viandanti dell'Alba, può tracciare piste invisibili ad altri.",
     "placement": "Prima o Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -3981,10 +3980,10 @@
       "defense": 1,
       "health": 5
     },
-    "ability": {
+    "abilities": [ {
       "name": "Manipolatore di Paure",
       "effect": "Quando evochi questo personaggio, scegli un personaggio nemico. Quel personaggio perde 1 ATT finché Malachi rimane in gioco."
-    },
+    }],
     "flavor_text": "Evocatore della Congrega dell'Ombra Mutevole, può manipolare le paure altrui manifestandole nella realtà.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4003,10 +4002,10 @@
       "defense": 2,
       "health": 5
     },
-    "ability": {
+    "abilities": [ {
       "name": "Assassinio Silenzioso",
       "effect": "Può attaccare direttamente la seconda linea nemica. Se lo fa, il personaggio bersaglio non può contrattaccare."
-    },
+    }],
     "flavor_text": "Comandante della Confraternita del Velo, maestro di assassinio silenzioso e tattiche furtive.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4025,10 +4024,10 @@
       "defense": 3,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Furia Infuocata",
       "effect": "Quando subisce danni, guadagna +1 ATT fino alla fine della partita."
-    },
+    }],
     "flavor_text": "Berserker veterano delle terre vulcaniche, il suo corpo è interamente ricoperto di cicatrici rituali.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4047,10 +4046,10 @@
       "defense": 2,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Calore Intenso",
       "effect": "Gli incantesimi Fuoco che lanci costano 1 energia in meno."
-    },
+    }],
     "flavor_text": "Anziano custode delle Fiamme Sacre, ha dedicato la sua vita allo studio dell'essenza del fuoco.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4069,10 +4068,10 @@
       "defense": 2,
       "health": 5
     },
-    "ability": {
+    "abilities": [ {
       "name": "Flusso Arcano",
       "effect": "Quando un personaggio nemico viene distrutto, pesca una carta."
-    },
+    }],
     "flavor_text": "Studiosa delle correnti arcane, ha mappato i flussi energetici sottomarini di Tidemire.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4091,10 +4090,10 @@
       "defense": 5,
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Difensore delle Profondità",
       "effect": "Quando è in prima linea, tutti i tuoi personaggi Acqua in seconda linea guadagnano +1 DIF."
-    },
+    }],
     "flavor_text": "Guardiano dei templi sommersi, indossa un'armatura fatta di conchiglie e coralli viventi.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4113,10 +4112,10 @@
       "defense": 3,
       "health": 5
     },
-    "ability": {
+    "abilities": [ {
       "name": "Cristallomanzia",
       "effect": "All'inizio del tuo turno, puoi guardare le prime due carte del tuo mazzo e rimetterle in cima in qualsiasi ordine."
-    },
+    }],
     "flavor_text": "Studioso dei cristalli senzienti di Stonereach, può leggere il futuro nelle formazioni geologiche.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4135,10 +4134,10 @@
       "defense": 6,
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Baluardo",
       "effect": "Finché questo personaggio è in prima linea, le tue strutture non possono essere bersaglio di attacchi."
-    },
+    }],
     "flavor_text": "Guardiano sacro delle porte di Stonereach, ha giurato di non muoversi dal suo posto fino alla morte.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4157,10 +4156,10 @@
       "defense": 1,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Raffiche Arcane",
       "effect": "Può infliggere 1 danno a fino a tre personaggi nemici diversi pagando 2 energie."
-    },
+    }],
     "flavor_text": "Studiosa dell'Accademia dei Venti di Mistral, specializzata nella dispersione dell'energia.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4179,10 +4178,10 @@
       "defense": 2,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Attacco in Picchiata",
       "effect": "Quando attacca un personaggio che ha subito danni in questo turno, infligge +2 danni."
-    },
+    }],
     "flavor_text": "Cacciatore degli Altipiani di Aeros, si lancia in picchiata dalle scogliere per sorprendere le prede.",
     "placement": "Prima o Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4201,10 +4200,10 @@
       "defense": 3,
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Aura Curativa",
       "effect": "All'inizio del tuo turno, guarisce 1 PV a tutti i personaggi alleati."
-    },
+    }],
     "flavor_text": "Sacerdote anziano del Tempio di Dawnfield, il suo corpo emana un tenue bagliore dorato.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4223,10 +4222,10 @@
       "defense": 4,
       "health": 5
     },
-    "ability": {
+    "abilities": [ {
       "name": "Protezione Divina",
       "effect": "Una volta per turno, può prevenire tutti i danni che sarebbero inflitti a un personaggio alleato."
-    },
+    }],
     "flavor_text": "Paladino sacro di Dawnfield, ha ricevuto la benedizione personale di Aurelian.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4245,10 +4244,10 @@
       "defense": 1,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Insinuazione",
       "effect": "Quando entra in gioco, guarda la mano dell'avversario e scegli una carta. L'avversario scarta quella carta."
-    },
+    }],
     "flavor_text": "Infiltratore della Congrega dell'Ombra, può sussurrare direttamente nella mente delle sue vittime.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4267,10 +4266,10 @@
       "defense": 1,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Colpo nelle Tenebre",
       "effect": "Se attacca un personaggio con PV inferiore o uguale a 3, lo distrugge immediatamente."
-    },
+    }],
     "flavor_text": "Membro d'elite della Confraternita del Velo, colpisce solo quando l'oscurità è più profonda.",
     "placement": "Prima o Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4289,10 +4288,10 @@
       "defense": 3,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Tattica Difensiva",
       "effect": "Tutti i personaggi alleati in prima linea guadagnano +1 DIF."
-    },
+    }],
     "flavor_text": "Veterano di innumerevoli battaglie, ora dedica la sua esperienza all'addestramento delle nuove leve.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4311,10 +4310,10 @@
       "defense": 2,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Trasmutazione",
       "effect": "Una volta per turno, puoi scartare una carta dalla tua mano per pescarne una nuova."
-    },
+    }],
     "flavor_text": "Ricercatore itinerante che studia le proprietà alchemiche degli elementi di Lirya.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4333,10 +4332,10 @@
       "defense": 3,
       "health": 5
     },
-    "ability": {
+    "abilities": [ {
       "name": "Tecniche Avanzate",
       "effect": "Quando un altro Guerriero alleato attacca, può dargli +1 ATT per quell'attacco."
-    },
+    }],
     "flavor_text": "Insegnante leggendario che ha formato generazioni di spadaccini in tutta Lirya.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4355,10 +4354,10 @@
       "defense": 4,
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Protezione Divina",
       "effect": "All'inizio del tuo turno, puoi curare 2 PV a un personaggio bersaglio o 1 PV a tutti i personaggi alleati."
-    },
+    }],
     "flavor_text": "Figura ecumenica rispettata da tutte le città-stato, cerca di riportare l'armonia a Lirya.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4377,10 +4376,10 @@
       "defense": 3,
       "health": 5
     },
-    "ability": {
+    "abilities": [ {
       "name": "Spirito Guardiano",
       "effect": "Quando questo personaggio entra in gioco, crea un token Spirito 2/2/2 in prima linea."
-    },
+    }],
     "flavor_text": "Mediatore tra il mondo fisico e quello spirituale, capace di evocare guardiani ancestrali.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4399,10 +4398,10 @@
       "defense": 3,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Tracciatore",
       "effect": "Quando entra in gioco, scegli un personaggio nemico. Questo personaggio infligge +2 danni quando attacca il personaggio scelto."
-    },
+    }],
     "flavor_text": "Mercenario solitario che attraversa Lirya in cerca delle sue prede, sempre accompagnato da strumenti di cattura unici.",
     "placement": "Prima o Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4421,10 +4420,10 @@
       "defense": 2,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Ricognizione",
       "effect": "Quando entra in gioco, guarda le prime 3 carte del tuo mazzo. Puoi mettere una di esse in mano."
-    },
+    }],
     "flavor_text": "Cartografo e guida nelle regioni più pericolose di Lirya, conosce sentieri che nessun altro ha mai mappato.",
     "placement": "Prima o Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4443,10 +4442,10 @@
       "defense": 2,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Scarica Arcana",
       "effect": "Una volta per turno, può infliggere 2 danni a un personaggio nemico."
-    },
+    }],
     "flavor_text": "Studioso di magia combattiva, crede che la teoria senza applicazione pratica sia inutile.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -4463,10 +4462,10 @@
     "stats": {
       "health": 7
     },
-    "ability": {
+    "abilities": [ {
       "name": "Addestramento di Emberhold",
       "effect": "Livello 1: +1 ATT ai tuoi Guerrieri Fuoco\nLivello 2: +1 ATT e +1 PV ai tuoi Guerrieri Fuoco\nLivello 3: +2 ATT, +1 PV ai tuoi Guerrieri Fuoco e una volta per turno puoi pescare 1 carta quando un Guerriero distrugge un nemico"
-    },
+    }],
     "flavor_text": "Le forge di Emberhold non si spengono mai, e l'aria risuona di spade che si scontrano e incudini battute.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -4483,10 +4482,10 @@
     "stats": {
       "health": 7
     },
-    "ability": {
+    "abilities": [ {
       "name": "Sapienza di Tidemire",
       "effect": "Livello 1: +1 ATT ai tuoi Maghi Acqua\nLivello 2: +1 ATT e riduce di 1 il costo degli incantesimi Acqua\nLivello 3: +2 ATT ai tuoi Maghi Acqua, riduce di 1 il costo degli incantesimi Acqua e una volta per turno puoi guardare le prime 3 carte del tuo mazzo"
-    },
+    }],
     "flavor_text": "I suoi corridoi sommersi contengono sapere dimenticato dal resto del mondo, custodito dai flutti per millenni.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -4503,10 +4502,10 @@
     "stats": {
       "health": 7
     },
-    "ability": {
+    "abilities": [ {
       "name": "Resistenza di Stonereach",
       "effect": "Livello 1: +1 DIF ai tuoi personaggi Terra\nLivello 2: +2 DIF ai tuoi personaggi Terra\nLivello 3: +2 DIF, +1 PV ai tuoi personaggi Terra e i tuoi personaggi Terra in prima linea non possono essere storditi"
-    },
+    }],
     "flavor_text": "La sede della gilda è scavata nella roccia viva della montagna, simbolo della resistenza che conferisce ai suoi adepti.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -4523,10 +4522,10 @@
     "stats": {
       "health": 7
     },
-    "ability": {
+    "abilities": [ {
       "name": "Agilità di Mistral",
       "effect": "Livello 1: I tuoi Ranger Aria possono muoversi liberamente tra prima e seconda linea\nLivello 2: I tuoi Ranger Aria possono muoversi liberamente e guadagnano +1 ATT\nLivello 3: I tuoi Ranger Aria guadagnano +2 ATT, si muovono liberamente e possono attaccare due volte se cambiano linea"
-    },
+    }],
     "flavor_text": "Le sue torri aperte al cielo danzano con le correnti, permettendo ai Ranger di imparare dai movimenti del vento stesso.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -4543,10 +4542,10 @@
     "stats": {
       "health": 7
     },
-    "ability": {
+    "abilities": [ {
       "name": "Benedizione di Dawnfield",
       "effect": "Livello 1: All'inizio del tuo turno, cura 1 PV a un personaggio Luce\nLivello 2: All'inizio del tuo turno, cura 1 PV a tutti i tuoi personaggi Luce\nLivello 3: All'inizio del tuo turno, cura 2 PV a tutti i tuoi personaggi e puoi rimuovere un effetto negativo da un personaggio Luce"
-    },
+    }],
     "flavor_text": "La grande cupola di cristallo concentra i raggi del sole, canalizzando energia curativa su chiunque entri nel cerchio sacro.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -4563,10 +4562,10 @@
     "stats": {
       "health": 7
     },
-    "ability": {
+    "abilities": [ {
       "name": "Furtività di Veilcrest",
       "effect": "Livello 1: I tuoi personaggi Ombra ottengono 'Stealth' (non possono essere attaccati finché non attaccano)\nLivello 2: I tuoi personaggi Ombra hanno 'Stealth' e +1 ATT\nLivello 3: I tuoi personaggi Ombra hanno 'Stealth', +1 ATT e quando escono da 'Stealth' attaccando, infliggono +2 danni"
-    },
+    }],
     "flavor_text": "Nessuno sa dove si trovi veramente la sede della Congrega, o forse è ovunque ci sia un'ombra abbastanza profonda.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -4583,10 +4582,10 @@
     "stats": {
       "health": 7
     },
-    "ability": {
+    "abilities": [ {
       "name": "Ispirazione Eroica",
       "effect": "All'inizio del tuo turno, un Guerriero alleato guadagna +1/+1 permanentemente."
-    },
+    }],
     "flavor_text": "La statua di un eroe leggendario, il cui esempio ispira coraggio e forza in coloro che combattono al suo cospetto.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -4603,10 +4602,10 @@
     "stats": {
       "health": 7
     },
-    "ability": {
+    "abilities": [ {
       "name": "Conoscenza Cosmica",
       "effect": "All'inizio del tuo turno, puoi guardare le prime 3 carte del tuo mazzo e rimescolarle o rimetterle in qualsiasi ordine."
-    },
+    }],
     "flavor_text": "Dall'alto di questa torre i maghi studiano le stelle, prevedendo il futuro e canalizzando energie cosmiche.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -4623,10 +4622,10 @@
     "stats": {
       "health": 7
     },
-    "ability": {
+    "abilities": [ {
       "name": "Protezione Nascosta",
       "effect": "I tuoi Ranger non possono essere bersaglio di abilità nemiche durante il turno in cui vengono evocati."
-    },
+    }],
     "flavor_text": "Un nascondiglio conosciuto solo ai Ranger più esperti, perfettamente mimetizzato nell'ambiente circostante.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -4643,10 +4642,10 @@
     "stats": {
       "health": 7
     },
-    "ability": {
+    "abilities": [ {
       "name": "Aura Benedetta",
       "effect": "All'inizio del tuo turno, guarisce 1 PV a tutti i personaggi alleati e rimuove un effetto negativo da un personaggio alleato."
-    },
+    }],
     "flavor_text": "Una teca contenente reliquie sacre che emana un'aura di pace e benessere, respingendo le energie negative.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -4663,10 +4662,10 @@
     "stats": {
       "health": 8
     },
-    "ability": {
+    "abilities": [ {
       "name": "Dominio Roccioso",
       "effect": "I tuoi personaggi Terra guadagnano +1 DIF e +1 PV. Una volta per turno, puoi infliggere 1 danno a tutti i personaggi Aria in gioco."
-    },
+    }],
     "flavor_text": "Le vette più alte di Lirya, dove l'aria si fa sottile e la pietra regna sovrana su tutti gli altri elementi.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -4683,10 +4682,10 @@
     "stats": {
       "health": 8
     },
-    "ability": {
+    "abilities": [ {
       "name": "Calura Estrema",
       "effect": "I tuoi personaggi Fuoco guadagnano +1 ATT e 'Resistenza al Calore' (riducono di 1 i danni da fonti Fuoco). Infligge 1 danno a tutti gli altri personaggi all'inizio di ogni turno."
-    },
+    }],
     "flavor_text": "Una distesa di sabbie ardenti e dune mobili, dove il calore può uccidere più rapidamente della sete.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -4703,10 +4702,10 @@
     "stats": {
       "health": 8
     },
-    "ability": {
+    "abilities": [ {
       "name": "Vitalità Antica",
       "effect": "I tuoi personaggi Terra e Ombra guadagnano +1 ATT e +1 DIF. All'inizio del tuo turno, cura 1 PV a un personaggio alleato."
-    },
+    }],
     "flavor_text": "Una foresta primordiale dove gli alberi millenari sembrano osservare i visitatori con occhi invisibili.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -4723,10 +4722,10 @@
     "stats": {
       "health": 8
     },
-    "ability": {
+    "abilities": [ {
       "name": "Correnti Potenti",
       "effect": "I tuoi personaggi Acqua guadagnano +1 ATT e +1 PV. Una volta per turno, puoi cambiare la linea di un personaggio (tuo o nemico)."
-    },
+    }],
     "flavor_text": "Un arcipelago di isole misteriose avvolte da correnti marine imprevedibili, dove tutto è in costante movimento.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -4743,10 +4742,10 @@
     "stats": {
       "health": 7
     },
-    "ability": {
+    "abilities": [ {
       "name": "Proliferazione di Conoscenza",
       "effect": "Livello 1: Pesca 1 carta extra all'inizio del tuo turno\nLivello 2: Pesca 1 carta extra e guadagna +1 energia all'inizio del turno\nLivello 3: Pesca 2 carte extra e guadagna +1 energia all'inizio del turno"
-    },
+    }],
     "flavor_text": "Una vasta biblioteca dove studiosi di ogni disciplina vengono a espandere la loro conoscenza e condividere scoperte.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -4763,10 +4762,10 @@
     "stats": {
       "health": 7
     },
-    "ability": {
+    "abilities": [ {
       "name": "Benedizione Ancestrale",
       "effect": "All'inizio del tuo turno, guadagni 1 energia e 1 PV."
-    },
+    }],
     "flavor_text": "Un santuario dimenticato, costruito in un'epoca in cui gli elementi erano ancora in perfetta armonia.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -4780,10 +4779,10 @@
     "cost": 5,
     "class": "Neutrale",
     "element": "Fuoco",
-    "ability": {
+    "abilities": [ {
       "name": "Pioggia Infuocata",
       "effect": "Infligge 3 danni a tutti i personaggi nemici e 1 danno a tutti i personaggi alleati."
-    },
+    }],
     "flavor_text": "Il cielo stesso sembra in fiamme quando i maghi di Emberhold scatenano la loro ira più devastante.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/232_tempesta_di_fiamme.png"
@@ -4796,10 +4795,10 @@
     "cost": 6,
     "class": "Neutrale",
     "element": "Fuoco",
-    "ability": {
+    "abilities": [ {
       "name": "Cataclisma",
       "effect": "Infligge 3 danni a tutti i personaggi nemici."
-    },
+    }],
     "flavor_text": "Quando il Monte Kazan erutta, persino i più coraggiosi guerrieri di Emberhold cercano riparo.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/233_eruzione_vulcanica.png"
@@ -4811,10 +4810,10 @@
     "rarity": "Non Comune",
     "cost": 4,
     "element": "Fuoco",
-    "ability": {
+    "abilities": [ {
       "name": "Reincarnazione Ardente",
       "effect": "Distruggi un personaggio Fuoco alleato per evocare dalla tua mano un personaggio Fuoco con costo pari o inferiore a quello distrutto +2."
-    },
+    }],
     "flavor_text": "Come la fenice che rinasce dalle sue ceneri, i devoti di Emberhold trovano nuova forza nel sacrificio ardente.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/234_rinnovamento_del_fuoco.png"
@@ -4827,10 +4826,10 @@
     "cost": 4,
     "class": "Neutrale",
     "element": "Acqua",
-    "ability": {
+    "abilities": [ {
       "name": "Inondazione",
       "effect": "Tutti i personaggi nemici perdono 2 ATT fino al prossimo turno."
-    },
+    }],
     "flavor_text": "Le acque di Tidemire possono sollevarsi in un istante, travolgendo chiunque non sia nato tra i flutti.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/235_diluvio.png"
@@ -4843,10 +4842,10 @@
     "cost": 5,
     "class": "Neutrale",
     "element": "Acqua",
-    "ability": {
+    "abilities": [ {
       "name": "Onda Devastante",
       "effect": "Tutti i personaggi nemici in prima linea vengono spostati in seconda linea. Infligge 2 danni a ciascuno."
-    },
+    }],
     "flavor_text": "Un'onda gigantesca che spazza via tutto ciò che incontra, lasciando solo caos e distruzione.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/236_maremoto.png"
@@ -4859,10 +4858,10 @@
     "cost": 4,
     "class": "Neutrale",
     "element": "Terra",
-    "ability": {
+    "abilities": [ {
       "name": "Crollo",
       "effect": "Distrugge una struttura nemica e infligge 2 danni a tutti i personaggi nemici nella linea scelta."
-    },
+    }],
     "flavor_text": "La montagna stessa risponde all'invocazione dei geomanti di Stonereach, seppellendo i nemici sotto tonnellate di roccia.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/237_frana.png"
@@ -4875,10 +4874,10 @@
     "cost": 6,
     "class": "Neutrale",
     "element": "Terra",
-    "ability": {
+    "abilities": [ {
       "name": "Sisma Devastante",
       "effect": "Distrugge una struttura nemica e stordisce tutti i personaggi nemici in prima linea per un turno."
-    },
+    }],
     "flavor_text": "Il suolo si apre, inghiottendo edifici interi e gettando nel caos anche l'esercito più disciplinato.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/238_terremoto.png"
@@ -4891,10 +4890,10 @@
     "cost": 4,
     "class": "Neutrale",
     "element": "Aria",
-    "ability": {
+    "abilities": [ {
       "name": "Vortice",
       "effect": "Rispedisce fino a due personaggi nemici nella mano dell'avversario."
-    },
+    }],
     "flavor_text": "Un vortice furioso che solleva e scaglia via chiunque non sia abbastanza saldo da resistere.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/239_tornado.png"
@@ -4907,10 +4906,10 @@
     "cost": 5,
     "class": "Neutrale",
     "element": "Aria",
-    "ability": {
+    "abilities": [ {
       "name": "Saette Multiple",
       "effect": "Infligge 2 danni a tutti i personaggi nemici. Infligge 2 danni extra a quelli in seconda linea."
-    },
+    }],
     "flavor_text": "I cieli sopra Mistral si riempiono di energia, scagliando fulmini che cercano i punti più vulnerabili.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/240_tempesta_di_fulmini.png"
@@ -4923,10 +4922,10 @@
     "cost": 5,
     "class": "Neutrale",
     "element": "Luce",
-    "ability": {
+    "abilities": [ {
       "name": "Condanna Celeste",
       "effect": "Distrugge un personaggio nemico con ATT maggiore di 5."
-    },
+    }],
     "flavor_text": "Un raggio di luce pura che incenerisce coloro che hanno accumulato troppo potere o malvagità.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/241_giudizio_divino.png"
@@ -4939,10 +4938,10 @@
     "cost": 6,
     "class": "Neutrale",
     "element": "Luce",
-    "ability": {
+    "abilities": [ {
       "name": "Esplosione Luminosa",
       "effect": "Guarisce 2 PV a tutti i tuoi personaggi e infligge 2 danni a tutti i personaggi Ombra."
-    },
+    }],
     "flavor_text": "L'esplosione di luce sacra di Dawnfield rinvigorisce gli alleati e brucia le creature dell'oscurità.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/242_nova_radiosa.png"
@@ -4955,10 +4954,10 @@
     "cost": 5,
     "class": "Neutrale",
     "element": "Ombra",
-    "ability": {
+    "abilities": [ {
       "name": "Raccolta",
       "effect": "Distrugge un personaggio nemico con PV rimasti pari o inferiori a 3. Se viene distrutto, evoca un token Spettro 3/1/3 con 'Stealth'."
-    },
+    }],
     "flavor_text": "La falce oscura miete non solo la vita, ma l'essenza stessa, trasformandola in un servitore dell'ombra.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/243_mietitore_d_anime.png"
@@ -4971,10 +4970,10 @@
     "cost": 7,
     "class": "Neutrale",
     "element": "Ombra",
-    "ability": {
+    "abilities": [ {
       "name": "Oscuramento Totale",
       "effect": "Tutti i personaggi perdono le loro abilità fino al tuo prossimo turno. I personaggi Ombra sono immuni."
-    },
+    }],
     "flavor_text": "Quando l'oscurità inghiotte la luce, tutti i poteri si affievoliscono, tranne quelli che prosperano nelle tenebre.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/244_eclissi.png"
@@ -4987,10 +4986,10 @@
     "cost": 5,
     "class": "Neutrale",
     "element": "Neutrale",
-    "ability": {
+    "abilities": [ {
       "name": "Bilanciamento Cosmico",
       "effect": "Distrugge il personaggio con l'ATT più alto e il personaggio con la DIF più alta in gioco."
-    },
+    }],
     "flavor_text": "Gli eccessi in qualsiasi direzione disturbano l'armonia naturale del mondo, e la natura trova sempre il modo di ristabilire l'ordine.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/245_ripristino_dell_equilibrio.png"
@@ -5003,10 +5002,10 @@
     "cost": 4,
     "class": "Guerriero",
     "element": "Terra",
-    "ability": {
+    "abilities": [ {
       "name": "Protezione Massima",
       "effect": "+3 DIF, \"Riduce di 1 tutti i danni ricevuti\""
-    },
+    }],
     "flavor_text": "Forgiata nelle fucine più profonde di Stonereach, questa corazza può resistere persino al fuoco di un drago.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/246_armatura_di_piastre.png"
@@ -5019,10 +5018,10 @@
     "cost": 4,
     "class": "Guerriero",
     "element": "Fuoco",
-    "ability": {
+    "abilities": [ {
       "name": "Gloria Crescente",
       "effect": "+2 ATT, \"Quando distrugge un personaggio, guadagna +1 ATT permanente\""
-    },
+    }],
     "flavor_text": "Una spada che cresce in potenza con ogni nemico abbattuto, nutrendosi del coraggio e della gloria del suo portatore.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/247_lama_del_campione.png"
@@ -5035,10 +5034,10 @@
     "cost": 4,
     "class": "Mago",
     "element": "Neutrale",
-    "ability": {
+    "abilities": [ {
       "name": "Amplificazione Arcana",
       "effect": "+1 ATT, \"Quando giochi un incantesimo, c'è una probabilità del 30% di copiarlo\""
-    },
+    }],
     "flavor_text": "Un diadema intricato che amplifica i poteri mentali del portatore, permettendogli di tessere incantesimi complessi con facilità.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/248_corona_del_sapere.png"
@@ -5051,10 +5050,10 @@
     "cost": 4,
     "class": "Mago",
     "element": "Neutrale",
-    "ability": {
+    "abilities": [ {
       "name": "Eco Spirituale",
       "effect": "\"Quando questo personaggio viene distrutto, evoca un token personaggio 3/3/3 dello stesso elemento\""
-    },
+    }],
     "flavor_text": "Una sfera di cristallo che cattura l'essenza del suo portatore, capace di richiamarla anche dopo la morte fisica.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/249_orbe_dell_evocatore.png"
@@ -5067,10 +5066,10 @@
     "cost": 3,
     "class": "Ranger",
     "element": "Aria",
-    "ability": {
+    "abilities": [ {
       "name": "Orientamento Perfetto",
       "effect": "\"All'inizio del tuo turno, guarda la prima carta del tuo mazzo. Puoi metterla in fondo\""
-    },
+    }],
     "flavor_text": "Un dispositivo misterioso che indica sempre la direzione giusta, anche quando tutte le altre guide falliscono.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/250_bussola_dell_esploratore.png"
@@ -5083,10 +5082,10 @@
     "cost": 3,
     "class": "Ranger",
     "element": "Terra",
-    "ability": {
+    "abilities": [ {
       "name": "Immobilizzazione",
       "effect": "+1 ATT, \"Quando attacca, impedisce al personaggio bersaglio di cambiare linea nel prossimo turno\""
-    },
+    }],
     "flavor_text": "Una corda intrecciata con fibre rare che sembra avere vita propria, stringendosi attorno alla preda designata.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/251_laccio_del_cacciatore.png"
@@ -5099,10 +5098,10 @@
     "cost": 4,
     "class": "Chierico",
     "element": "Neutrale",
-    "ability": {
+    "abilities": [ {
       "name": "Canalizzazione Sacra",
       "effect": "\"Una volta per turno, puoi scartare un incantesimo per guarire 3 PV a un personaggio\""
-    },
+    }],
     "flavor_text": "Un artefatto di un'epoca dimenticata, quando le distinzioni tra classi ed elementi erano più sfumate e la magia fluiva liberamente.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/252_reliquia_ancestrale.png"
@@ -5115,10 +5114,10 @@
     "cost": 4,
     "class": "Chierico",
     "element": "Luce",
-    "ability": {
+    "abilities": [ {
       "name": "Essenza Vitale",
       "effect": "\"Quando un tuo personaggio viene distrutto, guarisce 2 PV al tuo eroe\""
-    },
+    }],
     "flavor_text": "Una coppa dorata che raccoglie l'essenza vitale di chi cade in battaglia, trasformandola in energia guaritrice per chi la possiede.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/253_calice_della_vita.png"
@@ -5136,10 +5135,10 @@
       "defense": 3,
       "health": 7
     },
-    "ability": {
+    "abilities": [ {
       "name": "Braccio Infuso",
       "effect": "Quando attacca, può subire 1 danno per infliggere +3 danni extra."
-    },
+    }],
     "flavor_text": "Gladiatore leggendario con un braccio trasformato attraverso antichi rituali di fuoco.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -5158,10 +5157,10 @@
       "defense": 4,
       "health": 7
     },
-    "ability": {
+    "abilities": [ {
       "name": "Respiro Abissale",
       "effect": "Può rimanere in seconda linea anche se non ci sono personaggi in prima linea. Se lo fa, guarisce completamente all'inizio del tuo turno."
-    },
+    }],
     "flavor_text": "Mistica sacerdotessa che può respirare sott'acqua indefinitamente e comunica con le antiche creature marine.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -5180,10 +5179,10 @@
       "defense": 6,
       "health": 8
     },
-    "ability": {
+    "abilities": [ {
       "name": "Armatura Vivente",
       "effect": "Quando difende, guadagna +1 DIF permanente. Se ha più di 10 DIF, è immune agli incantesimi."
-    },
+    }],
     "flavor_text": "Leader selvaggio della tribù delle Montagne di Grimspire, la sua pelle si indurisce progressivamente in battaglia.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -5202,10 +5201,10 @@
       "defense": 2,
       "health": 5
     },
-    "ability": {
+    "abilities": [ {
       "name": "Voce del Vento",
       "effect": "All'inizio del tuo turno, guarda la prima carta del mazzo avversario. Puoi scartarla pagando 2 energie."
-    },
+    }],
     "flavor_text": "Potente sciamana delle tribù nomadi, capace di ascoltare i sussurri del vento e prevedere i futuri cambiamenti.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -5224,10 +5223,10 @@
       "defense": 3,
       "health": 5
     },
-    "ability": {
+    "abilities": [ {
       "name": "Visione Arcana",
       "effect": "Può attaccare personaggi anche se sono in Stealth. Quando attacca, rivela tutte le carte nemiche in mano dello stesso elemento."
-    },
+    }],
     "flavor_text": "Misteriosa cacciatrice che può vedere perfettamente nel buio più totale e percepire la vera natura di qualsiasi creatura.",
     "placement": "Prima o Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -5246,10 +5245,10 @@
       "defense": 2,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Manto d'Ombra",
       "effect": "Può essere evocata direttamente in seconda linea. Non può essere bersaglio di attacchi o abilità finché non attacca."
-    },
+    }],
     "flavor_text": "L'assassina più temuta di Lirya, può diventare quasi invisibile nell'ombra.",
     "placement": "Prima o Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -5268,10 +5267,10 @@
       "defense": 2,
       "health": 4
     },
-    "ability": {
+    "abilities": [ {
       "name": "Plasma Vitale",
       "effect": "Quando evochi un personaggio Fuoco, puoi pagare 1 energia per dargli +2 ATT fino alla fine del turno. Se quel personaggio distrugge un nemico, guadagna permanentemente +1 ATT."
-    },
+    }],
     "flavor_text": "Primo consigliere di Keldor e potente manipolatore delle energie primordiali del fuoco.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -5290,10 +5289,10 @@
       "defense": 4,
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Visione Trascendente",
       "effect": "Quando questa carta entra in gioco, guarda le prime 5 carte del tuo mazzo. Puoi rivelare un personaggio Luce e aggiungerlo alla tua mano."
-    },
+    }],
     "flavor_text": "Venerata veggente e consigliera spirituale di Aurelian, può percepire le connessioni tra tutti gli esseri viventi.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -5310,10 +5309,10 @@
     "stats": {
       "health": 10
     },
-    "ability": {
+    "abilities": [ {
       "name": "Conoscenza Ancestrale",
       "effect": "Una volta per turno, puoi scartare un personaggio dalla tua mano per cercare nel tuo mazzo un personaggio dello stesso elemento ma di classe diversa e aggiungerlo alla tua mano."
-    },
+    }],
     "flavor_text": "Antiche rovine recentemente scoperte nella Foresta di Eldenroot, contenenti iscrizioni che rivelano tecniche arcane dimenticate, precedenti alla formazione del Patto Ancestrale.",
     "placement": "Zona Strutture",
     "espansione": "Le Terre Divise di Lirya",
@@ -5327,10 +5326,10 @@
     "cost": 8,
     "class": "Neutrale",
     "element": "Neutrale",
-    "ability": {
+    "abilities": [ {
       "name": "Potere Primordiale",
       "effect": "Scarta fino a 6 carte dalla tua mano. Per ogni elemento diverso scartato, scegli e attiva uno dei seguenti effetti: infliggi 3 danni, guarisci 4 PV, pesca 2 carte, distruggi una struttura, stordisci un personaggio per un turno, evoca un token personaggio 2/2/2 dell'elemento scelto."
-    },
+    }],
     "flavor_text": "Rituale arcano leggendario che combina le energie di tutti gli elementi per creare effetti catastrofici o miracolosi, a seconda dell'intenzione del lanciatore.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/263_convergenza_degli_elementi.png"
@@ -5343,10 +5342,10 @@
     "cost": 5,
     "class": "Neutrale",
     "element": "Neutrale",
-    "ability": {
+    "abilities": [ {
       "name": "Legame Primordiale",
       "effect": "Il personaggio equipaggiato ottiene +1/+1/+1 e l'abilità di un altro personaggio in gioco a tua scelta. Se equipaggiato a un Reggente, ottiene anche 'Non può essere distrutto dagli effetti delle carte nemiche'."
-    },
+    }],
     "flavor_text": "Artefatto di potere incommensurabile, creato durante la formazione del Patto Ancestrale. Contiene frammenti delle energie primordiali che diedero origine a Lirya.",
     "espansione": "Le Terre Divise di Lirya",
     "img": "../images/264_pietra_di_nascita_del_reggente.png"
@@ -5364,10 +5363,10 @@
       "defense": 5,
       "health": 8
     },
-    "ability": {
+    "abilities": [ {
       "name": "Giudizio del Fabbro",
       "effect": "Una volta per partita, distrugge tutte le strutture nemiche e infligge 2 danni per ogni struttura distrutta."
-    },
+    }],
     "flavor_text": "Signore di Emberhold, la sua spada Furialama è stata temprata nel cuore del vulcano attivo.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -5386,10 +5385,10 @@
       "defense": 2,
       "health": 5
     },
-    "ability": {
+    "abilities": [ {
       "name": "Profezia delle Maree",
       "effect": "All'inizio del tuo turno, guarda le prime 3 carte del tuo mazzo, riorganizzale in qualsiasi ordine."
-    },
+    }],
     "flavor_text": "Regina visionaria di Tidemire, capace di prevedere eventi futuri attraverso complessi rituali acquatici.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -5408,10 +5407,10 @@
       "defense": 7,
       "health": 9
     },
-    "ability": {
+    "abilities": [ {
       "name": "Pelle di Granito",
       "effect": "Riduce di 2 tutti i danni ricevuti. Una volta per partita, tutti i tuoi personaggi guadagnano questa abilità fino al tuo prossimo turno."
-    },
+    }],
     "flavor_text": "Re di Stonereach, si dice che la sua pelle sia dura come il granito dopo anni di rituali con cristalli delle profondità.",
     "placement": "Prima Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -5430,10 +5429,10 @@
       "defense": 3,
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Cavalca-Tempeste",
       "effect": "Può attaccare immediatamente quando evocata. Può colpire qualsiasi personaggio nemico indipendentemente dalla sua posizione."
-    },
+    }],
     "flavor_text": "Regina dei venti di Mistral, si muove con tale agilità che sembra quasi volare.",
     "placement": "Prima o Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -5452,10 +5451,10 @@
       "defense": 4,
       "health": 7
     },
-    "ability": {
+    "abilities": [ {
       "name": "Giudizio Divino",
       "effect": "Quando questa carta entra in gioco, scegli un elemento. Tutti i personaggi di quell'elemento perdono le loro abilità fino al tuo prossimo turno."
-    },
+    }],
     "flavor_text": "Illuminato leader spirituale di Dawnfield, la cui intuizione soprannaturale gli permette di discernere verità e menzogne.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",
@@ -5474,10 +5473,10 @@
       "defense": 1,
       "health": 6
     },
-    "ability": {
+    "abilities": [ {
       "name": "Velo di Inganni",
       "effect": "Puoi evocare questa carta nella seconda linea avversaria. Se lo fai, prendi il controllo di un personaggio nemico in seconda linea fino alla fine della partita."
-    },
+    }],
     "flavor_text": "Enigmatico leader di Veilcrest, il cui vero volto è sempre celato da maschere elaborate.",
     "placement": "Seconda Linea",
     "espansione": "Le Terre Divise di Lirya",

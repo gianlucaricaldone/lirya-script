@@ -20,6 +20,30 @@ const CardRenderer = (() => {
         Equipaggiamento: null
     };
 
+    // Aggiungi questa funzione all'inizio del modulo CardRenderer
+    const fixImagePath = (path) => {
+        if (!path) return null;
+        
+        // Se il percorso è già un data URL, restituiscilo com'è
+        if (path.startsWith('data:')) return path;
+        
+        // Se è un URL completo con http/https, restituiscilo com'è
+        if (path.startsWith('http://') || path.startsWith('https://')) return path;
+        
+        // Gestisci i percorsi relativi che iniziano con ../
+        if (path.startsWith('../')) {
+            // Rimuovi il ../ e aggiungi il percorso base
+            return path.replace('../', './');
+        }
+        
+        // Se è un percorso relativo senza ../, assicurati che inizi con ./
+        if (!path.startsWith('./')) {
+            return './' + path;
+        }
+        
+        return path;
+    };
+
     /**
      * Carica tutti i template SVG
      * @return {Promise} - Promise che si risolve quando tutti i template sono caricati
@@ -81,7 +105,22 @@ const CardRenderer = (() => {
         svg = svg.replace(/{{costo}}/g, card.cost || '0');
 
         // Immagine
-        svg = svg.replace(/{{immagine}}/g, card.img || '0');
+        // svg = svg.replace(/{{immagine}}/g, card.img || '0');
+        // MODIFICA: Gestione dell'immagine
+        if (card.img && card.img.length > 0) {
+            // Correggi il percorso dell'immagine
+            const fixedPath = fixImagePath(card.img);
+            svg = svg.replace(/{{immagine}}/g, fixedPath);
+            
+            // Debug - rimuovi nella versione finale
+            console.log(`Percorso immagine originale: ${card.img}, Percorso corretto: ${fixedPath}`);
+        } else {
+            // Se non c'è un'immagine specifica, usa un placeholder
+            const placeholderImage = './images/placeholders/' + 
+                (card.type ? card.type.toLowerCase() : 'default') + '_placeholder.jpg';
+            svg = svg.replace(/{{immagine}}/g, placeholderImage);
+        }
+
 
         // Set
         svg = svg.replace(/{{set}}/g, card.espansione || '');
@@ -125,6 +164,8 @@ const CardRenderer = (() => {
         svg = svg.replace(/{{posizionamento}}/g, card.placement || '');
 
         // Abilità
+        console.log("CARTO");
+        console.log(card.ability);
         if (card.abilities && card.abilities.length > 0) {
             // Se il template ha un segnaposto per le abilità multiple
             if (svg.includes('{{abilita_lista}}')) {

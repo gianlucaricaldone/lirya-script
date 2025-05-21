@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Dati delle carte
     let allCards = [];
+    let filteredCards = []; // Aggiungiamo questa variabile per tenere traccia delle carte filtrate
 
     /**
      * Inizializza l'applicazione
@@ -69,6 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 allCards = allCards.cards;
             }
             console.log(`Caricate ${allCards.length} carte`);
+            
+            // Rendi disponibile globalmente tutte le carte per il generatore PDF
+            window.allCards = allCards;
 
         } catch (error) {
             console.error('Errore nel caricamento delle carte:', error);
@@ -91,6 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
         cards.forEach(card => {
             const cardElement = document.createElement('div');
             cardElement.className = `card class-${card.class || 'Neutrale'} rarity-${card.rarity.replace(' ', '-')}`;
+            
+            // Aggiungi l'ID della carta come attributo data per la selezione
+            cardElement.dataset.cardId = card.id;
 
             // Crea l'HTML della carta
             cardElement.innerHTML = `
@@ -121,7 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     const handleFiltersChanged = (event) => {
         // Filtra le carte
-        const filteredCards = FilterModule.filterCards(allCards);
+        filteredCards = FilterModule.filterCards(allCards);
+        
+        // Rendi disponibile globalmente le carte filtrate per il generatore PDF
+        window.filteredCards = filteredCards;
 
         // Aggiorna la visualizzazione
         displayCards(filteredCards);

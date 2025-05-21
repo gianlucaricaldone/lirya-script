@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lirya - Visualizzatore Carte</title>
     <link rel="stylesheet" href="css/styles.css">
+    <!-- Inclusione delle librerie per il PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 <header>
@@ -74,11 +77,36 @@
     <div class="buttons">
         <button id="apply-filters">Applica Filtri</button>
         <button id="reset-filters" class="reset">Reimposta</button>
+        <button id="generate-pdf" class="primary">Genera PDF</button>
+        
+        <!-- Opzioni aggiuntive per il PDF -->
+        <div class="pdf-options" style="display: none; margin-top: 10px; padding: 10px; background: #f5f5f5; border-radius: 5px;">
+            <div style="margin-bottom: 10px;">
+                <label for="pdf-option">Quali carte stampare:</label>
+                <select id="pdf-option">
+                    <option value="filtered">Solo carte filtrate</option>
+                    <option value="all">Tutte le carte</option>
+                    <option value="selected">Carte selezionate</option>
+                </select>
+            </div>
+            <div style="margin-bottom: 10px;">
+                <label for="pdf-filename">Nome del file:</label>
+                <input type="text" id="pdf-filename" value="lirya-cards.pdf">
+            </div>
+            <div>
+                <button id="confirm-pdf" class="primary">Conferma e Genera PDF</button>
+                <button id="cancel-pdf" class="reset">Annulla</button>
+            </div>
+        </div>
     </div>
 </section>
 
 <div class="stats">
     <span id="card-count">Visualizzazione di 0 carte</span>
+    <div id="pdf-progress" style="display: none; margin-left: 20px;">
+        <span>Generazione PDF in corso...</span>
+        <progress id="pdf-progress-bar" value="0" max="100"></progress>
+    </div>
 </div>
 
 <div id="cards-container" class="cards-container">
@@ -97,9 +125,125 @@
     </div>
 </div>
 
+<!-- Includi il generatore PDF -->
 <script src="js/card-renderer.js"></script>
+<script src="js/card-printer.js"></script>
 <script src="js/filter.js"></script>
 <script src="js/modal.js"></script>
 <script src="js/app.js"></script>
+
+<script>
+// Gestione PDF UI
+document.addEventListener('DOMContentLoaded', function() {
+    // Riferimenti agli elementi
+    const generatePdfBtn = document.getElementById('generate-pdf');
+    const pdfOptions = document.querySelector('.pdf-options');
+    const confirmPdfBtn = document.getElementById('confirm-pdf');
+    const cancelPdfBtn = document.getElementById('cancel-pdf');
+    const pdfFilename = document.getElementById('pdf-filename');
+    const pdfOption = document.getElementById('pdf-option');
+    const pdfProgress = document.getElementById('pdf-progress');
+    const pdfProgressBar = document.getElementById('pdf-progress-bar');
+    
+    // Carte selezionate (per l'opzione "carte selezionate")
+    let selectedCards = [];
+    
+    // Aggiungi gestione clic su carte per selezione 
+    const cardsContainer = document.getElementById('cards-container');
+    cardsContainer.addEventListener('click', function(e) {
+        if (pdfOption.value === 'selected') {
+            // Trova l'elemento carta più vicino
+            const cardElement = e.target.closest('.card');
+            if (cardElement) {
+                const cardId = parseInt(cardElement.dataset.cardId);
+                
+                // Seleziona/deseleziona la carta
+                if (cardElement.classList.toggle('selected')) {
+                    selectedCards.push(cardId);
+                } else {
+                    selectedCards = selectedCards.filter(id => id !== cardId);
+                }
+            }
+        }
+    });
+    
+    // Mostra opzioni PDF quando si fa clic sul pulsante
+    generatePdfBtn.addEventListener('click', function() {
+        pdfOptions.style.display = 'block';
+        
+        // Resetta la selezione delle carte quando si cambia opzione
+        if (pdfOption.value !== 'selected') {
+            document.querySelectorAll('.card.selected').forEach(card => {
+                card.classList.remove('selected');
+            });
+            selectedCards = [];
+        }
+    });
+    
+    // Cambia la modalità quando si modifica l'opzione
+    pdfOption.addEventListener('change', function() {
+        if (this.value === 'selected') {
+            alert('Fai clic sulle carte che vuoi includere nel PDF');
+        } else {
+            document.querySelectorAll('.card.selected').forEach(card => {
+                card.classList.remove('selected');
+            });
+            selectedCards = [];
+        }
+    });
+    
+    // Nascondi opzioni PDF quando si fa clic su Annulla
+    cancelPdfBtn.addEventListener('click', function() {
+        pdfOptions.style.display = 'none';
+    });
+    
+    // Genera PDF quando si fa clic su Conferma
+    confirmPdfBtn.addEventListener('click', function() {
+        const filename = pdfFilename.value || 'lirya-cards.pdf';
+        const option = pdfOption.value;
+        
+        pdfOptions.style.display = 'none';
+        pdfProgress.style.display = 'flex';
+        pdfProgressBar.value = 0;
+        
+        // Ottieni le carte in base all'opzione scelta
+        let cardsToInclude = [];
+        
+        if (option === 'all') {
+            // Tutte le carte disponibili
+            cardsToInclude = window.allCards; // Assicurati che window.allCards contenga tutte le carte
+        } else if (option === 'filtered') {
+            // Solo le carte attualmente visualizzate (filtrate)
+            cardsToInclude = window.filteredCards; // Assicurati che window.filteredCards contenga le carte filtrate
+        } else if (option === 'selected') {
+            // Solo le carte selezionate
+            if (selectedCards.length === 0) {
+                alert('Nessuna carta selezionata. Seleziona almeno una carta.');
+                pdfProgress.style.display = 'none';
+                return;
+            }
+            cardsToInclude = window.allCards.filter(card => selectedCards.includes(card.id));
+        }
+        
+        // Imposta il gestore di avanzamento
+        const progressHandler = (current, total) => {
+            const percentage = Math.floor((current / total) * 100);
+            pdfProgressBar.value = percentage;
+        };
+        
+        // Genera il PDF
+        LiryaCardPrinter.generatePDF(cardsToInclude, filename, progressHandler)
+            .then(() => {
+                pdfProgress.style.display = 'none';
+                alert(`PDF "${filename}" generato con successo!`);
+            })
+            .catch(error => {
+                pdfProgress.style.display = 'none';
+                console.error('Errore nella generazione del PDF:', error);
+                alert('Si è verificato un errore nella generazione del PDF. Controlla la console per i dettagli.');
+            });
+    });
+});
+</script>
 </body>
 </html>

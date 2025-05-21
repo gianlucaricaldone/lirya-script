@@ -126,8 +126,8 @@ const FilterModule = (() => {
                     ];
 
                     // Aggiungi il testo delle abilità se presente
-                    if (card.abilities) {
-                        card.abilities.forEach(ability => {
+                    if (card.ability) {
+                        card.ability.forEach(ability => {
                             fieldsToSearch.push(ability.name.toLowerCase());
                             fieldsToSearch.push(ability.effect.toLowerCase());
                         });
