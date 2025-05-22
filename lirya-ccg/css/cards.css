@@ -1,0 +1,367 @@
+/* css/cards.css - Stili per le carte */
+
+/* === DECK CARDS (Setup) === */
+.deck-card {
+    background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+    border: 2px solid #555;
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.deck-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.deck-card:hover::before {
+    left: 100%;
+}
+
+.deck-card:hover {
+    border-color: #777;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.deck-card.selected {
+    border-color: #FFD700;
+    box-shadow: 0 0 20px rgba(255,215,0,0.6);
+    background: linear-gradient(145deg, #3c3c0c, #2a2a0a);
+    transform: translateY(-5px);
+}
+
+.deck-name {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 12px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+.deck-strategy {
+    font-size: 1em;
+    color: #ccc;
+    margin-bottom: 12px;
+    font-style: italic;
+}
+
+.deck-elements {
+    font-size: 0.9em;
+    color: #aaa;
+    background: rgba(0,0,0,0.3);
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* === GAME CARDS === */
+.card {
+    background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+    border: 2px solid #555;
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 130px;
+    max-width: 150px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    font-size: 0.85em;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    right: 2px;
+    bottom: 2px;
+    background: linear-gradient(145deg, transparent, rgba(255,255,255,0.05));
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+    border-color: #777;
+    z-index: 10;
+}
+
+.card.selected {
+    border-color: #FFD700;
+    box-shadow: 0 0 15px rgba(255,215,0,0.8);
+    transform: translateY(-3px) scale(1.05);
+    z-index: 20;
+}
+
+/* === DRAG AND DROP === */
+.card.dragging {
+    opacity: 0.7;
+    transform: rotate(5deg) scale(1.05);
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.zone.drag-over {
+    border-color: #00ff00 !important;
+    border-style: solid !important;
+    background: rgba(0,255,0,0.1) !important;
+    box-shadow: 0 0 15px rgba(0,255,0,0.5);
+}
+
+.zone.drag-invalid {
+    border-color: #ff0000 !important;
+    border-style: solid !important;
+    background: rgba(255,0,0,0.1) !important;
+    box-shadow: 0 0 15px rgba(255,0,0,0.5);
+}
+
+/* === CARD STATES === */
+.card.can-play {
+    border-color: #00ff00;
+    box-shadow: 0 0 15px rgba(0,255,0,0.6);
+    animation: pulse-green 2s infinite;
+}
+
+.card.selected {
+    border-color: #FFD700;
+    box-shadow: 0 0 20px rgba(255,215,0,0.8);
+    transform: translateY(-5px) scale(1.02);
+    z-index: 50;
+}
+
+.card:not(.can-play):not(.selected) {
+    opacity: 0.8;
+}
+
+.card.invalid-play {
+    border-color: #ff0000;
+    box-shadow: 0 0 10px rgba(255,0,0,0.6);
+    animation: shake 0.5s ease-in-out;
+}
+
+/* === CARD CONTENT === */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+    gap: 8px;
+}
+
+.card-name {
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #fff;
+    line-height: 1.2;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    flex: 1;
+}
+
+.card-cost {
+    background: linear-gradient(145deg, #444, #222);
+    border: 1px solid #666;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7em;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    flex-shrink: 0;
+}
+
+.card-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75em;
+    margin: 8px 0;
+    gap: 4px;
+}
+
+.card-stats span {
+    background: rgba(0,0,0,0.4);
+    padding: 3px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.2);
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+.card-type {
+    font-size: 0.65em;
+    color: #aaa;
+    text-align: center;
+    margin-top: 8px;
+    padding: 4px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* === ELEMENT BORDERS === */
+.element-fire { 
+    border-left: 4px solid #ff4444;
+    background: linear-gradient(145deg, #2c1c1c, #1a1010);
+}
+
+.element-water { 
+    border-left: 4px solid #4444ff;
+    background: linear-gradient(145deg, #1c1c2c, #101018);
+}
+
+.element-earth { 
+    border-left: 4px solid #8b4513;
+    background: linear-gradient(145deg, #2c2418, #1a1810);
+}
+
+.element-air { 
+    border-left: 4px solid #87ceeb;
+    background: linear-gradient(145deg, #1c2428, #101618);
+}
+
+.element-light { 
+    border-left: 4px solid #ffff00;
+    background: linear-gradient(145deg, #2c2c1c, #1a1a10);
+}
+
+.element-shadow { 
+    border-left: 4px solid #800080;
+    background: linear-gradient(145deg, #2c1c2c, #1a1018);
+}
+
+.element-neutral {
+    border-left: 4px solid #666;
+    background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+}
+
+/* === CARD BACK === */
+.card-back {
+    height: 100px;
+    background: linear-gradient(145deg, #333, #111);
+    border: 2px solid #666;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    color: #888;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+/* === ANIMATIONS === */
+@keyframes pulse-green {
+    0%, 100% { 
+        box-shadow: 0 0 15px rgba(0,255,0,0.6);
+        border-color: #00ff00;
+    }
+    50% { 
+        box-shadow: 0 0 25px rgba(0,255,0,0.9);
+        border-color: #00ff88;
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes card-draw {
+    0% { 
+        transform: translateX(-100px) rotate(-10deg);
+        opacity: 0;
+    }
+    100% { 
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes card-play {
+    0% { 
+        transform: scale(1);
+    }
+    50% { 
+        transform: scale(1.1);
+    }
+    100% { 
+        transform: scale(1);
+    }
+}
+
+.card-draw-animation {
+    animation: card-draw 0.5s ease-out;
+}
+
+.card-play-animation {
+    animation: card-play 0.3s ease-out;
+}
+
+/* === SPECIAL EFFECTS === */
+.card.legendary {
+    background: linear-gradient(145deg, #4a3728, #2d1f15);
+    border-color: #DAA520;
+    box-shadow: 0 0 15px rgba(218,165,32,0.5);
+}
+
+.card.legendary::after {
+    content: '⭐';
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    font-size: 1.2em;
+    color: #DAA520;
+    text-shadow: 0 0 10px rgba(218,165,32,0.8);
+}
+
+.card.rare {
+    border-color: #9932CC;
+}
+
+.card.uncommon {
+    border-color: #40E0D0;
+}
+
+.card.common {
+    border-color: #C0C0C0;
+}
+
+/* === CARD TOOLTIPS === */
+.card-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.95);
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.8em;
+    white-space: nowrap;
+    z-index: 1000;
+    border: 1px solid #666;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .card-tooltip {
+    opacity: 1;
+}

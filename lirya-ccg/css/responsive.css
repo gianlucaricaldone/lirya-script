@@ -1,0 +1,432 @@
+/* css/responsive.css - Stili responsivi */
+
+/* === TABLET (768px - 1024px) === */
+@media (max-width: 1024px) {
+    .game-log {
+        width: 280px;
+        height: 350px;
+        right: 10px;
+        top: 10px;
+    }
+    
+    .setup-card {
+        padding: 30px;
+        max-width: 900px;
+    }
+    
+    .player-deck-selection {
+        gap: 25px;
+    }
+    
+    .deck-selection {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
+    }
+    
+    .battlefield {
+        gap: 12px;
+    }
+    
+    .zone {
+        min-height: 120px;
+        padding: 10px;
+    }
+    
+    .card {
+        min-width: 110px;
+        max-width: 130px;
+        font-size: 0.8em;
+    }
+    
+    .controls {
+        gap: 12px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+        min-width: 100px;
+    }
+}
+
+/* === MOBILE LANDSCAPE (768px) === */
+@media (max-width: 768px) and (orientation: landscape) {
+    .game-container {
+        padding: 5px;
+    }
+    
+    .player-area {
+        padding: 10px;
+        margin: 3px 0;
+    }
+    
+    .battlefield {
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 8px;
+        margin: 10px 0;
+    }
+    
+    .zone {
+        min-height: 100px;
+        padding: 8px;
+    }
+    
+    .hand {
+        padding: 10px;
+        gap: 8px;
+    }
+    
+    .card {
+        min-width: 90px;
+        max-width: 110px;
+        padding: 8px;
+        font-size: 0.75em;
+    }
+    
+    .turn-indicator {
+        padding: 10px;
+        font-size: 1em;
+    }
+    
+    .controls {
+        margin: 10px 0;
+        gap: 8px;
+    }
+    
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.8em;
+        min-width: 80px;
+    }
+}
+
+/* === MOBILE PORTRAIT (768px) === */
+@media (max-width: 768px) {
+    .game-log {
+        display: none !important;
+    }
+    
+    .setup-card {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .setup-card h1 {
+        font-size: 2em;
+    }
+    
+    .setup-card h2 {
+        font-size: 1.2em;
+    }
+    
+    .player-deck-selection {
+        gap: 20px;
+    }
+    
+    .player-section {
+        padding: 20px;
+    }
+    
+    .deck-selection {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .deck-card {
+        padding: 15px;
+    }
+    
+    .deck-name {
+        font-size: 1.1em;
+    }
+    
+    .battlefield {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin: 15px 0;
+    }
+    
+    .zone {
+        min-height: 80px;
+        padding: 8px;
+    }
+    
+    .zone h3 {
+        font-size: 0.8em;
+        margin-bottom: 5px;
+    }
+    
+    .zone-slots {
+        font-size: 0.6em;
+        top: 5px;
+        right: 5px;
+    }
+    
+    .card {
+        min-width: 100px;
+        max-width: 120px;
+        padding: 6px;
+        font-size: 0.7em;
+    }
+    
+    .card-name {
+        font-size: 0.7em;
+    }
+    
+    .card-cost {
+        width: 20px;
+        height: 20px;
+        font-size: 0.6em;
+    }
+    
+    .card-stats {
+        font-size: 0.65em;
+        gap: 2px;
+    }
+    
+    .card-type {
+        font-size: 0.55em;
+    }
+    
+    .hand {
+        padding: 10px;
+        gap: 6px;
+        min-height: 100px;
+    }
+    
+    .player-info {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .stats {
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+    
+    .stat {
+        font-size: 0.8em;
+        padding: 3px 6px;
+    }
+    
+    .turn-indicator {
+        padding: 10px;
+        font-size: 1em;
+        margin: 10px 0;
+    }
+    
+    .phase-indicator {
+        font-size: 0.8em;
+        padding: 5px 10px;
+    }
+    
+    .controls {
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 10px 0;
+    }
+    
+    .btn {
+        padding: 10px 15px;
+        font-size: 0.8em;
+        min-width: 90px;
+        flex: 1;
+    }
+}
+
+/* === SMALL MOBILE (480px) === */
+@media (max-width: 480px) {
+    .game-container {
+        padding: 3px;
+    }
+    
+    .setup-card {
+        padding: 15px;
+        margin: 5px;
+    }
+    
+    .setup-card h1 {
+        font-size: 1.8em;
+    }
+    
+    .setup-card h2 {
+        font-size: 1em;
+        margin-bottom: 20px;
+    }
+    
+    .player-section {
+        padding: 15px;
+    }
+    
+    .deck-card {
+        padding: 12px;
+    }
+    
+    .player-area {
+        padding: 8px;
+        margin: 2px 0;
+    }
+    
+    .battlefield {
+        gap: 8px;
+        margin: 10px 0;
+    }
+    
+    .zone {
+        min-height: 70px;
+        padding: 6px;
+    }
+    
+    .cards-container {
+        gap: 4px;
+    }
+    
+    .card {
+        min-width: 80px;
+        max-width: 100px;
+        padding: 4px;
+        font-size: 0.65em;
+    }
+    
+    .card-name {
+        font-size: 0.65em;
+        line-height: 1.1;
+    }
+    
+    .card-cost {
+        width: 18px;
+        height: 18px;
+        font-size: 0.55em;
+    }
+    
+    .card-stats {
+        font-size: 0.6em;
+        margin: 4px 0;
+    }
+    
+    .card-stats span {
+        padding: 2px 4px;
+    }
+    
+    .card-type {
+        font-size: 0.5em;
+        margin-top: 4px;
+    }
+    
+    .hand {
+        padding: 8px;
+        gap: 4px;
+        min-height: 90px;
+    }
+    
+    .player-name {
+        font-size: 1.1em;
+    }
+    
+    .stat {
+        font-size: 0.7em;
+        padding: 2px 4px;
+    }
+    
+    .deck-info {
+        font-size: 0.7em;
+    }
+    
+    .turn-indicator {
+        padding: 8px;
+        font-size: 0.9em;
+        margin: 8px 0;
+    }
+    
+    .phase-indicator {
+        font-size: 0.7em;
+        padding: 4px 8px;
+        margin-top: 5px;
+    }
+    
+    .btn {
+        padding: 8px 12px;
+        font-size: 0.7em;
+        min-width: 70px;
+    }
+}
+
+/* === VERY SMALL MOBILE (360px) === */
+@media (max-width: 360px) {
+    .setup-card h1 {
+        font-size: 1.5em;
+    }
+    
+    .setup-card h2 {
+        font-size: 0.9em;
+    }
+    
+    .card {
+        min-width: 70px;
+        max-width: 90px;
+        font-size: 0.6em;
+    }
+    
+    .card-name {
+        font-size: 0.6em;
+    }
+    
+    .card-cost {
+        width: 16px;
+        height: 16px;
+        font-size: 0.5em;
+    }
+    
+    .card-stats {
+        font-size: 0.55em;
+    }
+    
+    .card-type {
+        font-size: 0.45em;
+    }
+    
+    .zone {
+        min-height: 60px;
+    }
+    
+    .zone h3 {
+        font-size: 0.7em;
+    }
+    
+    .btn {
+        padding: 6px 10px;
+        font-size: 0.65em;
+        min-width: 60px;
+    }
+    
+    .stat {
+        font-size: 0.65em;
+    }
+    
+    .player-name {
+        font-size: 1em;
+    }
+}
+
+/* === PRINT STYLES === */
+@media print {
+    .game-log,
+    .controls,
+    .btn {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .player-area,
+    .zone,
+    .card {
+        border-color: black !important;
+        background: white !important;
+    }
+}

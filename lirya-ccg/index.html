@@ -1,0 +1,137 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lirya - CCG Online</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Schermata di Setup -->
+    <div class="setup-screen" id="setup-screen">
+        <div class="setup-card">
+            <h1>🎮 Lirya - CCG Online</h1>
+            <h2>Seleziona i Mazzi per la Partita</h2>
+            
+            <div class="player-deck-selection">
+                <div class="player-section">
+                    <h3>👤 Giocatore 1</h3>
+                    <div class="deck-selection" id="player1-decks">
+                        <!-- Mazzi per giocatore 1 -->
+                    </div>
+                    <div class="ready-indicator" id="p1-ready" style="display: none;">✅ Pronto!</div>
+                </div>
+                
+                <div class="player-section">
+                    <h3>👤 Giocatore 2</h3>
+                    <div class="deck-selection" id="player2-decks">
+                        <!-- Mazzi per giocatore 2 -->
+                    </div>
+                    <div class="ready-indicator" id="p2-ready" style="display: none;">✅ Pronto!</div>
+                </div>
+            </div>
+            
+            <button class="btn" id="start-game" onclick="startGame()" disabled>🚀 Inizia Partita</button>
+        </div>
+    </div>
+
+    <!-- Schermata di Gioco -->
+    <div class="game-container hidden" id="game-container">
+        <!-- Area Giocatore 2 -->
+        <div class="player-area">
+            <div class="player-info">
+                <div class="player-name" id="p2-name">👤 Giocatore 2</div>
+                <div class="stats">
+                    <div class="stat">❤️ PV: <span id="p2-health">20</span></div>
+                    <div class="stat">⚡ Energia: <span id="p2-energy">1</span></div>
+                    <div class="stat">🃏 Mano: <span id="p2-hand-count">5</span></div>
+                    <div class="deck-info">📚 Mazzo: <span id="p2-deck-count">35</span></div>
+                </div>
+            </div>
+            
+            <div class="battlefield">
+                <div class="zone">
+                    <h3>Prima Linea</h3>
+                    <div class="zone-slots">0/4</div>
+                    <div class="cards-container" id="p2-front-line"></div>
+                </div>
+                <div class="zone">
+                    <h3>Seconda Linea</h3>
+                    <div class="zone-slots">0/4</div>
+                    <div class="cards-container" id="p2-back-line"></div>
+                </div>
+                <div class="zone">
+                    <h3>Strutture</h3>
+                    <div class="zone-slots">0/3</div>
+                    <div class="cards-container" id="p2-structures"></div>
+                </div>
+            </div>
+
+            <div class="hand" id="p2-hand"></div>
+        </div>
+
+        <!-- Indicatore turno e controlli centrali -->
+        <div class="turn-indicator">
+            <div id="current-player">Turno di: Giocatore 1</div>
+            <div class="phase-indicator" id="current-phase">Fase: Inizio Turno</div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" id="btn-play-card" onclick="playSelectedCard()">Gioca Carta</button>
+            <button class="btn btn-attack" id="btn-attack" onclick="startAttackPhase()">Fase Attacco</button>
+            <button class="btn btn-end" id="btn-end-turn" onclick="endTurn()">Fine Turno</button>
+        </div>
+
+        <!-- Area Giocatore 1 -->
+        <div class="player-area">
+            <div class="player-info">
+                <div class="player-name" id="p1-name">🎮 Giocatore 1</div>
+                <div class="stats">
+                    <div class="stat">❤️ PV: <span id="p1-health">20</span></div>
+                    <div class="stat">⚡ Energia: <span id="p1-energy">1</span></div>
+                    <div class="stat">🃏 Mano: <span id="p1-hand-count">5</span></div>
+                    <div class="deck-info">📚 Mazzo: <span id="p1-deck-count">35</span></div>
+                </div>
+            </div>
+
+            <div class="battlefield">
+                <div class="zone">
+                    <h3>Prima Linea</h3>
+                    <div class="zone-slots">0/4</div>
+                    <div class="cards-container" id="p1-front-line"></div>
+                </div>
+                <div class="zone">
+                    <h3>Seconda Linea</h3>
+                    <div class="zone-slots">0/4</div>
+                    <div class="cards-container" id="p1-back-line"></div>
+                </div>
+                <div class="zone">
+                    <h3>Strutture</h3>
+                    <div class="zone-slots">0/3</div>
+                    <div class="cards-container" id="p1-structures"></div>
+                </div>
+            </div>
+
+            <div class="hand" id="p1-hand"></div>
+        </div>
+    </div>
+
+    <!-- Log di gioco -->
+    <div class="game-log hidden" id="game-log">
+        <h3>📜 Log di Gioco</h3>
+        <div id="game-log-content"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data/decks.js"></script>
+    <script src="js/game/gameState.js"></script>
+    <script src="js/game/gameLogic.js"></script>
+    <script src="js/game/combat.js"></script>
+    <script src="js/ui/uiManager.js"></script>
+    <script src="js/ui/cardRenderer.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
