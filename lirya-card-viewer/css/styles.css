@@ -4,6 +4,30 @@
     padding: 0;
 }
 
+/* Stile per il pulsante Gioca */
+.play-button {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(238, 90, 36, 0.3);
+}
+
+.play-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(238, 90, 36, 0.4);
+    background: linear-gradient(135deg, #ff7979 0%, #f66a4e 100%);
+}
+
+.play-button:active {
+    transform: translateY(0);
+}
+
 body {
     font-family: 'Arial', sans-serif;
     padding: 20px;

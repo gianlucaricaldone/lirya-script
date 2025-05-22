@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lirya - Gioca</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+    <!-- Menu Iniziale -->
+    <div id="main-menu" class="game-screen active">
+        <div class="menu-container">
+            <h1 class="game-title">Lirya</h1>
+            <div class="menu-buttons">
+                <button id="play-local" class="menu-button primary">🎮 Gioca Locale (2 Giocatori)</button>
+                <button id="play-cpu" class="menu-button secondary">🤖 Gioca vs CPU</button>
+                <button id="deck-builder" class="menu-button">🎴 Crea Mazzo</button>
+                <button id="back-to-viewer" class="menu-button" onclick="window.location.href='../index.html'">← Torna al Visualizzatore</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Selezione Mazzi -->
+    <div id="deck-selection" class="game-screen">
+        <div class="deck-selection-container">
+            <h2>Selezione Mazzi</h2>
+            
+            <div class="player-selection">
+                <div class="player-deck-select">
+                    <h3 id="player1-title">Giocatore 1</h3>
+                    <div class="deck-options" id="player1-decks">
+                        <!-- I mazzi verranno caricati dinamicamente -->
+                    </div>
+                </div>
+                
+                <div class="vs-separator">VS</div>
+                
+                <div class="player-deck-select">
+                    <h3 id="player2-title">Giocatore 2</h3>
+                    <div class="deck-options" id="player2-decks">
+                        <!-- I mazzi verranno caricati dinamicamente -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="deck-buttons">
+                <button id="start-game" class="menu-button primary" disabled>Inizia Partita</button>
+                <button id="back-to-menu" class="menu-button">← Indietro</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Schermata di Gioco -->
+    <div id="game-board" class="game-screen">
+        <!-- Indicatore turno attivo -->
+        <div id="turn-indicator" class="turn-indicator">
+            <h2 id="active-player-name">Turno del Giocatore 1</h2>
+            <div class="turn-info">
+                <span id="turn-phase">Fase: Principale</span>
+                <button id="end-turn" class="end-turn-button">Fine Turno</button>
+            </div>
+        </div>
+
+        <!-- Campo di gioco -->
+        <div class="game-field">
+            <!-- Area Giocatore 2 (sopra) -->
+            <div class="player-area player2" id="player2-area">
+                <div class="player-info">
+                    <div class="player-stats">
+                        <h3>Giocatore 2</h3>
+                        <div class="life-points">❤️ <span id="player2-life">20</span></div>
+                        <div class="energy">⚡ <span id="player2-energy">0</span>/<span id="player2-max-energy">0</span></div>
+                    </div>
+                    <div class="deck-info">
+                        <div class="deck-count">📚 <span id="player2-deck-count">40</span></div>
+                        <div class="hand-count">✋ <span id="player2-hand-count">0</span></div>
+                    </div>
+                </div>
+                
+                <div class="player-hand" id="player2-hand">
+                    <!-- Carte in mano (nascoste quando non è il turno) -->
+                </div>
+                
+                <div class="player-field">
+                    <div class="structures-zone" id="player2-structures">
+                        <h4>Strutture</h4>
+                        <div class="structure-slots">
+                            <div class="card-slot"></div>
+                            <div class="card-slot"></div>
+                            <div class="card-slot"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="second-line" id="player2-second-line">
+                        <h4>Seconda Linea</h4>
+                        <div class="line-slots">
+                            <div class="card-slot"></div>
+                            <div class="card-slot"></div>
+                            <div class="card-slot"></div>
+                            <div class="card-slot"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="first-line" id="player2-first-line">
+                        <h4>Prima Linea</h4>
+                        <div class="line-slots">
+                            <div class="card-slot"></div>
+                            <div class="card-slot"></div>
+                            <div class="card-slot"></div>
+                            <div class="card-slot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Separatore centrale -->
+            <div class="field-separator"></div>
+
+            <!-- Area Giocatore 1 (sotto) -->
+            <div class="player-area player1" id="player1-area">
+                <div class="player-field">
+                    <div class="first-line" id="player1-first-line">
+                        <h4>Prima Linea</h4>
+                        <div class="line-slots">
+                            <div class="card-slot"></div>
+                            <div class="card-slot"></div>
+                            <div class="card-slot"></div>
+                            <div class="card-slot"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="second-line" id="player1-second-line">
+                        <h4>Seconda Linea</h4>
+                        <div class="line-slots">
+                            <div class="card-slot"></div>
+                            <div class="card-slot"></div>
+                            <div class="card-slot"></div>
+                            <div class="card-slot"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="structures-zone" id="player1-structures">
+                        <h4>Strutture</h4>
+                        <div class="structure-slots">
+                            <div class="card-slot"></div>
+                            <div class="card-slot"></div>
+                            <div class="card-slot"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="player-hand" id="player1-hand">
+                    <!-- Carte in mano -->
+                </div>
+                
+                <div class="player-info">
+                    <div class="player-stats">
+                        <h3>Giocatore 1</h3>
+                        <div class="life-points">❤️ <span id="player1-life">20</span></div>
+                        <div class="energy">⚡ <span id="player1-energy">0</span>/<span id="player1-max-energy">0</span></div>
+                    </div>
+                    <div class="deck-info">
+                        <div class="deck-count">📚 <span id="player1-deck-count">40</span></div>
+                        <div class="hand-count">✋ <span id="player1-hand-count">0</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu di pausa -->
+        <button id="pause-game" class="pause-button">⏸️ Pausa</button>
+    </div>
+
+    <!-- Modal per visualizzare le carte -->
+    <div id="card-detail-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-card-detail" class="modal-card">
+                <!-- SVG della carta -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal cambio turno -->
+    <div id="turn-change-modal" class="modal turn-modal">
+        <div class="modal-content">
+            <h2 id="turn-change-message">Turno del Giocatore 1</h2>
+            <p>Premi OK quando sei pronto</p>
+            <button id="confirm-turn" class="menu-button primary">OK</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Inizializza LiryaCardRenderer se non esiste
+        if (!window.LiryaCardRenderer) {
+            window.LiryaCardRenderer = {
+                renderCard: function(card) {
+                    // Renderer semplificato di fallback
+                    return `<svg viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="200" height="280" fill="#333" stroke="gold" stroke-width="2" rx="10"/>
+                        <text x="100" y="60" text-anchor="middle" fill="white" font-size="16">${card.name || 'Carta'}</text>
+                        <text x="170" y="30" text-anchor="middle" fill="gold" font-size="18">⚡${card.cost || 0}</text>
+                        <text x="100" y="140" text-anchor="middle" fill="white" font-size="14">${card.class || card.type || ''}</text>
+                        ${card.type == 'Personaggio' ? `
+                            <text x="50" y="260" text-anchor="middle" fill="#ff6b6b" font-size="18">⚔️${card.stats?.attack || card.attack || 0}</text>
+                            <text x="100" y="260" text-anchor="middle" fill="#4ecdc4" font-size="18">🛡️${card.stats?.defense || card.defense || 0}</text>
+                            <text x="150" y="260" text-anchor="middle" fill="#4ecca3" font-size="18">❤️${card.stats?.health || card.health || 0}</text>
+                        ` : ''}
+                    </svg>`;
+                }
+            };
+        }
+    </script>
+    <script src="../js/card-renderer.js"></script>
+    <script src="js/game-state.js"></script>
+    <script src="js/game-rules.js"></script>
+    <script src="js/game-engine.js"></script>
+    <script src="js/game-ui.js"></script>
+    <script src="js/game-ai.js"></script>
+    <script src="js/deck-builder.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
