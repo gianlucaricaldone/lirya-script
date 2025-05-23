@@ -21,11 +21,66 @@ class GameAI {
             // Esegue azioni basate sulla strategia
             this.executeStrategy(strategy, player);
             
-            // Fine turno
+            // Fine turno - questo attiverà automaticamente la fase di combattimento
             setTimeout(() => {
                 this.engine.endTurn();
             }, 1000);
         }, 1000);
+    }
+    
+    // Gestisce la fase di combattimento per l'AI
+    handleCombatPhase() {
+        const myCreatures = this.engine.state.getAllCreatures(this.playerId);
+        const opponentId = this.playerId === 1 ? 2 : 1;
+        
+        // Seleziona e dichiara attaccanti con i loro bersagli
+        myCreatures.forEach((creature, index) => {
+            setTimeout(() => {
+                // Seleziona la creatura come attaccante
+                this.engine.declareAttacker(creature.playerId, creature.zone, creature.position);
+                
+                // Aspetta un po' poi seleziona il bersaglio
+                setTimeout(() => {
+                    const target = this.chooseCombatTarget(creature, opponentId);
+                    if (target) {
+                        this.engine.selectAttackTarget(target);
+                    }
+                }, 500);
+            }, index * 1000); // Delay tra ogni attaccante per rendere più visibile
+        });
+        
+        // Conferma gli attacchi dopo aver dichiarato tutti
+        setTimeout(() => {
+            this.engine.confirmAttackers();
+        }, (myCreatures.length + 1) * 1000);
+    }
+    
+    // Sceglie il bersaglio per un attaccante
+    chooseCombatTarget(attacker, opponentId) {
+        const validTargets = this.engine.getValidTargetsForAttacker(
+            attacker.card, 
+            attacker.zone, 
+            opponentId
+        );
+        
+        if (validTargets.length === 0) return null;
+        
+        // Strategia: prioritizza creature pericolose, poi il giocatore
+        const creatureTargets = validTargets.filter(t => t.type === 'creature');
+        const playerTarget = validTargets.find(t => t.type === 'player');
+        
+        if (creatureTargets.length > 0) {
+            // Attacca la creatura con più attacco
+            creatureTargets.sort((a, b) => {
+                const aAttack = a.card.stats?.attack || a.card.attack || 0;
+                const bAttack = b.card.stats?.attack || b.card.attack || 0;
+                return bAttack - aAttack;
+            });
+            return creatureTargets[0];
+        }
+        
+        // Se non ci sono creature, attacca il giocatore
+        return playerTarget;
     }
 
     // Valuta lo stato del gioco
