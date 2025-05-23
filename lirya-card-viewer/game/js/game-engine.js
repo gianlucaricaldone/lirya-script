@@ -327,14 +327,24 @@ class GameEngine {
             attackers: [],
             blockers: [],
             declaredAttackers: false,
-            declaredBlockers: false
+            declaredBlockers: false,
+            attackingCreature: null, // Creatura attualmente selezionata per attaccare
+            validTargets: [] // Bersagli validi per l'attaccante corrente
         };
         
         // Vai alla fase di dichiarazione attaccanti
         this.state.currentPhase = 'combat_declare';
-        this.ui.showMessage("Fase di Combattimento - Seleziona le creature che attaccano!", 3000);
+        this.ui.showMessage("Fase di Combattimento - Seleziona le creature che attaccano e i loro bersagli!", 3000);
         this.ui.updateBoard(this.state);
         this.ui.showAttackerSelection();
+        
+        // Se è il turno della CPU, gestisci automaticamente il combattimento
+        const player = this.state.getActivePlayer();
+        if (player.isAI && this.ai) {
+            setTimeout(() => {
+                this.ai.handleCombatPhase();
+            }, 1500);
+        }
     }
     
     // Dichiara una creatura come attaccante
@@ -345,34 +355,135 @@ class GameEngine {
         const creature = this.state.getZone(playerId, zone)[position];
         if (!creature || creature.type !== 'Personaggio') return false;
         
-        // Verifica se già dichiarata
-        const alreadyAttacking = this.state.combat.attackers.some(
-            a => a.playerId === playerId && a.zone === zone && a.position === position
-        );
-        
-        if (alreadyAttacking) {
-            // Rimuovi dall'attacco
-            this.state.combat.attackers = this.state.combat.attackers.filter(
-                a => !(a.playerId === playerId && a.zone === zone && a.position === position)
-            );
-        } else {
-            // Aggiungi agli attaccanti
-            this.state.combat.attackers.push({
-                card: creature,
-                playerId,
-                zone,
-                position,
-                target: null // Verrà impostato dopo
-            });
+        // Se c'è già una creatura selezionata per attaccare, controlla se è la stessa
+        if (this.state.combat.attackingCreature) {
+            const current = this.state.combat.attackingCreature;
+            if (current.playerId === playerId && current.zone === zone && current.position === position) {
+                // Deseleziona la creatura
+                this.state.combat.attackingCreature = null;
+                this.state.combat.validTargets = [];
+                this.ui.hideTargetSelection();
+                return true;
+            }
         }
         
-        this.ui.updateCombatVisuals();
+        // Seleziona questa creatura come attaccante
+        this.state.combat.attackingCreature = {
+            card: creature,
+            playerId,
+            zone,
+            position
+        };
+        
+        // Determina i bersagli validi per questa creatura
+        const defenderId = playerId === 1 ? 2 : 1;
+        const validTargets = this.getValidTargetsForAttacker(creature, zone, defenderId);
+        
+        this.state.combat.validTargets = validTargets;
+        this.ui.showTargetSelection(this.state.combat.attackingCreature, validTargets);
+        
         return true;
     }
     
-    // Conferma gli attaccanti e passa alla fase blocchi
+    // Ottieni i bersagli validi per un attaccante
+    getValidTargetsForAttacker(attacker, attackerZone, defenderId) {
+        const targets = [];
+        const defenderCreatures = this.state.getAllCreatures(defenderId);
+        
+        if (defenderCreatures.length === 0) {
+            // Nessuna creatura nemica, può attaccare direttamente il giocatore
+            targets.push({
+                type: 'player',
+                playerId: defenderId
+            });
+        } else if (attackerZone === 'firstLine') {
+            // Prima linea - può attaccare solo prima linea nemica (se presente) o giocatore se vuota
+            const enemyFirstLine = this.state.getZone(defenderId, 'firstLine')
+                .map((card, position) => ({ card, position }))
+                .filter(({ card }) => card !== null);
+                
+            if (enemyFirstLine.length > 0) {
+                // Può attaccare qualsiasi creatura in prima linea
+                enemyFirstLine.forEach(({ card, position }) => {
+                    targets.push({
+                        type: 'creature',
+                        card,
+                        playerId: defenderId,
+                        zone: 'firstLine',
+                        position
+                    });
+                });
+            } else {
+                // Prima linea vuota, può attaccare il giocatore
+                targets.push({
+                    type: 'player',
+                    playerId: defenderId
+                });
+            }
+        } else if (attackerZone === 'secondLine') {
+            // Seconda linea - può attaccare qualsiasi bersaglio
+            defenderCreatures.forEach(creature => {
+                targets.push({
+                    type: 'creature',
+                    card: creature.card,
+                    playerId: creature.playerId,
+                    zone: creature.zone,
+                    position: creature.position
+                });
+            });
+            
+            // Può anche attaccare direttamente il giocatore
+            targets.push({
+                type: 'player',
+                playerId: defenderId
+            });
+        }
+        
+        return targets;
+    }
+    
+    // Seleziona il bersaglio per l'attaccante corrente
+    selectAttackTarget(target) {
+        if (!this.state.combat.attackingCreature) return false;
+        
+        // Verifica che il bersaglio sia valido
+        const isValid = this.state.combat.validTargets.some(t => {
+            if (t.type !== target.type) return false;
+            if (t.type === 'player') {
+                return t.playerId === target.playerId;
+            } else {
+                return t.playerId === target.playerId && 
+                       t.zone === target.zone && 
+                       t.position === target.position;
+            }
+        });
+        
+        if (!isValid) return false;
+        
+        // Aggiungi l'attaccante con il suo bersaglio
+        this.state.combat.attackers.push({
+            ...this.state.combat.attackingCreature,
+            target: target
+        });
+        
+        // Resetta lo stato di selezione
+        this.state.combat.attackingCreature = null;
+        this.state.combat.validTargets = [];
+        this.ui.hideTargetSelection();
+        this.ui.updateCombatVisuals();
+        
+        return true;
+    }
+    
+    // Conferma gli attaccanti e risolvi il combattimento
     confirmAttackers() {
         if (this.state.currentPhase !== 'combat_declare') return;
+        
+        // Se c'è una creatura selezionata ma non ha ancora scelto il bersaglio
+        if (this.state.combat.attackingCreature) {
+            this.ui.showMessage("Seleziona un bersaglio per la creatura attaccante!", 2000);
+            return;
+        }
         
         this.state.combat.declaredAttackers = true;
         
@@ -383,12 +494,15 @@ class GameEngine {
             return;
         }
         
-        // Passa alla fase di dichiarazione bloccanti
-        this.state.currentPhase = 'combat_block';
-        const defenderId = this.state.currentPlayer === 1 ? 2 : 1;
-        this.ui.showMessage(`Giocatore ${defenderId} - Dichiara i bloccanti!`, 3000);
-        this.ui.updateBoard(this.state);
-        this.ui.showBlockerSelection();
+        // Salta la fase dei bloccanti e vai direttamente alla risoluzione del danno
+        this.state.currentPhase = 'combat_damage';
+        this.ui.showMessage("Risoluzione del combattimento!", 2000);
+        
+        // Risolvi il danno dopo un breve delay
+        setTimeout(() => {
+            this.resolveCombatDamage();
+            this.endCombatPhase();
+        }, 1500);
     }
     
     // Dichiara un bloccante
@@ -452,52 +566,32 @@ class GameEngine {
         console.log(`=== RISOLUZIONE COMBATTIMENTO ===`);
         console.log(`Attaccante: Giocatore ${this.state.currentPlayer}, Difensore: Giocatore ${defenderId}`);
         
-        // Controlla se il difensore ha creature in campo
-        const defenderCreatures = this.state.getAllCreatures(defenderId);
-        const hasDefenders = defenderCreatures.length > 0;
-        
-        // Per ogni attaccante
-        this.state.combat.attackers.forEach((attacker, index) => {
+        // Per ogni attaccante con il suo bersaglio specificato
+        this.state.combat.attackers.forEach((attacker) => {
             const attackPower = attacker.card.stats?.attack || attacker.card.attack || 0;
             console.log(`\n${attacker.card.name} (ATT: ${attackPower}) sta attaccando...`);
             
-            // Trova bloccanti per questo attaccante
-            const blockers = this.state.combat.blockers.filter(b => b.blocking === index);
+            if (!attacker.target) {
+                console.log(`- Errore: nessun bersaglio specificato`);
+                return;
+            }
             
-            if (blockers.length > 0) {
+            if (attacker.target.type === 'player') {
+                // Attacco diretto al giocatore
+                console.log(`- Attacco diretto al Giocatore ${attacker.target.playerId}!`);
+                this.state.dealDamage(attacker.target.playerId, attackPower);
+                this.ui.showMessage(`${attacker.card.name} infligge ${attackPower} danni al Giocatore ${attacker.target.playerId}!`, 2000);
+                this.ui.showDamageToPlayer(attacker.target.playerId, attackPower);
+            } else if (attacker.target.type === 'creature') {
                 // Combattimento tra creature
-                blockers.forEach(blocker => {
-                    console.log(`- Bloccato da ${blocker.card.name}`);
-                    this.rules.combatBetweenCreatures(attacker, blocker);
-                });
-            } else {
-                // Attacco non bloccato
-                if (!hasDefenders) {
-                    // Nessuna creatura in campo - danno diretto al giocatore
-                    console.log(`- Nessuna creatura nemica in campo, attacco diretto!`);
-                    this.state.dealDamage(defenderId, attackPower);
-                    this.ui.showMessage(`${attacker.card.name} infligge ${attackPower} danni al Giocatore ${defenderId}!`, 2000);
-                    this.ui.showDamageToPlayer(defenderId, attackPower);
-                } else if (attacker.zone === 'firstLine') {
-                    // Prima linea - controlla se c'è prima linea nemica
-                    const enemyFirstLine = this.state.getZone(defenderId, 'firstLine');
-                    const hasFirstLineDefenders = enemyFirstLine.some(card => card !== null);
-                    
-                    if (!hasFirstLineDefenders) {
-                        console.log(`- Prima linea nemica vuota, attacco diretto!`);
-                        this.state.dealDamage(defenderId, attackPower);
-                        this.ui.showMessage(`${attacker.card.name} infligge ${attackPower} danni al Giocatore ${defenderId}!`, 2000);
-                        this.ui.showDamageToPlayer(defenderId, attackPower);
-                    } else {
-                        console.log(`- Non può attaccare: prima linea nemica presente ma non bloccato`);
-                    }
-                } else if (attacker.zone === 'secondLine') {
-                    // Seconda linea - attacca sempre direttamente se non bloccato
-                    console.log(`- Attacco dalla seconda linea non bloccato!`);
-                    this.state.dealDamage(defenderId, attackPower);
-                    this.ui.showMessage(`${attacker.card.name} infligge ${attackPower} danni al Giocatore ${defenderId}!`, 2000);
-                    this.ui.showDamageToPlayer(defenderId, attackPower);
-                }
+                const defender = {
+                    card: attacker.target.card,
+                    playerId: attacker.target.playerId,
+                    zone: attacker.target.zone,
+                    position: attacker.target.position
+                };
+                console.log(`- Attacca ${defender.card.name}`);
+                this.rules.combatBetweenCreatures(attacker, defender);
             }
         });
         
