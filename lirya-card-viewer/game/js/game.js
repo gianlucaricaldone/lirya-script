@@ -1,10 +1,15 @@
 // game.js - File principale per l'inizializzazione del gioco
+
+// Variabile globale per le carte
+let allCards = [];
+
 document.addEventListener('DOMContentLoaded', async function() {
     // Carica i dati delle carte
-    let allCards = [];
     try {
         const response = await fetch('../data/cards.json');
         allCards = await response.json();
+        console.log('Carte caricate:', allCards.length);
+        console.log('Prime 5 carte:', allCards.slice(0, 5).map(c => c.name));
     } catch (error) {
         console.error('Errore nel caricamento delle carte:', error);
         alert('Errore nel caricamento delle carte. Ricarica la pagina.');
@@ -155,7 +160,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     const engine = new GameEngine();
     const ui = new GameUI(engine);
     engine.init(ui);
+    
+    // Inizializza l'UI subito - CardRenderer dovrebbe essere già disponibile
     ui.init();
+    console.log('UI inizializzata');
 
     // Gestione menu principale
     const screens = {
@@ -251,8 +259,30 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     // Inizia partita
-    document.getElementById('start-game').addEventListener('click', () => {
+    document.getElementById('start-game').addEventListener('click', async () => {
+        console.log('Start game cliccato');
         if (!selectedDecks.player1 || !selectedDecks.player2) return;
+        
+        console.log('CardRenderer disponibile?', !!window.CardRenderer);
+        console.log('loadTemplates disponibile?', !!(window.CardRenderer && window.CardRenderer.loadTemplates));
+        
+        // Assicurati che i template siano caricati prima di iniziare
+        if (window.CardRenderer && window.CardRenderer.loadTemplates) {
+            try {
+                console.log('Caricamento template SVG prima di iniziare la partita...');
+                // Usa il percorso corretto per il gioco
+                await window.CardRenderer.loadTemplates('../svg-templates/');
+                console.log('Template SVG caricati con successo');
+                
+                // Reinizializza l'UI per usare il renderer caricato
+                ui.init();
+                console.log('UI reinizializzata con template caricati');
+            } catch (error) {
+                console.error('Errore nel caricamento dei template:', error);
+            }
+        } else {
+            console.log('CardRenderer non disponibile per caricare i template');
+        }
         
         // Prepara i mazzi con le carte reali
         const deck1 = prepareDeck(standardDecks[selectedDecks.player1]);

@@ -46,16 +46,22 @@ const CardRenderer = (() => {
 
     /**
      * Carica tutti i template SVG
+     * @param {string} basePath - Percorso base per i template (opzionale)
      * @return {Promise} - Promise che si risolve quando tutti i template sono caricati
      */
-    const loadTemplates = async () => {
+    const loadTemplates = async (basePath = './svg-templates/') => {
         try {
+            // Assicurati che il basePath finisca con /
+            if (!basePath.endsWith('/')) {
+                basePath += '/';
+            }
+            
             // Carica tutti i template in parallelo
             const templatePromises = [
-                fetch('./svg-templates/card-character.svg').then(res => res.text()),
-                fetch('./svg-templates/card-spell.svg').then(res => res.text()),
-                fetch('./svg-templates/card-structure.svg').then(res => res.text()),
-                fetch('./svg-templates/card-equipment.svg').then(res => res.text())
+                fetch(basePath + 'card-character.svg').then(res => res.text()),
+                fetch(basePath + 'card-spell.svg').then(res => res.text()),
+                fetch(basePath + 'card-structure.svg').then(res => res.text()),
+                fetch(basePath + 'card-equipment.svg').then(res => res.text())
             ];
 
             const [personaggio, incantesimo, struttura, equipaggiamento] = await Promise.all(templatePromises);
@@ -66,7 +72,7 @@ const CardRenderer = (() => {
             svgTemplates.Struttura = struttura;
             svgTemplates.Equipaggiamento = equipaggiamento;
 
-            console.log('Template SVG caricati con successo');
+            console.log('Template SVG caricati con successo da', basePath);
         } catch (error) {
             console.error('Errore nel caricamento dei template SVG:', error);
             throw error;
@@ -107,18 +113,29 @@ const CardRenderer = (() => {
         // Immagine
         // svg = svg.replace(/{{immagine}}/g, card.img || '0');
         // MODIFICA: Gestione dell'immagine
-        if (card.img && card.img.length > 0) {
+        let imagePath = card.img || card.imagePath;
+        
+        // Se non c'è un percorso immagine, prova a generarlo basandosi sull'ID e nome
+        if (!imagePath && card.id && card.name) {
+            // Genera un nome file basato su ID e nome
+            const fileName = card.name.toLowerCase()
+                .replace(/\s+/g, '_')
+                .replace(/[àáäâ]/g, 'a')
+                .replace(/[èéëê]/g, 'e')
+                .replace(/[ìíïî]/g, 'i')
+                .replace(/[òóöô]/g, 'o')
+                .replace(/[ùúüû]/g, 'u')
+                .replace(/'/g, '_');
+            imagePath = `../images/${card.id}_${fileName}.png`;
+        }
+        
+        if (imagePath) {
             // Correggi il percorso dell'immagine
-            const fixedPath = fixImagePath(card.img);
+            const fixedPath = fixImagePath(imagePath);
             svg = svg.replace(/{{immagine}}/g, fixedPath);
-            
-            // Debug - rimuovi nella versione finale
-            console.log(`Percorso immagine originale: ${card.img}, Percorso corretto: ${fixedPath}`);
         } else {
-            // Se non c'è un'immagine specifica, usa un placeholder
-            const placeholderImage = './images/placeholders/' + 
-                (card.type ? card.type.toLowerCase() : 'default') + '_placeholder.jpg';
-            svg = svg.replace(/{{immagine}}/g, placeholderImage);
+            // Se non c'è un'immagine, lascia vuoto o usa un placeholder generico
+            svg = svg.replace(/{{immagine}}/g, '');
         }
 
 
@@ -164,8 +181,6 @@ const CardRenderer = (() => {
         svg = svg.replace(/{{posizionamento}}/g, card.placement || '');
 
         // Abilità
-        console.log("CARTO");
-        console.log(card.ability);
         if (card.abilities && card.abilities.length > 0) {
             // Se il template ha un segnaposto per le abilità multiple
             if (svg.includes('{{abilita_lista}}')) {

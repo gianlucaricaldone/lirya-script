@@ -9,9 +9,37 @@ class GameUI {
 
     // Inizializza l'UI
     init() {
-        // Carica il renderer se disponibile
-        if (window.LiryaCardRenderer) {
+        // Usa direttamente CardRenderer invece di LiryaCardRenderer
+        if (window.CardRenderer) {
+            this.cardRenderer = {
+                renderCard: (card) => {
+                    try {
+                        // Crea una copia della carta per non modificare l'originale
+                        const cardCopy = { ...card };
+                        
+                        // Fix del percorso immagine per il contesto del gioco
+                        if (cardCopy.imagePath && cardCopy.imagePath.includes('/images/')) {
+                            // Mantieni il percorso con ../ per il gioco
+                            if (!cardCopy.imagePath.startsWith('../')) {
+                                cardCopy.imagePath = '../' + cardCopy.imagePath;
+                            }
+                        }
+                        
+                        const svg = window.CardRenderer.generateCardSVG(cardCopy);
+                        
+                        // Correggi i percorsi delle immagini nell'SVG generato
+                        // Sostituisci ./images/ con ../images/
+                        return svg.replace(/\.\/images\//g, '../images/');
+                    } catch (error) {
+                        console.error('Errore nel rendering della carta:', card.name, error);
+                        return null;
+                    }
+                }
+            };
+            console.log('CardRenderer configurato in GameUI');
+        } else if (window.LiryaCardRenderer) {
             this.cardRenderer = window.LiryaCardRenderer;
+            console.log('LiryaCardRenderer configurato in GameUI');
         }
         this.setupDragAndDrop();
         this.setupClickHandlers();
@@ -146,15 +174,28 @@ class GameUI {
                     <!-- Tipo carta -->
                     <div style="font-size: 0.6em; text-align: center; color: #ddd;">${card.class || card.type || ''}</div>
                     
-                    ${card.type == 'Personaggio' ? `
-                        <!-- Classe e elemento -->
+                    <!-- Abilità/Effetti -->
+                    ${card.abilities && card.abilities.length > 0 ? `
+                        <div style="flex: 1; padding: 4px; overflow: hidden;">
+                            <div style="font-size: 0.55em; line-height: 1.2; color: #fff; 
+                                        max-height: 60px; overflow-y: auto;">
+                                ${card.abilities.map(a => `
+                                    <div style="margin-bottom: 2px;">
+                                        <span style="font-weight: bold;">${a.name}:</span> ${a.effect}
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    ` : `
                         <div style="flex: 1; display: flex; align-items: center; justify-content: center; margin: 5px 0;">
                             <div style="font-size: 0.7em; text-align: center; line-height: 1.3; color: #ddd;">
                                 ${card.class || ''}<br>
                                 ${card.element || ''}
                             </div>
                         </div>
-                        
+                    `}
+                    
+                    ${card.type == 'Personaggio' ? `
                         <!-- Stats bar per personaggi (in basso) -->
                         <div style="display: flex; justify-content: space-around; gap: 3px; margin-top: auto;">
                             <div style="background: rgba(255,0,0,0.8); padding: 3px 6px; 
@@ -165,12 +206,14 @@ class GameUI {
                                         border-radius: 4px; font-weight: bold; font-size: 0.9em; flex: 1; text-align: center;">❤️${card.stats?.health || card.health}</div>` : ''}
                         </div>
                     ` : `
-                        <!-- Contenuto per non-personaggi -->
-                        <div style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 4px;">
-                            <div style="font-size: 0.7em; text-align: center; color: #ddd;">
-                                ${card.element || ''}
+                        <!-- Per non-personaggi mostra solo elemento se non ci sono abilità -->
+                        ${!card.abilities || card.abilities.length === 0 ? `
+                            <div style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 4px;">
+                                <div style="font-size: 0.7em; text-align: center; color: #ddd;">
+                                    ${card.element || ''}
+                                </div>
                             </div>
-                        </div>
+                        ` : ''}
                     `}
                 </div>
             `;
@@ -378,6 +421,23 @@ class GameUI {
         // Click su carte
         document.addEventListener('click', (e) => {
             const card = e.target.closest('.game-card');
+            const playerArea = e.target.closest('.player-area');
+            
+            // Se c'è un attaccante selezionato e clicchiamo su un'area giocatore valida
+            if (this.engine.state.currentPhase === 'combat_declare' && 
+                this.engine.state.combat.attackingCreature && 
+                playerArea && !card) {
+                const playerId = parseInt(playerArea.id.match(/player(\d+)-area/)[1]);
+                if (playerArea.classList.contains('valid-target-player')) {
+                    const target = {
+                        type: 'player',
+                        playerId: playerId
+                    };
+                    this.engine.selectAttackTarget(target);
+                    return;
+                }
+            }
+            
             if (!card) return;
             
             const playerId = parseInt(card.dataset.playerId);
@@ -386,20 +446,42 @@ class GameUI {
             
             // Gestione fasi di combattimento
             if (this.engine.state.currentPhase === 'combat_declare') {
-                // Selezione attaccanti
-                if (playerId === this.engine.state.currentPlayer && 
-                    (zone === 'firstLine' || zone === 'secondLine')) {
-                    this.engine.declareAttacker(playerId, zone, position);
-                    return;
-                }
-            } else if (this.engine.state.currentPhase === 'combat_block') {
-                // Selezione bloccanti
-                const defenderId = this.engine.state.currentPlayer === 1 ? 2 : 1;
-                if (playerId === defenderId && zone === 'firstLine') {
-                    // TODO: Implementare selezione dell'attaccante da bloccare
-                    // Per ora blocca il primo attaccante disponibile
-                    this.engine.declareBlocker(playerId, zone, position, 0);
-                    return;
+                console.log('Click durante combat_declare', {
+                    hasAttackingCreature: !!this.engine.state.combat.attackingCreature,
+                    playerId,
+                    zone,
+                    position
+                });
+                
+                // Se c'è un attaccante selezionato, gestisci la selezione del bersaglio
+                if (this.engine.state.combat.attackingCreature) {
+                    // Controlla se è un bersaglio valido
+                    let target = null;
+                    
+                    // Verifica se è una creatura
+                    if (zone === 'firstLine' || zone === 'secondLine') {
+                        target = {
+                            type: 'creature',
+                            card: this.engine.state.getZone(playerId, zone)[position],
+                            playerId,
+                            zone,
+                            position
+                        };
+                    }
+                    
+                    if (target && target.card) {
+                        console.log('Selezionando bersaglio:', target);
+                        this.engine.selectAttackTarget(target);
+                        return;
+                    }
+                } else {
+                    // Selezione attaccanti
+                    if (playerId === this.engine.state.currentPlayer && 
+                        (zone === 'firstLine' || zone === 'secondLine')) {
+                        console.log('Dichiarando attaccante:', playerId, zone, position);
+                        this.engine.declareAttacker(playerId, zone, position);
+                        return;
+                    }
                 }
             }
             
@@ -543,14 +625,14 @@ class GameUI {
     
     // Mostra selezione attaccanti
     showAttackerSelection() {
-        this.showMessage("Clicca sulle tue creature per dichiarare gli attaccanti", 3000);
+        this.showMessage("Clicca sulle tue creature per selezionarle, poi clicca sul bersaglio", 3000);
         
         // Aggiungi pulsante conferma
         if (!document.getElementById('confirm-attackers')) {
             const button = document.createElement('button');
             button.id = 'confirm-attackers';
             button.className = 'combat-button';
-            button.textContent = 'Conferma Attaccanti';
+            button.textContent = 'Conferma Attacchi';
             button.onclick = () => this.engine.confirmAttackers();
             document.getElementById('turn-indicator').appendChild(button);
         }
@@ -558,10 +640,55 @@ class GameUI {
         // Evidenzia creature che possono attaccare
         const activePlayer = this.engine.state.currentPlayer;
         document.querySelectorAll(`.player${activePlayer}-card`).forEach(card => {
-            const zone = card.parentElement.dataset.zone;
+            const zone = card.dataset.zone;
             if (zone === 'firstLine' || zone === 'secondLine') {
                 card.classList.add('can-attack');
             }
+        });
+    }
+    
+    // Mostra selezione bersagli per un attaccante
+    showTargetSelection(attacker, validTargets) {
+        // Evidenzia l'attaccante selezionato
+        const attackerEl = document.querySelector(
+            `[data-player-id="${attacker.playerId}"][data-zone="${attacker.zone}"][data-position="${attacker.position}"]`
+        );
+        if (attackerEl) {
+            attackerEl.classList.add('selected-attacker');
+        }
+        
+        // Evidenzia i bersagli validi
+        validTargets.forEach(target => {
+            if (target.type === 'player') {
+                // Evidenzia l'area del giocatore bersaglio
+                const playerArea = document.getElementById(`player${target.playerId}-area`);
+                if (playerArea) {
+                    playerArea.classList.add('valid-target-player');
+                }
+            } else if (target.type === 'creature') {
+                // Evidenzia la creatura bersaglio
+                const targetEl = document.querySelector(
+                    `[data-player-id="${target.playerId}"][data-zone="${target.zone}"][data-position="${target.position}"]`
+                );
+                if (targetEl) {
+                    targetEl.classList.add('valid-target');
+                }
+            }
+        });
+        
+        this.showMessage(`Seleziona un bersaglio per ${attacker.card.name}`, 2000);
+    }
+    
+    // Nascondi selezione bersagli
+    hideTargetSelection() {
+        // Rimuovi evidenziazione attaccante
+        document.querySelectorAll('.selected-attacker').forEach(el => {
+            el.classList.remove('selected-attacker');
+        });
+        
+        // Rimuovi evidenziazione bersagli
+        document.querySelectorAll('.valid-target, .valid-target-player').forEach(el => {
+            el.classList.remove('valid-target', 'valid-target-player');
         });
     }
     
@@ -602,29 +729,84 @@ class GameUI {
     // Aggiorna visualizzazione combattimento
     updateCombatVisuals() {
         // Rimuovi classi precedenti
-        document.querySelectorAll('.is-attacking, .is-blocking').forEach(el => {
-            el.classList.remove('is-attacking', 'is-blocking');
+        document.querySelectorAll('.is-attacking, .is-blocking, .attack-arrow').forEach(el => {
+            if (el.classList.contains('attack-arrow')) {
+                el.remove();
+            } else {
+                el.classList.remove('is-attacking', 'is-blocking');
+            }
         });
         
-        // Mostra attaccanti
+        // Mostra attaccanti e le loro frecce verso i bersagli
         this.engine.state.combat.attackers.forEach(attacker => {
-            const card = document.querySelector(
+            const attackerEl = document.querySelector(
                 `[data-player-id="${attacker.playerId}"][data-zone="${attacker.zone}"][data-position="${attacker.position}"]`
             );
-            if (card) {
-                card.classList.add('is-attacking');
+            if (attackerEl) {
+                attackerEl.classList.add('is-attacking');
+                
+                // Crea freccia verso il bersaglio se specificato
+                if (attacker.target) {
+                    this.createAttackArrow(attackerEl, attacker.target);
+                }
             }
         });
+    }
+    
+    // Crea una freccia di attacco verso il bersaglio
+    createAttackArrow(attackerEl, target) {
+        let targetEl = null;
         
-        // Mostra bloccanti
-        this.engine.state.combat.blockers.forEach(blocker => {
-            const card = document.querySelector(
-                `[data-player-id="${blocker.playerId}"][data-zone="${blocker.zone}"][data-position="${blocker.position}"]`
+        if (target.type === 'player') {
+            targetEl = document.getElementById(`player${target.playerId}-info`);
+        } else if (target.type === 'creature') {
+            targetEl = document.querySelector(
+                `[data-player-id="${target.playerId}"][data-zone="${target.zone}"][data-position="${target.position}"]`
             );
-            if (card) {
-                card.classList.add('is-blocking');
-            }
-        });
+        }
+        
+        if (!targetEl) return;
+        
+        // Crea elemento freccia
+        const arrow = document.createElement('div');
+        arrow.className = 'attack-arrow';
+        
+        const attackerRect = attackerEl.getBoundingClientRect();
+        const targetRect = targetEl.getBoundingClientRect();
+        
+        const startX = attackerRect.left + attackerRect.width / 2;
+        const startY = attackerRect.top + attackerRect.height / 2;
+        const endX = targetRect.left + targetRect.width / 2;
+        const endY = targetRect.top + targetRect.height / 2;
+        
+        const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+        const distance = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+        
+        arrow.style.position = 'fixed';
+        arrow.style.left = startX + 'px';
+        arrow.style.top = startY + 'px';
+        arrow.style.width = distance + 'px';
+        arrow.style.height = '3px';
+        arrow.style.background = 'red';
+        arrow.style.transformOrigin = '0 50%';
+        arrow.style.transform = `rotate(${angle}deg)`;
+        arrow.style.pointerEvents = 'none';
+        arrow.style.zIndex = '1000';
+        arrow.style.opacity = '0.7';
+        
+        // Aggiungi punta di freccia
+        const arrowHead = document.createElement('div');
+        arrowHead.style.position = 'absolute';
+        arrowHead.style.right = '-10px';
+        arrowHead.style.top = '-4px';
+        arrowHead.style.width = '0';
+        arrowHead.style.height = '0';
+        arrowHead.style.borderLeft = '10px solid red';
+        arrowHead.style.borderTop = '5px solid transparent';
+        arrowHead.style.borderBottom = '5px solid transparent';
+        arrow.appendChild(arrowHead);
+        
+        document.body.appendChild(arrow);
     }
     
     // Nascondi UI combattimento

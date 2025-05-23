@@ -192,28 +192,18 @@
     </div>
 
     <!-- Scripts -->
+    <script src="../js/card-renderer.js"></script>
     <script>
-        // Inizializza LiryaCardRenderer se non esiste
-        if (!window.LiryaCardRenderer) {
-            window.LiryaCardRenderer = {
-                renderCard: function(card) {
-                    // Renderer semplificato di fallback
-                    return `<svg viewBox="0 0 200 280" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="200" height="280" fill="#333" stroke="gold" stroke-width="2" rx="10"/>
-                        <text x="100" y="60" text-anchor="middle" fill="white" font-size="16">${card.name || 'Carta'}</text>
-                        <text x="170" y="30" text-anchor="middle" fill="gold" font-size="18">⚡${card.cost || 0}</text>
-                        <text x="100" y="140" text-anchor="middle" fill="white" font-size="14">${card.class || card.type || ''}</text>
-                        ${card.type == 'Personaggio' ? `
-                            <text x="50" y="260" text-anchor="middle" fill="#ff6b6b" font-size="18">⚔️${card.stats?.attack || card.attack || 0}</text>
-                            <text x="100" y="260" text-anchor="middle" fill="#4ecdc4" font-size="18">🛡️${card.stats?.defense || card.defense || 0}</text>
-                            <text x="150" y="260" text-anchor="middle" fill="#4ecca3" font-size="18">❤️${card.stats?.health || card.health || 0}</text>
-                        ` : ''}
-                    </svg>`;
-                }
-            };
+        // Verifica che CardRenderer sia caricato
+        console.log('CardRenderer caricato?', typeof CardRenderer !== 'undefined');
+        if (typeof CardRenderer !== 'undefined') {
+            console.log('CardRenderer disponibile:', CardRenderer);
+            // Assicurati che sia anche su window
+            window.CardRenderer = CardRenderer;
+        } else {
+            console.error('CardRenderer NON caricato!');
         }
     </script>
-    <script src="../js/card-renderer.js"></script>
     <script src="js/game-state.js"></script>
     <script src="js/game-rules.js"></script>
     <script src="js/game-engine.js"></script>
