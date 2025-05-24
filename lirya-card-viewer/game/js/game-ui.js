@@ -46,21 +46,20 @@ class GameUI {
                                 cardCopy.isDamaged = true;
                             }
                             
-                            // Aggiorna i valori di difesa/vita da mostrare con currentHealth
-                            if (cardCopy.stats) {
-                                if (cardCopy.stats.health !== undefined) {
-                                    cardCopy.stats.health = card.currentHealth;
-                                } else if (cardCopy.stats.defense !== undefined) {
-                                    cardCopy.stats.defense = card.currentHealth;
-                                }
-                            } else {
-                                // Per carte vecchio formato
-                                if (cardCopy.health !== undefined) {
-                                    cardCopy.health = card.currentHealth;
-                                } else if (cardCopy.defense !== undefined) {
-                                    cardCopy.defense = card.currentHealth;
-                                }
-                            }
+                            // NON sovrascrivere i valori massimi!
+                            // Il card-renderer userà currentHealth per mostrare il valore attuale
+                            // e i valori originali (health/defense) per determinare se è danneggiato
+                        }
+                        
+                        // Debug prima di chiamare generateCardSVG
+                        if (cardCopy.type === 'Personaggio' && cardCopy.isDamaged) {
+                            console.log(`[GameUI] Chiamando generateCardSVG per ${cardCopy.name} danneggiato:`, {
+                                currentHealth: cardCopy.currentHealth,
+                                isDamaged: cardCopy.isDamaged,
+                                stats: cardCopy.stats,
+                                health: cardCopy.health,
+                                defense: cardCopy.defense
+                            });
                         }
                         
                         const svg = window.CardRenderer.generateCardSVG(cardCopy);

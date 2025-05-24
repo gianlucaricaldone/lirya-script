@@ -90,11 +90,15 @@ const CardRenderer = (() => {
      * @return {string} - Markup SVG della carta
      */
     const generateCardSVG = (card) => {
+        console.log(`[CardRenderer] generateCardSVG chiamato per ${card.name}, tipo: ${card.type}, currentHealth: ${card.currentHealth}, isDamaged: ${card.isDamaged}`);
+        
         // Ottieni il template corretto in base al tipo di carta
         let template = svgTemplates[card.type];
+        console.log(`[CardRenderer] Template per tipo ${card.type}:`, template ? 'trovato' : 'non trovato');
 
         // Se il template non è disponibile, mostra un placeholder
         if (!template) {
+            console.log(`[CardRenderer] Usando placeholder per ${card.name}`);
             return generatePlaceholderSVG(card);
         }
 
@@ -109,7 +113,7 @@ const CardRenderer = (() => {
             card.isDamaged = (card.currentHealth < maxHealth);
             
             if (card.isDamaged) {
-                console.log(`${card.name} è danneggiato: vita ${card.currentHealth}/${maxHealth}`);
+                console.log(`[CardRenderer] ${card.name} è danneggiato: vita ${card.currentHealth}/${maxHealth}`);
             }
         }
 
@@ -204,7 +208,7 @@ const CardRenderer = (() => {
             
             // Se la carta è danneggiata, usa colore rosso
             if (card.isDamaged) {
-                console.log(`Applicando colore rosso per ${card.name}: defense=${defenseValue}, health=${healthValue} (currentHealth=${card.currentHealth})`);
+                console.log(`[CardRenderer] Applicando colore rosso per ${card.name}: defense=${defenseValue}, health=${healthValue} (currentHealth=${card.currentHealth})`);
                 // Sostituisci sia {{difesa}} che il valore numerico che potrebbe essere già stato sostituito
                 svg = svg.replace(/{{difesa}}/g, `<tspan fill="#ff4444">${defenseValue}</tspan>`);
                 svg = svg.replace(/{{punti_vita}}/g, `<tspan fill="#ff4444">${healthValue}</tspan>`);
