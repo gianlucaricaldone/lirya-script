@@ -51,6 +51,26 @@ class GameUI {
                             // e i valori originali (health/defense) per determinare se è danneggiato
                         }
                         
+                        // Aggiungi informazioni sulla posizione per il calcolo dei bonus
+                        if (card.playerId !== undefined) {
+                            cardCopy.playerId = card.playerId;
+                            cardCopy.zone = card.zone;
+                            cardCopy.position = card.position;
+                        }
+                        
+                        // Calcola bonus condizionali dalle abilità
+                        if (cardCopy.type === 'Personaggio' && this.engine && this.engine.abilities) {
+                            const location = { playerId: card.playerId, zone: card.zone, position: card.position };
+                            const bonuses = this.engine.abilities.calculateConditionalBonuses(cardCopy, location);
+                            
+                            // Applica i bonus temporanei
+                            if (bonuses.attack !== 0 || bonuses.defense !== 0) {
+                                cardCopy.temporaryBonuses = cardCopy.temporaryBonuses || {};
+                                cardCopy.temporaryBonuses.attack = (cardCopy.temporaryBonuses.attack || 0) + bonuses.attack;
+                                cardCopy.temporaryBonuses.defense = (cardCopy.temporaryBonuses.defense || 0) + bonuses.defense;
+                            }
+                        }
+                        
                         // Debug prima di chiamare generateCardSVG
                         if (cardCopy.type === 'Personaggio' && cardCopy.isDamaged) {
                             console.log(`[GameUI] Chiamando generateCardSVG per ${cardCopy.name} danneggiato:`, {
@@ -188,7 +208,9 @@ class GameUI {
         
         // Usa il renderer esistente per creare l'SVG se disponibile
         if (this.cardRenderer && this.cardRenderer.renderCard) {
-            const svgString = this.cardRenderer.renderCard(card);
+            // Passa i metadati di posizione alla carta
+            const cardWithMeta = { ...card, playerId, zone, position };
+            const svgString = this.cardRenderer.renderCard(cardWithMeta);
             
             // Crea un wrapper per l'SVG con le stats
             cardDiv.innerHTML = `

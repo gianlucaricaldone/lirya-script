@@ -193,15 +193,25 @@ const CardRenderer = (() => {
 
         // Per le carte personaggio, sostituisci le statistiche
         if (card.type === 'Personaggio') {
-            // Gestisci attacco
-            if (card.stats?.attack !== undefined) {
-                svg = svg.replace(/{{attacco}}/g, card.stats.attack);
-            } else if (card.attack !== undefined) {
-                svg = svg.replace(/{{attacco}}/g, card.attack);
+            // Calcola valori finali con bonus temporanei
+            let attackValue = card.stats?.attack !== undefined ? card.stats.attack : (card.attack || 0);
+            let defenseValue = card.stats?.defense !== undefined ? card.stats.defense : (card.defense || 0);
+            
+            // Applica bonus temporanei
+            if (card.temporaryBonuses) {
+                attackValue += (card.temporaryBonuses.attack || 0);
+                defenseValue += (card.temporaryBonuses.defense || 0);
+            }
+            
+            // Sostituisci attacco (con colore se modificato)
+            if (card.temporaryBonuses?.attack) {
+                const color = card.temporaryBonuses.attack > 0 ? '#00ff00' : '#ff4444';
+                svg = svg.replace(/{{attacco}}/g, `<tspan fill="${color}">${attackValue}</tspan>`);
+            } else {
+                svg = svg.replace(/{{attacco}}/g, attackValue);
             }
             
             // Gestisci difesa e vita
-            const defenseValue = card.stats?.defense !== undefined ? card.stats.defense : (card.defense || '0');
             // Usa currentHealth se disponibile, altrimenti usa il valore massimo
             const healthValue = card.currentHealth !== undefined ? card.currentHealth : 
                                (card.stats?.health !== undefined ? card.stats.health : (card.health || '0'));
@@ -210,7 +220,13 @@ const CardRenderer = (() => {
             if (card.isDamaged) {
                 console.log(`[CardRenderer] Applicando colore rosso per ${card.name}: defense=${defenseValue}, health=${healthValue} (currentHealth=${card.currentHealth})`);
                 // Sostituisci sia {{difesa}} che il valore numerico che potrebbe essere già stato sostituito
-                svg = svg.replace(/{{difesa}}/g, `<tspan fill="#ff4444">${defenseValue}</tspan>`);
+                // Se la difesa è modificata, usa il colore appropriato
+                if (card.temporaryBonuses?.defense) {
+                    const color = card.temporaryBonuses.defense > 0 ? '#00ff00' : '#ff4444';
+                    svg = svg.replace(/{{difesa}}/g, `<tspan fill="${color}">${defenseValue}</tspan>`);
+                } else {
+                    svg = svg.replace(/{{difesa}}/g, `<tspan fill="#ff4444">${defenseValue}</tspan>`);
+                }
                 svg = svg.replace(/{{punti_vita}}/g, `<tspan fill="#ff4444">${healthValue}</tspan>`);
                 
                 // Se il template usa direttamente i numeri invece dei placeholder
@@ -220,7 +236,13 @@ const CardRenderer = (() => {
                 svg = svg.replace(/(<text[^>]*class="health-value"[^>]*>)(\d+)(<\/text>)/g, 
                     `$1<tspan fill="#ff4444">$2</tspan>$3`);
             } else {
-                svg = svg.replace(/{{difesa}}/g, defenseValue);
+                // Carta non danneggiata, ma potrebbe avere bonus
+                if (card.temporaryBonuses?.defense) {
+                    const color = card.temporaryBonuses.defense > 0 ? '#00ff00' : '#ff4444';
+                    svg = svg.replace(/{{difesa}}/g, `<tspan fill="${color}">${defenseValue}</tspan>`);
+                } else {
+                    svg = svg.replace(/{{difesa}}/g, defenseValue);
+                }
                 svg = svg.replace(/{{punti_vita}}/g, healthValue);
             }
         }

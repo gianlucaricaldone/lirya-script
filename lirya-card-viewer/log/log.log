@@ -1,90 +1,12 @@
 game.html:198 CardRenderer caricato? true
 game.html:200 CardRenderer disponibile: {loadTemplates: ƒ, generateCardSVG: ƒ, generateCardDetails: ƒ}
+game-engine.js?v=3:137 Uncaught SyntaxError: missing ) after argument list (at game-engine.js?v=3:137:57)
 game.js?v=3:11 Carte caricate: 266
 game.js?v=3:12 Prime 5 carte: (5) ['Guardia della Fornace', 'Pattugliatore Costiero', 'Sentinella di Roccia', 'Sentinella del Cielo', 'Guardia del Santuario']
-game-ui.js?v=3:76 CardRenderer configurato in GameUI
-game.js?v=3:166 UI inizializzata
-game.js?v=3:177 showScreen chiamata con: mainMenu
-game.js?v=3:178 Screens disponibili: (3) ['mainMenu', 'deckSelection', 'gameBoard']
-game.js?v=3:179 Screen target esiste? true
-game.js?v=3:184 Rimossa classe active da mainMenu
-game.js?v=3:184 Rimossa classe active da deckSelection
-game.js?v=3:184 Rimossa classe active da gameBoard
-game.js?v=3:190 Aggiunta classe active a mainMenu
-game.js?v=3:191 Classi elemento: game-screen active
+game.js?v=3:160 Uncaught (in promise) ReferenceError: GameEngine is not defined
+    at HTMLDocument.<anonymous> (game.js?v=3:160:20)
+(anonymous) @ game.js?v=3:160
 favicon.ico:1 
             
             
            GET http://localhost:8000/favicon.ico 404 (File not found)
-game.js?v=3:177 showScreen chiamata con: deckSelection
-game.js?v=3:178 Screens disponibili: (3) ['mainMenu', 'deckSelection', 'gameBoard']
-game.js?v=3:179 Screen target esiste? true
-game.js?v=3:184 Rimossa classe active da mainMenu
-game.js?v=3:184 Rimossa classe active da deckSelection
-game.js?v=3:184 Rimossa classe active da gameBoard
-game.js?v=3:190 Aggiunta classe active a deckSelection
-game.js?v=3:191 Classi elemento: game-screen active
-game.js?v=3:277 Start game cliccato
-game.js?v=3:280 CardRenderer disponibile? true
-game.js?v=3:281 loadTemplates disponibile? true
-game.js?v=3:286 Caricamento template SVG prima di iniziare la partita...
-card-renderer.js:80 Template SVG caricati con successo da ../svg-templates/
-game.js?v=3:289 Template SVG caricati con successo
-game-ui.js?v=3:76 CardRenderer configurato in GameUI
-game.js?v=3:293 UI reinizializzata con template caricati
-game.js?v=3:339 Carta non trovata: Evocatore d'Acqua
-(anonymous) @ game.js?v=3:339
-prepareDeck @ game.js?v=3:333
-(anonymous) @ game.js?v=3:303
-game.js?v=3:339 Carta non trovata: Evocatore d'Acqua
-(anonymous) @ game.js?v=3:339
-prepareDeck @ game.js?v=3:333
-(anonymous) @ game.js?v=3:303
-game.js?v=3:339 Carta non trovata: Altare dell'Acqua
-(anonymous) @ game.js?v=3:339
-prepareDeck @ game.js?v=3:333
-(anonymous) @ game.js?v=3:303
-game.js?v=3:339 Carta non trovata: Altare dell'Acqua
-(anonymous) @ game.js?v=3:339
-prepareDeck @ game.js?v=3:333
-(anonymous) @ game.js?v=3:303
-game.js?v=3:339 Carta non trovata: Altare dell'Acqua
-(anonymous) @ game.js?v=3:339
-prepareDeck @ game.js?v=3:333
-(anonymous) @ game.js?v=3:303
-game.js?v=3:305 Deck 1 preparato: 39 carte
-game.js?v=3:306 Deck 2 preparato: 35 carte
-game.js?v=3:316 Mostrando schermata di gioco...
-game.js?v=3:177 showScreen chiamata con: gameBoard
-game.js?v=3:178 Screens disponibili: (3) ['mainMenu', 'deckSelection', 'gameBoard']
-game.js?v=3:179 Screen target esiste? true
-game.js?v=3:184 Rimossa classe active da mainMenu
-game.js?v=3:184 Rimossa classe active da deckSelection
-game.js?v=3:184 Rimossa classe active da gameBoard
-game.js?v=3:190 Aggiunta classe active a gameBoard
-game.js?v=3:191 Classi elemento: game-screen active
-game.js?v=3:320 Iniziando partita...
-game.js?v=3:322 Partita iniziata!
-game-ui.js?v=3:501 Click durante combat_declare {hasAttackingCreature: false, playerId: 1, zone: 'firstLine', position: 1}
-game-ui.js?v=3:537 Dichiarando attaccante: 1 firstLine 1
-game-ui.js?v=3:501 Click durante combat_declare {hasAttackingCreature: true, playerId: 1, zone: 'firstLine', position: 1}
-game-ui.js?v=3:501 Click durante combat_declare {hasAttackingCreature: true, playerId: 2, zone: 'firstLine', position: 0}
-game-ui.js?v=3:501 Click durante combat_declare {hasAttackingCreature: false, playerId: 2, zone: 'firstLine', position: 0}
-game-engine.js?v=2:587 === RISOLUZIONE COMBATTIMENTO ===
-game-engine.js?v=2:588 Attaccante: Giocatore 1, Difensore: Giocatore 2
-game-engine.js?v=2:593 
-Lanciere di Emberhold (ATT: 3) sta attaccando...
-game-engine.js?v=2:614 - Attacca Pattugliatore Costiero
-game-rules.js?v=2:354   COMBATTIMENTO: Lanciere di Emberhold (ATT: 3, PV: 3) VS Pattugliatore Costiero (DIF: 2, PV: 2)
-game-rules.js?v=2:364   - Lanciere di Emberhold infligge 1 danni a Pattugliatore Costiero
-game-rules.js?v=2:371   - Risultato: Lanciere di Emberhold (PV: 3), Pattugliatore Costiero (PV: 1)
-game-engine.js?v=2:619 
-=== FINE COMBATTIMENTO ===
-game-engine.js?v=2:620 Vita Giocatore 1: 20
-game-engine.js?v=2:621 Vita Giocatore 2: 20
-game-ui.js?v=3:176 createCardElement per Lanciere di Emberhold: currentHealth=3, isDamaged=undefined
-game-ui.js?v=3:176 createCardElement per Pattugliatore Costiero: currentHealth=1, isDamaged=true
-game-ui.js?v=3:176 createCardElement per Lanciere di Emberhold: currentHealth=3, isDamaged=undefined
-game-ui.js?v=3:176 createCardElement per Pattugliatore Costiero: currentHealth=1, isDamaged=true
-game-ui.js?v=3:176 createCardElement per Lanciere di Emberhold: currentHealth=3, isDamaged=undefined
-game-ui.js?v=3:176 createCardElement per Pattugliatore Costiero: currentHealth=1, isDamaged=true

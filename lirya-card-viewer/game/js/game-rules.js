@@ -382,6 +382,12 @@ class GameRules {
             creature.card.currentHealth = maxHealth;
         }
         
+        // Applica riduzione danni da abilità passive
+        if (creature.card.damageReduction && damage > 0) {
+            damage = Math.max(0, damage - creature.card.damageReduction);
+            console.log(`Danno ridotto di ${creature.card.damageReduction} per ${creature.card.name}`);
+        }
+        
         creature.card.currentHealth -= damage;
         
         // Imposta il flag isDamaged se la creatura ha perso vita
@@ -389,6 +395,16 @@ class GameRules {
                         creature.card.stats?.defense || creature.card.defense || 1;
         if (creature.card.currentHealth < maxHealth) {
             creature.card.isDamaged = true;
+        }
+        
+        // Attiva abilità "quando subisce danno"
+        if (damage > 0) {
+            this.engine.abilities.triggerEvent('onDamageTaken', { 
+                card: creature.card, 
+                location: creature,
+                damage,
+                attacker: creature.attacker // Se disponibile dal contesto
+            });
         }
         
         // Mostra il danno sulla carta
@@ -426,6 +442,14 @@ class GameRules {
     destroyCard(target) {
         const { playerId, zone, position } = target;
         const card = this.engine.state.removeCard(playerId, zone, position);
+        
+        // Rimuovi le abilità registrate
+        if (card && this.engine.abilities) {
+            this.engine.abilities.unregisterCard(card, target);
+            
+            // Attiva abilità "quando muore"
+            this.engine.abilities.triggerEvent('onDeath', { card, location: target });
+        }
         
         if (card) {
             // Metti nel cimitero

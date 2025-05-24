@@ -3,6 +3,7 @@ class GameEngine {
     constructor() {
         this.state = new GameState();
         this.rules = new GameRules(this);
+        this.abilities = new AbilitiesSystem(this);
         this.ui = null; // Verrà inizializzato dopo
         this.ai = null; // Per il giocatore CPU
         this.isPaused = false;
@@ -87,7 +88,13 @@ class GameEngine {
             this.state.drawCards(this.state.currentPlayer, 1);
         }
         
-        // Applica effetti di inizio turno
+        // Resetta i contatori delle abilità per turno
+        this.abilities.resetTurnCounters();
+        
+        // Attiva abilità di inizio turno
+        this.abilities.triggerEvent('onTurnStart', { playerId: this.state.currentPlayer });
+        
+        // Applica effetti di inizio turno (retrocompatibilità)
         this.rules.triggerStartOfTurnEffects();
         
         // Passa alla fase principale
@@ -108,13 +115,26 @@ class GameEngine {
 
     // Gestisce il gioco di una carta dalla mano
     playCard(playerId, cardIndex) {
-        if (this.isProcessing || this.state.currentPlayer !== playerId) return false;
-        if (this.state.currentPhase !== 'main') return false;
+        console.log(`PlayCard chiamato: playerId=${playerId}, cardIndex=${cardIndex}`);
+        
+        if (this.isProcessing || this.state.currentPlayer !== playerId) {
+            console.log(`Non può giocare: isProcessing=${this.isProcessing}, currentPlayer=${this.state.currentPlayer}`);
+            return false;
+        }
+        if (this.state.currentPhase !== 'main') {
+            console.log(`Non in fase main: ${this.state.currentPhase}`);
+            return false;
+        }
 
         const player = this.state.getPlayer(playerId);
         const card = player.hand[cardIndex];
         
-        if (!card) return false;
+        if (!card) {
+            console.log('Carta non trovata nella posizione', cardIndex);
+            return false;
+        }
+        
+        console.log(`Giocando: ${card.name} (${card.type})`);
 
         // Verifica se può pagare il costo
         if (!this.rules.canPayCost(playerId, card)) {
@@ -160,7 +180,22 @@ class GameEngine {
         this.state.getPlayer(playerId).hand.splice(cardIndex, 1);
         zone[freeSlot] = card;
 
-        // Applica effetti di entrata
+        // Registra le abilità della carta
+        const location = {
+            playerId,
+            zone: targetZone,
+            position: freeSlot
+        };
+        this.abilities.registerCard(card, location);
+
+        // Attiva abilità "quando entra in gioco"
+        try {
+            this.abilities.triggerEvent('onEnterPlay', { card, location });
+        } catch (error) {
+            console.error('Errore durante attivazione abilità:', error);
+        }
+
+        // Applica effetti di entrata (retrocompatibilità)
         this.rules.triggerEnterPlayEffects(card, playerId);
 
         this.ui.updateBoard(this.state);
@@ -201,6 +236,13 @@ class GameEngine {
 
         // Rimuovi dalla mano
         player.hand.splice(cardIndex, 1);
+        
+        // Attiva abilità "quando giochi un incantesimo"
+        this.abilities.triggerEvent('onSpellPlayed', { 
+            card, 
+            playerId,
+            element: card.element 
+        });
 
         // Applica effetto
         this.rules.resolveSpellEffect(card, target);
@@ -403,55 +445,84 @@ class GameEngine {
     // Ottieni i bersagli validi per un attaccante
     getValidTargetsForAttacker(attacker, attackerZone, defenderId) {
         const targets = [];
-        const defenderCreatures = this.state.getAllCreatures(defenderId);
         
-        if (defenderCreatures.length === 0) {
-            // Nessuna creatura nemica, può attaccare direttamente il giocatore
-            targets.push({
-                type: 'player',
-                playerId: defenderId
+        // Ottieni le linee nemiche
+        const enemyFirstLine = this.state.getZone(defenderId, 'firstLine')
+            .map((card, position) => ({ card, position }))
+            .filter(({ card }) => card !== null);
+            
+        const enemySecondLine = this.state.getZone(defenderId, 'secondLine')
+            .map((card, position) => ({ card, position }))
+            .filter(({ card }) => card !== null);
+            
+        // Nota: attualmente non c'è terza linea nel gioco, ma la struttura supporta solo prima e seconda linea
+        
+        if (attackerZone === 'firstLine') {
+            // PRIMA LINEA può attaccare:
+            
+            // 1. Sempre la prima linea nemica se c'è
+            enemyFirstLine.forEach(({ card, position }) => {
+                targets.push({
+                    type: 'creature',
+                    card,
+                    playerId: defenderId,
+                    zone: 'firstLine',
+                    position
+                });
             });
-        } else if (attackerZone === 'firstLine') {
-            // Prima linea - può attaccare solo prima linea nemica (se presente) o giocatore se vuota
-            const enemyFirstLine = this.state.getZone(defenderId, 'firstLine')
-                .map((card, position) => ({ card, position }))
-                .filter(({ card }) => card !== null);
-                
-            if (enemyFirstLine.length > 0) {
-                // Può attaccare qualsiasi creatura in prima linea
-                enemyFirstLine.forEach(({ card, position }) => {
+            
+            // 2. La seconda linea SOLO se la prima linea è vuota
+            if (enemyFirstLine.length === 0) {
+                enemySecondLine.forEach(({ card, position }) => {
                     targets.push({
                         type: 'creature',
                         card,
                         playerId: defenderId,
-                        zone: 'firstLine',
+                        zone: 'secondLine',
                         position
                     });
                 });
-            } else {
-                // Prima linea vuota, può attaccare il giocatore
+            }
+            
+            // 3. Il giocatore SOLO se entrambe le linee sono vuote
+            if (enemyFirstLine.length === 0 && enemySecondLine.length === 0) {
                 targets.push({
                     type: 'player',
                     playerId: defenderId
                 });
             }
+            
         } else if (attackerZone === 'secondLine') {
-            // Seconda linea - può attaccare qualsiasi bersaglio
-            defenderCreatures.forEach(creature => {
+            // SECONDA LINEA può attaccare:
+            
+            // 1. Qualsiasi creatura nemica (prima o seconda linea)
+            enemyFirstLine.forEach(({ card, position }) => {
                 targets.push({
                     type: 'creature',
-                    card: creature.card,
-                    playerId: creature.playerId,
-                    zone: creature.zone,
-                    position: creature.position
+                    card,
+                    playerId: defenderId,
+                    zone: 'firstLine',
+                    position
                 });
             });
             
-            // Può anche attaccare direttamente il giocatore
-            targets.push({
-                type: 'player',
-                playerId: defenderId
+            enemySecondLine.forEach(({ card, position }) => {
+                targets.push({
+                    type: 'creature',
+                    card,
+                    playerId: defenderId,
+                    zone: 'secondLine',
+                    position
+                });
             });
+            
+            // 2. Il giocatore SOLO se entrambe le linee sono vuote
+            if (enemyFirstLine.length === 0 && enemySecondLine.length === 0) {
+                targets.push({
+                    type: 'player',
+                    playerId: defenderId
+                });
+            }
         }
         
         return targets;

@@ -129,9 +129,18 @@ Ogni classe ha zone preferite determinate dal loro ruolo tattico:
 **Chierici**: Principalmente in seconda linea per massimizzare le capacità di supporto, alcuni speciali possono operare in prima linea.
 
 ### 4.4 Regole di Attacco per Zona
-I personaggi in prima linea possono attaccare solo personaggi nemici nella prima linea nemica, proteggendo efficacemente la seconda linea. L'abilità "Assalto" permette eccezioni, consentendo attacchi diretti alla seconda linea.
+**Personaggi in Prima Linea:**
+- Possono attaccare personaggi nemici in prima linea
+- Se la prima linea nemica è vuota, possono attaccare la seconda linea
+- Se entrambe le linee nemiche sono vuote, possono attaccare direttamente il giocatore avversario
+- L'abilità "Assalto" permette eccezioni a queste restrizioni
 
-I personaggi in seconda linea possono attaccare qualsiasi personaggio nemico, le strutture nemiche, e direttamente il giocatore avversario quando la prima linea nemica è vuota.
+**Personaggi in Seconda Linea:**
+- Possono attaccare liberamente qualsiasi personaggio nemico (prima o seconda linea)
+- Possono attaccare le strutture nemiche
+- Possono attaccare direttamente il giocatore avversario SOLO se entrambe le linee nemiche sono vuote
+
+Questa gerarchia di protezione garantisce che le linee anteriori proteggano quelle posteriori e il giocatore.
 
 ---
 
@@ -198,9 +207,18 @@ Il controllo passa al giocatore avversario per il turno successivo.
 Un personaggio può attaccare quando possiede punti vita superiori a zero, non è affetto da stati che impediscono l'attacco (come Stordito), non ha già attaccato nel turno corrente, e ha completato almeno un turno completo in gioco oppure possiede abilità di attacco immediato.
 
 ### 6.2 Selezione dei Bersagli
-La validità dei bersagli dipende dalla zona dell'attaccante. Personaggi in prima linea possono normalmente attaccare solo personaggi nemici in prima linea, ma l'abilità "Assalto" estende questa capacità alla seconda linea nemica.
+La validità dei bersagli segue una gerarchia di protezione basata sulla zona dell'attaccante:
 
-Personaggi in seconda linea possono attaccare liberamente personaggi in entrambe le linee nemiche, strutture nemiche, e il giocatore avversario quando la prima linea nemica è vuota.
+**Attaccanti in Prima Linea:**
+- Priorità 1: Personaggi nemici in prima linea
+- Priorità 2: Personaggi nemici in seconda linea (solo se prima linea nemica vuota)
+- Priorità 3: Giocatore avversario (solo se entrambe le linee nemiche vuote)
+- L'abilità "Assalto" bypassa queste restrizioni
+
+**Attaccanti in Seconda Linea:**
+- Possono scegliere liberamente tra tutti i personaggi nemici (prima o seconda linea)
+- Possono attaccare strutture nemiche
+- Possono attaccare il giocatore avversario solo se entrambe le linee nemiche sono vuote
 
 ### 6.3 Meccaniche di Difesa
 La difesa è un'azione volontaria disponibile solo quando il giocatore stesso viene attaccato direttamente. Solo personaggi in prima linea possono normalmente intercettare attacchi. La difesa trasforma l'attacco da diretto contro il giocatore a diretto contro il personaggio difensore.
