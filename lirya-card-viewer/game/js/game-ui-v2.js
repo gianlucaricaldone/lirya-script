@@ -18,54 +18,23 @@ class GameUI {
                         const cardCopy = { ...card };
                         
                         // Fix del percorso immagine per il contesto del gioco
-                        if (cardCopy.imagePath) {
-                            // Se il percorso inizia con ./ rimuovilo
-                            if (cardCopy.imagePath.startsWith('./')) {
-                                cardCopy.imagePath = cardCopy.imagePath.substring(2);
-                            }
-                            // Se non inizia già con ../ aggiungilo
+                        if (cardCopy.imagePath && cardCopy.imagePath.includes('/images/')) {
+                            // Mantieni il percorso con ../ per il gioco
                             if (!cardCopy.imagePath.startsWith('../')) {
                                 cardCopy.imagePath = '../' + cardCopy.imagePath;
                             }
                         }
                         
-                        // Se la carta ha currentHealth, aggiorna i valori visualizzati
-                        if (card.currentHealth !== undefined && card.type === 'Personaggio') {
-                            // Salva i valori originali prima di modificarli
-                            const originalHealth = cardCopy.stats?.health || cardCopy.health;
-                            const originalDefense = cardCopy.stats?.defense || cardCopy.defense;
-                            
-                            // Calcola la vita massima
-                            const maxHealth = originalHealth || originalDefense || 1;
-                            
-                            // Passa currentHealth al renderer
-                            cardCopy.currentHealth = card.currentHealth;
-                            
-                            // Marca la carta come danneggiata se la vita corrente è inferiore alla massima
-                            if (card.currentHealth < maxHealth) {
-                                cardCopy.isDamaged = true;
-                            }
-                            
-                            // Aggiorna i valori di difesa/vita da mostrare con currentHealth
-                            if (cardCopy.stats) {
-                                if (cardCopy.stats.health !== undefined) {
-                                    cardCopy.stats.health = card.currentHealth;
-                                } else if (cardCopy.stats.defense !== undefined) {
-                                    cardCopy.stats.defense = card.currentHealth;
-                                }
-                            } else {
-                                // Per carte vecchio formato
-                                if (cardCopy.health !== undefined) {
-                                    cardCopy.health = card.currentHealth;
-                                } else if (cardCopy.defense !== undefined) {
-                                    cardCopy.defense = card.currentHealth;
-                                }
-                            }
-                        }
+                        let svg = window.CardRenderer.generateCardSVG(cardCopy);
                         
-                        const svg = window.CardRenderer.generateCardSVG(cardCopy);
+                        // Correggi i percorsi delle immagini nell'SVG generato
+                        svg = svg.replace(/\.\/images\//g, '../images/');
                         
-                        // Non serve più correggere i percorsi nell'SVG
+                        // Fix per immagini specchiate - rimuovi qualsiasi transform negativo
+                        svg = svg.replace(/transform="[^"]*scale\(-1[^"]*\)"/g, '');
+                        // Assicurati che le immagini non siano specchiate
+                        svg = svg.replace(/<image /g, '<image transform="scale(1,1)" ');
+                        
                         return svg;
                     } catch (error) {
                         console.error('Errore nel rendering della carta:', card.name, error);
@@ -171,11 +140,6 @@ class GameUI {
 
     // Crea elemento carta
     createCardElement(card, playerId, zone, position) {
-        // Debug: verifica se la carta ha il flag isDamaged
-        if (card.type === 'Personaggio' && card.currentHealth !== undefined) {
-            console.log(`createCardElement per ${card.name}: currentHealth=${card.currentHealth}, isDamaged=${card.isDamaged}`);
-        }
-        
         const cardDiv = document.createElement('div');
         cardDiv.className = 'game-card';
         cardDiv.dataset.playerId = playerId;
@@ -316,18 +280,11 @@ class GameUI {
 
     // Nascondi carte dell'avversario
     hideOpponentCards(activePlayer) {
-        // Nascondi le carte dell'avversario
         const opponentId = activePlayer === 1 ? 2 : 1;
         const opponentHand = document.getElementById(`player${opponentId}-hand`);
         
         if (opponentHand) {
-            opponentHand.classList.add('hidden-cards');
-        }
-        
-        // Mostra le carte del giocatore attivo
-        const activeHand = document.getElementById(`player${activePlayer}-hand`);
-        if (activeHand) {
-            activeHand.classList.remove('hidden-cards');
+            opponentHand.classList.toggle('hidden-cards', true);
         }
     }
 
@@ -507,11 +464,6 @@ class GameUI {
                 
                 // Se c'è un attaccante selezionato, gestisci la selezione del bersaglio
                 if (this.engine.state.combat.attackingCreature) {
-                    // Non permettere di attaccare se stessi o carte dello stesso giocatore
-                    if (playerId === this.engine.state.currentPlayer) {
-                        return;
-                    }
-                    
                     // Controlla se è un bersaglio valido
                     let target = null;
                     
@@ -527,6 +479,7 @@ class GameUI {
                     }
                     
                     if (target && target.card) {
+                        console.log('Selezionando bersaglio:', target);
                         this.engine.selectAttackTarget(target);
                         return;
                     }
@@ -540,7 +493,6 @@ class GameUI {
                     }
                 }
             }
-            
             
             // Se in modalità targeting
             if (this.engine.state.targetingMode) {
@@ -563,11 +515,8 @@ class GameUI {
                 return;
             }
             
-            // Mostra dettagli carta solo se non siamo in fase di combattimento
-            if (this.engine.state.currentPhase !== 'combat_declare' && 
-                this.engine.state.currentPhase !== 'combat_block') {
-                this.showCardDetail(card);
-            }
+            // Mostra dettagli carta
+            this.showCardDetail(card);
         });
         
         // Modal cambio turno
@@ -701,19 +650,8 @@ class GameUI {
         const activePlayer = this.engine.state.currentPlayer;
         document.querySelectorAll(`.player${activePlayer}-card`).forEach(card => {
             const zone = card.dataset.zone;
-            const position = parseInt(card.dataset.position);
-            
             if (zone === 'firstLine' || zone === 'secondLine') {
-                // Controlla se questa creatura sta già attaccando
-                const isAttacking = this.engine.state.combat.attackers.some(attacker => 
-                    attacker.playerId === activePlayer && 
-                    attacker.zone === zone && 
-                    attacker.position === position
-                );
-                
-                if (!isAttacking) {
-                    card.classList.add('can-attack');
-                }
+                card.classList.add('can-attack');
             }
         });
     }
@@ -838,70 +776,46 @@ class GameUI {
         
         if (!targetEl) return;
         
-        // Crea SVG per la freccia
-        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.classList.add('attack-arrow');
-        svg.style.position = 'absolute';
-        svg.style.top = '0';
-        svg.style.left = '0';
-        svg.style.width = '100%';
-        svg.style.height = '100%';
-        svg.style.pointerEvents = 'none';
-        svg.style.zIndex = '500';
+        // Crea elemento freccia
+        const arrow = document.createElement('div');
+        arrow.className = 'attack-arrow';
         
-        // Funzione per aggiornare la posizione della freccia
-        const updateArrow = () => {
-            const gameBoard = document.getElementById('game-board');
-            const boardRect = gameBoard.getBoundingClientRect();
-            const attackerRect = attackerEl.getBoundingClientRect();
-            const targetRect = targetEl.getBoundingClientRect();
-            
-            // Calcola posizioni relative al game board
-            const startX = attackerRect.left + attackerRect.width / 2 - boardRect.left;
-            const startY = attackerRect.top + attackerRect.height / 2 - boardRect.top;
-            const endX = targetRect.left + targetRect.width / 2 - boardRect.left;
-            const endY = targetRect.top + targetRect.height / 2 - boardRect.top;
-            
-            // Pulisci SVG precedente
-            svg.innerHTML = '';
-            
-            // Crea il percorso della freccia
-            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-            path.setAttribute('d', `M ${startX} ${startY} L ${endX} ${endY}`);
-            path.setAttribute('stroke', '#ff0000');
-            path.setAttribute('stroke-width', '4');
-            path.setAttribute('fill', 'none');
-            path.setAttribute('marker-end', 'url(#arrowhead)');
-            
-            // Crea la punta della freccia
-            const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-            const marker = document.createElementNS('http://www.w3.org/2000/svg', 'marker');
-            marker.setAttribute('id', 'arrowhead');
-            marker.setAttribute('markerWidth', '10');
-            marker.setAttribute('markerHeight', '10');
-            marker.setAttribute('refX', '9');
-            marker.setAttribute('refY', '3');
-            marker.setAttribute('orient', 'auto');
-            
-            const polygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-            polygon.setAttribute('points', '0 0, 10 3, 0 6');
-            polygon.setAttribute('fill', '#ff0000');
-            
-            marker.appendChild(polygon);
-            defs.appendChild(marker);
-            svg.appendChild(defs);
-            svg.appendChild(path);
-        };
+        const attackerRect = attackerEl.getBoundingClientRect();
+        const targetRect = targetEl.getBoundingClientRect();
         
-        // Aggiorna la freccia inizialmente
-        updateArrow();
+        const startX = attackerRect.left + attackerRect.width / 2;
+        const startY = attackerRect.top + attackerRect.height / 2;
+        const endX = targetRect.left + targetRect.width / 2;
+        const endY = targetRect.top + targetRect.height / 2;
         
-        // Aggiungi al game board invece che al body
-        const gameBoard = document.getElementById('game-board');
-        gameBoard.appendChild(svg);
+        const angle = Math.atan2(endY - startY, endX - startX) * 180 / Math.PI;
+        const distance = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
         
-        // Salva la funzione di update per poterla chiamare quando necessario
-        svg.updateArrow = updateArrow;
+        arrow.style.position = 'fixed';
+        arrow.style.left = startX + 'px';
+        arrow.style.top = startY + 'px';
+        arrow.style.width = distance + 'px';
+        arrow.style.height = '3px';
+        arrow.style.background = 'red';
+        arrow.style.transformOrigin = '0 50%';
+        arrow.style.transform = `rotate(${angle}deg)`;
+        arrow.style.pointerEvents = 'none';
+        arrow.style.zIndex = '1000';
+        arrow.style.opacity = '0.7';
+        
+        // Aggiungi punta di freccia
+        const arrowHead = document.createElement('div');
+        arrowHead.style.position = 'absolute';
+        arrowHead.style.right = '-10px';
+        arrowHead.style.top = '-4px';
+        arrowHead.style.width = '0';
+        arrowHead.style.height = '0';
+        arrowHead.style.borderLeft = '10px solid red';
+        arrowHead.style.borderTop = '5px solid transparent';
+        arrowHead.style.borderBottom = '5px solid transparent';
+        arrow.appendChild(arrowHead);
+        
+        document.body.appendChild(arrow);
     }
     
     // Nascondi UI combattimento
@@ -926,6 +840,8 @@ class GameUI {
     
     // Mostra animazione di combattimento
     showCombatAnimation(attacker, defender, damage) {
+        console.log('showCombatAnimation chiamata con danno:', damage);
+        
         const attackerEl = document.querySelector(
             `[data-player-id="${attacker.playerId}"][data-zone="${attacker.zone}"][data-position="${attacker.position}"]`
         );
@@ -933,7 +849,10 @@ class GameUI {
             `[data-player-id="${defender.playerId}"][data-zone="${defender.zone}"][data-position="${defender.position}"]`
         );
         
-        if (!attackerEl || !defenderEl) return;
+        if (!attackerEl || !defenderEl) {
+            console.log('Elementi non trovati');
+            return;
+        }
         
         // Animazione di attacco
         attackerEl.classList.add('combat-attacking');
@@ -1062,38 +981,6 @@ class GameUI {
         
         // Aggiorna vita nel display
         this.updatePlayerInfo(playerId, this.engine.state.getPlayer(playerId));
-    }
-    
-    // Nascondi UI di combattimento
-    hideCombatUI() {
-        // Rimuovi pulsanti di combattimento
-        const confirmAttackers = document.getElementById('confirm-attackers');
-        const confirmBlockers = document.getElementById('confirm-blockers');
-        
-        if (confirmAttackers) confirmAttackers.remove();
-        if (confirmBlockers) confirmBlockers.remove();
-        
-        // Rimuovi tutte le classi di combattimento
-        document.querySelectorAll('.can-attack, .can-block, .is-attacking, .is-blocking, .selected-attacker, .valid-target, .valid-target-player').forEach(el => {
-            el.classList.remove('can-attack', 'can-block', 'is-attacking', 'is-blocking', 'selected-attacker', 'valid-target', 'valid-target-player');
-        });
-        
-        // Rimuovi frecce di attacco
-        document.querySelectorAll('.attack-arrow, .attack-line').forEach(el => el.remove());
-    }
-    
-    // Mantieni le visualizzazioni di combattimento attive
-    maintainCombatVisuals() {
-        // Non rimuovere le frecce e mantieni le visualizzazioni degli attaccanti
-        // Questo metodo viene chiamato quando confermiamo gli attaccanti
-        // per mantenere le frecce visibili durante la risoluzione del danno
-    }
-    
-    // Aggiorna solo il campo di gioco (per aggiornamenti rapidi dopo il danno)
-    updateGameField() {
-        // Aggiorna il campo di entrambi i giocatori
-        this.updateField(1, this.engine.state.getPlayer(1));
-        this.updateField(2, this.engine.state.getPlayer(2));
     }
 }
 

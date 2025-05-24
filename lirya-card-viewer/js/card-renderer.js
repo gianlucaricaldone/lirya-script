@@ -30,6 +30,11 @@ const CardRenderer = (() => {
         // Se è un URL completo con http/https, restituiscilo com'è
         if (path.startsWith('http://') || path.startsWith('https://')) return path;
         
+        // NUOVO: Se il percorso inizia con ../images/ (contesto game), mantienilo così
+        if (path.startsWith('../images/')) {
+            return path;
+        }
+        
         // Gestisci i percorsi relativi che iniziano con ../
         if (path.startsWith('../')) {
             // Rimuovi il ../ e aggiungi il percorso base
@@ -95,6 +100,18 @@ const CardRenderer = (() => {
 
         // Crea una copia del template da modificare
         let svg = template;
+        
+        // Se la carta è un personaggio e ha currentHealth, verifica se è danneggiata
+        if (card.type === 'Personaggio' && card.currentHealth !== undefined) {
+            const maxHealth = card.stats?.health || card.health || 
+                            card.stats?.defense || card.defense || 1;
+            // Sempre ricalcola se è danneggiata
+            card.isDamaged = (card.currentHealth < maxHealth);
+            
+            if (card.isDamaged) {
+                console.log(`${card.name} è danneggiato: vita ${card.currentHealth}/${maxHealth}`);
+            }
+        }
 
         // Sostituisci i valori nel template
 
@@ -171,10 +188,37 @@ const CardRenderer = (() => {
         svg = svg.replace(/{{flavor_text}}/g, card.flavor_text || '');
 
         // Per le carte personaggio, sostituisci le statistiche
-        if (card.type === 'Personaggio' && card.stats) {
-            svg = svg.replace(/{{attacco}}/g, card.stats.attack || '0');
-            svg = svg.replace(/{{difesa}}/g, card.stats.defense || '0');
-            svg = svg.replace(/{{punti_vita}}/g, card.stats.health || '0');
+        if (card.type === 'Personaggio') {
+            // Gestisci attacco
+            if (card.stats?.attack !== undefined) {
+                svg = svg.replace(/{{attacco}}/g, card.stats.attack);
+            } else if (card.attack !== undefined) {
+                svg = svg.replace(/{{attacco}}/g, card.attack);
+            }
+            
+            // Gestisci difesa e vita
+            const defenseValue = card.stats?.defense !== undefined ? card.stats.defense : (card.defense || '0');
+            // Usa currentHealth se disponibile, altrimenti usa il valore massimo
+            const healthValue = card.currentHealth !== undefined ? card.currentHealth : 
+                               (card.stats?.health !== undefined ? card.stats.health : (card.health || '0'));
+            
+            // Se la carta è danneggiata, usa colore rosso
+            if (card.isDamaged) {
+                console.log(`Applicando colore rosso per ${card.name}: defense=${defenseValue}, health=${healthValue} (currentHealth=${card.currentHealth})`);
+                // Sostituisci sia {{difesa}} che il valore numerico che potrebbe essere già stato sostituito
+                svg = svg.replace(/{{difesa}}/g, `<tspan fill="#ff4444">${defenseValue}</tspan>`);
+                svg = svg.replace(/{{punti_vita}}/g, `<tspan fill="#ff4444">${healthValue}</tspan>`);
+                
+                // Se il template usa direttamente i numeri invece dei placeholder
+                // Cerca pattern come >2< o >3< nei punti dove ci aspettiamo la difesa/vita
+                svg = svg.replace(/(<text[^>]*class="defense-value"[^>]*>)(\d+)(<\/text>)/g, 
+                    `$1<tspan fill="#ff4444">$2</tspan>$3`);
+                svg = svg.replace(/(<text[^>]*class="health-value"[^>]*>)(\d+)(<\/text>)/g, 
+                    `$1<tspan fill="#ff4444">$2</tspan>$3`);
+            } else {
+                svg = svg.replace(/{{difesa}}/g, defenseValue);
+                svg = svg.replace(/{{punti_vita}}/g, healthValue);
+            }
         }
 
         // Posizionamento

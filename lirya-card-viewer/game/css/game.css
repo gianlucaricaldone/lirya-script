@@ -143,6 +143,7 @@
 #game-board {
     background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
     position: relative;
+    overflow: visible; /* Assicura che le linee non vengano tagliate */
 }
 
 .turn-indicator {
@@ -271,6 +272,37 @@
 .player-hand.hidden-cards .game-card {
     transform: rotateY(180deg);
     background: linear-gradient(135deg, #1a1a2e, #2c2c3e);
+    position: relative;
+}
+
+.player-hand.hidden-cards .game-card > * {
+    display: none;
+}
+
+/* Mostra un dorso per le carte nascoste */
+.player-hand.hidden-cards .game-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a2e, #2c2c3e);
+    border-radius: 8px;
+    z-index: 10;
+}
+
+/* Rimuovi lo specchiamento delle carte nella mano */
+.player-hand .game-card image,
+.player-hand .game-card img,
+.player-hand .game-card svg {
+    transform: none !important;
+}
+
+/* Ripristina l'orientamento corretto per le carte sul campo */
+.player-field .game-card image,
+.player-field .game-card img {
+    transform: none !important;
 }
 
 /* Campo di battaglia */
@@ -285,6 +317,8 @@
     padding: 10px;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    z-index: 1;
 }
 
 .first-line h4, .second-line h4, .structures-zone h4 {
@@ -328,6 +362,12 @@
 .game-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Fix per immagini specchiate */
+.game-card image,
+.game-card img {
+    transform: scaleX(1) !important;
 }
 
 .game-card.dragging {
@@ -543,6 +583,36 @@
     box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
 }
 
+/* Modal dettagli carta */
+#card-detail-modal {
+    z-index: 2001;
+}
+
+#card-detail-modal .modal-content {
+    background: transparent;
+    padding: 0;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#modal-card-detail {
+    max-width: 400px;
+    max-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#modal-card-detail svg {
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    display: block;
+}
+
 /* Combattimento */
 .combat-button {
     margin-left: 20px;
@@ -636,21 +706,29 @@
     75% { transform: translateX(5px); }
 }
 
-/* Linea di attacco */
-.attack-line {
-    height: 3px;
-    background: linear-gradient(90deg, #ff6b6b, transparent);
+/* Frecce di attacco */
+.attack-arrow {
+    position: absolute;
     z-index: 1000;
-    animation: attack-line 0.5s ease-out;
+    pointer-events: none;
+    overflow: visible;
 }
 
-@keyframes attack-line {
-    0% { 
-        width: 0;
-        opacity: 1;
+.attack-arrow path {
+    stroke: #ff0000;
+    stroke-width: 4;
+    filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.8));
+    animation: arrow-pulse 1s ease-in-out infinite;
+}
+
+@keyframes arrow-pulse {
+    0%, 100% {
+        opacity: 0.7;
+        filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.8));
     }
-    100% { 
-        opacity: 0.3;
+    50% {
+        opacity: 1;
+        filter: drop-shadow(0 0 12px rgba(255, 0, 0, 1));
     }
 }
 

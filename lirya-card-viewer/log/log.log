@@ -1,0 +1,489 @@
+game.html:198 CardRenderer caricato? true
+game.html:200 CardRenderer disponibile: {loadTemplates: ƒ, generateCardSVG: ƒ, generateCardDetails: ƒ}
+game.html:1 Uncaught (in promise) Error: Could not establish connection. Receiving end does not exist.
+game.js?v=3:11 Carte caricate: 266
+game.js?v=3:12 Prime 5 carte: (5) ['Guardia della Fornace', 'Pattugliatore Costiero', 'Sentinella di Roccia', 'Sentinella del Cielo', 'Guardia del Santuario']
+game-ui.js?v=3:76 CardRenderer configurato in GameUI
+game.js?v=3:166 UI inizializzata
+game.js?v=3:177 showScreen chiamata con: mainMenu
+game.js?v=3:178 Screens disponibili: (3) ['mainMenu', 'deckSelection', 'gameBoard']
+game.js?v=3:179 Screen target esiste? true
+game.js?v=3:184 Rimossa classe active da mainMenu
+game.js?v=3:184 Rimossa classe active da deckSelection
+game.js?v=3:184 Rimossa classe active da gameBoard
+game.js?v=3:190 Aggiunta classe active a mainMenu
+game.js?v=3:191 Classi elemento: game-screen active
+favicon.ico:1 
+            
+            
+           GET http://localhost:8000/favicon.ico 404 (File not found)
+game.js?v=3:177 showScreen chiamata con: deckSelection
+game.js?v=3:178 Screens disponibili: (3) ['mainMenu', 'deckSelection', 'gameBoard']
+game.js?v=3:179 Screen target esiste? true
+game.js?v=3:184 Rimossa classe active da mainMenu
+game.js?v=3:184 Rimossa classe active da deckSelection
+game.js?v=3:184 Rimossa classe active da gameBoard
+game.js?v=3:190 Aggiunta classe active a deckSelection
+game.js?v=3:191 Classi elemento: game-screen active
+game.js?v=3:277 Start game cliccato
+game.js?v=3:280 CardRenderer disponibile? true
+game.js?v=3:281 loadTemplates disponibile? true
+game.js?v=3:286 Caricamento template SVG prima di iniziare la partita...
+card-renderer.js:80 Template SVG caricati con successo da ../svg-templates/
+game.js?v=3:289 Template SVG caricati con successo
+game-ui.js?v=3:76 CardRenderer configurato in GameUI
+game.js?v=3:293 UI reinizializzata con template caricati
+game.js?v=3:339 Carta non trovata: Evocatore d'Acqua
+(anonymous) @ game.js?v=3:339
+prepareDeck @ game.js?v=3:333
+(anonymous) @ game.js?v=3:303
+game.js?v=3:339 Carta non trovata: Evocatore d'Acqua
+(anonymous) @ game.js?v=3:339
+prepareDeck @ game.js?v=3:333
+(anonymous) @ game.js?v=3:303
+game.js?v=3:339 Carta non trovata: Altare dell'Acqua
+(anonymous) @ game.js?v=3:339
+prepareDeck @ game.js?v=3:333
+(anonymous) @ game.js?v=3:303
+game.js?v=3:339 Carta non trovata: Altare dell'Acqua
+(anonymous) @ game.js?v=3:339
+prepareDeck @ game.js?v=3:333
+(anonymous) @ game.js?v=3:303
+game.js?v=3:339 Carta non trovata: Altare dell'Acqua
+(anonymous) @ game.js?v=3:339
+prepareDeck @ game.js?v=3:333
+(anonymous) @ game.js?v=3:303
+game.js?v=3:305 Deck 1 preparato: 39 carte
+game.js?v=3:306 Deck 2 preparato: 35 carte
+game.js?v=3:316 Mostrando schermata di gioco...
+game.js?v=3:177 showScreen chiamata con: gameBoard
+game.js?v=3:178 Screens disponibili: (3) ['mainMenu', 'deckSelection', 'gameBoard']
+game.js?v=3:179 Screen target esiste? true
+game.js?v=3:184 Rimossa classe active da mainMenu
+game.js?v=3:184 Rimossa classe active da deckSelection
+game.js?v=3:184 Rimossa classe active da gameBoard
+game.js?v=3:190 Aggiunta classe active a gameBoard
+game.js?v=3:191 Classi elemento: game-screen active
+game.js?v=3:320 Iniziando partita...
+game.js?v=3:322 Partita iniziata!
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+playCharacter @ game-engine.js?v=2:166
+playCard @ game-engine.js?v=2:128
+(anonymous) @ game-ui.js?v=3:447
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+startTurn @ game-engine.js?v=2:98
+startCombatPhase @ game-engine.js?v=2:324
+endTurn @ game-engine.js?v=2:649
+(anonymous) @ game-engine.js?v=2:23
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+playCharacter @ game-engine.js?v=2:166
+playCard @ game-engine.js?v=2:128
+(anonymous) @ game-ui.js?v=3:447
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+startCombatPhase @ game-engine.js?v=2:341
+endTurn @ game-engine.js?v=2:649
+(anonymous) @ game-engine.js?v=2:23
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+endCombatPhase @ game-engine.js?v=2:635
+confirmAttackers @ game-engine.js?v=2:508
+button.onclick @ game-ui.js?v=3:691
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+startTurn @ game-engine.js?v=2:98
+endTurn @ game-engine.js?v=2:666
+(anonymous) @ game-engine.js?v=2:639
+setTimeout
+endCombatPhase @ game-engine.js?v=2:638
+confirmAttackers @ game-engine.js?v=2:508
+button.onclick @ game-ui.js?v=3:691
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+playCharacter @ game-engine.js?v=2:166
+playCard @ game-engine.js?v=2:128
+(anonymous) @ game-ui.js?v=3:447
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+startCombatPhase @ game-engine.js?v=2:341
+endTurn @ game-engine.js?v=2:649
+(anonymous) @ game-engine.js?v=2:23
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+endCombatPhase @ game-engine.js?v=2:635
+confirmAttackers @ game-engine.js?v=2:508
+button.onclick @ game-ui.js?v=3:691
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+startTurn @ game-engine.js?v=2:98
+endTurn @ game-engine.js?v=2:666
+(anonymous) @ game-engine.js?v=2:639
+setTimeout
+endCombatPhase @ game-engine.js?v=2:638
+confirmAttackers @ game-engine.js?v=2:508
+button.onclick @ game-ui.js?v=3:691
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+playCharacter @ game-engine.js?v=2:166
+playCard @ game-engine.js?v=2:128
+(anonymous) @ game-ui.js?v=3:447
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+startCombatPhase @ game-engine.js?v=2:341
+endTurn @ game-engine.js?v=2:649
+(anonymous) @ game-engine.js?v=2:23
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+endCombatPhase @ game-engine.js?v=2:635
+confirmAttackers @ game-engine.js?v=2:508
+button.onclick @ game-ui.js?v=3:691
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+startTurn @ game-engine.js?v=2:98
+endTurn @ game-engine.js?v=2:666
+(anonymous) @ game-engine.js?v=2:639
+setTimeout
+endCombatPhase @ game-engine.js?v=2:638
+confirmAttackers @ game-engine.js?v=2:508
+button.onclick @ game-ui.js?v=3:691
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+playStructure @ game-engine.js?v=2:238
+playCard @ game-engine.js?v=2:132
+(anonymous) @ game-ui.js?v=3:447
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+startCombatPhase @ game-engine.js?v=2:341
+endTurn @ game-engine.js?v=2:649
+(anonymous) @ game-engine.js?v=2:23
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+endCombatPhase @ game-engine.js?v=2:635
+confirmAttackers @ game-engine.js?v=2:508
+button.onclick @ game-ui.js?v=3:691
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+startTurn @ game-engine.js?v=2:98
+endTurn @ game-engine.js?v=2:666
+(anonymous) @ game-engine.js?v=2:639
+setTimeout
+endCombatPhase @ game-engine.js?v=2:638
+confirmAttackers @ game-engine.js?v=2:508
+button.onclick @ game-ui.js?v=3:691
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+playCharacter @ game-engine.js?v=2:166
+playCard @ game-engine.js?v=2:128
+(anonymous) @ game-ui.js?v=3:447
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+startCombatPhase @ game-engine.js?v=2:341
+endTurn @ game-engine.js?v=2:649
+(anonymous) @ game-engine.js?v=2:23
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: false, playerId: 2, zone: 'secondLine', position: 1}
+game-ui.js?v=3:532 Dichiarando attaccante: 2 secondLine 1
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: true, playerId: 2, zone: 'secondLine', position: 1}
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: true, playerId: 1, zone: 'firstLine', position: 1}
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: false, playerId: 1, zone: 'firstLine', position: 1}
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: false, playerId: 2, zone: 'secondLine', position: 1}
+game-ui.js?v=3:532 Dichiarando attaccante: 2 secondLine 1
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: false, playerId: 2, zone: 'secondLine', position: 1}
+game-ui.js?v=3:532 Dichiarando attaccante: 2 secondLine 1
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: false, playerId: 2, zone: 'secondLine', position: 1}
+game-ui.js?v=3:532 Dichiarando attaccante: 2 secondLine 1
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: false, playerId: 2, zone: 'secondLine', position: 1}
+game-ui.js?v=3:532 Dichiarando attaccante: 2 secondLine 1
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: false, playerId: 2, zone: 'secondLine', position: 0}
+game-ui.js?v=3:532 Dichiarando attaccante: 2 secondLine 0
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: true, playerId: 2, zone: 'secondLine', position: 0}
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: true, playerId: 1, zone: 'firstLine', position: 0}
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: false, playerId: 1, zone: 'firstLine', position: 0}
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: false, playerId: 2, zone: 'firstLine', position: 0}
+game-ui.js?v=3:532 Dichiarando attaccante: 2 firstLine 0
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: true, playerId: 2, zone: 'firstLine', position: 0}
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: true, playerId: 1, zone: 'firstLine', position: 1}
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: false, playerId: 1, zone: 'firstLine', position: 1}
+game-engine.js?v=2:587 === RISOLUZIONE COMBATTIMENTO ===
+game-engine.js?v=2:588 Attaccante: Giocatore 2, Difensore: Giocatore 1
+game-engine.js?v=2:593 
+Elissa (ATT: 3) sta attaccando...
+game-engine.js?v=2:614 - Attacca Guardia della Fornace
+game-rules.js?v=2:354   COMBATTIMENTO: Elissa (ATT: 3, PV: 4) VS Guardia della Fornace (DIF: 1, PV: 2)
+game-rules.js?v=2:364   - Elissa infligge 2 danni a Guardia della Fornace
+game-rules.js?v=2:371   - Risultato: Elissa (PV: 4), Guardia della Fornace (PV: 0)
+game-engine.js?v=2:593 
+Sacerdote delle Onde (ATT: 1) sta attaccando...
+game-engine.js?v=2:614 - Attacca Recluta di Emberhold
+game-rules.js?v=2:354   COMBATTIMENTO: Sacerdote delle Onde (ATT: 1, PV: 4) VS Recluta di Emberhold (DIF: 1, PV: 2)
+game-rules.js?v=2:367   - Sacerdote delle Onde non riesce a danneggiare Recluta di Emberhold (danno bloccato dalla difesa)
+game-rules.js?v=2:371   - Risultato: Sacerdote delle Onde (PV: 4), Recluta di Emberhold (PV: 2)
+game-engine.js?v=2:593 
+Marinaio di Tidemire (ATT: 1) sta attaccando...
+game-engine.js?v=2:614 - Attacca Guardia della Fornace
+game-rules.js?v=2:354   COMBATTIMENTO: Marinaio di Tidemire (ATT: 1, PV: 2) VS Guardia della Fornace (DIF: 1, PV: 0)
+game-rules.js?v=2:367   - Marinaio di Tidemire non riesce a danneggiare Guardia della Fornace (danno bloccato dalla difesa)
+game-rules.js?v=2:371   - Risultato: Marinaio di Tidemire (PV: 2), Guardia della Fornace (PV: 0)
+game-engine.js?v=2:619 
+=== FINE COMBATTIMENTO ===
+game-engine.js?v=2:620 Vita Giocatore 1: 20
+game-engine.js?v=2:621 Vita Giocatore 2: 20
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+endCombatPhase @ game-engine.js?v=2:635
+(anonymous) @ game-engine.js?v=2:524
+setTimeout
+(anonymous) @ game-engine.js?v=2:523
+setTimeout
+confirmAttackers @ game-engine.js?v=2:520
+button.onclick @ game-ui.js?v=3:691
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+startTurn @ game-engine.js?v=2:98
+endTurn @ game-engine.js?v=2:666
+(anonymous) @ game-engine.js?v=2:639
+setTimeout
+endCombatPhase @ game-engine.js?v=2:638
+(anonymous) @ game-engine.js?v=2:524
+setTimeout
+(anonymous) @ game-engine.js?v=2:523
+setTimeout
+confirmAttackers @ game-engine.js?v=2:520
+button.onclick @ game-ui.js?v=3:691
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+playCharacter @ game-engine.js?v=2:166
+playCard @ game-engine.js?v=2:128
+(anonymous) @ game-ui.js?v=3:447
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+startCombatPhase @ game-engine.js?v=2:341
+endTurn @ game-engine.js?v=2:649
+(anonymous) @ game-engine.js?v=2:23
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: false, playerId: 1, zone: 'secondLine', position: 0}
+game-ui.js?v=3:532 Dichiarando attaccante: 1 secondLine 0
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: true, playerId: 1, zone: 'secondLine', position: 0}
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: true, playerId: 2, zone: 'firstLine', position: 0}
+game-ui.js?v=3:496 Click durante combat_declare {hasAttackingCreature: false, playerId: 2, zone: 'firstLine', position: 0}
+game-engine.js?v=2:587 === RISOLUZIONE COMBATTIMENTO ===
+game-engine.js?v=2:588 Attaccante: Giocatore 1, Difensore: Giocatore 2
+game-engine.js?v=2:593 
+Iniziato del Fuoco (ATT: 3) sta attaccando...
+game-engine.js?v=2:614 - Attacca Marinaio di Tidemire
+game-rules.js?v=2:354   COMBATTIMENTO: Iniziato del Fuoco (ATT: 3, PV: 2) VS Marinaio di Tidemire (DIF: 2, PV: 2)
+game-rules.js?v=2:364   - Iniziato del Fuoco infligge 1 danni a Marinaio di Tidemire
+game-rules.js?v=2:371   - Risultato: Iniziato del Fuoco (PV: 2), Marinaio di Tidemire (PV: 1)
+game-engine.js?v=2:619 
+=== FINE COMBATTIMENTO ===
+game-engine.js?v=2:620 Vita Giocatore 1: 20
+game-engine.js?v=2:621 Vita Giocatore 2: 20
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+endCombatPhase @ game-engine.js?v=2:635
+(anonymous) @ game-engine.js?v=2:524
+setTimeout
+(anonymous) @ game-engine.js?v=2:523
+setTimeout
+confirmAttackers @ game-engine.js?v=2:520
+button.onclick @ game-ui.js?v=3:691
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:190
+(anonymous) @ game-ui.js?v=3:135
+updateHand @ game-ui.js?v=3:134
+updateBoard @ game-ui.js?v=3:95
+startTurn @ game-engine.js?v=2:98
+endTurn @ game-engine.js?v=2:666
+(anonymous) @ game-engine.js?v=2:639
+setTimeout
+endCombatPhase @ game-engine.js?v=2:638
+(anonymous) @ game-engine.js?v=2:524
+setTimeout
+(anonymous) @ game-engine.js?v=2:523
+setTimeout
+confirmAttackers @ game-engine.js?v=2:520
+button.onclick @ game-ui.js?v=3:691

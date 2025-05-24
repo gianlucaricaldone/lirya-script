@@ -174,10 +174,24 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Funzione per cambiare schermata
     function showScreen(screenName) {
+        console.log('showScreen chiamata con:', screenName);
+        console.log('Screens disponibili:', Object.keys(screens));
+        console.log('Screen target esiste?', !!screens[screenName]);
+        
         Object.keys(screens).forEach(key => {
-            screens[key].classList.remove('active');
+            if (screens[key]) {
+                screens[key].classList.remove('active');
+                console.log(`Rimossa classe active da ${key}`);
+            }
         });
-        screens[screenName].classList.add('active');
+        
+        if (screens[screenName]) {
+            screens[screenName].classList.add('active');
+            console.log(`Aggiunta classe active a ${screenName}`);
+            console.log('Classi elemento:', screens[screenName].classList.toString());
+        } else {
+            console.error(`Screen ${screenName} non trovato!`);
+        }
     }
 
     // Event listeners menu principale
@@ -288,11 +302,24 @@ document.addEventListener('DOMContentLoaded', async function() {
         const deck1 = prepareDeck(standardDecks[selectedDecks.player1]);
         const deck2 = prepareDeck(standardDecks[selectedDecks.player2]);
         
+        console.log('Deck 1 preparato:', deck1.cards.length, 'carte');
+        console.log('Deck 2 preparato:', deck2.cards.length, 'carte');
+        
+        // Verifica che i mazzi abbiano abbastanza carte
+        if (deck1.cards.length < 20 || deck2.cards.length < 20) {
+            console.error('Mazzi troppo piccoli per iniziare la partita');
+            alert('Errore: mazzi troppo piccoli. Alcuni carte mancano dal database.');
+            return;
+        }
+        
         // Mostra il campo di gioco
+        console.log('Mostrando schermata di gioco...');
         showScreen('gameBoard');
         
         // Inizia la partita
+        console.log('Iniziando partita...');
         engine.startGame(deck1, deck2, isVsCPU);
+        console.log('Partita iniziata!');
     });
 
     // Prepara un mazzo con le carte reali

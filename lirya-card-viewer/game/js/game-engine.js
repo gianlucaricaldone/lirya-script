@@ -46,6 +46,9 @@ class GameEngine {
         
         // Aggiorna UI
         this.ui.updateBoard(this.state);
+        
+        // Assicura che le carte del giocatore 1 siano visibili all'inizio
+        this.ui.hideOpponentCards(1);
     }
 
     // Setup di un giocatore
@@ -355,6 +358,18 @@ class GameEngine {
         const creature = this.state.getZone(playerId, zone)[position];
         if (!creature || creature.type !== 'Personaggio') return false;
         
+        // Controlla se questa creatura è già stata dichiarata come attaccante
+        const alreadyAttacking = this.state.combat.attackers.some(attacker => 
+            attacker.playerId === playerId && 
+            attacker.zone === zone && 
+            attacker.position === position
+        );
+        
+        if (alreadyAttacking) {
+            this.ui.showMessage("Questa creatura sta già attaccando!", 2000);
+            return false;
+        }
+        
         // Se c'è già una creatura selezionata per attaccare, controlla se è la stessa
         if (this.state.combat.attackingCreature) {
             const current = this.state.combat.attackingCreature;
@@ -494,15 +509,21 @@ class GameEngine {
             return;
         }
         
-        // Salta la fase dei bloccanti e vai direttamente alla risoluzione del danno
+        // Vai direttamente alla risoluzione del danno
         this.state.currentPhase = 'combat_damage';
         this.ui.showMessage("Risoluzione del combattimento!", 2000);
+        
+        // Mantieni le frecce visibili durante la risoluzione
+        this.ui.maintainCombatVisuals();
         
         // Risolvi il danno dopo un breve delay
         setTimeout(() => {
             this.resolveCombatDamage();
-            this.endCombatPhase();
-        }, 1500);
+            // Aspetta un po' prima di terminare per vedere gli effetti
+            setTimeout(() => {
+                this.endCombatPhase();
+            }, 1500);
+        }, 1000);
     }
     
     // Dichiara un bloccante

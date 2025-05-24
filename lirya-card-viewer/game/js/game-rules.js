@@ -357,10 +357,12 @@ class GameRules {
         const damageToDefender = Math.max(0, attackerPower - defenderPower);
         
         // Applica il danno
+        // Mostra sempre l'animazione di combattimento, anche se il danno è 0
+        this.engine.ui.showCombatAnimation(attacker, defender, damageToDefender);
+        
         if (damageToDefender > 0) {
             console.log(`  - ${attacker.card.name} infligge ${damageToDefender} danni a ${defender.card.name}`);
             this.damageCreature(defender, damageToDefender);
-            this.engine.ui.showCombatAnimation(attacker, defender, damageToDefender);
         } else {
             console.log(`  - ${attacker.card.name} non riesce a danneggiare ${defender.card.name} (danno bloccato dalla difesa)`);
         }
@@ -381,6 +383,13 @@ class GameRules {
         }
         
         creature.card.currentHealth -= damage;
+        
+        // Imposta il flag isDamaged se la creatura ha perso vita
+        const maxHealth = creature.card.stats?.health || creature.card.health || 
+                        creature.card.stats?.defense || creature.card.defense || 1;
+        if (creature.card.currentHealth < maxHealth) {
+            creature.card.isDamaged = true;
+        }
         
         // Mostra il danno sulla carta
         this.engine.ui.showDamageOnCard(creature, damage);
@@ -406,6 +415,11 @@ class GameRules {
         
         const maxHealth = creature.card.health || creature.card.defense || 1;
         creature.card.currentHealth = Math.min(creature.card.currentHealth + amount, maxHealth);
+        
+        // Resetta il flag isDamaged se la creatura è completamente guarita
+        if (creature.card.currentHealth >= maxHealth) {
+            creature.card.isDamaged = false;
+        }
     }
 
     // Distruggi una carta
