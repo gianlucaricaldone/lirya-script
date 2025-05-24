@@ -4,7 +4,7 @@
 .game-screen {
     display: none;
     min-height: 100vh;
-    background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+    background: linear-gradient(135deg, #6c7b95 0%, #4a5568 100%);
     color: #fff;
 }
 
@@ -19,9 +19,10 @@
 .menu-container {
     text-align: center;
     padding: 40px;
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.95);
     border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .game-title {
@@ -74,12 +75,14 @@
 
 /* Selezione mazzi */
 .deck-selection-container {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(255, 255, 255, 0.95);
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     max-width: 1200px;
     width: 90vw;
+    color: #2d3748;
 }
 
 .player-selection {
@@ -141,7 +144,7 @@
 
 /* Campo di gioco */
 #game-board {
-    background: linear-gradient(135deg, #0f0f1e 0%, #1a1a2e 100%);
+    background: linear-gradient(135deg, #6c7b95 0%, #4a5568 100%);
     position: relative;
     overflow: visible; /* Assicura che le linee non vengano tagliate */
 }
@@ -211,16 +214,19 @@
 }
 
 .player-area.player1 {
-    background: rgba(30, 30, 50, 0.6);
+    background: rgba(45, 65, 85, 0.4);
+    border: 2px solid rgba(70, 130, 180, 0.3);
 }
 
 .player-area.player2 {
-    background: rgba(50, 30, 30, 0.6);
+    background: rgba(85, 45, 65, 0.4);
+    border: 2px solid rgba(180, 70, 130, 0.3);
 }
 
 .player-area.active-player {
-    background: rgba(255, 215, 0, 0.1);
-    box-shadow: inset 0 0 30px rgba(255, 215, 0, 0.2);
+    border: 3px solid #ffd700 !important;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4), inset 0 0 20px rgba(255, 215, 0, 0.1);
+    background: rgba(255, 215, 0, 0.05) !important;
 }
 
 .player-info {

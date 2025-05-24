@@ -178,11 +178,11 @@ Il giocatore può eseguire azioni in qualsiasi ordine e quantità, limitato solo
 La fase continua fino a quando il giocatore decide di terminarla volontariamente.
 
 ### 5.4 Fase di Combattimento
-La fase si articola in tre sottofasi obbligatorie:
+La fase si articola in due sottofasi obbligatorie:
 
-**Dichiarazione Attacchi**: Il giocatore attivo seleziona quali personaggi attaccano e i loro bersagli. Solo personaggi che non hanno attaccato questo turno e non sono impediti da stati negativi possono attaccare. I personaggi evocati questo turno non possono attaccare salvo abilità speciali.
+**Dichiarazione Attacchi**: Il giocatore attivo seleziona quali personaggi attaccano e i loro bersagli specifici. Solo personaggi che non hanno attaccato questo turno e non sono impediti da stati negativi possono attaccare. Il giocatore attaccante sceglie sia l'attaccante che il bersaglio dell'attacco.
 
-**Dichiarazione Difese**: Il giocatore avversario può assegnare personaggi difensori agli attacchi diretti contro di lui. Solo personaggi in prima linea possono normalmente difendere. La difesa redirige completamente l'attacco dal giocatore al difensore.
+**Risoluzione Diretta**: Non esiste una fase di dichiarazione difese. Gli attacchi vengono risolti direttamente contro i bersagli scelti dall'attaccante secondo le regole di validità dei bersagli.
 
 **Risoluzione Combattimenti**: Ogni combattimento si risolve calcolando i danni come Attacco meno Difesa (minimo 0), applicando i danni risultanti ai punti vita del bersaglio. I personaggi ridotti a 0 punti vita vengono eliminati. Le abilità di combattimento si attivano durante questa fase.
 
@@ -204,7 +204,7 @@ Il controllo passa al giocatore avversario per il turno successivo.
 ## 6. SISTEMA DI COMBATTIMENTO
 
 ### 6.1 Requisiti per Attaccare
-Un personaggio può attaccare quando possiede punti vita superiori a zero, non è affetto da stati che impediscono l'attacco (come Stordito), non ha già attaccato nel turno corrente, e ha completato almeno un turno completo in gioco oppure possiede abilità di attacco immediato.
+Un personaggio può attaccare quando possiede punti vita superiori a zero, non è affetto da stati che impediscono l'attacco (come Stordito), e non ha già attaccato nel turno corrente.
 
 ### 6.2 Selezione dei Bersagli
 La validità dei bersagli segue una gerarchia di protezione basata sulla zona dell'attaccante:
@@ -220,8 +220,8 @@ La validità dei bersagli segue una gerarchia di protezione basata sulla zona de
 - Possono attaccare strutture nemiche
 - Possono attaccare il giocatore avversario solo se entrambe le linee nemiche sono vuote
 
-### 6.3 Meccaniche di Difesa
-La difesa è un'azione volontaria disponibile solo quando il giocatore stesso viene attaccato direttamente. Solo personaggi in prima linea possono normalmente intercettare attacchi. La difesa trasforma l'attacco da diretto contro il giocatore a diretto contro il personaggio difensore.
+### 6.3 Meccaniche di Combattimento
+Il combattimento si risolve direttamente tra l'attaccante e il bersaglio scelto dall'attaccante. Non esistono meccaniche di difesa volontaria o intercettazione. Il giocatore attaccante determina completamente chi attacca e chi viene attaccato, rispettando le regole di validità dei bersagli.
 
 ### 6.4 Calcolo dei Danni
 Il danno base si calcola sottraendo la Difesa del bersaglio dall'Attacco dell'attaccante. Il risultato, se positivo, viene applicato ai punti vita correnti del bersaglio. 
