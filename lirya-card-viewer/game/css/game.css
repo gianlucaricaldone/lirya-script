@@ -147,6 +147,10 @@
     background: linear-gradient(135deg, #6c7b95 0%, #4a5568 100%);
     position: relative;
     overflow: visible; /* Assicura che le linee non vengano tagliate */
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .turn-indicator {
@@ -193,14 +197,34 @@
     box-shadow: 0 4px 15px rgba(238, 90, 36, 0.4);
 }
 
+.attack-button {
+    padding: 10px 25px;
+    background: linear-gradient(135deg, #f39c12, #e74c3c);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    margin-right: 10px;
+}
+
+.attack-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
+}
+
 .game-field {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    flex: 1;
     padding-top: 70px;
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
+    height: calc(100vh - 70px);
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* Area giocatore */
@@ -227,6 +251,41 @@
     border: 3px solid #ffd700 !important;
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.4), inset 0 0 20px rgba(255, 215, 0, 0.1);
     background: rgba(255, 215, 0, 0.05) !important;
+    position: relative;
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.4), inset 0 0 20px rgba(255, 215, 0, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), inset 0 0 30px rgba(255, 215, 0, 0.15);
+    }
+}
+
+.player-area.active-player::before {
+    content: "Turno Attivo";
+    position: absolute;
+    top: -15px;
+    right: 20px;
+    background: #ffd700;
+    color: #333;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 0.85em;
+    font-weight: bold;
+    z-index: 10;
+    animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
 }
 
 .player-info {

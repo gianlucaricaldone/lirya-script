@@ -121,6 +121,9 @@ class GameUI {
         // Aggiorna indicatore turno
         this.updateTurnIndicator(state);
         
+        // Aggiorna i pulsanti di azione
+        this.updateActionButtons(state);
+        
         // Nascondi carte dell'avversario se non è il suo turno
         this.hideOpponentCards(state.currentPlayer);
         
@@ -360,6 +363,22 @@ class GameUI {
         message.textContent = `Turno di ${playerName}`;
         modal.style.display = 'flex';
         
+        // Auto-scroll al giocatore attivo
+        const currentPlayer = this.engine.state.currentPlayer;
+        const playerAreaId = currentPlayer === 1 ? 'player1-area' : 'player2-area';
+        const playerArea = document.getElementById(playerAreaId);
+        
+        if (playerArea) {
+            playerArea.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center',
+                inline: 'nearest'
+            });
+        }
+        
+        // Evidenzia il giocatore attivo
+        this.updateActivePlayerHighlight();
+        
         // Auto-chiudi dopo 2 secondi se è CPU
         const player = this.engine.state.getActivePlayer();
         if (player.isAI) {
@@ -372,6 +391,78 @@ class GameUI {
     // Nascondi modal cambio turno
     hideTurnChangeModal() {
         document.getElementById('turn-change-modal').style.display = 'none';
+        
+        // Aggiorna i pulsanti dopo aver chiuso il modal
+        if (this.engine && this.engine.state) {
+            this.updateActionButtons(this.engine.state);
+        }
+    }
+    
+    // Aggiorna l'evidenziazione del giocatore attivo
+    updateActivePlayerHighlight() {
+        const player1Area = document.getElementById('player1-area');
+        const player2Area = document.getElementById('player2-area');
+        const currentPlayer = this.engine.state.currentPlayer;
+        
+        if (player1Area && player2Area) {
+            player1Area.classList.remove('active-player');
+            player2Area.classList.remove('active-player');
+            
+            if (currentPlayer === 1) {
+                player1Area.classList.add('active-player');
+            } else {
+                player2Area.classList.add('active-player');
+            }
+        }
+    }
+    
+    // Aggiorna i pulsanti di azione in base allo stato del gioco
+    updateActionButtons(state) {
+        const attackButton = document.getElementById('attack-button');
+        const endTurnButton = document.getElementById('end-turn');
+        
+        if (!attackButton || !endTurnButton) return;
+        
+        // Verifica se il giocatore corrente ha creature
+        const currentPlayer = state.currentPlayer;
+        let creatures = [];
+        
+        if (state.getAllCreatures && typeof state.getAllCreatures === 'function') {
+            creatures = state.getAllCreatures(currentPlayer);
+        } else {
+            // Fallback: conta manualmente le creature
+            const player = state.getPlayer(currentPlayer);
+            if (player) {
+                if (player.firstLine) {
+                    player.firstLine.forEach(card => {
+                        if (card && card.type === 'Personaggio') {
+                            creatures.push(card);
+                        }
+                    });
+                }
+                if (player.secondLine) {
+                    player.secondLine.forEach(card => {
+                        if (card && card.type === 'Personaggio') {
+                            creatures.push(card);
+                        }
+                    });
+                }
+            }
+        }
+        
+        const hasCreatures = creatures.length > 0;
+        
+        // Nel primo turno del primo giocatore non si può attaccare
+        const isFirstTurn = state.turnNumber === 1 && state.currentPlayer === 1;
+        
+        // Mostra/nascondi il pulsante attacco
+        if (state.currentPhase === 'main' && hasCreatures && !isFirstTurn) {
+            attackButton.style.display = 'inline-block';
+        } else {
+            attackButton.style.display = 'none';
+        }
+        
+        endTurnButton.style.display = 'inline-block';
     }
 
     // Mostra messaggio

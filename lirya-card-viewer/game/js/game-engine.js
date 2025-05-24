@@ -24,6 +24,13 @@ class GameEngine {
                 this.endTurn();
             }
         });
+        
+        // Gestione del pulsante attacco
+        document.getElementById('attack-button').addEventListener('click', () => {
+            if (!this.isProcessing) {
+                this.startAttackPhase();
+            }
+        });
     }
 
     // Inizia una nuova partita
@@ -715,11 +722,8 @@ class GameEngine {
     endTurn() {
         if (this.isProcessing) return;
         
-        // Se siamo in fase principale, inizia il combattimento
-        if (this.state.currentPhase === 'main') {
-            this.startCombatPhase();
-            return;
-        }
+        // Il pulsante Fine Turno ora termina sempre il turno
+        // senza passare per la fase di combattimento
         
         // Applica effetti di fine turno
         this.rules.triggerEndOfTurnEffects();
@@ -735,6 +739,21 @@ class GameEngine {
         
         // Inizia il nuovo turno
         this.startTurn();
+    }
+    
+    // Nuovo metodo per iniziare la fase di attacco
+    startAttackPhase() {
+        if (this.isProcessing) return;
+        
+        // Verifica che ci siano creature per attaccare
+        const creatures = this.state.getAllCreatures(this.state.currentPlayer);
+        if (creatures.length === 0) {
+            this.ui.showMessage("Non hai creature per attaccare!");
+            return;
+        }
+        
+        // Inizia la fase di combattimento
+        this.startCombatPhase();
     }
 
     // Fine partita

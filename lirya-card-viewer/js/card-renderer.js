@@ -193,9 +193,14 @@ const CardRenderer = (() => {
 
         // Per le carte personaggio, sostituisci le statistiche
         if (card.type === 'Personaggio') {
+            // Valori base originali
+            const baseAttack = card.stats?.attack !== undefined ? card.stats.attack : (card.attack || 0);
+            const baseDefense = card.stats?.defense !== undefined ? card.stats.defense : (card.defense || 0);
+            const baseHealth = card.stats?.health !== undefined ? card.stats.health : (card.health || baseDefense || 0);
+            
             // Calcola valori finali con bonus temporanei
-            let attackValue = card.stats?.attack !== undefined ? card.stats.attack : (card.attack || 0);
-            let defenseValue = card.stats?.defense !== undefined ? card.stats.defense : (card.defense || 0);
+            let attackValue = baseAttack;
+            let defenseValue = baseDefense;
             
             // Applica bonus temporanei
             if (card.temporaryBonuses) {
@@ -203,10 +208,16 @@ const CardRenderer = (() => {
                 defenseValue += (card.temporaryBonuses.defense || 0);
             }
             
-            // Sostituisci attacco (con colore se modificato)
-            if (card.temporaryBonuses?.attack) {
-                const color = card.temporaryBonuses.attack > 0 ? '#00ff00' : '#ff4444';
-                svg = svg.replace(/{{attacco}}/g, `<tspan fill="${color}">${attackValue}</tspan>`);
+            // Sostituisci attacco con colore appropriato
+            let attackColor = null;
+            if (attackValue > baseAttack) {
+                attackColor = '#00ff00'; // Verde se sopra il base
+            } else if (attackValue < baseAttack) {
+                attackColor = '#ff4444'; // Rosso se sotto il base
+            }
+            
+            if (attackColor) {
+                svg = svg.replace(/{{attacco}}/g, `<tspan fill="${attackColor}">${attackValue}</tspan>`);
             } else {
                 svg = svg.replace(/{{attacco}}/g, attackValue);
             }
@@ -216,33 +227,31 @@ const CardRenderer = (() => {
             const healthValue = card.currentHealth !== undefined ? card.currentHealth : 
                                (card.stats?.health !== undefined ? card.stats.health : (card.health || '0'));
             
-            // Se la carta è danneggiata, usa colore rosso
-            if (card.isDamaged) {
-                console.log(`[CardRenderer] Applicando colore rosso per ${card.name}: defense=${defenseValue}, health=${healthValue} (currentHealth=${card.currentHealth})`);
-                // Sostituisci sia {{difesa}} che il valore numerico che potrebbe essere già stato sostituito
-                // Se la difesa è modificata, usa il colore appropriato
-                if (card.temporaryBonuses?.defense) {
-                    const color = card.temporaryBonuses.defense > 0 ? '#00ff00' : '#ff4444';
-                    svg = svg.replace(/{{difesa}}/g, `<tspan fill="${color}">${defenseValue}</tspan>`);
-                } else {
-                    svg = svg.replace(/{{difesa}}/g, `<tspan fill="#ff4444">${defenseValue}</tspan>`);
-                }
-                svg = svg.replace(/{{punti_vita}}/g, `<tspan fill="#ff4444">${healthValue}</tspan>`);
-                
-                // Se il template usa direttamente i numeri invece dei placeholder
-                // Cerca pattern come >2< o >3< nei punti dove ci aspettiamo la difesa/vita
-                svg = svg.replace(/(<text[^>]*class="defense-value"[^>]*>)(\d+)(<\/text>)/g, 
-                    `$1<tspan fill="#ff4444">$2</tspan>$3`);
-                svg = svg.replace(/(<text[^>]*class="health-value"[^>]*>)(\d+)(<\/text>)/g, 
-                    `$1<tspan fill="#ff4444">$2</tspan>$3`);
+            // Sostituisci difesa con colore appropriato
+            let defenseColor = null;
+            if (defenseValue > baseDefense) {
+                defenseColor = '#00ff00'; // Verde se sopra il base
+            } else if (defenseValue < baseDefense) {
+                defenseColor = '#ff4444'; // Rosso se sotto il base
+            }
+            
+            if (defenseColor) {
+                svg = svg.replace(/{{difesa}}/g, `<tspan fill="${defenseColor}">${defenseValue}</tspan>`);
             } else {
-                // Carta non danneggiata, ma potrebbe avere bonus
-                if (card.temporaryBonuses?.defense) {
-                    const color = card.temporaryBonuses.defense > 0 ? '#00ff00' : '#ff4444';
-                    svg = svg.replace(/{{difesa}}/g, `<tspan fill="${color}">${defenseValue}</tspan>`);
-                } else {
-                    svg = svg.replace(/{{difesa}}/g, defenseValue);
-                }
+                svg = svg.replace(/{{difesa}}/g, defenseValue);
+            }
+            
+            // Sostituisci punti vita con colore appropriato
+            let healthColor = null;
+            if (healthValue > baseHealth) {
+                healthColor = '#00ff00'; // Verde se sopra il base
+            } else if (healthValue < baseHealth) {
+                healthColor = '#ff4444'; // Rosso se sotto il base (danneggiato)
+            }
+            
+            if (healthColor) {
+                svg = svg.replace(/{{punti_vita}}/g, `<tspan fill="${healthColor}">${healthValue}</tspan>`);
+            } else {
                 svg = svg.replace(/{{punti_vita}}/g, healthValue);
             }
         }

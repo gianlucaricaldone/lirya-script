@@ -49,6 +49,7 @@ class UIManager {
     // Metodo principale chiamato dal game engine (alias per renderGameState)
     updateBoard(state) {
         this.renderGameState(state);
+        this.updateActionButtons(state);
     }
     
     // Renderizza l'intero stato di gioco
@@ -61,6 +62,9 @@ class UIManager {
     // Renderizza le aree dei giocatori
     renderPlayerAreas(state) {
         console.log('renderPlayerAreas chiamato, state:', state);
+        
+        // Aggiorna l'evidenziazione del giocatore attivo
+        this.updateActivePlayerHighlight();
         
         // Supporta sia state.players che state.getPlayer()
         if (Array.isArray(state.players)) {
@@ -1018,6 +1022,23 @@ class UIManager {
             message.textContent = `Turno di ${playerName}`;
             modal.style.display = 'block';
         }
+        
+        // Auto-scroll al giocatore attivo
+        const currentPlayer = this.engine.state.currentPlayer;
+        const playerAreaId = currentPlayer === 1 ? 'player1-area' : 'player2-area';
+        const playerArea = document.getElementById(playerAreaId);
+        
+        if (playerArea) {
+            // Scroll fluido verso l'area del giocatore attivo
+            playerArea.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'center',
+                inline: 'nearest'
+            });
+        }
+        
+        // Evidenzia il giocatore attivo
+        this.updateActivePlayerHighlight();
     }
     
     hideTurnChangeModal() {
@@ -1025,6 +1046,91 @@ class UIManager {
         if (modal) {
             modal.style.display = 'none';
         }
+        
+        // Aggiorna i pulsanti dopo aver chiuso il modal
+        if (this.engine && this.engine.state) {
+            this.updateActionButtons(this.engine.state);
+        }
+    }
+    
+    // Aggiorna l'evidenziazione del giocatore attivo
+    updateActivePlayerHighlight() {
+        const player1Area = document.getElementById('player1-area');
+        const player2Area = document.getElementById('player2-area');
+        const currentPlayer = this.engine.state.currentPlayer;
+        
+        if (player1Area && player2Area) {
+            // Rimuovi evidenziazione da entrambi
+            player1Area.classList.remove('active-player');
+            player2Area.classList.remove('active-player');
+            
+            // Aggiungi evidenziazione al giocatore corrente
+            if (currentPlayer === 1) {
+                player1Area.classList.add('active-player');
+            } else {
+                player2Area.classList.add('active-player');
+            }
+        }
+    }
+    
+    // Aggiorna i pulsanti di azione in base allo stato del gioco
+    updateActionButtons(state) {
+        const attackButton = document.getElementById('attack-button');
+        const endTurnButton = document.getElementById('end-turn');
+        
+        if (!attackButton || !endTurnButton) {
+            console.log('Pulsanti non trovati:', { attackButton, endTurnButton });
+            return;
+        }
+        
+        // Verifica se il giocatore corrente ha creature che possono attaccare
+        const currentPlayer = state.currentPlayer;
+        
+        // Verifica che il metodo getAllCreatures esista
+        let creatures = [];
+        if (state.getAllCreatures && typeof state.getAllCreatures === 'function') {
+            creatures = state.getAllCreatures(currentPlayer);
+        } else {
+            // Fallback: conta manualmente le creature
+            const player = state.getPlayer ? state.getPlayer(currentPlayer) : state.players[currentPlayer];
+            if (player) {
+                // Controlla prima linea
+                if (player.firstLine) {
+                    player.firstLine.forEach(card => {
+                        if (card && card.type === 'Personaggio') {
+                            creatures.push(card);
+                        }
+                    });
+                }
+                // Controlla seconda linea
+                if (player.secondLine) {
+                    player.secondLine.forEach(card => {
+                        if (card && card.type === 'Personaggio') {
+                            creatures.push(card);
+                        }
+                    });
+                }
+            }
+        }
+        
+        const hasCreatures = creatures.length > 0;
+        
+        console.log('updateActionButtons:', {
+            currentPlayer,
+            currentPhase: state.currentPhase,
+            creaturesCount: creatures.length,
+            hasCreatures
+        });
+        
+        // Mostra/nascondi il pulsante attacco in base alla fase e alla presenza di creature
+        if (state.currentPhase === 'main' && hasCreatures) {
+            attackButton.style.display = 'inline-block';
+        } else {
+            attackButton.style.display = 'none';
+        }
+        
+        // Il pulsante Fine Turno è sempre visibile
+        endTurnButton.style.display = 'inline-block';
     }
     
     showAttackerSelection() {
