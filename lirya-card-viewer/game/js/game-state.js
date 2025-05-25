@@ -219,26 +219,38 @@ class GameState {
             const player = this.players[pid];
             
             // Prima linea
-            player.firstLine.forEach((card, index) => {
-                if (card && card.type === 'Personaggio') {
-                    creatures.push({
-                        card,
-                        playerId: pid,
-                        zone: 'firstLine',
-                        position: index
-                    });
+            player.firstLine.forEach((slot, index) => {
+                if (slot) {
+                    // Gestisci sia il formato vecchio (carta diretta) che nuovo (wrapper creatura)
+                    const card = slot.card || slot;
+                    if (card.type === 'Personaggio') {
+                        creatures.push({
+                            card,
+                            playerId: pid,
+                            zone: 'firstLine',
+                            position: index,
+                            tapped: slot.tapped || false,
+                            summoningSickness: slot.summoningSickness || false
+                        });
+                    }
                 }
             });
 
             // Seconda linea
-            player.secondLine.forEach((card, index) => {
-                if (card && card.type === 'Personaggio') {
-                    creatures.push({
-                        card,
-                        playerId: pid,
-                        zone: 'secondLine',
-                        position: index
-                    });
+            player.secondLine.forEach((slot, index) => {
+                if (slot) {
+                    // Gestisci sia il formato vecchio (carta diretta) che nuovo (wrapper creatura)
+                    const card = slot.card || slot;
+                    if (card.type === 'Personaggio') {
+                        creatures.push({
+                            card,
+                            playerId: pid,
+                            zone: 'secondLine',
+                            position: index,
+                            tapped: slot.tapped || false,
+                            summoningSickness: slot.summoningSickness || false
+                        });
+                    }
                 }
             });
         }

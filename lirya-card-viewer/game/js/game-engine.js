@@ -185,7 +185,21 @@ class GameEngine {
 
         // Rimuovi dalla mano e posiziona sul campo
         this.state.getPlayer(playerId).hand.splice(cardIndex, 1);
-        zone[freeSlot] = card;
+        
+        // Crea l'oggetto creatura con le proprietà necessarie
+        const creature = {
+            card: card,
+            tapped: false,
+            summoningSickness: true, // Non può attaccare nel turno in cui viene evocata
+            currentHealth: card.stats?.health || card.health || card.stats?.defense || card.defense || 1
+        };
+        
+        // Se la carta ha haste, rimuovi summoning sickness
+        if (card.hasHaste) {
+            creature.summoningSickness = false;
+        }
+        
+        zone[freeSlot] = creature;
 
         // Registra le abilità della carta
         const location = {
@@ -401,11 +415,24 @@ class GameEngine {
     
     // Dichiara una creatura come attaccante
     declareAttacker(playerId, zone, position) {
-        if (this.state.currentPhase !== 'combat_declare') return false;
-        if (playerId !== this.state.currentPlayer) return false;
+        console.log(`declareAttacker chiamato: phase=${this.state.currentPhase}, playerId=${playerId}, currentPlayer=${this.state.currentPlayer}`);
         
-        const creature = this.state.getZone(playerId, zone)[position];
-        if (!creature || creature.type !== 'Personaggio') return false;
+        if (this.state.currentPhase !== 'combat_declare') {
+            console.log('Non in fase combat_declare');
+            return false;
+        }
+        if (playerId !== this.state.currentPlayer) {
+            console.log('Non è il turno del giocatore');
+            return false;
+        }
+        
+        const creatureSlot = this.state.getZone(playerId, zone)[position];
+        const creature = creatureSlot?.card || creatureSlot;
+        
+        if (!creature || creature.type !== 'Personaggio') {
+            console.log('Non è una creatura valida:', creature);
+            return false;
+        }
         
         // Controlla se questa creatura è già stata dichiarata come attaccante
         const alreadyAttacking = this.state.combat.attackers.some(attacker => 

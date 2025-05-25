@@ -182,10 +182,28 @@ class GameUI {
         
         slots.forEach((slot, index) => {
             slot.innerHTML = '';
-            const card = cards[index];
+            const slotContent = cards[index];
             
-            if (card) {
-                const cardElement = this.createCardElement(card, playerId, zoneName, index);
+            if (slotContent) {
+                // Se è una creatura con wrapper, estrai la carta reale
+                const card = slotContent.card || slotContent;
+                
+                // Se c'è un wrapper, passa anche currentHealth
+                const cardData = slotContent.card ? {
+                    ...card,
+                    currentHealth: slotContent.currentHealth
+                } : card;
+                
+                const cardElement = this.createCardElement(cardData, playerId, zoneName, index);
+                
+                // Aggiungi classi per stati speciali
+                if (slotContent.tapped) {
+                    cardElement.classList.add('tapped');
+                }
+                if (slotContent.summoningSickness) {
+                    cardElement.classList.add('summoning-sickness');
+                }
+                
                 slot.appendChild(cardElement);
             }
         });
@@ -567,7 +585,7 @@ class GameUI {
 
     // Setup click handlers
     setupClickHandlers() {
-        // Doppio click per giocare carte dalla mano
+        // Doppio click per mostrare dettagli carta
         document.addEventListener('dblclick', (e) => {
             const card = e.target.closest('.game-card');
             if (!card) return;
@@ -576,9 +594,20 @@ class GameUI {
             const zone = card.dataset.zone;
             const position = parseInt(card.dataset.position);
             
-            // Solo carte in mano del giocatore attivo
-            if (zone === 'hand' && playerId === this.engine.state.currentPlayer) {
-                this.engine.playCard(playerId, position);
+            // Trova la carta reale
+            let cardData = null;
+            if (zone === 'hand') {
+                cardData = this.engine.state.getPlayer(playerId).hand[position];
+            } else if (zone === 'firstLine' || zone === 'secondLine') {
+                const slotContent = this.engine.state.getPlayer(playerId)[zone][position];
+                cardData = slotContent?.card || slotContent;
+            } else if (zone === 'structures') {
+                const slotContent = this.engine.state.getPlayer(playerId).structures[position];
+                cardData = slotContent?.card || slotContent;
+            }
+            
+            if (cardData && cardData.name) {
+                this.showCardDetail(cardData);
             }
         });
         
@@ -678,7 +707,21 @@ class GameUI {
             // Mostra dettagli carta solo se non siamo in fase di combattimento
             if (this.engine.state.currentPhase !== 'combat_declare' && 
                 this.engine.state.currentPhase !== 'combat_block') {
-                this.showCardDetail(card);
+                // Trova i dati della carta
+                let cardData = null;
+                if (zone === 'hand') {
+                    cardData = this.engine.state.getPlayer(playerId).hand[position];
+                } else if (zone === 'firstLine' || zone === 'secondLine') {
+                    const slotContent = this.engine.state.getPlayer(playerId)[zone][position];
+                    cardData = slotContent?.card || slotContent;
+                } else if (zone === 'structures') {
+                    const slotContent = this.engine.state.getPlayer(playerId).structures[position];
+                    cardData = slotContent?.card || slotContent;
+                }
+                
+                if (cardData && cardData.name) {
+                    this.showCardDetail(cardData);
+                }
             }
         });
         
@@ -693,55 +736,6 @@ class GameUI {
         });
     }
 
-    // Mostra dettagli carta
-    showCardDetail(cardElement) {
-        const playerId = parseInt(cardElement.dataset.playerId);
-        const zone = cardElement.dataset.zone;
-        const position = parseInt(cardElement.dataset.position);
-        
-        const player = this.engine.state.getPlayer(playerId);
-        let card = null;
-        
-        if (zone === 'hand') {
-            card = player.hand[position];
-        } else {
-            const zoneArray = this.engine.state.getZone(playerId, zone);
-            card = zoneArray[position];
-        }
-        
-        if (!card) return;
-        
-        const modal = document.getElementById('card-detail-modal');
-        const modalCard = document.getElementById('modal-card-detail');
-        
-        if (this.cardRenderer && this.cardRenderer.renderCard) {
-            modalCard.innerHTML = this.cardRenderer.renderCard(card);
-        } else {
-            // Fallback per dettagli carta
-            modalCard.innerHTML = `
-                <div style="padding: 20px; color: white;">
-                    <h3>${card.name}</h3>
-                    <p>Tipo: ${card.type}</p>
-                    <p>Costo: ${card.cost}</p>
-                    ${card.type == 'Personaggio' ? `
-                        <p>Attacco: ${card.stats?.attack || card.attack || 0}</p>
-                        <p>Difesa: ${card.stats?.defense || card.defense || 0}</p>
-                        ${(card.stats?.health || card.health) ? `<p>Vita: ${card.stats?.health || card.health}</p>` : ''}
-                        ${card.class ? `<p>Classe: ${card.class}</p>` : ''}
-                    ` : ''}
-                    ${card.element ? `<p>Elemento: ${card.element}</p>` : ''}
-                    ${card.description ? `<p>Descrizione: ${card.description}</p>` : ''}
-                    ${card.abilities && card.abilities.length > 0 ? `
-                        <p>Abilità:</p>
-                        <ul>
-                            ${card.abilities.map(a => `<li><strong>${a.name || 'Abilità'}</strong>: ${a.effect || a.description || ''}</li>`).join('')}
-                        </ul>
-                    ` : ''}
-                </div>
-            `;
-        }
-        modal.style.display = 'flex';
-    }
 
     // Anima attacco
     animateAttack(attacker, damage) {
@@ -953,26 +947,24 @@ class GameUI {
         // Crea SVG per la freccia
         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svg.classList.add('attack-arrow');
-        svg.style.position = 'absolute';
+        svg.style.position = 'fixed';  // Cambiato da absolute a fixed
         svg.style.top = '0';
         svg.style.left = '0';
-        svg.style.width = '100%';
-        svg.style.height = '100%';
+        svg.style.width = '100vw';
+        svg.style.height = '100vh';
         svg.style.pointerEvents = 'none';
         svg.style.zIndex = '500';
         
         // Funzione per aggiornare la posizione della freccia
         const updateArrow = () => {
-            const gameBoard = document.getElementById('game-board');
-            const boardRect = gameBoard.getBoundingClientRect();
             const attackerRect = attackerEl.getBoundingClientRect();
             const targetRect = targetEl.getBoundingClientRect();
             
-            // Calcola posizioni relative al game board
-            const startX = attackerRect.left + attackerRect.width / 2 - boardRect.left;
-            const startY = attackerRect.top + attackerRect.height / 2 - boardRect.top;
-            const endX = targetRect.left + targetRect.width / 2 - boardRect.left;
-            const endY = targetRect.top + targetRect.height / 2 - boardRect.top;
+            // Usa posizioni relative al viewport (non più al game board)
+            const startX = attackerRect.left + attackerRect.width / 2;
+            const startY = attackerRect.top + attackerRect.height / 2;
+            const endX = targetRect.left + targetRect.width / 2;
+            const endY = targetRect.top + targetRect.height / 2;
             
             // Pulisci SVG precedente
             svg.innerHTML = '';
@@ -1008,11 +1000,16 @@ class GameUI {
         // Aggiorna la freccia inizialmente
         updateArrow();
         
-        // Aggiungi al game board invece che al body
-        const gameBoard = document.getElementById('game-board');
-        gameBoard.appendChild(svg);
+        // Aggiungi al body invece che al game board per position fixed
+        document.body.appendChild(svg);
         
-        // Salva la funzione di update per poterla chiamare quando necessario
+        // Aggiorna la freccia quando la pagina scrolla
+        const scrollHandler = () => updateArrow();
+        window.addEventListener('scroll', scrollHandler);
+        document.querySelector('.game-field').addEventListener('scroll', scrollHandler);
+        
+        // Salva handler per rimozione quando non serve più
+        svg.scrollHandler = scrollHandler;
         svg.updateArrow = updateArrow;
     }
     
@@ -1191,7 +1188,17 @@ class GameUI {
         });
         
         // Rimuovi frecce di attacco
-        document.querySelectorAll('.attack-arrow, .attack-line').forEach(el => el.remove());
+        document.querySelectorAll('.attack-arrow, .attack-line').forEach(el => {
+            // Rimuovi event listener se presenti
+            if (el.scrollHandler) {
+                window.removeEventListener('scroll', el.scrollHandler);
+                const gameField = document.querySelector('.game-field');
+                if (gameField) {
+                    gameField.removeEventListener('scroll', el.scrollHandler);
+                }
+            }
+            el.remove();
+        });
     }
     
     // Mantieni le visualizzazioni di combattimento attive
@@ -1206,6 +1213,69 @@ class GameUI {
         // Aggiorna il campo di entrambi i giocatori
         this.updateField(1, this.engine.state.getPlayer(1));
         this.updateField(2, this.engine.state.getPlayer(2));
+    }
+    
+    // Mostra dettagli carta
+    showCardDetail(card) {
+        const modal = document.getElementById('card-detail-modal');
+        if (!modal || !card) return;
+        
+        try {
+            // Genera il contenuto della carta con CardRenderer
+            const svgContent = window.CardRenderer.generateCardSVG(card);
+            const detailsHtml = window.CardRenderer.generateCardDetails(card);
+            
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <div class="card-detail-container">
+                        <div class="card-detail-image">
+                            ${svgContent}
+                        </div>
+                        <div class="card-detail-info">
+                            ${detailsHtml}
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            modal.style.display = 'block';
+            
+            // Chiudi modal al click sulla X
+            const closeBtn = modal.querySelector('.close-modal');
+            if (closeBtn) {
+                closeBtn.onclick = () => {
+                    modal.style.display = 'none';
+                };
+            }
+            
+            // Chiudi modal al click fuori
+            modal.onclick = (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            };
+        } catch (error) {
+            console.error('Errore nel mostrare dettagli carta:', error);
+            modal.style.display = 'none';
+        }
+    }
+    
+    // Mostra messaggio
+    showMessage(message, duration = 3000) {
+        const messageContainer = document.getElementById('game-messages');
+        if (!messageContainer) return;
+        
+        const messageEl = document.createElement('div');
+        messageEl.className = 'game-message';
+        messageEl.textContent = message;
+        
+        messageContainer.appendChild(messageEl);
+        
+        // Rimuovi dopo il tempo specificato
+        setTimeout(() => {
+            messageEl.remove();
+        }, duration);
     }
 }
 

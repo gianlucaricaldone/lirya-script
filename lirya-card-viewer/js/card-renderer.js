@@ -198,7 +198,8 @@ const CardRenderer = (() => {
             const baseDefense = card.stats?.defense !== undefined ? card.stats.defense : (card.defense || 0);
             const baseHealth = card.stats?.health !== undefined ? card.stats.health : (card.health || baseDefense || 0);
             
-            // Calcola valori finali con bonus temporanei
+            
+            // Calcola valori finali con bonus temporanei e aure
             let attackValue = baseAttack;
             let defenseValue = baseDefense;
             
@@ -206,6 +207,12 @@ const CardRenderer = (() => {
             if (card.temporaryBonuses) {
                 attackValue += (card.temporaryBonuses.attack || 0);
                 defenseValue += (card.temporaryBonuses.defense || 0);
+            }
+            
+            // Applica bonus delle aure
+            if (card.auraBonuses) {
+                attackValue += (card.auraBonuses.attack || 0);
+                defenseValue += (card.auraBonuses.defense || 0);
             }
             
             // Sostituisci attacco con colore appropriato
@@ -219,13 +226,13 @@ const CardRenderer = (() => {
             if (attackColor) {
                 svg = svg.replace(/{{attacco}}/g, `<tspan fill="${attackColor}">${attackValue}</tspan>`);
             } else {
-                svg = svg.replace(/{{attacco}}/g, attackValue);
+                svg = svg.replace(/{{attacco}}/g, String(attackValue));
             }
             
             // Gestisci difesa e vita
             // Usa currentHealth se disponibile, altrimenti usa il valore massimo
             const healthValue = card.currentHealth !== undefined ? card.currentHealth : 
-                               (card.stats?.health !== undefined ? card.stats.health : (card.health || '0'));
+                               (card.stats?.health !== undefined ? card.stats.health : (card.health || 0));
             
             // Sostituisci difesa con colore appropriato
             let defenseColor = null;
@@ -238,7 +245,7 @@ const CardRenderer = (() => {
             if (defenseColor) {
                 svg = svg.replace(/{{difesa}}/g, `<tspan fill="${defenseColor}">${defenseValue}</tspan>`);
             } else {
-                svg = svg.replace(/{{difesa}}/g, defenseValue);
+                svg = svg.replace(/{{difesa}}/g, String(defenseValue));
             }
             
             // Sostituisci punti vita con colore appropriato
@@ -252,7 +259,7 @@ const CardRenderer = (() => {
             if (healthColor) {
                 svg = svg.replace(/{{punti_vita}}/g, `<tspan fill="${healthColor}">${healthValue}</tspan>`);
             } else {
-                svg = svg.replace(/{{punti_vita}}/g, healthValue);
+                svg = svg.replace(/{{punti_vita}}/g, String(healthValue));
             }
         }
 
@@ -266,7 +273,9 @@ const CardRenderer = (() => {
                 let abilitiesHtml = '';
                 card.abilities.forEach(ability => {
                     abilitiesHtml += `<tspan x="25" dy="1.2em" font-weight="bold">${ability.name}:</tspan>`;
-                    abilitiesHtml += `<tspan x="25" dy="1.2em">${ability.effect}</tspan>`;
+                    // Usa description invece di effect per il nuovo formato
+                    const abilityText = ability.description || ability.effect || '';
+                    abilitiesHtml += `<tspan x="25" dy="1.2em">${abilityText}</tspan>`;
                     abilitiesHtml += `<tspan x="25" dy="0.6em"></tspan>`; // Spazio tra le abilità
                 });
                 svg = svg.replace(/{{abilita_lista}}/g, abilitiesHtml);
@@ -274,7 +283,9 @@ const CardRenderer = (() => {
                 // Altrimenti sostituisci i singoli segnaposti
                 const ability = card.abilities[0]; // Prendi la prima abilità
                 svg = svg.replace(/{{abilita_nome}}/g, ability.name || '');
-                svg = svg.replace(/{{abilita_effetto}}/g, ability.effect || '');
+                // Usa description invece di effect per il nuovo formato
+                const abilityText = ability.description || ability.effect || '';
+                svg = svg.replace(/{{abilita_effetto}}/g, abilityText);
             }
         } else {
             // Nessuna abilità
@@ -289,6 +300,9 @@ const CardRenderer = (() => {
         } else {
             svg = svg.replace(/{{colore_elemento}}/g, '#95a5a6'); // Colore grigio di default
         }
+        
+        // Rimuovi eventuali placeholder non sostituiti per evitare "undefined"
+        svg = svg.replace(/{{[^}]+}}/g, '');
 
         return svg;
     };
@@ -360,10 +374,12 @@ const CardRenderer = (() => {
             html += `<div class="detail-section"><h3>Abilità</h3>`;
 
             card.abilities.forEach(ability => {
+                // Usa description invece di effect per il nuovo formato
+                const abilityText = ability.description || ability.effect || '';
                 html += `
                     <div class="detail-ability">
                         <div class="detail-ability-name">${ability.name}</div>
-                        <div class="detail-ability-effect">${ability.effect}</div>
+                        <div class="detail-ability-effect">${abilityText}</div>
                     </div>`;
             });
 
