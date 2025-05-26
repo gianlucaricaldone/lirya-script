@@ -151,9 +151,17 @@ const CardRenderer = (() => {
         }
         
         if (imagePath) {
-            // Correggi il percorso dell'immagine
-            const fixedPath = fixImagePath(imagePath);
-            svg = svg.replace(/{{immagine}}/g, fixedPath);
+            // Controlla se c'è una versione base64 disponibile (per PDF)
+            const base64Image = window.imageCache && window.imageCache.get && window.imageCache.get(imagePath);
+            
+            if (base64Image) {
+                // Usa l'immagine base64 se disponibile
+                svg = svg.replace(/{{immagine}}/g, base64Image);
+            } else {
+                // Correggi il percorso dell'immagine per la visualizzazione normale
+                const fixedPath = fixImagePath(imagePath);
+                svg = svg.replace(/{{immagine}}/g, fixedPath);
+            }
         } else {
             // Se non c'è un'immagine, lascia vuoto o usa un placeholder generico
             svg = svg.replace(/{{immagine}}/g, '');

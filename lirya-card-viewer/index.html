@@ -72,6 +72,18 @@
             <label for="search">Cerca</label>
             <input type="text" id="search" placeholder="Nome o testo...">
         </div>
+
+        <div class="filter-group">
+            <label for="deck-filter">Mazzo</label>
+            <select id="deck-filter">
+                <option value="">Tutti</option>
+                <option value="fiamme-emberhold">Fiamme di Emberhold</option>
+                <option value="maree-tidemire">Maree di Tidemire</option>
+                <option value="rocce-stonereach">Rocce di Stonereach</option>
+                <option value="venti-mistral">Venti di Mistral</option>
+                <option value="equilibrio-ancestrale">Equilibrio Ancestrale</option>
+            </select>
+        </div>
     </div>
 
     <div class="buttons">
@@ -88,6 +100,17 @@
                     <option value="filtered">Solo carte filtrate</option>
                     <option value="all">Tutte le carte</option>
                     <option value="selected">Carte selezionate</option>
+                    <option value="deck">Mazzo completo</option>
+                </select>
+            </div>
+            <div id="deck-selection" style="margin-bottom: 10px; display: none;">
+                <label for="pdf-deck-select">Seleziona mazzo:</label>
+                <select id="pdf-deck-select">
+                    <option value="fiamme-emberhold">Fiamme di Emberhold</option>
+                    <option value="maree-tidemire">Maree di Tidemire</option>
+                    <option value="rocce-stonereach">Rocce di Stonereach</option>
+                    <option value="venti-mistral">Venti di Mistral</option>
+                    <option value="equilibrio-ancestrale">Equilibrio Ancestrale</option>
                 </select>
             </div>
             <div style="margin-bottom: 10px;">
@@ -143,11 +166,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const cancelPdfBtn = document.getElementById('cancel-pdf');
     const pdfFilename = document.getElementById('pdf-filename');
     const pdfOption = document.getElementById('pdf-option');
+    const deckSelection = document.getElementById('deck-selection');
+    const pdfDeckSelect = document.getElementById('pdf-deck-select');
     const pdfProgress = document.getElementById('pdf-progress');
     const pdfProgressBar = document.getElementById('pdf-progress-bar');
     
     // Carte selezionate (per l'opzione "carte selezionate")
     let selectedCards = [];
+    
+    // Gestione visibilità selezione mazzo
+    pdfOption.addEventListener('change', function() {
+        if (this.value === 'deck') {
+            deckSelection.style.display = 'block';
+        } else {
+            deckSelection.style.display = 'none';
+        }
+    });
     
     // Aggiungi gestione clic su carte per selezione 
     const cardsContainer = document.getElementById('cards-container');
@@ -224,12 +258,36 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             cardsToInclude = window.allCards.filter(card => selectedCards.includes(card.id));
+        } else if (option === 'deck') {
+            // Mazzo completo
+            const selectedDeck = pdfDeckSelect.value;
+            if (selectedDeck && window.getDeckCards) {
+                cardsToInclude = window.getDeckCards(selectedDeck, window.allCards);
+                
+                // Aggiorna il nome del file con il nome del mazzo
+                const deckInfo = window.DECKS[selectedDeck];
+                if (deckInfo) {
+                    pdfFilename.value = `${deckInfo.name.toLowerCase().replace(/\s+/g, '-')}.pdf`;
+                }
+            } else {
+                alert('Errore nel caricamento del mazzo selezionato.');
+                pdfProgress.style.display = 'none';
+                return;
+            }
         }
         
         // Imposta il gestore di avanzamento
-        const progressHandler = (current, total) => {
-            const percentage = Math.floor((current / total) * 100);
+        const progressHandler = (current, total, message) => {
+            const percentage = Math.floor(current);
             pdfProgressBar.value = percentage;
+            
+            // Aggiorna il messaggio se fornito
+            if (message) {
+                const progressText = document.querySelector('#pdf-progress span');
+                if (progressText) {
+                    progressText.textContent = message;
+                }
+            }
         };
         
         // Genera il PDF
@@ -246,5 +304,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+<script src="js/decks.js"></script>
 </body>
 </html>

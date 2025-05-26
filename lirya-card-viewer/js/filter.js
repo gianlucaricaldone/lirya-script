@@ -9,6 +9,7 @@ const FilterModule = (() => {
     let rarityFilter;
     let costFilter;
     let searchInput;
+    let deckFilter;
     let applyButton;
     let resetButton;
 
@@ -23,6 +24,7 @@ const FilterModule = (() => {
         rarityFilter = document.getElementById('rarity-filter');
         costFilter = document.getElementById('cost-filter');
         searchInput = document.getElementById('search');
+        deckFilter = document.getElementById('deck-filter');
         applyButton = document.getElementById('apply-filters');
         resetButton = document.getElementById('reset-filters');
 
@@ -56,7 +58,8 @@ const FilterModule = (() => {
             type: typeFilter.value,
             rarity: rarityFilter.value,
             cost: costFilter.value ? parseInt(costFilter.value) : null,
-            search: searchInput.value.toLowerCase()
+            search: searchInput.value.toLowerCase(),
+            deck: deckFilter.value
         };
     };
 
@@ -70,6 +73,7 @@ const FilterModule = (() => {
         rarityFilter.value = '';
         costFilter.value = '';
         searchInput.value = '';
+        deckFilter.value = '';
 
         // Applica i filtri reimpostati
         applyButton.click();
@@ -82,8 +86,14 @@ const FilterModule = (() => {
      */
     const filterCards = (cards) => {
         const filters = getFilters();
+        
+        // Se è selezionato un mazzo, prima filtra per mazzo
+        let filteredCards = cards;
+        if (filters.deck && window.filterCardsByDeck) {
+            filteredCards = window.filterCardsByDeck(cards, filters.deck);
+        }
 
-        return cards.filter(card => {
+        return filteredCards.filter(card => {
             // Filtro elemento
             if (filters.element && card.element !== filters.element) {
                 return false;
