@@ -4,7 +4,14 @@
       "Bash(grep:*)",
       "Bash(git add:*)",
       "Bash(git rm:*)",
-      "Bash(rm:*)"
+      "Bash(rm:*)",
+      "Bash(jq:*)",
+      "Bash(./rename_files.sh)",
+      "Bash(ls:*)",
+      "Bash(./rename_by_rarity.sh:*)",
+      "Bash(python3:*)",
+      "Bash(./rename_no_numbers.sh)",
+      "Bash(echo:*)"
     ],
     "deny": []
   }

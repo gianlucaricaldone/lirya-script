@@ -50,6 +50,65 @@ const CardRenderer = (() => {
     };
 
     /**
+     * Funzione per dividere il testo in righe multiple per SVG
+     * @param {string} text - Il testo da dividere
+     * @param {number} maxCharsPerLine - Numero massimo di caratteri per riga
+     * @return {Array} - Array di righe di testo
+     */
+    const wrapText = (text, maxCharsPerLine = 45) => {
+        if (!text) return [];
+        
+        const words = text.split(' ');
+        const lines = [];
+        let currentLine = '';
+        
+        words.forEach(word => {
+            if ((currentLine + ' ' + word).trim().length <= maxCharsPerLine) {
+                currentLine = (currentLine + ' ' + word).trim();
+            } else {
+                if (currentLine) {
+                    lines.push(currentLine);
+                }
+                currentLine = word;
+            }
+        });
+        
+        if (currentLine) {
+            lines.push(currentLine);
+        }
+        
+        return lines;
+    };
+
+    /**
+     * Genera tspan elements per testo multilinea
+     * @param {Array} lines - Array di righe di testo
+     * @param {number} x - Coordinata x
+     * @param {number} startY - Coordinata y iniziale
+     * @param {number} lineHeight - Altezza tra le righe
+     * @return {string} - HTML dei tspan elements
+     */
+    const generateTspans = (lines, x, startY, lineHeight = 25) => {
+        if (!lines || lines.length === 0) return '';
+        
+        return lines.map((line, index) => {
+            // Escape dei caratteri speciali HTML
+            const escapedLine = line
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+            
+            if (index === 0) {
+                return `<tspan x="${x}" y="${startY}">${escapedLine}</tspan>`;
+            } else {
+                return `<tspan x="${x}" dy="${lineHeight}">${escapedLine}</tspan>`;
+            }
+        }).join('');
+    };
+
+    /**
      * Carica tutti i template SVG
      * @param {string} basePath - Percorso base per i template (opzionale)
      * @return {Promise} - Promise che si risolve quando tutti i template sono caricati
@@ -197,7 +256,29 @@ const CardRenderer = (() => {
         }
 
         // Testo di ambientazione
-        svg = svg.replace(/{{flavor_text}}/g, card.flavor_text || '');
+        if (card.flavor_text) {
+            const flavorLines = wrapText(card.flavor_text, 55);
+            
+            // Determina la coordinata Y iniziale basata sul tipo di carta
+            let flavorStartY = 958; // Default per strutture
+            let lineHeight = 20;
+            
+            if (card.type === 'Personaggio') {
+                flavorStartY = 880;
+                lineHeight = 18;
+            } else if (card.type === 'Incantesimo') {
+                flavorStartY = 945;  // Aggiustato per il nuovo box più alto
+                lineHeight = 18;
+            } else if (card.type === 'Equipaggiamento') {
+                flavorStartY = 945;  // Aggiustato per il nuovo box più alto
+                lineHeight = 18;
+            }
+            
+            const flavorTspans = generateTspans(flavorLines, 375, flavorStartY, lineHeight);
+            svg = svg.replace(/{{flavor_text}}/g, flavorTspans);
+        } else {
+            svg = svg.replace(/{{flavor_text}}/g, '');
+        }
 
         // Per le carte personaggio, sostituisci le statistiche
         if (card.type === 'Personaggio') {
@@ -290,21 +371,62 @@ const CardRenderer = (() => {
             // Se il template ha un segnaposto per le abilità multiple
             if (svg.includes('{{abilita_lista}}')) {
                 let abilitiesHtml = '';
-                card.abilities.forEach(ability => {
-                    abilitiesHtml += `<tspan x="25" dy="1.2em" font-weight="bold">${ability.name}:</tspan>`;
+                let currentY = 0;
+                card.abilities.forEach((ability, index) => {
+                    if (index > 0) currentY += 15; // Spazio tra abilità
+                    
+                    abilitiesHtml += `<tspan x="375" dy="${index === 0 ? '0' : '15'}" font-weight="bold" text-anchor="middle">${ability.name}:</tspan>`;
+                    
                     // Usa description invece di effect per il nuovo formato
                     const abilityText = ability.description || ability.effect || '';
-                    abilitiesHtml += `<tspan x="25" dy="1.2em">${abilityText}</tspan>`;
-                    abilitiesHtml += `<tspan x="25" dy="0.6em"></tspan>`; // Spazio tra le abilità
+                    const wrappedLines = wrapText(abilityText, 50);
+                    
+                    wrappedLines.forEach((line, lineIndex) => {
+                        abilitiesHtml += `<tspan x="375" dy="${lineIndex === 0 ? '25' : '22'}" text-anchor="middle">${line}</tspan>`;
+                    });
                 });
                 svg = svg.replace(/{{abilita_lista}}/g, abilitiesHtml);
             } else {
                 // Altrimenti sostituisci i singoli segnaposti
                 const ability = card.abilities[0]; // Prendi la prima abilità
-                svg = svg.replace(/{{abilita_nome}}/g, ability.name || '');
+                
+                // Per incantesimi ed equipaggiamenti, non mostrare "Abilità Senza Nome"
+                const shouldShowName = ability.name && 
+                                     ability.name !== 'Abilità Senza Nome' && 
+                                     card.type !== 'Incantesimo' && 
+                                     card.type !== 'Equipaggiamento';
+                
+                svg = svg.replace(/{{abilita_nome}}/g, shouldShowName ? ability.name : '');
+                
+                // Nascondi la linea separatrice se non c'è nome
+                if (!shouldShowName && svg.includes('<rect x="150" y="790"')) {
+                    svg = svg.replace(/<rect x="150" y="790"[^>]*>/g, '<!-- Linea nascosta -->');
+                }
+                
                 // Usa description invece di effect per il nuovo formato
                 const abilityText = ability.description || ability.effect || '';
-                svg = svg.replace(/{{abilita_effetto}}/g, abilityText);
+                
+                // Crea tspan multipli per il testo wrappato
+                // Usa lunghezze diverse basate sul tipo di carta
+                const maxChars = card.type === 'Personaggio' ? 45 : 50;
+                const wrappedLines = wrapText(abilityText, maxChars);
+                
+                // Determina la coordinata Y iniziale basata sul tipo di carta
+                let startY = 820; // Default per strutture
+                if (card.type === 'Personaggio') {
+                    startY = 700; // Più vicino al nome dell'abilità
+                } else if (card.type === 'Incantesimo') {
+                    // Se non c'è nome, inizia dove sarebbe il nome
+                    startY = shouldShowName ? 820 : 780;
+                } else if (card.type === 'Equipaggiamento') {
+                    // Se non c'è nome, inizia dove sarebbe il nome
+                    startY = shouldShowName ? 820 : 780;
+                }
+                
+                const tspans = generateTspans(wrappedLines, 375, startY, 22);
+                
+                // Sostituisci il placeholder con i tspan multipli
+                svg = svg.replace(/{{abilita_effetto}}/g, tspans);
             }
         } else {
             // Nessuna abilità

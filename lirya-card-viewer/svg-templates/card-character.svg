@@ -73,17 +73,11 @@
   <!-- Abilità -->
   <text id="card-ability-name" x="375" y="670" font-family="Arial" font-size="22" font-weight="bold" text-anchor="middle" fill="#333">{{abilita_nome}}</text>
   <rect x="100" y="680" width="550" height="1" fill="#333"/>
-  <text id="card-ability-effect" x="375" y="715" font-family="Arial" font-size="20" text-anchor="middle" fill="#333">
-    <tspan x="375" dy="0">{{abilita_effetto}}</tspan>
-<!--   	<tspan x="375" dy="30">elit. Sed do eiusmod tempor incididunt ut labore</tspan> -->
-  </text>
+  <text id="card-ability-effect" x="375" y="715" font-family="Arial" font-size="20" text-anchor="middle" fill="#333">{{abilita_effetto}}</text>
   
   <!-- Testo di ambientazione -->
   <rect x="60" y="850" width="630" height="80" rx="8" ry="8" fill="#f0e5d0" stroke="#333" stroke-width="0.5" stroke-dasharray="5,5"/>
-  <text id="card-flavor-text" x="375" y="880" font-family="Arial" font-size="18" font-style="italic" text-anchor="middle" fill="#666">
-    <tspan x="375" dy="0">{{flavor_text}}</tspan>
-<!--   	<tspan x="375" dy="30">Ut enim ad minim veniam, quis nostrud exercitation</tspan> -->
-  </text>
+  <text id="card-flavor-text" x="375" y="880" font-family="Arial" font-size="18" font-style="italic" text-anchor="middle" fill="#666">{{flavor_text}}</text>
   
   <!-- Statistiche -->
   <rect x="60" y="940" width="630" height="60" rx="10" ry="10" fill="#d9ae7e" stroke="#333" stroke-width="1"/>
