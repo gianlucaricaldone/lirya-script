@@ -193,15 +193,27 @@ const CardRenderer = (() => {
 
         // Per le carte personaggio, sostituisci le statistiche
         if (card.type === 'Personaggio') {
-            // Valori base originali
-            const baseAttack = card.stats?.attack !== undefined ? card.stats.attack : (card.attack || 0);
-            const baseDefense = card.stats?.defense !== undefined ? card.stats.defense : (card.defense || 0);
-            const baseHealth = card.stats?.health !== undefined ? card.stats.health : (card.health || baseDefense || 0);
+            // Valori base originali dalle stats
+            const originalAttack = card.stats?.attack !== undefined ? card.stats.attack : 0;
+            const originalDefense = card.stats?.defense !== undefined ? card.stats.defense : 0;
+            const originalHealth = card.stats?.health !== undefined ? card.stats.health : (card.stats?.defense || 0);
             
+            // Valori attuali (potrebbero essere stati modificati da bonus permanenti)
+            const currentAttack = card.attack !== undefined ? card.attack : originalAttack;
+            const currentDefense = card.defense !== undefined ? card.defense : originalDefense;
+            
+            console.log(`[CardRenderer] Stats per ${card.name}:`, {
+                originalAttack,
+                originalDefense,
+                currentAttack,
+                currentDefense,
+                temporaryBonuses: card.temporaryBonuses,
+                auraBonuses: card.auraBonuses
+            });
             
             // Calcola valori finali con bonus temporanei e aure
-            let attackValue = baseAttack;
-            let defenseValue = baseDefense;
+            let attackValue = currentAttack;
+            let defenseValue = currentDefense;
             
             // Applica bonus temporanei
             if (card.temporaryBonuses) {
@@ -217,9 +229,9 @@ const CardRenderer = (() => {
             
             // Sostituisci attacco con colore appropriato
             let attackColor = null;
-            if (attackValue > baseAttack) {
+            if (attackValue > originalAttack) {
                 attackColor = '#00ff00'; // Verde se sopra il base
-            } else if (attackValue < baseAttack) {
+            } else if (attackValue < originalAttack) {
                 attackColor = '#ff4444'; // Rosso se sotto il base
             }
             
@@ -231,14 +243,13 @@ const CardRenderer = (() => {
             
             // Gestisci difesa e vita
             // Usa currentHealth se disponibile, altrimenti usa il valore massimo
-            const healthValue = card.currentHealth !== undefined ? card.currentHealth : 
-                               (card.stats?.health !== undefined ? card.stats.health : (card.health || 0));
+            const healthValue = card.currentHealth !== undefined ? card.currentHealth : originalHealth;
             
             // Sostituisci difesa con colore appropriato
             let defenseColor = null;
-            if (defenseValue > baseDefense) {
+            if (defenseValue > originalDefense) {
                 defenseColor = '#00ff00'; // Verde se sopra il base
-            } else if (defenseValue < baseDefense) {
+            } else if (defenseValue < originalDefense) {
                 defenseColor = '#ff4444'; // Rosso se sotto il base
             }
             
@@ -250,9 +261,9 @@ const CardRenderer = (() => {
             
             // Sostituisci punti vita con colore appropriato
             let healthColor = null;
-            if (healthValue > baseHealth) {
+            if (healthValue > originalHealth) {
                 healthColor = '#00ff00'; // Verde se sopra il base
-            } else if (healthValue < baseHealth) {
+            } else if (healthValue < originalHealth) {
                 healthColor = '#ff4444'; // Rosso se sotto il base (danneggiato)
             }
             

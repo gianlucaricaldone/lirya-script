@@ -415,6 +415,71 @@
     background: rgba(255, 215, 0, 0.1);
 }
 
+/* Evidenziazione zone valide quando una carta è selezionata */
+.card-slot.valid-zone {
+    border-color: #4ade80;
+    background: rgba(74, 222, 128, 0.2);
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.4);
+    animation: pulse-valid 1.5s ease-in-out infinite;
+}
+
+/* Evidenziazione bersagli validi per equipaggiamenti */
+.game-card.valid-target-equipment {
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.8);
+    border: 3px solid #3b82f6;
+    animation: pulse-equipment 1.5s ease-in-out infinite;
+}
+
+/* Evidenziazione bersagli validi per magie */
+.game-card.valid-target-spell {
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.8);
+    border: 3px solid #ef4444;
+    animation: pulse-spell 1.5s ease-in-out infinite;
+}
+
+/* Animazioni per le zone illuminate */
+@keyframes pulse-valid {
+    0% {
+        box-shadow: 0 0 20px rgba(74, 222, 128, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 35px rgba(74, 222, 128, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(74, 222, 128, 0.4);
+    }
+}
+
+@keyframes pulse-equipment {
+    0% {
+        box-shadow: 0 0 25px rgba(59, 130, 246, 0.8);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(59, 130, 246, 1);
+        transform: scale(1.02);
+    }
+    100% {
+        box-shadow: 0 0 25px rgba(59, 130, 246, 0.8);
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse-spell {
+    0% {
+        box-shadow: 0 0 25px rgba(239, 68, 68, 0.8);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(239, 68, 68, 1);
+        transform: scale(1.02);
+    }
+    100% {
+        box-shadow: 0 0 25px rgba(239, 68, 68, 0.8);
+        transform: scale(1);
+    }
+}
+
 /* Carte di gioco */
 .game-card {
     width: 130px;
@@ -427,6 +492,19 @@
 .game-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.game-card.selected {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+    border: 3px solid #ffd700;
+    animation: selected-pulse 1.5s infinite;
+}
+
+@keyframes selected-pulse {
+    0% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6); }
+    50% { box-shadow: 0 8px 30px rgba(255, 215, 0, 0.8); }
+    100% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6); }
 }
 
 /* Fix per immagini specchiate */
@@ -492,12 +570,77 @@
 .valid-target {
     animation: pulse 1s infinite;
     border: 3px solid #ffd700 !important;
+    position: relative;
+    cursor: pointer;
 }
 
 @keyframes pulse {
     0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
     70% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); }
     100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+}
+
+.target-indicator {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    font-size: 24px;
+    animation: bounce 1s infinite;
+    z-index: 10;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Overlay per targeting */
+#targeting-cancel-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    z-index: 1999;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+.targeting-info {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    padding: 15px 30px;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.targeting-info h3 {
+    color: #333;
+    margin: 0 0 15px 0;
+    font-size: 1.4em;
+}
+
+.cancel-targeting-btn {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.cancel-targeting-btn:hover {
+    background: #c0392b;
+    transform: scale(1.05);
 }
 
 /* Animazioni combattimento */
@@ -651,21 +794,32 @@
 /* Modal dettagli carta */
 #card-detail-modal {
     z-index: 2001;
-}
-
-#card-detail-modal .modal-content {
-    background: transparent;
-    padding: 0;
-    max-width: 90vw;
-    max-height: 90vh;
-    display: flex;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    overflow: hidden;
     align-items: center;
     justify-content: center;
 }
 
+#card-detail-modal .modal-content {
+    background: transparent;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
 #modal-card-detail {
-    max-width: 400px;
-    max-height: 80vh;
+    width: 450px;
+    max-width: 85vw;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -674,8 +828,44 @@
 #modal-card-detail svg {
     width: 100%;
     height: auto;
-    max-height: 80vh;
+    max-height: 85vh;
     display: block;
+    filter: drop-shadow(0 10px 40px rgba(0, 0, 0, 0.8));
+    object-fit: contain;
+}
+
+/* Stile migliorato per il pulsante di chiusura */
+#card-detail-modal .close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 1);
+    border: 3px solid #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+    transition: all 0.3s ease;
+    z-index: 2002;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+#card-detail-modal .close:hover {
+    background: #ff4444;
+    color: white;
+    border-color: #ff4444;
+    transform: scale(1.15) rotate(90deg);
+    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.6);
+}
+
+#card-detail-modal .close:active {
+    transform: scale(1.05) rotate(90deg);
 }
 
 /* Combattimento */

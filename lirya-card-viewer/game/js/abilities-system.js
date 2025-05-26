@@ -34,10 +34,16 @@ class AbilitiesSystem {
     
     // Registra una carta con le sue abilità
     registerCard(card, location) {
-        if (!card.abilities || card.abilities.length === 0) return;
+        if (!card.abilities || card.abilities.length === 0) {
+            console.log(`[AbilitiesSystem] Nessuna abilità per ${card.name}`);
+            return;
+        }
+        
+        console.log(`[AbilitiesSystem] Registrando abilità per ${card.name}:`, card.abilities);
         
         card.abilities.forEach(ability => {
             const abilityType = this.categorizeAbility(ability);
+            console.log(`[AbilitiesSystem] ${card.name} - Abilità: ${ability.name}, Tipo: ${abilityType.type}, Trigger: ${abilityType.trigger}`);
             
             switch (abilityType.type) {
                 case 'passive':
@@ -108,14 +114,20 @@ class AbilitiesSystem {
             
             const mappedTrigger = triggerMap[ability.trigger] || ability.trigger;
             
-            if (ability.type === 'passive' || mappedTrigger === 'passive') {
+            // Controlla anche se il trigger è già nel formato interno
+            const finalTrigger = this.triggers[mappedTrigger] ? mappedTrigger : ability.trigger;
+            
+            if (ability.type === 'passive' || mappedTrigger === 'passive' || ability.trigger === 'always') {
                 return { type: 'passive' };
             } else if (ability.type === 'activated') {
                 return { type: 'activated' };
             } else if (ability.type === 'aura') {
                 return { type: 'aura' };
+            } else if (ability.type === 'triggered' || ability.type === 'spell') {
+                return { type: 'triggered', trigger: finalTrigger };
             } else {
-                return { type: 'triggered', trigger: mappedTrigger };
+                // Se non è specificato ma ha un trigger, è un'abilità innescata
+                return { type: 'triggered', trigger: finalTrigger };
             }
         }
         
@@ -366,10 +378,21 @@ class AbilitiesSystem {
                     card.conditionalBonuses.push(ability);
                 } else {
                     // Applica bonus permanenti
+                    console.log(`[AbilitiesSystem] Applicando bonus permanente a ${card.name}`);
                     if (effect.stat === 'attack') {
-                        card.attack = (card.attack || 0) + (effect.value || 0);
+                        const oldValue = card.attack || 0;
+                        card.attack = oldValue + (effect.value || 0);
+                        console.log(`[AbilitiesSystem] Attacco di ${card.name}: ${oldValue} -> ${card.attack}`);
                     } else if (effect.stat === 'defense') {
-                        card.defense = (card.defense || 0) + (effect.value || 0);
+                        const oldValue = card.defense || 0;
+                        card.defense = oldValue + (effect.value || 0);
+                        console.log(`[AbilitiesSystem] Difesa di ${card.name}: ${oldValue} -> ${card.defense}`);
+                    }
+                    
+                    // Forza aggiornamento UI per bonus permanenti
+                    if (this.engine.ui) {
+                        console.log('[AbilitiesSystem] Aggiornando UI dopo bonus permanente');
+                        this.engine.ui.updateBoard(this.engine.state);
                     }
                 }
                 break;
@@ -516,17 +539,28 @@ class AbilitiesSystem {
     
     // Attiva trigger per un evento
     triggerEvent(eventType, context = {}) {
-        if (!this.triggers[eventType]) return;
+        console.log(`[AbilitiesSystem] Triggering event: ${eventType}`, context);
+        
+        if (!this.triggers[eventType]) {
+            console.log(`[AbilitiesSystem] Nessun trigger registrato per ${eventType}`);
+            return;
+        }
         
         const triggers = [...this.triggers[eventType]];
+        console.log(`[AbilitiesSystem] Trovati ${triggers.length} trigger per ${eventType}`);
+        
         triggers.forEach(trigger => {
+            console.log(`[AbilitiesSystem] Verificando trigger per ${trigger.card.name}`);
             // Verifica se il trigger è applicabile al contesto
             if (this.isTriggerApplicable(trigger, context)) {
                 try {
+                    console.log(`[AbilitiesSystem] Eseguendo trigger per ${trigger.card.name}`);
                     trigger.execute(context);
                 } catch (error) {
                     console.error(`Errore nell'esecuzione del trigger ${eventType}:`, error);
                 }
+            } else {
+                console.log(`[AbilitiesSystem] Trigger non applicabile per ${trigger.card.name}`);
             }
         });
     }
@@ -549,6 +583,8 @@ class AbilitiesSystem {
     
     // Applica bonus temporaneo
     applyTemporaryBonus(card, stat, amount) {
+        console.log(`[AbilitiesSystem] Applicando bonus temporaneo: ${stat} ${amount > 0 ? '+' : ''}${amount} a ${card.name}`);
+        
         card.temporaryBonuses = card.temporaryBonuses || {};
         card.temporaryBonuses[stat] = (card.temporaryBonuses[stat] || 0) + amount;
         
@@ -560,6 +596,12 @@ class AbilitiesSystem {
             amount,
             until: 'endOfTurn'
         });
+        
+        // Forza aggiornamento UI
+        if (this.engine.ui) {
+            console.log('[AbilitiesSystem] Aggiornando UI dopo bonus temporaneo');
+            this.engine.ui.updateBoard(this.engine.state);
+        }
     }
     
     // Calcola bonus condizionali

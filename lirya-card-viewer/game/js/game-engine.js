@@ -489,7 +489,10 @@ class GameEngine {
             .map((card, position) => ({ card, position }))
             .filter(({ card }) => card !== null);
             
-        // Nota: attualmente non c'è terza linea nel gioco, ma la struttura supporta solo prima e seconda linea
+        // Ottieni le strutture nemiche
+        const enemyStructures = this.state.getZone(defenderId, 'structures')
+            .map((card, position) => ({ card, position }))
+            .filter(({ card }) => card !== null);
         
         if (attackerZone === 'firstLine') {
             // PRIMA LINEA può attaccare:
@@ -518,12 +521,25 @@ class GameEngine {
                 });
             }
             
-            // 3. Il giocatore SOLO se entrambe le linee sono vuote
+            // 3. Le strutture SOLO se entrambe le linee sono vuote
             if (enemyFirstLine.length === 0 && enemySecondLine.length === 0) {
-                targets.push({
-                    type: 'player',
-                    playerId: defenderId
+                enemyStructures.forEach(({ card, position }) => {
+                    targets.push({
+                        type: 'structure',
+                        card,
+                        playerId: defenderId,
+                        zone: 'structures',
+                        position
+                    });
                 });
+                
+                // 4. Il giocatore SOLO se non ci sono creature né strutture
+                if (enemyStructures.length === 0) {
+                    targets.push({
+                        type: 'player',
+                        playerId: defenderId
+                    });
+                }
             }
             
         } else if (attackerZone === 'secondLine') {
@@ -550,7 +566,18 @@ class GameEngine {
                 });
             });
             
-            // 2. Il giocatore SOLO se entrambe le linee sono vuote
+            // 2. Le strutture (la seconda linea può sempre attaccare le strutture)
+            enemyStructures.forEach(({ card, position }) => {
+                targets.push({
+                    type: 'structure',
+                    card,
+                    playerId: defenderId,
+                    zone: 'structures',
+                    position
+                });
+            });
+            
+            // 3. Il giocatore SOLO se non ci sono creature
             if (enemyFirstLine.length === 0 && enemySecondLine.length === 0) {
                 targets.push({
                     type: 'player',
@@ -745,6 +772,49 @@ class GameEngine {
         }, 1000);
     }
 
+    // Distrugge una creatura
+    destroyCreature(target) {
+        console.log('[GameEngine] destroyCreature:', target);
+        
+        if (!target || !target.card) {
+            console.error('[GameEngine] Target non valido per destroyCreature');
+            return;
+        }
+        
+        const { playerId, zone, position } = target;
+        
+        // Trova la zona corretta
+        let zoneArray;
+        if (zone === 'firstLine') {
+            zoneArray = this.state.getPlayer(playerId).field.firstLine;
+        } else if (zone === 'secondLine') {
+            zoneArray = this.state.getPlayer(playerId).field.secondLine;
+        } else {
+            console.error('[GameEngine] Zona non valida:', zone);
+            return;
+        }
+        
+        // Rimuovi la carta dalla zona
+        const removedCard = zoneArray[position];
+        if (removedCard) {
+            zoneArray[position] = null;
+            
+            // Aggiungi al cimitero
+            this.state.getPlayer(playerId).graveyard.push(removedCard);
+            
+            // Trigger eventi di morte
+            if (this.abilities) {
+                this.abilities.triggerEvent('onDeath', {
+                    card: removedCard,
+                    playerId: playerId
+                });
+            }
+            
+            // Aggiorna UI
+            this.ui.updateBoard(this.state);
+        }
+    }
+    
     // Fine turno
     endTurn() {
         if (this.isProcessing) return;
