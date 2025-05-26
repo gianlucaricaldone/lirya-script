@@ -28,8 +28,48 @@ class GameRules {
             validTargets: []
         };
 
-        // Analizza la descrizione dell'incantesimo per determinare i bersagli
-        const desc = spell.description.toLowerCase();
+        // Prima controlla se l'incantesimo ha abilities nel nuovo formato
+        if (spell.abilities && spell.abilities.length > 0) {
+            for (const ability of spell.abilities) {
+                if (ability.effects && ability.effects.length > 0) {
+                    for (const effect of ability.effects) {
+                        if (effect.target && effect.target.includes('target_')) {
+                            targets.needsTarget = true;
+                            
+                            switch (effect.target) {
+                                case 'target_creature':
+                                    // Qualsiasi creatura
+                                    targets.validTargets = this.engine.state.getAllCreatures();
+                                    break;
+                                case 'target_enemy_creature':
+                                    // Solo creature nemiche
+                                    const opponent = this.engine.state.currentPlayer === 1 ? 2 : 1;
+                                    targets.validTargets = this.engine.state.getAllCreatures(opponent);
+                                    break;
+                                case 'target_friendly_creature':
+                                    // Solo proprie creature
+                                    targets.validTargets = this.engine.state.getAllCreatures(this.engine.state.currentPlayer);
+                                    break;
+                                case 'target_player':
+                                    // Qualsiasi giocatore
+                                    targets.validTargets = [
+                                        { type: 'player', playerId: 1 },
+                                        { type: 'player', playerId: 2 }
+                                    ];
+                                    break;
+                            }
+                            
+                            if (targets.validTargets.length > 0) {
+                                return targets;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Fallback: analizza la descrizione dell'incantesimo per compatibilità
+        const desc = (spell.description || '').toLowerCase();
         
         if (desc.includes('bersaglio') || desc.includes('nemico') || desc.includes('avversario')) {
             targets.needsTarget = true;
@@ -64,6 +104,23 @@ class GameRules {
 
     // Risolvi l'effetto di un incantesimo
     resolveSpellEffect(spell, target) {
+        console.log('[GameRules] resolveSpellEffect chiamato:', { spell, target });
+        
+        // Prima controlla se l'incantesimo ha abilities nel nuovo formato
+        if (spell.abilities && spell.abilities.length > 0) {
+            console.log('[GameRules] Incantesimo ha abilities:', spell.abilities);
+            spell.abilities.forEach(ability => {
+                if (ability.effects && ability.effects.length > 0) {
+                    console.log('[GameRules] Applicando effetti:', ability.effects);
+                    ability.effects.forEach(effect => {
+                        this.applySpellEffect(effect, spell, target);
+                    });
+                }
+            });
+            return;
+        }
+        
+        // Fallback: parsing del testo descrittivo per compatibilità
         const desc = spell.description.toLowerCase();
         
         // Danno diretto
@@ -110,32 +167,237 @@ class GameRules {
             }
         }
     }
+    
+    // Danneggia una creatura
+    damageCreature(target, damage) {
+        console.log('[GameRules] damageCreature:', { target, damage });
+        
+        if (!target || !target.card) {
+            console.error('[GameRules] Target non valido per damageCreature');
+            return;
+        }
+        
+        const card = target.card;
+        
+        // Inizializza currentHealth se non esiste
+        if (card.currentHealth === undefined) {
+            card.currentHealth = card.stats?.health || card.health || 
+                              card.stats?.defense || card.defense || 1;
+        }
+        
+        // Applica il danno
+        card.currentHealth -= damage;
+        console.log(`[GameRules] ${card.name} subisce ${damage} danni. Salute: ${card.currentHealth}`);
+        
+        // Controlla se la creatura muore
+        if (card.currentHealth <= 0) {
+            console.log(`[GameRules] ${card.name} è stata distrutta!`);
+            this.engine.destroyCreature(target);
+        }
+        
+        // Trigger eventi di danno
+        if (this.engine.abilities) {
+            this.engine.abilities.triggerEvent('onDamage', {
+                target: target,
+                damage: damage,
+                source: this.engine.state.currentPlayer
+            });
+        }
+    }
+    
+    // Cura una creatura
+    healCreature(target, amount) {
+        console.log('[GameRules] healCreature:', { target, amount });
+        
+        if (!target || !target.card) {
+            console.error('[GameRules] Target non valido per healCreature');
+            return;
+        }
+        
+        const card = target.card;
+        const maxHealth = card.stats?.health || card.health || 
+                         card.stats?.defense || card.defense || 1;
+        
+        // Inizializza currentHealth se non esiste
+        if (card.currentHealth === undefined) {
+            card.currentHealth = maxHealth;
+        }
+        
+        // Applica la cura
+        card.currentHealth = Math.min(card.currentHealth + amount, maxHealth);
+        console.log(`[GameRules] ${card.name} viene curata di ${amount}. Salute: ${card.currentHealth}/${maxHealth}`);
+    }
+    
+    // Applica un singolo effetto di un incantesimo
+    applySpellEffect(effect, spell, target) {
+        console.log('[GameRules] applySpellEffect:', { effect, target });
+        
+        switch (effect.type) {
+            case 'damage':
+                const damage = effect.value || 0;
+                console.log('[GameRules] Applicando danno:', damage, 'a', effect.target);
+                
+                if (effect.target === 'target_creature' && target && target.card) {
+                    console.log('[GameRules] Danneggiando creatura:', target);
+                    this.damageCreature(target, damage);
+                } else if (effect.target === 'target_player' && target && target.type === 'player') {
+                    console.log('[GameRules] Danneggiando giocatore:', target.playerId);
+                    this.engine.state.dealDamage(target.playerId, damage);
+                } else if (effect.target === 'all_enemy_creatures') {
+                    const opponent = this.engine.state.currentPlayer === 1 ? 2 : 1;
+                    const enemyCreatures = this.engine.state.getAllCreatures(opponent);
+                    console.log('[GameRules] Danneggiando tutte le creature nemiche:', enemyCreatures.length);
+                    enemyCreatures.forEach(creature => {
+                        this.damageCreature(creature, damage);
+                    });
+                }
+                break;
+                
+            case 'heal':
+                const healing = effect.value || 0;
+                if (effect.target === 'target_creature' && target && target.card) {
+                    this.healCreature(target, healing);
+                } else if (effect.target === 'target_player' && target && target.type === 'player') {
+                    this.engine.state.healPlayer(target.playerId, healing);
+                }
+                break;
+                
+            case 'draw':
+                const cards = effect.value || 1;
+                const drawPlayer = effect.target === 'self' ? this.engine.state.currentPlayer : target?.playerId;
+                if (drawPlayer) {
+                    this.engine.state.drawCards(drawPlayer, cards);
+                }
+                break;
+                
+            case 'destroy':
+                if (target && target.card) {
+                    this.destroyCard(target);
+                }
+                break;
+                
+            case 'stat_modifier':
+                if (target && target.card) {
+                    if (effect.stat === 'attack' && effect.value) {
+                        target.card.attack = (target.card.attack || 0) + effect.value;
+                    }
+                    if (effect.stat === 'defense' && effect.value) {
+                        target.card.defense = (target.card.defense || 0) + effect.value;
+                        target.card.currentHealth = (target.card.currentHealth || 0) + effect.value;
+                    }
+                }
+                break;
+        }
+    }
 
     // Applica equipaggiamento a una creatura
     applyEquipment(equipment, target) {
-        if (!target.card || target.card.type !== 'Personaggio') return;
+        console.log('[GameRules] applyEquipment chiamato:', { equipment, target });
+        console.log('[GameRules] Target structure:', {
+            hasCard: !!target.card,
+            cardType: target.card?.type,
+            targetKeys: Object.keys(target)
+        });
         
-        // Applica modificatori base
-        if (equipment.attack) {
-            target.card.attack = (target.card.attack || 0) + equipment.attack;
+        if (!target.card || target.card.type !== 'Personaggio') {
+            console.error('[GameRules] Target non valido per equipaggiamento', {
+                hasCard: !!target.card,
+                cardType: target.card?.type
+            });
+            return;
         }
-        if (equipment.defense) {
-            target.card.defense = (target.card.defense || 0) + equipment.defense;
+        
+        // La carta target è già nel formato corretto
+        const targetCard = target.card;
+        
+        // Inizializza i valori base se non esistono
+        if (targetCard.attack === undefined && targetCard.stats?.attack !== undefined) {
+            targetCard.attack = targetCard.stats.attack;
         }
+        if (targetCard.defense === undefined && targetCard.stats?.defense !== undefined) {
+            targetCard.defense = targetCard.stats.defense;
+        }
+        
+        console.log(`[GameRules] Equipaggiando ${targetCard.name} con ${equipment.name}`);
         
         // Registra l'equipaggiamento sulla creatura
-        if (!target.card.equipment) {
-            target.card.equipment = [];
+        if (!targetCard.equipment) {
+            targetCard.equipment = [];
         }
-        target.card.equipment.push(equipment);
+        targetCard.equipment.push(equipment);
         
-        // Applica abilità speciali dell'equipaggiamento
-        if (equipment.abilities) {
-            if (!target.card.abilities) {
-                target.card.abilities = [];
+        // Analizza le abilità dell'equipaggiamento per applicare i bonus
+        if (equipment.abilities && equipment.abilities.length > 0) {
+            console.log('[GameRules] Equipaggiamento ha abilità:', equipment.abilities);
+            
+            equipment.abilities.forEach(ability => {
+                // Prima prova con gli effetti strutturati
+                if (ability.effects && ability.effects.length > 0) {
+                    console.log('[GameRules] Applicando effetti:', ability.effects);
+                    
+                    ability.effects.forEach(effect => {
+                        if (effect.type === 'stat_modifier') {
+                            if (effect.stat === 'attack' && effect.value) {
+                                const oldAttack = targetCard.attack || 0;
+                                targetCard.attack = oldAttack + effect.value;
+                                console.log(`[GameRules] Attacco di ${targetCard.name}: ${oldAttack} -> ${targetCard.attack}`);
+                            }
+                            if (effect.stat === 'defense' && effect.value) {
+                                const oldDefense = targetCard.defense || 0;
+                                targetCard.defense = oldDefense + effect.value;
+                                
+                                // Aggiorna anche currentHealth se aumenta la difesa
+                                if (targetCard.currentHealth !== undefined) {
+                                    targetCard.currentHealth += effect.value;
+                                }
+                                console.log(`[GameRules] Difesa di ${targetCard.name}: ${oldDefense} -> ${targetCard.defense}`);
+                            }
+                        }
+                    });
+                } else if (ability.description) {
+                    // Fallback: parsing della descrizione per compatibilità
+                    const desc = ability.description.toLowerCase();
+                    
+                    // Cerca bonus ATT
+                    const attMatch = desc.match(/\+(\d+)\s*att/i);
+                    if (attMatch) {
+                        const bonus = parseInt(attMatch[1]);
+                        const oldAttack = targetCard.attack || 0;
+                        targetCard.attack = oldAttack + bonus;
+                        console.log(`[GameRules] Attacco (da descrizione) di ${targetCard.name}: ${oldAttack} -> ${targetCard.attack}`);
+                    }
+                    
+                    // Cerca bonus DEF
+                    const defMatch = desc.match(/\+(\d+)\s*def/i);
+                    if (defMatch) {
+                        const bonus = parseInt(defMatch[1]);
+                        const oldDefense = targetCard.defense || 0;
+                        targetCard.defense = oldDefense + bonus;
+                        if (targetCard.currentHealth !== undefined) {
+                            targetCard.currentHealth += bonus;
+                        }
+                        console.log(`[GameRules] Difesa (da descrizione) di ${targetCard.name}: ${oldDefense} -> ${targetCard.defense}`);
+                    }
+                }
+            });
+            
+            // Aggiungi le abilità speciali alla creatura
+            if (!targetCard.abilities) {
+                targetCard.abilities = [];
             }
-            target.card.abilities.push(...equipment.abilities);
+            targetCard.abilities.push(...equipment.abilities);
         }
+        
+        // Forza aggiornamento UI
+        if (this.engine.ui) {
+            console.log('[GameRules] Aggiornando UI dopo equipaggiamento');
+            this.engine.ui.updateBoard(this.engine.state);
+        }
+        
+        // Notifica il sistema delle abilità per registrare eventuali nuove abilità
+        this.engine.abilities.registerCard(targetCard, target);
+        
+        this.engine.ui.showMessage(`${equipment.name} equipaggiato a ${targetCard.name}!`);
     }
 
     // Effetti di inizio turno

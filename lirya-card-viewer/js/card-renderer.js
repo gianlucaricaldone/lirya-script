@@ -151,9 +151,17 @@ const CardRenderer = (() => {
         }
         
         if (imagePath) {
-            // Correggi il percorso dell'immagine
-            const fixedPath = fixImagePath(imagePath);
-            svg = svg.replace(/{{immagine}}/g, fixedPath);
+            // Controlla se c'è una versione base64 disponibile (per PDF)
+            const base64Image = window.imageCache && window.imageCache.get && window.imageCache.get(imagePath);
+            
+            if (base64Image) {
+                // Usa l'immagine base64 se disponibile
+                svg = svg.replace(/{{immagine}}/g, base64Image);
+            } else {
+                // Correggi il percorso dell'immagine per la visualizzazione normale
+                const fixedPath = fixImagePath(imagePath);
+                svg = svg.replace(/{{immagine}}/g, fixedPath);
+            }
         } else {
             // Se non c'è un'immagine, lascia vuoto o usa un placeholder generico
             svg = svg.replace(/{{immagine}}/g, '');
@@ -193,14 +201,27 @@ const CardRenderer = (() => {
 
         // Per le carte personaggio, sostituisci le statistiche
         if (card.type === 'Personaggio') {
-            // Valori base originali
-            const baseAttack = card.stats?.attack !== undefined ? card.stats.attack : (card.attack || 0);
-            const baseDefense = card.stats?.defense !== undefined ? card.stats.defense : (card.defense || 0);
-            const baseHealth = card.stats?.health !== undefined ? card.stats.health : (card.health || baseDefense || 0);
+            // Valori base originali dalle stats
+            const originalAttack = card.stats?.attack !== undefined ? card.stats.attack : 0;
+            const originalDefense = card.stats?.defense !== undefined ? card.stats.defense : 0;
+            const originalHealth = card.stats?.health !== undefined ? card.stats.health : (card.stats?.defense || 0);
             
-            // Calcola valori finali con bonus temporanei
-            let attackValue = baseAttack;
-            let defenseValue = baseDefense;
+            // Valori attuali (potrebbero essere stati modificati da bonus permanenti)
+            const currentAttack = card.attack !== undefined ? card.attack : originalAttack;
+            const currentDefense = card.defense !== undefined ? card.defense : originalDefense;
+            
+            console.log(`[CardRenderer] Stats per ${card.name}:`, {
+                originalAttack,
+                originalDefense,
+                currentAttack,
+                currentDefense,
+                temporaryBonuses: card.temporaryBonuses,
+                auraBonuses: card.auraBonuses
+            });
+            
+            // Calcola valori finali con bonus temporanei e aure
+            let attackValue = currentAttack;
+            let defenseValue = currentDefense;
             
             // Applica bonus temporanei
             if (card.temporaryBonuses) {
@@ -208,51 +229,56 @@ const CardRenderer = (() => {
                 defenseValue += (card.temporaryBonuses.defense || 0);
             }
             
+            // Applica bonus delle aure
+            if (card.auraBonuses) {
+                attackValue += (card.auraBonuses.attack || 0);
+                defenseValue += (card.auraBonuses.defense || 0);
+            }
+            
             // Sostituisci attacco con colore appropriato
             let attackColor = null;
-            if (attackValue > baseAttack) {
+            if (attackValue > originalAttack) {
                 attackColor = '#00ff00'; // Verde se sopra il base
-            } else if (attackValue < baseAttack) {
+            } else if (attackValue < originalAttack) {
                 attackColor = '#ff4444'; // Rosso se sotto il base
             }
             
             if (attackColor) {
                 svg = svg.replace(/{{attacco}}/g, `<tspan fill="${attackColor}">${attackValue}</tspan>`);
             } else {
-                svg = svg.replace(/{{attacco}}/g, attackValue);
+                svg = svg.replace(/{{attacco}}/g, String(attackValue));
             }
             
             // Gestisci difesa e vita
             // Usa currentHealth se disponibile, altrimenti usa il valore massimo
-            const healthValue = card.currentHealth !== undefined ? card.currentHealth : 
-                               (card.stats?.health !== undefined ? card.stats.health : (card.health || '0'));
+            const healthValue = card.currentHealth !== undefined ? card.currentHealth : originalHealth;
             
             // Sostituisci difesa con colore appropriato
             let defenseColor = null;
-            if (defenseValue > baseDefense) {
+            if (defenseValue > originalDefense) {
                 defenseColor = '#00ff00'; // Verde se sopra il base
-            } else if (defenseValue < baseDefense) {
+            } else if (defenseValue < originalDefense) {
                 defenseColor = '#ff4444'; // Rosso se sotto il base
             }
             
             if (defenseColor) {
                 svg = svg.replace(/{{difesa}}/g, `<tspan fill="${defenseColor}">${defenseValue}</tspan>`);
             } else {
-                svg = svg.replace(/{{difesa}}/g, defenseValue);
+                svg = svg.replace(/{{difesa}}/g, String(defenseValue));
             }
             
             // Sostituisci punti vita con colore appropriato
             let healthColor = null;
-            if (healthValue > baseHealth) {
+            if (healthValue > originalHealth) {
                 healthColor = '#00ff00'; // Verde se sopra il base
-            } else if (healthValue < baseHealth) {
+            } else if (healthValue < originalHealth) {
                 healthColor = '#ff4444'; // Rosso se sotto il base (danneggiato)
             }
             
             if (healthColor) {
                 svg = svg.replace(/{{punti_vita}}/g, `<tspan fill="${healthColor}">${healthValue}</tspan>`);
             } else {
-                svg = svg.replace(/{{punti_vita}}/g, healthValue);
+                svg = svg.replace(/{{punti_vita}}/g, String(healthValue));
             }
         }
 
@@ -266,7 +292,9 @@ const CardRenderer = (() => {
                 let abilitiesHtml = '';
                 card.abilities.forEach(ability => {
                     abilitiesHtml += `<tspan x="25" dy="1.2em" font-weight="bold">${ability.name}:</tspan>`;
-                    abilitiesHtml += `<tspan x="25" dy="1.2em">${ability.effect}</tspan>`;
+                    // Usa description invece di effect per il nuovo formato
+                    const abilityText = ability.description || ability.effect || '';
+                    abilitiesHtml += `<tspan x="25" dy="1.2em">${abilityText}</tspan>`;
                     abilitiesHtml += `<tspan x="25" dy="0.6em"></tspan>`; // Spazio tra le abilità
                 });
                 svg = svg.replace(/{{abilita_lista}}/g, abilitiesHtml);
@@ -274,7 +302,9 @@ const CardRenderer = (() => {
                 // Altrimenti sostituisci i singoli segnaposti
                 const ability = card.abilities[0]; // Prendi la prima abilità
                 svg = svg.replace(/{{abilita_nome}}/g, ability.name || '');
-                svg = svg.replace(/{{abilita_effetto}}/g, ability.effect || '');
+                // Usa description invece di effect per il nuovo formato
+                const abilityText = ability.description || ability.effect || '';
+                svg = svg.replace(/{{abilita_effetto}}/g, abilityText);
             }
         } else {
             // Nessuna abilità
@@ -289,6 +319,9 @@ const CardRenderer = (() => {
         } else {
             svg = svg.replace(/{{colore_elemento}}/g, '#95a5a6'); // Colore grigio di default
         }
+        
+        // Rimuovi eventuali placeholder non sostituiti per evitare "undefined"
+        svg = svg.replace(/{{[^}]+}}/g, '');
 
         return svg;
     };
@@ -360,10 +393,12 @@ const CardRenderer = (() => {
             html += `<div class="detail-section"><h3>Abilità</h3>`;
 
             card.abilities.forEach(ability => {
+                // Usa description invece di effect per il nuovo formato
+                const abilityText = ability.description || ability.effect || '';
                 html += `
                     <div class="detail-ability">
                         <div class="detail-ability-name">${ability.name}</div>
-                        <div class="detail-ability-effect">${ability.effect}</div>
+                        <div class="detail-ability-effect">${abilityText}</div>
                     </div>`;
             });
 

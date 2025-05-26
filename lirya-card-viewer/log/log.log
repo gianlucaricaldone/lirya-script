@@ -1,12 +1,453 @@
-game.html:198 CardRenderer caricato? true
-game.html:200 CardRenderer disponibile: {loadTemplates: ƒ, generateCardSVG: ƒ, generateCardDetails: ƒ}
-game-engine.js?v=3:137 Uncaught SyntaxError: missing ) after argument list (at game-engine.js?v=3:137:57)
-game.js?v=3:11 Carte caricate: 266
+game.html:199 CardRenderer caricato? true
+game.html:201 CardRenderer disponibile: {loadTemplates: ƒ, generateCardSVG: ƒ, generateCardDetails: ƒ}
+game.js?v=3:11 Carte caricate: 273
 game.js?v=3:12 Prime 5 carte: (5) ['Guardia della Fornace', 'Pattugliatore Costiero', 'Sentinella di Roccia', 'Sentinella del Cielo', 'Guardia del Santuario']
-game.js?v=3:160 Uncaught (in promise) ReferenceError: GameEngine is not defined
-    at HTMLDocument.<anonymous> (game.js?v=3:160:20)
-(anonymous) @ game.js?v=3:160
+game-ui.js?v=3:95 CardRenderer configurato in GameUI
+game.js?v=3:166 UI inizializzata
+game.js?v=3:177 showScreen chiamata con: mainMenu
+game.js?v=3:178 Screens disponibili: (3) ['mainMenu', 'deckSelection', 'gameBoard']
+game.js?v=3:179 Screen target esiste? true
+game.js?v=3:184 Rimossa classe active da mainMenu
+game.js?v=3:184 Rimossa classe active da deckSelection
+game.js?v=3:184 Rimossa classe active da gameBoard
+game.js?v=3:190 Aggiunta classe active a mainMenu
+game.js?v=3:191 Classi elemento: game-screen active
 favicon.ico:1 
             
             
            GET http://localhost:8000/favicon.ico 404 (File not found)
+game.js?v=3:177 showScreen chiamata con: deckSelection
+game.js?v=3:178 Screens disponibili: (3) ['mainMenu', 'deckSelection', 'gameBoard']
+game.js?v=3:179 Screen target esiste? true
+game.js?v=3:184 Rimossa classe active da mainMenu
+game.js?v=3:184 Rimossa classe active da deckSelection
+game.js?v=3:184 Rimossa classe active da gameBoard
+game.js?v=3:190 Aggiunta classe active a deckSelection
+game.js?v=3:191 Classi elemento: game-screen active
+game.js?v=3:277 Start game cliccato
+game.js?v=3:280 CardRenderer disponibile? true
+game.js?v=3:281 loadTemplates disponibile? true
+game.js?v=3:286 Caricamento template SVG prima di iniziare la partita...
+card-renderer.js:80 Template SVG caricati con successo da ../svg-templates/
+game.js?v=3:289 Template SVG caricati con successo
+game-ui.js?v=3:95 CardRenderer configurato in GameUI
+game.js?v=3:293 UI reinizializzata con template caricati
+game.js?v=3:305 Deck 1 preparato: 39 carte
+game.js?v=3:306 Deck 2 preparato: 38 carte
+game.js?v=3:316 Mostrando schermata di gioco...
+game.js?v=3:177 showScreen chiamata con: gameBoard
+game.js?v=3:178 Screens disponibili: (3) ['mainMenu', 'deckSelection', 'gameBoard']
+game.js?v=3:179 Screen target esiste? true
+game.js?v=3:184 Rimossa classe active da mainMenu
+game.js?v=3:184 Rimossa classe active da deckSelection
+game.js?v=3:184 Rimossa classe active da gameBoard
+game.js?v=3:190 Aggiunta classe active a gameBoard
+game.js?v=3:191 Classi elemento: game-screen active
+game.js?v=3:320 Iniziando partita...
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Guardia della Fornace, tipo: Personaggio, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Palla di Fuoco, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Altare del Fuoco, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Iniziato del Fuoco, tipo: Personaggio, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Bastone Elementale, tipo: Equipaggiamento, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Equipaggiamento: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Avamposto di Caccia, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Raffica di Vento, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Manipolatore di Venti, tipo: Personaggio, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Arco Lungo, tipo: Equipaggiamento, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Equipaggiamento: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Altare dell'Aria, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Guardia della Fornace, tipo: Personaggio, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Palla di Fuoco, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Altare del Fuoco, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Iniziato del Fuoco, tipo: Personaggio, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Bastone Elementale, tipo: Equipaggiamento, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Equipaggiamento: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Avamposto di Caccia, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Raffica di Vento, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Manipolatore di Venti, tipo: Personaggio, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Arco Lungo, tipo: Equipaggiamento, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Equipaggiamento: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Altare dell'Aria, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+game.js?v=3:322 Partita iniziata!
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+274_altare_dell_aria.png:1 
+            
+            
+           GET http://localhost:8000/images/274_altare_dell_aria.png 404 (File not found)
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per undefined, tipo: undefined, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo undefined: non trovato
+card-renderer.js:101 [CardRenderer] Usando placeholder per undefined
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per undefined, tipo: undefined, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo undefined: non trovato
+card-renderer.js:101 [CardRenderer] Usando placeholder per undefined
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per undefined, tipo: undefined, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo undefined: non trovato
+card-renderer.js:101 [CardRenderer] Usando placeholder per undefined
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per undefined, tipo: undefined, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo undefined: non trovato
+card-renderer.js:101 [CardRenderer] Usando placeholder per undefined
+game-engine.js?v=3:125 PlayCard chiamato: playerId=1, cardIndex=0
+game-engine.js?v=3:144 Giocando: Guardia della Fornace (Personaggio)
+abilities-system.js?v=1:258 Abilità passiva applicata: Resistenza al Calore su Guardia della Fornace
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Palla di Fuoco, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Altare del Fuoco, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Iniziato del Fuoco, tipo: Personaggio, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Bastone Elementale, tipo: Equipaggiamento, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Equipaggiamento: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Avamposto di Caccia, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Raffica di Vento, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Manipolatore di Venti, tipo: Personaggio, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Arco Lungo, tipo: Equipaggiamento, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Equipaggiamento: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Altare dell'Aria, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+game-ui.js?v=3:216 createCardElement per Guardia della Fornace: currentHealth=2, isDamaged=undefined
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Guardia della Fornace, tipo: Personaggio, currentHealth: 2, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+game-engine.js?v=3:125 PlayCard chiamato: playerId=1, cardIndex=0
+game-engine.js?v=3:144 Giocando: Palla di Fuoco (Incantesimo)
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:237
+(anonymous) @ game-ui.js?v=3:157
+updateHand @ game-ui.js?v=3:156
+updateBoard @ game-ui.js?v=3:114
+playCharacter @ game-engine.js?v=3:222
+playCard @ game-engine.js?v=3:155
+(anonymous) @ game-ui.js?v=3:582
+274_altare_dell_aria.png:1 
+            
+            
+           GET http://localhost:8000/images/274_altare_dell_aria.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:237
+(anonymous) @ game-ui.js?v=3:157
+updateHand @ game-ui.js?v=3:156
+updateBoard @ game-ui.js?v=3:115
+playCharacter @ game-engine.js?v=3:222
+playCard @ game-engine.js?v=3:155
+(anonymous) @ game-ui.js?v=3:582
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Palla di Fuoco, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Altare del Fuoco, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Iniziato del Fuoco, tipo: Personaggio, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Bastone Elementale, tipo: Equipaggiamento, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Equipaggiamento: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Avamposto di Caccia, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Raffica di Vento, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Manipolatore di Venti, tipo: Personaggio, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Arco Lungo, tipo: Equipaggiamento, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Equipaggiamento: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Altare dell'Aria, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Nebbia Velata, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+game-ui.js?v=3:216 createCardElement per Guardia della Fornace: currentHealth=2, isDamaged=undefined
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Guardia della Fornace, tipo: Personaggio, currentHealth: 2, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:237
+(anonymous) @ game-ui.js?v=3:157
+updateHand @ game-ui.js?v=3:156
+updateBoard @ game-ui.js?v=3:114
+startTurn @ game-engine.js?v=3:112
+endTurn @ game-engine.js?v=3:768
+(anonymous) @ game-engine.js?v=3:24
+274_altare_dell_aria.png:1 
+            
+            
+           GET http://localhost:8000/images/274_altare_dell_aria.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:237
+(anonymous) @ game-ui.js?v=3:157
+updateHand @ game-ui.js?v=3:156
+updateBoard @ game-ui.js?v=3:115
+startTurn @ game-engine.js?v=3:112
+endTurn @ game-engine.js?v=3:768
+(anonymous) @ game-engine.js?v=3:24
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per undefined, tipo: undefined, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo undefined: non trovato
+card-renderer.js:101 [CardRenderer] Usando placeholder per undefined
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per undefined, tipo: undefined, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo undefined: non trovato
+card-renderer.js:101 [CardRenderer] Usando placeholder per undefined
+game-engine.js?v=3:125 PlayCard chiamato: playerId=2, cardIndex=2
+game-engine.js?v=3:144 Giocando: Manipolatore di Venti (Personaggio)
+abilities-system.js?v=1:258 Abilità passiva applicata: Raffica su Manipolatore di Venti
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Palla di Fuoco, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Altare del Fuoco, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Iniziato del Fuoco, tipo: Personaggio, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Bastone Elementale, tipo: Equipaggiamento, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Equipaggiamento: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Avamposto di Caccia, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Raffica di Vento, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Arco Lungo, tipo: Equipaggiamento, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Equipaggiamento: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Altare dell'Aria, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Nebbia Velata, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+game-ui.js?v=3:216 createCardElement per Guardia della Fornace: currentHealth=2, isDamaged=undefined
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Guardia della Fornace, tipo: Personaggio, currentHealth: 2, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+game-ui.js?v=3:216 createCardElement per Manipolatore di Venti: currentHealth=2, isDamaged=undefined
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Manipolatore di Venti, tipo: Personaggio, currentHealth: 2, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+game-engine.js?v=3:125 PlayCard chiamato: playerId=2, cardIndex=2
+game-engine.js?v=3:144 Giocando: Arco Lungo (Equipaggiamento)
+274_altare_dell_aria.png:1 
+            
+            
+           GET http://localhost:8000/images/274_altare_dell_aria.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:237
+(anonymous) @ game-ui.js?v=3:157
+updateHand @ game-ui.js?v=3:156
+updateBoard @ game-ui.js?v=3:115
+playCharacter @ game-engine.js?v=3:222
+playCard @ game-engine.js?v=3:155
+(anonymous) @ game-ui.js?v=3:582
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:237
+(anonymous) @ game-ui.js?v=3:157
+updateHand @ game-ui.js?v=3:156
+updateBoard @ game-ui.js?v=3:114
+playCharacter @ game-engine.js?v=3:222
+playCard @ game-engine.js?v=3:155
+(anonymous) @ game-ui.js?v=3:582
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Palla di Fuoco, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Altare del Fuoco, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Iniziato del Fuoco, tipo: Personaggio, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Bastone Elementale, tipo: Equipaggiamento, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Equipaggiamento: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Avamposto di Caccia, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Raffica di Vento, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Arco Lungo, tipo: Equipaggiamento, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Equipaggiamento: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Altare dell'Aria, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Nebbia Velata, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+game-ui.js?v=3:216 createCardElement per Guardia della Fornace: currentHealth=2, isDamaged=undefined
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Guardia della Fornace, tipo: Personaggio, currentHealth: 2, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+game-ui.js?v=3:216 createCardElement per Manipolatore di Venti: currentHealth=2, isDamaged=undefined
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Manipolatore di Venti, tipo: Personaggio, currentHealth: 2, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:237
+(anonymous) @ game-ui.js?v=3:157
+updateHand @ game-ui.js?v=3:156
+updateBoard @ game-ui.js?v=3:114
+startCombatPhase @ game-engine.js?v=3:404
+startAttackPhase @ game-engine.js?v=3:783
+(anonymous) @ game-engine.js?v=3:31
+274_altare_dell_aria.png:1 
+            
+            
+           GET http://localhost:8000/images/274_altare_dell_aria.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:237
+(anonymous) @ game-ui.js?v=3:157
+updateHand @ game-ui.js?v=3:156
+updateBoard @ game-ui.js?v=3:115
+startCombatPhase @ game-engine.js?v=3:404
+startAttackPhase @ game-engine.js?v=3:783
+(anonymous) @ game-engine.js?v=3:31
+game-ui.js?v=3:642 Click durante combat_declare {hasAttackingCreature: false, playerId: 2, zone: 'secondLine', position: 0}
+game-ui.js?v=3:678 Dichiarando attaccante: 2 secondLine 0
+game-engine.js?v=3:418 declareAttacker chiamato: phase=combat_declare, playerId=2, currentPlayer=2
+game-ui.js?v=3:642 Click durante combat_declare {hasAttackingCreature: true, playerId: 2, zone: 'secondLine', position: 0}
+game-ui.js?v=3:642 Click durante combat_declare {hasAttackingCreature: true, playerId: 1, zone: 'firstLine', position: 0}
+game-ui.js?v=3:642 Click durante combat_declare {hasAttackingCreature: false, playerId: 1, zone: 'firstLine', position: 0}
+game-engine.js?v=3:692 === RISOLUZIONE COMBATTIMENTO ===
+game-engine.js?v=3:693 Attaccante: Giocatore 2, Difensore: Giocatore 1
+game-engine.js?v=3:698 
+Manipolatore di Venti (ATT: 2) sta attaccando...
+game-engine.js?v=3:719 - Attacca undefined
+game-rules.js?v=2:354   COMBATTIMENTO: Manipolatore di Venti (ATT: 2, PV: 2) VS undefined (DIF: 0, PV: 2)
+game-rules.js?v=2:364   - Manipolatore di Venti infligge 2 danni a undefined
+game-rules.js?v=2:371   - Risultato: Manipolatore di Venti (PV: 2), undefined (PV: 0)
+game-engine.js?v=3:724 
+=== FINE COMBATTIMENTO ===
+game-engine.js?v=3:725 Vita Giocatore 1: 20
+game-engine.js?v=3:726 Vita Giocatore 2: 20
+game-ui.js?v=3:216 createCardElement per Guardia della Fornace: currentHealth=0, isDamaged=undefined
+game-ui.js?v=3:76 [GameUI] Chiamando generateCardSVG per Guardia della Fornace danneggiato: {currentHealth: 0, isDamaged: true, stats: {…}, health: undefined, defense: undefined}
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Guardia della Fornace, tipo: Personaggio, currentHealth: 0, isDamaged: true
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+card-renderer.js:116 [CardRenderer] Guardia della Fornace è danneggiato: vita 0/2
+game-ui.js?v=3:216 createCardElement per Manipolatore di Venti: currentHealth=2, isDamaged=undefined
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Manipolatore di Venti, tipo: Personaggio, currentHealth: 2, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Palla di Fuoco, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Altare del Fuoco, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Iniziato del Fuoco, tipo: Personaggio, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Bastone Elementale, tipo: Equipaggiamento, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Equipaggiamento: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Avamposto di Caccia, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Raffica di Vento, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Arco Lungo, tipo: Equipaggiamento, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Equipaggiamento: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Altare dell'Aria, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Nebbia Velata, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+game-ui.js?v=3:216 createCardElement per Manipolatore di Venti: currentHealth=2, isDamaged=undefined
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Manipolatore di Venti, tipo: Personaggio, currentHealth: 2, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:237
+(anonymous) @ game-ui.js?v=3:157
+updateHand @ game-ui.js?v=3:156
+updateBoard @ game-ui.js?v=3:114
+endCombatPhase @ game-engine.js?v=3:740
+(anonymous) @ game-engine.js?v=3:629
+setTimeout
+(anonymous) @ game-engine.js?v=3:628
+setTimeout
+confirmAttackers @ game-engine.js?v=3:625
+button.onclick @ game-ui.js?v=3:837
+274_altare_dell_aria.png:1 
+            
+            
+           GET http://localhost:8000/images/274_altare_dell_aria.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:237
+(anonymous) @ game-ui.js?v=3:157
+updateHand @ game-ui.js?v=3:156
+updateBoard @ game-ui.js?v=3:115
+endCombatPhase @ game-engine.js?v=3:740
+(anonymous) @ game-engine.js?v=3:629
+setTimeout
+(anonymous) @ game-engine.js?v=3:628
+setTimeout
+confirmAttackers @ game-engine.js?v=3:625
+button.onclick @ game-ui.js?v=3:837
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Palla di Fuoco, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Altare del Fuoco, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Iniziato del Fuoco, tipo: Personaggio, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Bastone Elementale, tipo: Equipaggiamento, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Equipaggiamento: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Guardia della Fornace, tipo: Personaggio, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Avamposto di Caccia, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Raffica di Vento, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Arco Lungo, tipo: Equipaggiamento, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Equipaggiamento: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Altare dell'Aria, tipo: Struttura, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Struttura: trovato
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Nebbia Velata, tipo: Incantesimo, currentHealth: undefined, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Incantesimo: trovato
+game-ui.js?v=3:216 createCardElement per Manipolatore di Venti: currentHealth=2, isDamaged=undefined
+card-renderer.js:93 [CardRenderer] generateCardSVG chiamato per Manipolatore di Venti, tipo: Personaggio, currentHealth: 2, isDamaged: undefined
+card-renderer.js:97 [CardRenderer] Template per tipo Personaggio: trovato
+149_altare_del_fuoco.png:1 
+            
+            
+           GET http://localhost:8000/images/149_altare_del_fuoco.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:237
+(anonymous) @ game-ui.js?v=3:157
+updateHand @ game-ui.js?v=3:156
+updateBoard @ game-ui.js?v=3:114
+startTurn @ game-engine.js?v=3:112
+endTurn @ game-engine.js?v=3:768
+(anonymous) @ game-engine.js?v=3:744
+setTimeout
+endCombatPhase @ game-engine.js?v=3:743
+(anonymous) @ game-engine.js?v=3:629
+setTimeout
+(anonymous) @ game-engine.js?v=3:628
+setTimeout
+confirmAttackers @ game-engine.js?v=3:625
+button.onclick @ game-ui.js?v=3:837
+274_altare_dell_aria.png:1 
+            
+            
+           GET http://localhost:8000/images/274_altare_dell_aria.png 404 (File not found)
+Image
+createCardElement @ game-ui.js?v=3:237
+(anonymous) @ game-ui.js?v=3:157
+updateHand @ game-ui.js?v=3:156
+updateBoard @ game-ui.js?v=3:115
+startTurn @ game-engine.js?v=3:112
+endTurn @ game-engine.js?v=3:768
+(anonymous) @ game-engine.js?v=3:744
+setTimeout
+endCombatPhase @ game-engine.js?v=3:743
+(anonymous) @ game-engine.js?v=3:629
+setTimeout
+(anonymous) @ game-engine.js?v=3:628
+setTimeout
+confirmAttackers @ game-engine.js?v=3:625
+button.onclick @ game-ui.js?v=3:837

@@ -4,6 +4,93 @@
  */
 
 const LiryaCardPrinter = (() => {
+    // Cache per le immagini convertite in base64
+    const imageCache = new Map();
+    
+    /**
+     * Converte un'immagine in base64
+     * @param {string} imageUrl - URL dell'immagine
+     * @returns {Promise<string>} - Immagine in formato base64
+     */
+    const imageToBase64 = (imageUrl) => {
+        return new Promise((resolve, reject) => {
+            // Controlla se l'immagine è già in cache
+            if (imageCache.has(imageUrl)) {
+                resolve(imageCache.get(imageUrl));
+                return;
+            }
+            
+            const img = new Image();
+            img.crossOrigin = 'anonymous'; // Per evitare problemi CORS
+            
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                
+                canvas.width = img.width;
+                canvas.height = img.height;
+                
+                ctx.drawImage(img, 0, 0);
+                
+                try {
+                    const base64 = canvas.toDataURL('image/png');
+                    imageCache.set(imageUrl, base64);
+                    resolve(base64);
+                } catch (error) {
+                    console.warn('Errore conversione immagine:', imageUrl, error);
+                    resolve(''); // Restituisci stringa vuota se non riesce
+                }
+            };
+            
+            img.onerror = () => {
+                console.warn('Immagine non trovata:', imageUrl);
+                resolve(''); // Restituisci stringa vuota se l'immagine non esiste
+            };
+            
+            // Gestisci percorsi relativi
+            if (imageUrl.startsWith('../images/')) {
+                img.src = imageUrl.replace('../images/', './images/');
+            } else if (imageUrl.startsWith('./images/')) {
+                img.src = imageUrl;
+            } else {
+                img.src = imageUrl;
+            }
+        });
+    };
+    
+    /**
+     * Pre-carica tutte le immagini delle carte
+     * @param {Array} cards - Array delle carte
+     * @param {Function} progressCallback - Callback per il progresso
+     */
+    const preloadImages = async (cards, progressCallback = null) => {
+        const uniqueImages = new Set();
+        
+        // Raccogli tutte le immagini uniche dalle carte
+        cards.forEach(card => {
+            if (card.img) {
+                uniqueImages.add(card.img);
+            }
+        });
+        
+        const imageUrls = Array.from(uniqueImages);
+        const total = imageUrls.length;
+        
+        console.log(`Pre-caricamento di ${total} immagini...`);
+        
+        // Carica tutte le immagini in parallelo
+        const promises = imageUrls.map(async (imageUrl, index) => {
+            const base64 = await imageToBase64(imageUrl);
+            if (progressCallback) {
+                progressCallback(index + 1, total);
+            }
+            return base64;
+        });
+        
+        await Promise.all(promises);
+        console.log('Pre-caricamento immagini completato');
+    };
+    
     // Impostazioni per la generazione del PDF
     const settings = {
         cardsPerPage: 9,      // 9 carte per pagina (3x3)
@@ -26,6 +113,18 @@ const LiryaCardPrinter = (() => {
         try {
             // Assicuriamoci che i template SVG siano caricati
             await CardRenderer.loadTemplates();
+            
+            // Pre-carica tutte le immagini delle carte e convertile in base64
+            if (progressCallback) progressCallback(0, 100, 'Pre-caricamento immagini...');
+            await preloadImages(cards, (current, total) => {
+                if (progressCallback) {
+                    const percentage = Math.floor((current / total) * 30); // 30% per le immagini
+                    progressCallback(percentage, 100, `Caricamento immagini ${current}/${total}...`);
+                }
+            });
+            
+            // Rendi disponibile la cache delle immagini globalmente
+            window.imageCache = imageCache;
             
             // Inizializza il PDF
             const { jsPDF } = window.jspdf;
@@ -52,6 +151,11 @@ const LiryaCardPrinter = (() => {
             
             // Loop per ogni pagina
             for (let page = 0; page < totalPages; page++) {
+                // Aggiorna il progresso (30% + 60% per le pagine)
+                if (progressCallback) {
+                    const pageProgress = Math.floor(30 + (page / totalPages) * 60);
+                    progressCallback(pageProgress, 100, `Generazione pagina ${page + 1}/${totalPages}...`);
+                }
                 // Se non è la prima pagina, aggiungi una nuova pagina
                 if (page > 0) {
                     pdf.addPage();
@@ -118,21 +222,28 @@ const LiryaCardPrinter = (() => {
                     pdf.internal.pageSize.getHeight());
                 
                 console.log(`Pagina ${currentPage}/${totalPages} generata.`);
-                
-                // Aggiorna il progresso
-                if (progressCallback) {
-                    progressCallback(currentPage, totalPages);
-                }
-                
                 currentPage++;
             }
             
             // Rimuovi il container temporaneo
             document.body.removeChild(container);
             
+            // Pulizia della cache delle immagini
+            window.imageCache = null;
+            
+            // Aggiorna progresso finale
+            if (progressCallback) {
+                progressCallback(95, 100, 'Salvataggio PDF...');
+            }
+            
             // Salva il PDF
             pdf.save(filename);
             console.log(`PDF ${filename} generato con successo!`);
+            
+            // Progresso completato
+            if (progressCallback) {
+                progressCallback(100, 100, 'PDF generato con successo!');
+            }
             
             return true;
         } catch (error) {

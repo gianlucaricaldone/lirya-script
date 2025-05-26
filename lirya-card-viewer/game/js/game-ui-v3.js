@@ -147,7 +147,20 @@ class UIManager {
                 if (creature && firstLineSlots[position]) {
                     // La creatura potrebbe essere direttamente la carta, non un wrapper
                     const card = creature.card || creature;
-                    const cardEl = this.createCardElement(card, {
+                    
+                    // Verifica che la carta esista e abbia le proprietà necessarie
+                    if (!card || !card.name) {
+                        console.error('[UI] Invalid card in firstLine position', position, 'creature:', creature);
+                        return; // Skip this iteration in forEach
+                    }
+                    
+                    // Se c'è un wrapper creatura, passa anche currentHealth alla carta
+                    const cardWithHealth = creature.card ? {
+                        ...card,
+                        currentHealth: creature.currentHealth
+                    } : card;
+                    console.log('[UI] Rendering creature in firstLine:', creature, 'card:', card, 'hasWrapper:', !!creature.card);
+                    const cardEl = this.createCardElement(cardWithHealth, {
                         playerId: playerId,
                         zone: 'firstLine',
                         position: position
@@ -179,7 +192,19 @@ class UIManager {
                 if (creature && secondLineSlots[position]) {
                     // La creatura potrebbe essere direttamente la carta, non un wrapper
                     const card = creature.card || creature;
-                    const cardEl = this.createCardElement(card, {
+                    
+                    // Verifica che la carta esista e abbia le proprietà necessarie
+                    if (!card || !card.name) {
+                        console.error('[UI] Invalid card in secondLine position', position, 'creature:', creature);
+                        return; // Skip this iteration in forEach
+                    }
+                    
+                    // Se c'è un wrapper creatura, passa anche currentHealth alla carta
+                    const cardWithHealth = creature.card ? {
+                        ...card,
+                        currentHealth: creature.currentHealth
+                    } : card;
+                    const cardEl = this.createCardElement(cardWithHealth, {
                         playerId: playerId,
                         zone: 'secondLine',
                         position: position

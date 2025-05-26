@@ -98,6 +98,12 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Aggiungi l'ID della carta come attributo data per la selezione
             cardElement.dataset.cardId = card.id;
+            
+            // Se la carta ha una quantità dal mazzo, mostrala
+            if (card.deckQuantity) {
+                cardElement.classList.add('deck-card');
+                cardElement.setAttribute('data-deck-quantity', card.deckQuantity);
+            }
 
             // Crea l'HTML della carta
             cardElement.innerHTML = `
@@ -132,6 +138,14 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Rendi disponibile globalmente le carte filtrate per il generatore PDF
         window.filteredCards = filteredCards;
+        
+        // Gestisci classe CSS per indicare filtro mazzo attivo
+        const filters = event.detail;
+        if (filters.deck) {
+            document.body.classList.add('deck-filter-active');
+        } else {
+            document.body.classList.remove('deck-filter-active');
+        }
 
         // Aggiorna la visualizzazione
         displayCards(filteredCards);

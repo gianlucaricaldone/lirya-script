@@ -185,7 +185,21 @@ class GameEngine {
 
         // Rimuovi dalla mano e posiziona sul campo
         this.state.getPlayer(playerId).hand.splice(cardIndex, 1);
-        zone[freeSlot] = card;
+        
+        // Crea l'oggetto creatura con le proprietà necessarie
+        const creature = {
+            card: card,
+            tapped: false,
+            summoningSickness: true, // Non può attaccare nel turno in cui viene evocata
+            currentHealth: card.stats?.health || card.health || card.stats?.defense || card.defense || 1
+        };
+        
+        // Se la carta ha haste, rimuovi summoning sickness
+        if (card.hasHaste) {
+            creature.summoningSickness = false;
+        }
+        
+        zone[freeSlot] = creature;
 
         // Registra le abilità della carta
         const location = {
@@ -401,11 +415,24 @@ class GameEngine {
     
     // Dichiara una creatura come attaccante
     declareAttacker(playerId, zone, position) {
-        if (this.state.currentPhase !== 'combat_declare') return false;
-        if (playerId !== this.state.currentPlayer) return false;
+        console.log(`declareAttacker chiamato: phase=${this.state.currentPhase}, playerId=${playerId}, currentPlayer=${this.state.currentPlayer}`);
         
-        const creature = this.state.getZone(playerId, zone)[position];
-        if (!creature || creature.type !== 'Personaggio') return false;
+        if (this.state.currentPhase !== 'combat_declare') {
+            console.log('Non in fase combat_declare');
+            return false;
+        }
+        if (playerId !== this.state.currentPlayer) {
+            console.log('Non è il turno del giocatore');
+            return false;
+        }
+        
+        const creatureSlot = this.state.getZone(playerId, zone)[position];
+        const creature = creatureSlot?.card || creatureSlot;
+        
+        if (!creature || creature.type !== 'Personaggio') {
+            console.log('Non è una creatura valida:', creature);
+            return false;
+        }
         
         // Controlla se questa creatura è già stata dichiarata come attaccante
         const alreadyAttacking = this.state.combat.attackers.some(attacker => 
@@ -462,7 +489,10 @@ class GameEngine {
             .map((card, position) => ({ card, position }))
             .filter(({ card }) => card !== null);
             
-        // Nota: attualmente non c'è terza linea nel gioco, ma la struttura supporta solo prima e seconda linea
+        // Ottieni le strutture nemiche
+        const enemyStructures = this.state.getZone(defenderId, 'structures')
+            .map((card, position) => ({ card, position }))
+            .filter(({ card }) => card !== null);
         
         if (attackerZone === 'firstLine') {
             // PRIMA LINEA può attaccare:
@@ -491,12 +521,25 @@ class GameEngine {
                 });
             }
             
-            // 3. Il giocatore SOLO se entrambe le linee sono vuote
+            // 3. Le strutture SOLO se entrambe le linee sono vuote
             if (enemyFirstLine.length === 0 && enemySecondLine.length === 0) {
-                targets.push({
-                    type: 'player',
-                    playerId: defenderId
+                enemyStructures.forEach(({ card, position }) => {
+                    targets.push({
+                        type: 'structure',
+                        card,
+                        playerId: defenderId,
+                        zone: 'structures',
+                        position
+                    });
                 });
+                
+                // 4. Il giocatore SOLO se non ci sono creature né strutture
+                if (enemyStructures.length === 0) {
+                    targets.push({
+                        type: 'player',
+                        playerId: defenderId
+                    });
+                }
             }
             
         } else if (attackerZone === 'secondLine') {
@@ -523,7 +566,18 @@ class GameEngine {
                 });
             });
             
-            // 2. Il giocatore SOLO se entrambe le linee sono vuote
+            // 2. Le strutture (la seconda linea può sempre attaccare le strutture)
+            enemyStructures.forEach(({ card, position }) => {
+                targets.push({
+                    type: 'structure',
+                    card,
+                    playerId: defenderId,
+                    zone: 'structures',
+                    position
+                });
+            });
+            
+            // 3. Il giocatore SOLO se non ci sono creature
             if (enemyFirstLine.length === 0 && enemySecondLine.length === 0) {
                 targets.push({
                     type: 'player',
@@ -718,6 +772,49 @@ class GameEngine {
         }, 1000);
     }
 
+    // Distrugge una creatura
+    destroyCreature(target) {
+        console.log('[GameEngine] destroyCreature:', target);
+        
+        if (!target || !target.card) {
+            console.error('[GameEngine] Target non valido per destroyCreature');
+            return;
+        }
+        
+        const { playerId, zone, position } = target;
+        
+        // Trova la zona corretta
+        let zoneArray;
+        if (zone === 'firstLine') {
+            zoneArray = this.state.getPlayer(playerId).field.firstLine;
+        } else if (zone === 'secondLine') {
+            zoneArray = this.state.getPlayer(playerId).field.secondLine;
+        } else {
+            console.error('[GameEngine] Zona non valida:', zone);
+            return;
+        }
+        
+        // Rimuovi la carta dalla zona
+        const removedCard = zoneArray[position];
+        if (removedCard) {
+            zoneArray[position] = null;
+            
+            // Aggiungi al cimitero
+            this.state.getPlayer(playerId).graveyard.push(removedCard);
+            
+            // Trigger eventi di morte
+            if (this.abilities) {
+                this.abilities.triggerEvent('onDeath', {
+                    card: removedCard,
+                    playerId: playerId
+                });
+            }
+            
+            // Aggiorna UI
+            this.ui.updateBoard(this.state);
+        }
+    }
+    
     // Fine turno
     endTurn() {
         if (this.isProcessing) return;
