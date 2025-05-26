@@ -11,7 +11,10 @@
       "Bash(./rename_by_rarity.sh:*)",
       "Bash(python3:*)",
       "Bash(./rename_no_numbers.sh)",
-      "Bash(echo:*)"
+      "Bash(echo:*)",
+      "Bash(git restore:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": []
   }
