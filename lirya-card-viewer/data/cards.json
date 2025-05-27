@@ -125,13 +125,20 @@
     "cost": 2,
     "abilities": [
       {
-        "name": "Abilità Senza Nome",
-        "description": "Una volta per partita, puoi ripescare una carta scartata",
-        "type": "passive",
+        "name": "Fortuna Rinnovata",
+        "description": "Una volta per partita: Cura completamente un personaggio alleato",
+        "type": "activated",
         "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Una volta per partita, puoi ripescare una carta scartata",
-        "effects": []
+        "cost": {
+          "energy": 0
+        },
+        "effects": [
+          {
+            "type": "heal",
+            "target": "target_ally",
+            "value": 999
+          }
+        ]
       }
     ],
     "flavor_text": "Un semplice anello d'argento che, secondo la leggenda, è in grado di alterare leggermente il corso del destino.",
@@ -652,12 +659,18 @@
     },
     "abilities": [
       {
-        "name": "Rivelazione",
-        "description": "Quando entra in gioco, puoi rivelare una carta dalla tua mano. Se è un incantesimo, pesca una carta.",
+        "name": "Intuizione Divina",
+        "description": "Quando entra in gioco: Pesca una carta",
         "type": "triggered",
         "trigger": "on_play",
-        "effect_text": "puoi rivelare una carta dalla tua mano. Se è un incantesimo, pesca una carta.",
-        "effects": []
+        "cost": {},
+        "effects": [
+          {
+            "type": "draw_card",
+            "target": "self",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Cacciatore di segreti al servizio di Dawnfield, determinato a portare alla luce ogni verità nascosta.",
@@ -680,12 +693,31 @@
     },
     "abilities": [
       {
-        "name": "Illuminazione",
-        "description": "Quando entra in gioco, guarda la prima carta del mazzo dell'avversario.",
+        "name": "Visione Sacra",
+        "description": "Quando entra in gioco: Dai +1/+1 a un altro personaggio Luce",
         "type": "triggered",
         "trigger": "on_play",
-        "effect_text": "guarda la prima carta del mazzo dell'avversario.",
-        "effects": []
+        "cost": {},
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "target_ally",
+            "filter": {
+              "element": "Luce"
+            },
+            "stat": "attack",
+            "value": 1
+          },
+          {
+            "type": "stat_modifier",
+            "target": "target_ally",
+            "filter": {
+              "element": "Luce"
+            },
+            "stat": "defense",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Studioso del Prisma, dedito allo studio dell'illuminazione sia fisica che spirituale.",
@@ -927,12 +959,18 @@
     },
     "abilities": [
       {
-        "name": "Ricognizione",
-        "description": "Quando entra in gioco, guarda la prima carta del tuo mazzo.",
+        "name": "Scoperta Rapida",
+        "description": "Quando entra in gioco: Guadagni 1 energia",
         "type": "triggered",
         "trigger": "on_play",
-        "effect_text": "guarda la prima carta del tuo mazzo.",
-        "effects": []
+        "cost": {},
+        "effects": [
+          {
+            "type": "gain_energy",
+            "target": "self",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Giovane avventuriero all'inizio della sua carriera, ansioso di mappare terre inesplorate.",
@@ -1057,21 +1095,17 @@
     },
     "abilities": [
       {
-        "name": "Occhi del Falco",
-        "description": "Una volta per turno, puoi guardare la prima carta del mazzo avversario.",
-        "type": "activated",
+        "name": "Vista del Falco",
+        "description": "Può attaccare creature in seconda linea",
+        "type": "passive",
         "trigger": "always",
+        "cost": {},
         "effects": [
           {
-            "type": "look_at_cards",
-            "target": "enemy_deck",
-            "position": "top",
-            "value": 1
+            "type": "ability_grant",
+            "ability": "reach"
           }
-        ],
-        "cost": {
-          "uses_per_turn": 1
-        }
+        ]
       }
     ],
     "flavor_text": "Addestratore di falchi delle terre di Emberhold, i suoi compagni pennuti hanno occhi che non temono il calore.",
@@ -1091,20 +1125,18 @@
     },
     "abilities": [
       {
-        "name": "Guida",
-        "description": "Una volta per turno, puoi guardare le prime 2 carte del tuo mazzo e rimetterle in cima in qualsiasi ordine.",
-        "type": "activated",
-        "trigger": "always",
+        "name": "Guida Luminosa",
+        "description": "All'inizio del tuo turno: Pesca una carta aggiuntiva",
+        "type": "triggered",
+        "trigger": "start_of_turn",
+        "cost": {},
         "effects": [
           {
-            "type": "scry",
+            "type": "draw_card",
             "target": "self",
-            "value": 2
+            "value": 1
           }
-        ],
-        "cost": {
-          "uses_per_turn": 1
-        }
+        ]
       }
     ],
     "flavor_text": "La sua luce guida i viaggiatori attraverso i pericolosi passaggi costieri di Tidemire.",
@@ -1966,12 +1998,30 @@
     },
     "abilities": [
       {
-        "name": "Preghiera al Cielo",
-        "description": "Quando entra in gioco, guarda le prime 2 carte del tuo mazzo e rimettile in cima in qualsiasi ordine.",
+        "name": "Voce del Vento",
+        "description": "Quando entra in gioco: Dai +1/+1 a tutti i tuoi personaggi Aria",
         "type": "triggered",
         "trigger": "on_play",
-        "effect_text": "guarda le prime 2 carte del tuo mazzo e rimettile in cima in qualsiasi ordine.",
-        "effects": []
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Aria"
+            },
+            "stat": "attack",
+            "value": 1
+          },
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Aria"
+            },
+            "stat": "defense",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Membro della Fratellanza del Soffio Vitale, interpreta i messaggi degli spiriti portati dal vento.",
@@ -2204,12 +2254,18 @@
     },
     "abilities": [
       {
-        "name": "Infiltrazione",
-        "description": "Quando entra in gioco, guarda la mano dell'avversario.",
+        "name": "Colpo Furtivo",
+        "description": "Quando entra in gioco: Infligge 2 danni a una creatura nemica",
         "type": "triggered",
         "trigger": "on_play",
-        "effect_text": "guarda la mano dell'avversario.",
-        "effects": []
+        "cost": {},
+        "effects": [
+          {
+            "type": "damage",
+            "target": "target_enemy",
+            "value": 2
+          }
+        ]
       }
     ],
     "flavor_text": "Scout di Veilcrest, si muove invisibile tra le ombre per raccogliere informazioni.",
@@ -2734,12 +2790,19 @@
     },
     "abilities": [
       {
-        "name": "Intuizione",
-        "description": "Quando entra in gioco, guarda la prima carta del tuo mazzo. Puoi metterla in fondo.",
+        "name": "Sapienza Fluida",
+        "description": "Quando entra in gioco: Pesca una carta se controlli un'altra creatura Acqua",
         "type": "triggered",
         "trigger": "on_play",
-        "effect_text": "guarda la prima carta del tuo mazzo. Puoi metterla in fondo.",
-        "effects": []
+        "condition": {
+          "has_element": "Acqua"
+        },
+        "effects": [
+          {
+            "type": "draw_card",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Ricercatore del Collegium, dedica la sua vita allo studio dei flussi acquatici e delle loro proprietà.",
@@ -3107,12 +3170,18 @@
     },
     "abilities": [
       {
-        "name": "Mappatura",
-        "description": "Quando entra in gioco, guarda la prima carta del tuo mazzo.",
+        "name": "Mappatura Veloce",
+        "description": "Quando entra in gioco: Le tue creature guadagnano +1 movimento questo turno",
         "type": "triggered",
         "trigger": "on_play",
-        "effect_text": "guarda la prima carta del tuo mazzo.",
-        "effects": []
+        "effects": [
+          {
+            "type": "ability_grant",
+            "target": "all_allies",
+            "ability": "swift",
+            "duration": "until_end_of_turn"
+          }
+        ]
       }
     ],
     "flavor_text": "Giovane esploratore che documenta le terre inesplorate di Lirya con meticolosa precisione.",
@@ -3250,12 +3319,17 @@
     },
     "abilities": [
       {
-        "name": "Messaggio del Vento",
-        "description": "Quando entra in gioco, guarda le prime 2 carte del tuo mazzo. Puoi aggiungerne una alla tua mano e mettere l'altra in fondo.",
+        "name": "Sussurri dell'Aria",
+        "description": "Quando entra in gioco: Pesca 2 carte, poi scarta 1 carta",
         "type": "triggered",
         "trigger": "on_play",
-        "effect_text": "guarda le prime 2 carte del tuo mazzo. Puoi aggiungerne una alla tua mano e mettere l'altra in fondo.",
-        "effects": []
+        "effects": [
+          {
+            "type": "draw_then_discard",
+            "draw": 2,
+            "discard": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Interprete dei sussurri degli spiriti dell'aria, può percepire messaggi portati dalle brezze.",
@@ -3334,12 +3408,18 @@
     },
     "abilities": [
       {
-        "name": "Scoperta del Tesoro",
-        "description": "Quando entra in gioco, guarda le prime 4 carte del tuo mazzo. Puoi rivelare un Equipaggiamento e aggiungerlo alla tua mano. Rimescola le altre.",
+        "name": "Tesoro Trovato",
+        "description": "Quando entra in gioco: Riduci di 2 il costo del prossimo Equipaggiamento che giochi",
         "type": "triggered",
         "trigger": "on_play",
-        "effect_text": "guarda le prime 4 carte del tuo mazzo. Puoi rivelare un Equipaggiamento e aggiungerlo alla tua mano. Rimescola le altre.",
-        "effects": []
+        "cost": {},
+        "effects": [
+          {
+            "type": "cost_reduction",
+            "target": "next_equipment",
+            "value": 2
+          }
+        ]
       }
     ],
     "flavor_text": "Avventuriero alla ricerca di antichi manufatti, sempre pronto a esplorare rovine dimenticate.",
@@ -3902,13 +3982,30 @@
     },
     "abilities": [
       {
-        "name": "Intuizione Selvaggia",
-        "description": "Quando un Ranger alleato entra in gioco, puoi guardare le prime 2 carte del tuo mazzo e rimetterle in qualsiasi ordine.",
-        "type": "passive",
+        "name": "Rifugio dei Ranger",
+        "description": "I tuoi Ranger hanno +1/+1",
+        "type": "aura",
         "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Quando un Ranger alleato entra in gioco, puoi guardare le prime 2 carte del tuo mazzo e rimetterle in qualsiasi ordine.",
-        "effects": []
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "class": "Ranger"
+            },
+            "stat": "attack",
+            "value": 1
+          },
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "class": "Ranger"
+            },
+            "stat": "defense",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Questo boschetto sacro affina i sensi di chi lo attraversa, rivelando percorsi nascosti agli occhi comuni.",
@@ -4465,12 +4562,17 @@
     },
     "abilities": [
       {
-        "name": "Divinazione Minore",
-        "description": "Quando entra in gioco, guarda la prima carta del tuo mazzo. Puoi metterla in fondo.",
+        "name": "Corrente Curativa",
+        "description": "Quando entra in gioco: Cura 1 danno a tutte le tue creature",
         "type": "triggered",
         "trigger": "on_play",
-        "effect_text": "guarda la prima carta del tuo mazzo. Puoi metterla in fondo.",
-        "effects": []
+        "effects": [
+          {
+            "type": "heal",
+            "target": "all_allies",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Studente del Collegium di Tidemire, alla sua prima missione di osservazione delle correnti marine.",
@@ -4549,12 +4651,20 @@
     },
     "abilities": [
       {
-        "name": "Scansione Aerea",
-        "description": "Quando entra in gioco, puoi rivelare una carta dalla tua mano. Se è un personaggio Aria, evocalo pagando 1 energia in meno.",
+        "name": "Volo Rapido",
+        "description": "Quando entra in gioco: Un personaggio Aria alleato può attaccare immediatamente",
         "type": "triggered",
         "trigger": "on_play",
-        "effect_text": "puoi rivelare una carta dalla tua mano. Se è un personaggio Aria, evocalo pagando 1 energia in meno.",
-        "effects": []
+        "effects": [
+          {
+            "type": "ability_grant",
+            "target": "target_ally",
+            "filter": {
+              "element": "Aria"
+            },
+            "ability": "haste"
+          }
+        ]
       }
     ],
     "flavor_text": "Esploratore degli Altipiani di Aeros, usa correnti ascensionali per pattugliare vaste aree.",
@@ -4575,15 +4685,30 @@
     },
     "abilities": [
       {
-        "name": "Mobilità",
-        "description": "I tuoi personaggi Aria guadagnano \"Mobilità\" (possono cambiare linea senza costi). All'inizio del tuo turno, puoi guardare la prima carta del tuo mazzo.",
-        "type": "triggered",
-        "trigger": "start_of_turn",
-        "condition": {
-          "controller": "self"
-        },
-        "effect_text": "puoi guardare la prima carta del tuo mazzo.",
-        "effects": []
+        "name": "Venti di Libertà",
+        "description": "I tuoi personaggi Aria hanno +1 ATT e possono attaccare appena giocati",
+        "type": "aura",
+        "trigger": "always",
+        "cost": {},
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Aria"
+            },
+            "stat": "attack",
+            "value": 1
+          },
+          {
+            "type": "ability_grant",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Aria"
+            },
+            "ability": "haste"
+          }
+        ]
       }
     ],
     "flavor_text": "Vaste praterie dove tribù nomadi allevano mandrie e praticano forme uniche di magia basate sui cicli naturali.",
@@ -4656,12 +4781,17 @@
     },
     "abilities": [
       {
-        "name": "Ricognizione",
-        "description": "Quando entra in gioco, guarda le prime 2 carte del tuo mazzo e rimettile in cima in qualsiasi ordine.",
+        "name": "Tiro Preciso",
+        "description": "Quando entra in gioco: Infligge 1 danno a una creatura nemica",
         "type": "triggered",
         "trigger": "on_play",
-        "effect_text": "guarda le prime 2 carte del tuo mazzo e rimettile in cima in qualsiasi ordine.",
-        "effects": []
+        "effects": [
+          {
+            "type": "damage",
+            "target": "target_enemy",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Guida esperta che conosce i sentieri più sicuri attraverso le terre selvagge di Lirya.",
@@ -5174,13 +5304,24 @@
     },
     "abilities": [
       {
-        "name": "Osservatore Vigile",
-        "description": "Finché questo personaggio è in prima linea, puoi guardare la prima carta del mazzo avversario all'inizio del tuo turno.",
+        "name": "Vedetta del Cielo",
+        "description": "Mentre è in prima linea: I tuoi personaggi Aria hanno +1 ATT",
         "type": "passive",
-        "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Finché questo personaggio è in prima linea, puoi guardare la prima carta del mazzo avversario all'inizio del tuo turno.",
-        "effects": []
+        "trigger": "while_in_zone",
+        "condition": {
+          "zone": "firstLine"
+        },
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Aria"
+            },
+            "stat": "attack",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Capitano delle guardie di Mistral, niente sfugge al suo sguardo acuto.",
@@ -5203,15 +5344,18 @@
     },
     "abilities": [
       {
-        "name": "Previsione Meteorologica",
-        "description": "All'inizio del tuo turno, puoi guardare la prima carta del tuo mazzo e decidere se tenerla in cima o metterla in fondo.",
+        "name": "Visione del Futuro",
+        "description": "All'inizio del tuo turno: Guadagni 2 energie extra",
         "type": "triggered",
         "trigger": "start_of_turn",
-        "condition": {
-          "controller": "self"
-        },
-        "effect_text": "puoi guardare la prima carta del tuo mazzo e decidere se tenerla in cima o metterla in fondo.",
-        "effects": []
+        "cost": {},
+        "effects": [
+          {
+            "type": "gain_energy",
+            "target": "self",
+            "value": 2
+          }
+        ]
       }
     ],
     "flavor_text": "Divinatrice meteorologica di Mistral, i suoi avvertimenti hanno salvato innumerevoli vite.",
@@ -5430,14 +5574,28 @@
     "abilities": [
       {
         "name": "Orientamento Perfetto",
-        "description": "\"All'inizio del tuo turno, guarda la prima carta del tuo mazzo. Puoi metterla in fondo\"",
-        "type": "triggered",
-        "trigger": "start_of_turn",
-        "condition": {
-          "controller": "self"
-        },
-        "effect_text": "guarda la prima carta del tuo mazzo. Puoi metterla in fondo\"",
-        "effects": []
+        "description": "Il personaggio equipaggiato ha +1/+1 e può cambiare linea gratuitamente",
+        "type": "passive",
+        "trigger": "always",
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "equipped",
+            "stat": "attack",
+            "value": 1
+          },
+          {
+            "type": "stat_modifier",
+            "target": "equipped",
+            "stat": "defense",
+            "value": 1
+          },
+          {
+            "type": "ability_grant",
+            "target": "equipped",
+            "ability": "mobile"
+          }
+        ]
       }
     ],
     "flavor_text": "Un dispositivo misterioso che indica sempre la direzione giusta, anche quando tutte le altre guide falliscono.",
@@ -5566,13 +5724,40 @@
     },
     "abilities": [
       {
-        "name": "Sapienza di Tidemire",
-        "description": "Livello 1: +1 ATT ai tuoi Maghi Acqua\nLivello 2: +1 ATT e riduce di 1 il costo degli incantesimi Acqua\nLivello 3: +2 ATT ai tuoi Maghi Acqua, riduce di 1 il costo degli incantesimi Acqua e una volta per turno puoi guardare le prime 3 carte del tuo mazzo",
-        "type": "passive",
+        "name": "Accademia Mistica",
+        "description": "I tuoi Maghi Acqua hanno +1/+1. Gli incantesimi Acqua costano 1 in meno",
+        "type": "aura",
         "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Livello 1: +1 ATT ai tuoi Maghi Acqua\nLivello 2: +1 ATT e riduce di 1 il costo degli incantesimi Acqua\nLivello 3: +2 ATT ai tuoi Maghi Acqua, riduce di 1 il costo degli incantesimi Acqua e una volta per turno puoi guardare le prime 3 carte del tuo mazzo",
-        "effects": []
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "class": "Mago",
+              "element": "Acqua"
+            },
+            "stat": "attack",
+            "value": 1
+          },
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "class": "Mago",
+              "element": "Acqua"
+            },
+            "stat": "defense",
+            "value": 1
+          },
+          {
+            "type": "cost_reduction",
+            "target": "spells",
+            "filter": {
+              "element": "Acqua"
+            },
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "I suoi corridoi sommersi contengono sapere dimenticato dal resto del mondo, custodito dai flutti per millenni.",
@@ -5797,12 +5982,16 @@
     },
     "abilities": [
       {
-        "name": "Ricognizione",
-        "description": "Quando entra in gioco, guarda le prime 3 carte del tuo mazzo. Puoi mettere una di esse in mano.",
+        "name": "Veterano dell'Esplorazione",
+        "description": "Quando entra in gioco: Pesca 2 carte",
         "type": "triggered",
         "trigger": "on_play",
-        "effect_text": "guarda le prime 3 carte del tuo mazzo. Puoi mettere una di esse in mano.",
-        "effects": []
+        "effects": [
+          {
+            "type": "draw_card",
+            "value": 2
+          }
+        ]
       }
     ],
     "flavor_text": "Cartografo e guida nelle regioni più pericolose di Lirya, conosce sentieri che nessun altro ha mai mappato.",
@@ -5904,15 +6093,22 @@
     },
     "abilities": [
       {
-        "name": "Cristallomanzia",
-        "description": "All'inizio del tuo turno, puoi guardare le prime due carte del tuo mazzo e rimetterle in cima in qualsiasi ordine.",
+        "name": "Conoscenza della Terra",
+        "description": "All'inizio del tuo turno: I tuoi personaggi Terra guadagnano +1 DIF fino alla fine del turno",
         "type": "triggered",
         "trigger": "start_of_turn",
-        "condition": {
-          "controller": "self"
-        },
-        "effect_text": "puoi guardare le prime due carte del tuo mazzo e rimetterle in cima in qualsiasi ordine.",
-        "effects": []
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Terra"
+            },
+            "stat": "defense",
+            "value": 1,
+            "duration": "until_end_of_turn"
+          }
+        ]
       }
     ],
     "flavor_text": "Studioso dei cristalli senzienti di Stonereach, può leggere il futuro nelle formazioni geologiche.",
@@ -6556,15 +6752,20 @@
     },
     "abilities": [
       {
-        "name": "Conoscenza Cosmica",
-        "description": "All'inizio del tuo turno, puoi guardare le prime 3 carte del tuo mazzo e rimescolarle o rimetterle in qualsiasi ordine.",
+        "name": "Previsione Astrale",
+        "description": "All'inizio del tuo turno: Tutte le tue creature guadagnano +1 ATT fino alla fine del turno",
         "type": "triggered",
         "trigger": "start_of_turn",
-        "condition": {
-          "controller": "self"
-        },
-        "effect_text": "puoi guardare le prime 3 carte del tuo mazzo e rimescolarle o rimetterle in qualsiasi ordine.",
-        "effects": []
+        "cost": {},
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "all_allies",
+            "stat": "attack",
+            "value": 1,
+            "duration": "until_end_of_turn"
+          }
+        ]
       }
     ],
     "flavor_text": "Dall'alto di questa torre i maghi studiano le stelle, prevedendo il futuro e canalizzando energie cosmiche.",
@@ -6903,13 +7104,24 @@
     },
     "abilities": [
       {
-        "name": "Compagno Alato",
-        "description": "Una volta per turno, puoi rivelare la prima carta del tuo mazzo. Se è un personaggio Aria, aggiungila alla tua mano.",
-        "type": "passive",
-        "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Una volta per turno, puoi rivelare la prima carta del tuo mazzo. Se è un personaggio Aria, aggiungila alla tua mano.",
-        "effects": []
+        "name": "Maestra dei Venti",
+        "description": "Una volta per turno: Un personaggio Aria alleato guadagna +2/+0 fino alla fine del turno",
+        "type": "activated",
+        "cost": {
+          "energy": 1
+        },
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "target_ally",
+            "filter": {
+              "element": "Aria"
+            },
+            "stat": "attack",
+            "value": 2,
+            "duration": "until_end_of_turn"
+          }
+        ]
       }
     ],
     "flavor_text": "Maestra dei Falchi delle Alture, può comunicare con gli uccelli creando legami profondi.",
@@ -6932,12 +7144,27 @@
     },
     "abilities": [
       {
-        "name": "Insinuazione",
-        "description": "Quando entra in gioco, guarda la mano dell'avversario e scegli una carta. L'avversario scarta quella carta.",
+        "name": "Maledizione Oscura",
+        "description": "Quando entra in gioco: Una creatura nemica ottiene -2/-2",
         "type": "triggered",
         "trigger": "on_play",
-        "effect_text": "guarda la mano dell'avversario e scegli una carta. L'avversario scarta quella carta.",
-        "effects": []
+        "cost": {},
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "target_enemy",
+            "stat": "attack",
+            "value": -2,
+            "duration": "permanent"
+          },
+          {
+            "type": "stat_modifier",
+            "target": "target_enemy",
+            "stat": "defense",
+            "value": -2,
+            "duration": "permanent"
+          }
+        ]
       }
     ],
     "flavor_text": "Infiltratore della Congrega dell'Ombra, può sussurrare direttamente nella mente delle sue vittime.",
@@ -7058,15 +7285,19 @@
     },
     "abilities": [
       {
-        "name": "Percezione Tellurica",
-        "description": "All'inizio del tuo turno, puoi guardare la prima carta del mazzo dell'avversario.",
+        "name": "Guardiano Immobile",
+        "description": "All'inizio del tuo turno: Guadagna +1 DIF permanentemente",
         "type": "triggered",
         "trigger": "start_of_turn",
-        "condition": {
-          "controller": "self"
-        },
-        "effect_text": "puoi guardare la prima carta del mazzo dell'avversario.",
-        "effects": []
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "self",
+            "stat": "defense",
+            "value": 1,
+            "duration": "permanent"
+          }
+        ]
       }
     ],
     "flavor_text": "Anziano del Circolo della Montagna, può percepire vibrazioni a chilometri di distanza.",
@@ -7373,13 +7604,30 @@
     },
     "abilities": [
       {
-        "name": "Visione Trascendente",
-        "description": "Quando questa carta entra in gioco, guarda le prime 5 carte del tuo mazzo. Puoi rivelare un personaggio Luce e aggiungerlo alla tua mano.",
-        "type": "passive",
-        "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Quando questa carta entra in gioco, guarda le prime 5 carte del tuo mazzo. Puoi rivelare un personaggio Luce e aggiungerlo alla tua mano.",
-        "effects": []
+        "name": "Benedizione Celestiale",
+        "description": "Quando entra in gioco: Tutti i tuoi personaggi Luce guadagnano +2/+2",
+        "type": "triggered",
+        "trigger": "on_play",
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Luce"
+            },
+            "stat": "attack",
+            "value": 2
+          },
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Luce"
+            },
+            "stat": "defense",
+            "value": 2
+          }
+        ]
       }
     ],
     "flavor_text": "Venerata veggente e consigliera spirituale di Aurelian, può percepire le connessioni tra tutti gli esseri viventi.",
@@ -7466,15 +7714,17 @@
     },
     "abilities": [
       {
-        "name": "Voce del Vento",
-        "description": "All'inizio del tuo turno, guarda la prima carta del mazzo avversario. Puoi scartarla pagando 2 energie.",
+        "name": "Tempesta Devastante",
+        "description": "All'inizio del tuo turno: Infligge 1 danno a tutte le creature nemiche",
         "type": "triggered",
         "trigger": "start_of_turn",
-        "condition": {
-          "controller": "self"
-        },
-        "effect_text": "guarda la prima carta del mazzo avversario. Puoi scartarla pagando 2 energie.",
-        "effects": []
+        "effects": [
+          {
+            "type": "damage",
+            "target": "all_enemies",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Potente sciamana delle tribù nomadi, capace di ascoltare i sussurri del vento e prevedere i futuri cambiamenti.",
@@ -7618,15 +7868,32 @@
     },
     "abilities": [
       {
-        "name": "Profezia delle Maree",
-        "description": "All'inizio del tuo turno, guarda le prime 3 carte del tuo mazzo, riorganizzale in qualsiasi ordine.",
+        "name": "Marea Crescente",
+        "description": "All'inizio del tuo turno: Tutti i tuoi personaggi Acqua guadagnano +1/+1 fino alla fine del turno",
         "type": "triggered",
         "trigger": "start_of_turn",
-        "condition": {
-          "controller": "self"
-        },
-        "effect_text": "guarda le prime 3 carte del tuo mazzo, riorganizzale in qualsiasi ordine.",
-        "effects": []
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Acqua"
+            },
+            "stat": "attack",
+            "value": 1,
+            "duration": "until_end_of_turn"
+          },
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Acqua"
+            },
+            "stat": "defense",
+            "value": 1,
+            "duration": "until_end_of_turn"
+          }
+        ]
       }
     ],
     "flavor_text": "Regina visionaria di Tidemire, capace di prevedere eventi futuri attraverso complessi rituali acquatici.",
