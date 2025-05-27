@@ -2978,13 +2978,30 @@
     },
     "abilities": [
       {
-        "name": "Potere della Fiamma",
-        "description": "Livello 1: +1 ATT ai personaggi Fuoco\nLivello 2: +1 ATT e +1 DIF ai personaggi Fuoco\nLivello 3: +2 ATT, +1 DIF e \"Infligge +1 danno\" ai personaggi Fuoco",
-        "type": "passive",
+        "name": "Benedizione del Fuoco",
+        "description": "I tuoi personaggi Fuoco hanno +1 ATT e +1 DIF",
+        "type": "aura",
         "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Livello 1: +1 ATT ai personaggi Fuoco\nLivello 2: +1 ATT e +1 DIF ai personaggi Fuoco\nLivello 3: +2 ATT, +1 DIF e \"Infligge +1 danno\" ai personaggi Fuoco",
-        "effects": []
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Fuoco"
+            },
+            "stat": "attack",
+            "value": 1
+          },
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Fuoco"
+            },
+            "stat": "defense",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Le fiamme perenni che ardono su questo altare risuonano con il fuoco interiore di ogni devoto di Emberhold.",
@@ -5376,13 +5393,20 @@
     },
     "abilities": [
       {
-        "name": "Proliferazione di Conoscenza",
-        "description": "Livello 1: Pesca 1 carta extra all'inizio del tuo turno\nLivello 2: Pesca 1 carta extra e guadagna +1 energia all'inizio del turno\nLivello 3: Pesca 2 carte extra e guadagna +1 energia all'inizio del turno",
-        "type": "passive",
-        "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Livello 1: Pesca 1 carta extra all'inizio del tuo turno\nLivello 2: Pesca 1 carta extra e guadagna +1 energia all'inizio del turno\nLivello 3: Pesca 2 carte extra e guadagna +1 energia all'inizio del turno",
-        "effects": []
+        "name": "Conoscenza Arcana",
+        "description": "All'inizio del tuo turno: Pesca 1 carta extra e guadagna +1 energia",
+        "type": "triggered",
+        "trigger": "start_of_turn",
+        "effects": [
+          {
+            "type": "draw_card",
+            "value": 1
+          },
+          {
+            "type": "gain_energy",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Una vasta biblioteca dove studiosi di ogni disciplina vengono a espandere la loro conoscenza e condividere scoperte.",
@@ -5778,13 +5802,29 @@
     },
     "abilities": [
       {
-        "name": "Furtività di Veilcrest",
-        "description": "Livello 1: I tuoi personaggi Ombra ottengono 'Stealth' (non possono essere attaccati finché non attaccano)\nLivello 2: I tuoi personaggi Ombra hanno 'Stealth' e +1 ATT\nLivello 3: I tuoi personaggi Ombra hanno 'Stealth', +1 ATT e quando escono da 'Stealth' attaccando, infliggono +2 danni",
-        "type": "passive",
+        "name": "Velo dell'Ombra",
+        "description": "I tuoi personaggi Ombra hanno +1 ATT e Stealth (non possono essere bersagliati finché non attaccano)",
+        "type": "aura",
         "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Livello 1: I tuoi personaggi Ombra ottengono 'Stealth' (non possono essere attaccati finché non attaccano)\nLivello 2: I tuoi personaggi Ombra hanno 'Stealth' e +1 ATT\nLivello 3: I tuoi personaggi Ombra hanno 'Stealth', +1 ATT e quando escono da 'Stealth' attaccando, infliggono +2 danni",
-        "effects": []
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Ombra"
+            },
+            "stat": "attack",
+            "value": 1
+          },
+          {
+            "type": "ability_grant",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Ombra"
+            },
+            "ability": "stealth"
+          }
+        ]
       }
     ],
     "flavor_text": "Nessuno sa dove si trovi veramente la sede della Congrega, o forse è ovunque ci sia un'ombra abbastanza profonda.",
@@ -5805,13 +5845,31 @@
     },
     "abilities": [
       {
-        "name": "Agilità di Mistral",
-        "description": "Livello 1: I tuoi Ranger Aria possono muoversi liberamente tra prima e seconda linea\nLivello 2: I tuoi Ranger Aria possono muoversi liberamente e guadagnano +1 ATT\nLivello 3: I tuoi Ranger Aria guadagnano +2 ATT, si muovono liberamente e possono attaccare due volte se cambiano linea",
-        "type": "passive",
+        "name": "Libertà del Vento",
+        "description": "I tuoi Ranger Aria hanno +1 ATT e possono muoversi tra le linee senza costi",
+        "type": "aura",
         "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Livello 1: I tuoi Ranger Aria possono muoversi liberamente tra prima e seconda linea\nLivello 2: I tuoi Ranger Aria possono muoversi liberamente e guadagnano +1 ATT\nLivello 3: I tuoi Ranger Aria guadagnano +2 ATT, si muovono liberamente e possono attaccare due volte se cambiano linea",
-        "effects": []
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "class": "Ranger",
+              "element": "Aria"
+            },
+            "stat": "attack",
+            "value": 1
+          },
+          {
+            "type": "ability_grant",
+            "target": "allied_creatures",
+            "filter": {
+              "class": "Ranger",
+              "element": "Aria"
+            },
+            "ability": "mobile"
+          }
+        ]
       }
     ],
     "flavor_text": "Le sue torri aperte al cielo danzano con le correnti, permettendo ai Ranger di imparare dai movimenti del vento stesso.",
@@ -6041,13 +6099,21 @@
     },
     "abilities": [
       {
-        "name": "Baluardo Difensivo",
-        "description": "Livello 1: +1 DIF a tutti i tuoi personaggi in prima linea\nLivello 2: +2 DIF a tutti i tuoi personaggi in prima linea\nLivello 3: +2 DIF a tutti i tuoi personaggi e +2 PV ai personaggi in prima linea",
-        "type": "passive",
+        "name": "Mura Impenetrabili",
+        "description": "Tutti i tuoi personaggi in prima linea hanno +2 DIF",
+        "type": "aura",
         "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Livello 1: +1 DIF a tutti i tuoi personaggi in prima linea\nLivello 2: +2 DIF a tutti i tuoi personaggi in prima linea\nLivello 3: +2 DIF a tutti i tuoi personaggi e +2 PV ai personaggi in prima linea",
-        "effects": []
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "zone": "firstLine"
+            },
+            "stat": "defense",
+            "value": 2
+          }
+        ]
       }
     ],
     "flavor_text": "I suoi muri possenti hanno resistito a innumerevoli assedi, divenendo simbolo di sicurezza per tutti gli abitanti di Lirya.",
@@ -6129,13 +6195,30 @@
     },
     "abilities": [
       {
-        "name": "Resistenza di Stonereach",
-        "description": "Livello 1: +1 DIF ai tuoi personaggi Terra\nLivello 2: +2 DIF ai tuoi personaggi Terra\nLivello 3: +2 DIF, +1 PV ai tuoi personaggi Terra e i tuoi personaggi Terra in prima linea non possono essere storditi",
-        "type": "passive",
+        "name": "Forza della Terra",
+        "description": "I tuoi personaggi Terra hanno +2 DIF e +1 PV",
+        "type": "aura",
         "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Livello 1: +1 DIF ai tuoi personaggi Terra\nLivello 2: +2 DIF ai tuoi personaggi Terra\nLivello 3: +2 DIF, +1 PV ai tuoi personaggi Terra e i tuoi personaggi Terra in prima linea non possono essere storditi",
-        "effects": []
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Terra"
+            },
+            "stat": "defense",
+            "value": 2
+          },
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Terra"
+            },
+            "stat": "health",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "La sede della gilda è scavata nella roccia viva della montagna, simbolo della resistenza che conferisce ai suoi adepti.",
@@ -6815,15 +6898,20 @@
     },
     "abilities": [
       {
-        "name": "Benedizione di Dawnfield",
-        "description": "Livello 1: All'inizio del tuo turno, cura 1 PV a un personaggio Luce\nLivello 2: All'inizio del tuo turno, cura 1 PV a tutti i tuoi personaggi Luce\nLivello 3: All'inizio del tuo turno, cura 2 PV a tutti i tuoi personaggi e puoi rimuovere un effetto negativo da un personaggio Luce",
+        "name": "Luce Curativa",
+        "description": "All'inizio del tuo turno: Cura 1 PV a tutti i tuoi personaggi Luce",
         "type": "triggered",
         "trigger": "start_of_turn",
-        "condition": {
-          "controller": "self"
-        },
-        "effect_text": "cura 1 PV a un personaggio Luce",
-        "effects": []
+        "effects": [
+          {
+            "type": "heal",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Luce"
+            },
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "La grande cupola di cristallo concentra i raggi del sole, canalizzando energia curativa su chiunque entri nel cerchio sacro.",
@@ -7017,13 +7105,32 @@
     },
     "abilities": [
       {
-        "name": "Addestramento di Emberhold",
-        "description": "Livello 1: +1 ATT ai tuoi Guerrieri Fuoco\nLivello 2: +1 ATT e +1 PV ai tuoi Guerrieri Fuoco\nLivello 3: +2 ATT, +1 PV ai tuoi Guerrieri Fuoco e una volta per turno puoi pescare 1 carta quando un Guerriero distrugge un nemico",
-        "type": "passive",
+        "name": "Spirito Guerriero",
+        "description": "I tuoi Guerrieri Fuoco hanno +1 ATT e +1 PV",
+        "type": "aura",
         "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Livello 1: +1 ATT ai tuoi Guerrieri Fuoco\nLivello 2: +1 ATT e +1 PV ai tuoi Guerrieri Fuoco\nLivello 3: +2 ATT, +1 PV ai tuoi Guerrieri Fuoco e una volta per turno puoi pescare 1 carta quando un Guerriero distrugge un nemico",
-        "effects": []
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "class": "Guerriero",
+              "element": "Fuoco"
+            },
+            "stat": "attack",
+            "value": 1
+          },
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "class": "Guerriero",
+              "element": "Fuoco"
+            },
+            "stat": "health",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Le forge di Emberhold non si spengono mai, e l'aria risuona di spade che si scontrano e incudini battute.",
