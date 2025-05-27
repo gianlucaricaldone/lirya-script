@@ -191,7 +191,7 @@ class GameEngine {
             card: card,
             tapped: false,
             summoningSickness: true, // Non può attaccare nel turno in cui viene evocata
-            currentHealth: card.stats?.health || card.health || card.stats?.defense || card.defense || 1
+            currentHealth: card.stats?.health || card.health || 1
         };
         
         // Se la carta ha haste, rimuovi summoning sickness
@@ -482,26 +482,27 @@ class GameEngine {
         
         // Ottieni le linee nemiche
         const enemyFirstLine = this.state.getZone(defenderId, 'firstLine')
-            .map((card, position) => ({ card, position }))
-            .filter(({ card }) => card !== null);
+            .map((creature, position) => ({ creature, position }))
+            .filter(({ creature }) => creature !== null);
             
         const enemySecondLine = this.state.getZone(defenderId, 'secondLine')
-            .map((card, position) => ({ card, position }))
-            .filter(({ card }) => card !== null);
+            .map((creature, position) => ({ creature, position }))
+            .filter(({ creature }) => creature !== null);
             
         // Ottieni le strutture nemiche
         const enemyStructures = this.state.getZone(defenderId, 'structures')
-            .map((card, position) => ({ card, position }))
-            .filter(({ card }) => card !== null);
+            .map((structure, position) => ({ structure, position }))
+            .filter(({ structure }) => structure !== null);
         
         if (attackerZone === 'firstLine') {
             // PRIMA LINEA può attaccare:
             
             // 1. Sempre la prima linea nemica se c'è
-            enemyFirstLine.forEach(({ card, position }) => {
+            enemyFirstLine.forEach(({ creature, position }) => {
                 targets.push({
                     type: 'creature',
-                    card,
+                    creature,
+                    card: creature.card || creature,
                     playerId: defenderId,
                     zone: 'firstLine',
                     position
@@ -510,10 +511,11 @@ class GameEngine {
             
             // 2. La seconda linea SOLO se la prima linea è vuota
             if (enemyFirstLine.length === 0) {
-                enemySecondLine.forEach(({ card, position }) => {
+                enemySecondLine.forEach(({ creature, position }) => {
                     targets.push({
                         type: 'creature',
-                        card,
+                        creature,
+                        card: creature.card || creature,
                         playerId: defenderId,
                         zone: 'secondLine',
                         position
@@ -523,10 +525,11 @@ class GameEngine {
             
             // 3. Le strutture SOLO se entrambe le linee sono vuote
             if (enemyFirstLine.length === 0 && enemySecondLine.length === 0) {
-                enemyStructures.forEach(({ card, position }) => {
+                enemyStructures.forEach(({ structure, position }) => {
                     targets.push({
                         type: 'structure',
-                        card,
+                        structure,
+                        card: structure,
                         playerId: defenderId,
                         zone: 'structures',
                         position
@@ -546,20 +549,22 @@ class GameEngine {
             // SECONDA LINEA può attaccare:
             
             // 1. Qualsiasi creatura nemica (prima o seconda linea)
-            enemyFirstLine.forEach(({ card, position }) => {
+            enemyFirstLine.forEach(({ creature, position }) => {
                 targets.push({
                     type: 'creature',
-                    card,
+                    creature,
+                    card: creature.card || creature,
                     playerId: defenderId,
                     zone: 'firstLine',
                     position
                 });
             });
             
-            enemySecondLine.forEach(({ card, position }) => {
+            enemySecondLine.forEach(({ creature, position }) => {
                 targets.push({
                     type: 'creature',
-                    card,
+                    creature,
+                    card: creature.card || creature,
                     playerId: defenderId,
                     zone: 'secondLine',
                     position
@@ -567,10 +572,11 @@ class GameEngine {
             });
             
             // 2. Le strutture (la seconda linea può sempre attaccare le strutture)
-            enemyStructures.forEach(({ card, position }) => {
+            enemyStructures.forEach(({ structure, position }) => {
                 targets.push({
                     type: 'structure',
-                    card,
+                    structure,
+                    card: structure,
                     playerId: defenderId,
                     zone: 'structures',
                     position
@@ -737,11 +743,16 @@ class GameEngine {
                 this.ui.showDamageToPlayer(attacker.target.playerId, attackPower);
             } else if (attacker.target.type === 'creature') {
                 // Combattimento tra creature
+                // Ottieni la creatura difensore completa dalla zona
+                const defenderZone = this.state.getZone(attacker.target.playerId, attacker.target.zone);
+                const defenderCreature = defenderZone[attacker.target.position];
+                
                 const defender = {
-                    card: attacker.target.card,
+                    card: defenderCreature.card || defenderCreature,
                     playerId: attacker.target.playerId,
                     zone: attacker.target.zone,
-                    position: attacker.target.position
+                    position: attacker.target.position,
+                    currentHealth: defenderCreature.currentHealth
                 };
                 console.log(`- Attacca ${defender.card.name}`);
                 this.rules.combatBetweenCreatures(attacker, defender);

@@ -168,65 +168,11 @@ class GameRules {
         }
     }
     
-    // Danneggia una creatura
-    damageCreature(target, damage) {
-        console.log('[GameRules] damageCreature:', { target, damage });
-        
-        if (!target || !target.card) {
-            console.error('[GameRules] Target non valido per damageCreature');
-            return;
-        }
-        
-        const card = target.card;
-        
-        // Inizializza currentHealth se non esiste
-        if (card.currentHealth === undefined) {
-            card.currentHealth = card.stats?.health || card.health || 
-                              card.stats?.defense || card.defense || 1;
-        }
-        
-        // Applica il danno
-        card.currentHealth -= damage;
-        console.log(`[GameRules] ${card.name} subisce ${damage} danni. Salute: ${card.currentHealth}`);
-        
-        // Controlla se la creatura muore
-        if (card.currentHealth <= 0) {
-            console.log(`[GameRules] ${card.name} è stata distrutta!`);
-            this.engine.destroyCreature(target);
-        }
-        
-        // Trigger eventi di danno
-        if (this.engine.abilities) {
-            this.engine.abilities.triggerEvent('onDamage', {
-                target: target,
-                damage: damage,
-                source: this.engine.state.currentPlayer
-            });
-        }
-    }
+    // RIMOSSA: Vecchia implementazione di damageCreature
+    // Usa l'implementazione corretta più in basso nel file
     
-    // Cura una creatura
-    healCreature(target, amount) {
-        console.log('[GameRules] healCreature:', { target, amount });
-        
-        if (!target || !target.card) {
-            console.error('[GameRules] Target non valido per healCreature');
-            return;
-        }
-        
-        const card = target.card;
-        const maxHealth = card.stats?.health || card.health || 
-                         card.stats?.defense || card.defense || 1;
-        
-        // Inizializza currentHealth se non esiste
-        if (card.currentHealth === undefined) {
-            card.currentHealth = maxHealth;
-        }
-        
-        // Applica la cura
-        card.currentHealth = Math.min(card.currentHealth + amount, maxHealth);
-        console.log(`[GameRules] ${card.name} viene curata di ${amount}. Salute: ${card.currentHealth}/${maxHealth}`);
-    }
+    // RIMOSSA: Vecchia implementazione di healCreature
+    // Usa l'implementazione corretta più in basso nel file
     
     // Applica un singolo effetto di un incantesimo
     applySpellEffect(effect, spell, target) {
@@ -601,19 +547,19 @@ class GameRules {
     // Combattimento tra creature
     combatBetweenCreatures(attacker, defender) {
         const attackerPower = attacker.card.stats?.attack || attacker.card.attack || 0;
-        const attackerHealth = attacker.card.stats?.health || attacker.card.health || 1;
         const defenderPower = defender.card.stats?.defense || defender.card.defense || 0;
-        const defenderHealth = defender.card.stats?.health || defender.card.health || 1;
         
-        // Inizializza currentHealth se non esiste
-        if (attacker.card.currentHealth === undefined) {
-            attacker.card.currentHealth = attackerHealth;
-        }
-        if (defender.card.currentHealth === undefined) {
-            defender.card.currentHealth = defenderHealth;
-        }
+        // Ottieni i riferimenti alle creature complete dalla zona
+        const attackerZone = this.engine.state.getZone(attacker.playerId, attacker.zone);
+        const defenderZone = this.engine.state.getZone(defender.playerId, defender.zone);
+        const attackerCreature = attackerZone[attacker.position];
+        const defenderCreature = defenderZone[defender.position];
         
-        console.log(`  COMBATTIMENTO: ${attacker.card.name} (ATT: ${attackerPower}, PV: ${attacker.card.currentHealth}) VS ${defender.card.name} (DIF: ${defenderPower}, PV: ${defender.card.currentHealth})`);
+        // Usa currentHealth dalla creatura, non dalla carta
+        const attackerCurrentHealth = attackerCreature.currentHealth || (attacker.card.stats?.health || attacker.card.health || 1);
+        const defenderCurrentHealth = defenderCreature.currentHealth || (defender.card.stats?.health || defender.card.health || 1);
+        
+        console.log(`  COMBATTIMENTO: ${attacker.card.name} (ATT: ${attackerPower}, PV: ${attackerCurrentHealth}) VS ${defender.card.name} (DIF: ${defenderPower}, PV: ${defenderCurrentHealth})`);
         
         // L'attaccante infligge danno al difensore (ATT - DIF)
         const damageToDefender = Math.max(0, attackerPower - defenderPower);
@@ -630,18 +576,26 @@ class GameRules {
         }
         
         // Log risultato
-        console.log(`  - Risultato: ${attacker.card.name} (PV: ${attacker.card.currentHealth}), ${defender.card.name} (PV: ${defender.card.currentHealth})`);
+        console.log(`  - Risultato: ${attacker.card.name} (PV: ${attackerCurrentHealth}), ${defender.card.name} (PV: ${defenderCreature.currentHealth})`);
         
         return damageToDefender;
     }
 
     // Infliggi danno a una creatura
     damageCreature(creature, damage) {
+        // Ottieni la creatura reale dalla zona
+        const zone = this.engine.state.getZone(creature.playerId, creature.zone);
+        const actualCreature = zone[creature.position];
+        
+        if (!actualCreature) {
+            console.error('Creatura non trovata nella zona!');
+            return;
+        }
+        
         // Inizializza currentHealth se non esiste
-        if (creature.card.currentHealth === undefined) {
-            const maxHealth = creature.card.stats?.health || creature.card.health || 
-                            creature.card.stats?.defense || creature.card.defense || 1;
-            creature.card.currentHealth = maxHealth;
+        if (actualCreature.currentHealth === undefined) {
+            const maxHealth = creature.card.stats?.health || creature.card.health || 1;
+            actualCreature.currentHealth = maxHealth;
         }
         
         // Applica riduzione danni da abilità passive
@@ -650,13 +604,12 @@ class GameRules {
             console.log(`Danno ridotto di ${creature.card.damageReduction} per ${creature.card.name}`);
         }
         
-        creature.card.currentHealth -= damage;
+        actualCreature.currentHealth -= damage;
         
         // Imposta il flag isDamaged se la creatura ha perso vita
-        const maxHealth = creature.card.stats?.health || creature.card.health || 
-                        creature.card.stats?.defense || creature.card.defense || 1;
-        if (creature.card.currentHealth < maxHealth) {
-            creature.card.isDamaged = true;
+        const maxHealth = creature.card.stats?.health || creature.card.health || 1;
+        if (actualCreature.currentHealth < maxHealth) {
+            actualCreature.isDamaged = true;
         }
         
         // Attiva abilità "quando subisce danno"
@@ -677,7 +630,7 @@ class GameRules {
             this.engine.ui.updateGameField();
         }, 100);
         
-        if (creature.card.currentHealth <= 0) {
+        if (actualCreature.currentHealth <= 0) {
             // Ritarda la distruzione per permettere l'animazione
             setTimeout(() => {
                 this.destroyCard(creature);
@@ -687,16 +640,25 @@ class GameRules {
 
     // Cura una creatura
     healCreature(creature, amount) {
-        if (!creature.card.currentHealth) {
-            creature.card.currentHealth = creature.card.health || creature.card.defense || 1;
+        // Ottieni la creatura reale dalla zona
+        const zone = this.engine.state.getZone(creature.playerId, creature.zone);
+        const actualCreature = zone[creature.position];
+        
+        if (!actualCreature) {
+            console.error('Creatura non trovata nella zona per guarigione!');
+            return;
         }
         
-        const maxHealth = creature.card.health || creature.card.defense || 1;
-        creature.card.currentHealth = Math.min(creature.card.currentHealth + amount, maxHealth);
+        if (!actualCreature.currentHealth) {
+            actualCreature.currentHealth = creature.card.stats?.health || creature.card.health || 1;
+        }
+        
+        const maxHealth = creature.card.stats?.health || creature.card.health || 1;
+        actualCreature.currentHealth = Math.min(actualCreature.currentHealth + amount, maxHealth);
         
         // Resetta il flag isDamaged se la creatura è completamente guarita
-        if (creature.card.currentHealth >= maxHealth) {
-            creature.card.isDamaged = false;
+        if (actualCreature.currentHealth >= maxHealth) {
+            actualCreature.isDamaged = false;
         }
     }
 
