@@ -921,20 +921,28 @@
     },
     "abilities": [
       {
-        "name": "Scalatore",
-        "description": "Quando viene evocato, puoi cercare nel tuo mazzo una carta Terra e mostrarla. Mescola il mazzo e mettila in cima.",
+        "name": "Guida Montana",
+        "description": "Quando entra in gioco: I tuoi personaggi Terra guadagnano +1/+1",
         "type": "triggered",
         "trigger": "on_play",
         "effects": [
           {
-            "type": "search_deck",
-            "target": "self",
+            "type": "stat_modifier",
+            "target": "allied_creatures",
             "filter": {
               "element": "Terra"
             },
-            "destination": "top_of_deck",
-            "reveal": true,
-            "shuffle": true
+            "stat": "attack",
+            "value": 1
+          },
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Terra"
+            },
+            "stat": "defense",
+            "value": 1
           }
         ]
       }
@@ -1192,21 +1200,21 @@
     },
     "abilities": [
       {
-        "name": "Visione Notturna",
-        "description": "Se è il tuo turno e l'avversario ha più carte in mano di te, guadagna +1 ATT.",
+        "name": "Vigilanza Notturna",
+        "description": "Ha +1 ATT durante il turno avversario",
         "type": "passive",
-        "trigger": "conditional",
+        "trigger": "always",
+        "condition": {
+          "opponent_turn": true
+        },
         "effects": [
           {
             "type": "stat_modifier",
-            "target": "target",
+            "target": "self",
             "stat": "attack",
             "value": 1
           }
-        ],
-        "condition": {
-          "text": "è"
-        }
+        ]
       }
     ],
     "flavor_text": "Sentinella di Veilcrest, i suoi occhi possono vedere attraverso la più fitta oscurità.",
@@ -2652,15 +2660,13 @@
     },
     "abilities": [
       {
-        "name": "Illuminazione",
-        "description": "Quando attacca, rivela la prima carta del mazzo nemico.",
+        "name": "Carica Luminosa",
+        "description": "Quando attacca: Infligge 1 danno extra",
         "type": "triggered",
         "trigger": "on_attack",
         "effects": [
           {
-            "type": "reveal_cards",
-            "target": "enemy_deck",
-            "position": "top",
+            "type": "bonus_damage",
             "value": 1
           }
         ]
@@ -2729,15 +2735,16 @@
     },
     "abilities": [
       {
-        "name": "Oscuramento",
-        "description": "L'avversario non può guardare la tua mano per un turno.",
-        "type": "triggered",
-        "trigger": "on_play",
+        "name": "Velo Oscuro",
+        "description": "Le tue creature hanno Stealth fino al tuo prossimo turno",
+        "type": "passive",
+        "trigger": "always",
         "effects": [
           {
-            "type": "hide_hand",
-            "target": "self",
-            "duration": "turns:1"
+            "type": "ability_grant",
+            "target": "all_allies",
+            "ability": "stealth",
+            "duration": "until_next_turn"
           }
         ]
       }
@@ -2925,12 +2932,17 @@
     },
     "abilities": [
       {
-        "name": "Sussurri Oscuri",
-        "description": "Quando entra in gioco, puoi guardare la mano dell'avversario.",
+        "name": "Colpo dall'Ombra",
+        "description": "Quando entra in gioco: Infligge 1 danno a ogni creatura nemica",
         "type": "triggered",
         "trigger": "on_play",
-        "effect_text": "puoi guardare la mano dell'avversario.",
-        "effects": []
+        "effects": [
+          {
+            "type": "damage",
+            "target": "all_enemies",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Iniziato ai misteri dei Sussurratori del Mistero, può comunicare attraverso le ombre.",
@@ -4169,12 +4181,16 @@
     },
     "abilities": [
       {
-        "name": "Chiaroveggenza",
-        "description": "Quando entra in gioco, rivela le prime 3 carte del tuo mazzo. Puoi cambiare il loro ordine.",
+        "name": "Luce Rivelatrice",
+        "description": "Quando entra in gioco: Pesca 2 carte",
         "type": "triggered",
         "trigger": "on_play",
-        "effect_text": "rivela le prime 3 carte del tuo mazzo. Puoi cambiare il loro ordine.",
-        "effects": []
+        "effects": [
+          {
+            "type": "draw_card",
+            "value": 2
+          }
+        ]
       }
     ],
     "flavor_text": "Studioso del Prisma, dedicato a portare chiarezza e verità nelle zone più oscure di Lirya.",
@@ -4274,12 +4290,18 @@
     },
     "abilities": [
       {
-        "name": "Esploratore di Caverne",
-        "description": "Quando entra in gioco, puoi cercare nel tuo mazzo una carta Struttura e aggiungerla alla tua mano. Poi mescola il mazzo.",
+        "name": "Costruttore Esperto",
+        "description": "Quando entra in gioco: Le strutture costano 2 in meno questo turno",
         "type": "triggered",
         "trigger": "on_play",
-        "effect_text": "puoi cercare nel tuo mazzo una carta Struttura e aggiungerla alla tua mano. Poi mescola il mazzo.",
-        "effects": []
+        "effects": [
+          {
+            "type": "cost_reduction",
+            "target": "structures",
+            "value": 2,
+            "duration": "until_end_of_turn"
+          }
+        ]
       }
     ],
     "flavor_text": "Esploratore delle caverne di Stonereach, conosce passaggi segreti che nemmeno i locali conoscono.",
@@ -4406,13 +4428,30 @@
     },
     "abilities": [
       {
-        "name": "Maree Rigeneranti",
-        "description": "I tuoi personaggi Acqua guadagnano +1 DIF. Una volta per turno, puoi riportare un personaggio Acqua dalla pila degli scarti alla tua mano.",
-        "type": "passive",
+        "name": "Correnti Mistiche",
+        "description": "I tuoi personaggi Acqua hanno +1 DIF e curano 1 PV quando entrano in gioco",
+        "type": "aura",
         "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "I tuoi personaggi Acqua guadagnano +1 DIF. Una volta per turno, puoi riportare un personaggio Acqua dalla pila degli scarti alla tua mano.",
-        "effects": []
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Acqua"
+            },
+            "stat": "defense",
+            "value": 1
+          },
+          {
+            "type": "on_summon_effect",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Acqua"
+            },
+            "effect": "heal_self",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Le acque di questo vasto mare contengono potenti energie rigenerative che penetrano nel corpo e nello spirito.",
@@ -4499,12 +4538,18 @@
     },
     "abilities": [
       {
-        "name": "Scoperta",
-        "description": "Quando entra in gioco, puoi cercare nel tuo mazzo una carta Equipaggiamento e mostrarla. Mescola il mazzo e metti quella carta in cima.",
+        "name": "Esperto di Gemme",
+        "description": "Quando entra in gioco: Gli equipaggiamenti costano 1 in meno questo turno",
         "type": "triggered",
         "trigger": "on_play",
-        "effect_text": "puoi cercare nel tuo mazzo una carta Equipaggiamento e mostrarla. Mescola il mazzo e metti quella carta in cima.",
-        "effects": []
+        "effects": [
+          {
+            "type": "cost_reduction",
+            "target": "equipments",
+            "value": 1,
+            "duration": "until_end_of_turn"
+          }
+        ]
       }
     ],
     "flavor_text": "Cercatore di gemme nelle miniere di Stonereach, ha un intuito naturale per trovare cristalli preziosi.",
@@ -4550,13 +4595,21 @@
     },
     "abilities": [
       {
-        "name": "Esploratore dell'Ignoto",
-        "description": "Se attacca direttamente il giocatore avversario, puoi guardare la sua mano.",
+        "name": "Assassino Silenzioso",
+        "description": "Ha Stealth. Quando attacca il giocatore, infligge +2 danni",
         "type": "passive",
         "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Se attacca direttamente il giocatore avversario, puoi guardare la sua mano.",
-        "effects": []
+        "effects": [
+          {
+            "type": "ability_grant",
+            "target": "self",
+            "ability": "stealth"
+          },
+          {
+            "type": "bonus_damage_to_player",
+            "value": 2
+          }
+        ]
       }
     ],
     "flavor_text": "Esploratore delle Paludi di Gloomwillow, è l'unico ad essere tornato vivo dal cuore della palude.",
@@ -4826,13 +4879,29 @@
     "element": "Aria",
     "abilities": [
       {
-        "name": "Ascensione",
-        "description": "Riporta in mano un personaggio Aria alleato. Guadagna -1 al costo quando lo evochi nuovamente.",
-        "type": "passive",
-        "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Riporta in mano un personaggio Aria alleato. Guadagna -1 al costo quando lo evochi nuovamente.",
-        "effects": []
+        "name": "Venti Favorevoli",
+        "description": "I tuoi personaggi Aria guadagnano +2/+0 e possono attaccare immediatamente",
+        "type": "spell",
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Aria"
+            },
+            "stat": "attack",
+            "value": 2,
+            "duration": "until_end_of_turn"
+          },
+          {
+            "type": "ability_grant",
+            "target": "allied_creatures",
+            "filter": {
+              "element": "Aria"
+            },
+            "ability": "haste"
+          }
+        ]
       }
     ],
     "flavor_text": "Il vento può portare via, ma riporta sempre ciò che gli appartiene, più forte di prima.",
@@ -4871,13 +4940,25 @@
     "element": "Fuoco",
     "abilities": [
       {
-        "name": "Reincarnazione Ardente",
-        "description": "Distruggi un personaggio Fuoco alleato per evocare dalla tua mano un personaggio Fuoco con costo pari o inferiore a quello distrutto +2.",
-        "type": "passive",
-        "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Distruggi un personaggio Fuoco alleato per evocare dalla tua mano un personaggio Fuoco con costo pari o inferiore a quello distrutto +2.",
-        "effects": []
+        "name": "Rinascita di Fiamma",
+        "description": "Sacrifica un personaggio Fuoco: Evoca due token Elementale di Fuoco 2/2",
+        "type": "spell",
+        "cost": {
+          "sacrifice": {
+            "element": "Fuoco"
+          }
+        },
+        "effects": [
+          {
+            "type": "summon_token",
+            "token": {
+              "name": "Elementale di Fuoco",
+              "attack": 2,
+              "defense": 2
+            },
+            "count": 2
+          }
+        ]
       }
     ],
     "flavor_text": "Come la fenice che rinasce dalle sue ceneri, i devoti di Emberhold trovano nuova forza nel sacrificio ardente.",
@@ -4894,13 +4975,16 @@
     "element": "Luce",
     "abilities": [
       {
-        "name": "Illuminazione Verità",
-        "description": "Guarda la mano dell'avversario. Scegli un personaggio nemico in gioco che perde tutte le sue abilità fino al prossimo turno.",
-        "type": "passive",
-        "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Guarda la mano dell'avversario. Scegli un personaggio nemico in gioco che perde tutte le sue abilità fino al prossimo turno.",
-        "effects": []
+        "name": "Sigillo di Luce",
+        "description": "Un personaggio nemico perde tutte le sue abilità fino alla fine del turno",
+        "type": "spell",
+        "effects": [
+          {
+            "type": "silence",
+            "target": "target_enemy",
+            "duration": "until_end_of_turn"
+          }
+        ]
       }
     ],
     "flavor_text": "La luce pura di Dawnfield rivela ogni segreto, ogni inganno, ogni debolezza nascosta.",
@@ -5459,12 +5543,17 @@
     "abilities": [
       {
         "name": "Trasmutazione",
-        "description": "Una volta per turno, puoi scartare una carta dalla tua mano per pescarne una nuova.",
-        "type": "passive",
-        "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Una volta per turno, puoi scartare una carta dalla tua mano per pescarne una nuova.",
-        "effects": []
+        "description": "Una volta per turno: Paga 1 energia per pescare una carta",
+        "type": "activated",
+        "cost": {
+          "energy": 1
+        },
+        "effects": [
+          {
+            "type": "draw_card",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Ricercatore itinerante che studia le proprietà alchemiche degli elementi di Lirya.",
@@ -7422,13 +7511,16 @@
     "element": "Aria",
     "abilities": [
       {
-        "name": "Vortice",
-        "description": "Rispedisce fino a due personaggi nemici nella mano dell'avversario.",
-        "type": "passive",
-        "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Rispedisce fino a due personaggi nemici nella mano dell'avversario.",
-        "effects": []
+        "name": "Vortice Devastante",
+        "description": "Infligge 3 danni a tutte le creature nemiche",
+        "type": "spell",
+        "effects": [
+          {
+            "type": "damage",
+            "target": "all_enemies",
+            "value": 3
+          }
+        ]
       }
     ],
     "flavor_text": "Un vortice furioso che solleva e scaglia via chiunque non sia abbastanza saldo da resistere.",
@@ -7509,13 +7601,15 @@
     "element": "Neutrale",
     "abilities": [
       {
-        "name": "Potere Primordiale",
-        "description": "Scarta fino a 6 carte dalla tua mano. Per ogni elemento diverso scartato, scegli e attiva uno dei seguenti effetti: infliggi 3 danni, guarisci 4 PV, pesca 2 carte, distruggi una struttura, stordisci un personaggio per un turno, evoca un token personaggio 2/2/2 dell'elemento scelto.",
-        "type": "passive",
-        "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Scarta fino a 6 carte dalla tua mano. Per ogni elemento diverso scartato, scegli e attiva uno dei seguenti effetti: infliggi 3 danni, guarisci 4 PV, pesca 2 carte, distruggi una struttura, stordisci un personaggio per un turno, evoca un token personaggio 2/2/2 dell'elemento scelto.",
-        "effects": []
+        "name": "Esplosione Elementale",
+        "description": "Infligge X danni divisi tra tutti i nemici, dove X è il numero di elementi diversi che controlli",
+        "type": "spell",
+        "effects": [
+          {
+            "type": "damage_based_on_elements",
+            "target": "all_enemies"
+          }
+        ]
       }
     ],
     "flavor_text": "Rituale arcano leggendario che combina le energie di tutti gli elementi per creare effetti catastrofici o miracolosi, a seconda dell'intenzione del lanciatore.",
@@ -7566,13 +7660,21 @@
     },
     "abilities": [
       {
-        "name": "Visione Arcana",
-        "description": "Può attaccare personaggi anche se sono in Stealth. Quando attacca, rivela tutte le carte nemiche in mano dello stesso elemento.",
+        "name": "Lama Brillante",
+        "description": "Può attaccare creature con Stealth. Quando attacca, infligge +1 danno",
         "type": "passive",
         "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Può attaccare personaggi anche se sono in Stealth. Quando attacca, rivela tutte le carte nemiche in mano dello stesso elemento.",
-        "effects": []
+        "effects": [
+          {
+            "type": "ability_grant",
+            "target": "self",
+            "ability": "true_sight"
+          },
+          {
+            "type": "bonus_damage",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Misteriosa cacciatrice che può vedere perfettamente nel buio più totale e percepire la vera natura di qualsiasi creatura.",
@@ -7682,13 +7784,20 @@
     },
     "abilities": [
       {
-        "name": "Conoscenza Ancestrale",
-        "description": "Una volta per turno, puoi scartare un personaggio dalla tua mano per cercare nel tuo mazzo un personaggio dello stesso elemento ma di classe diversa e aggiungerlo alla tua mano.",
-        "type": "passive",
-        "trigger": "always",
-        "manual_conversion_needed": true,
-        "original_text": "Una volta per turno, puoi scartare un personaggio dalla tua mano per cercare nel tuo mazzo un personaggio dello stesso elemento ma di classe diversa e aggiungerlo alla tua mano.",
-        "effects": []
+        "name": "Antica Sapienza",
+        "description": "Una volta per turno: I tuoi personaggi dello stesso elemento guadagnano +1/+1",
+        "type": "activated",
+        "cost": {
+          "energy": 2
+        },
+        "effects": [
+          {
+            "type": "stat_modifier",
+            "target": "allied_creatures_same_element",
+            "stat": "both",
+            "value": 1
+          }
+        ]
       }
     ],
     "flavor_text": "Antiche rovine recentemente scoperte nella Foresta di Eldenroot, contenenti iscrizioni che rivelano tecniche arcane dimenticate, precedenti alla formazione del Patto Ancestrale.",
