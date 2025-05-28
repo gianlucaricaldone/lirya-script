@@ -8,6 +8,10 @@ class UIManager {
         this.blockingAssignments = new Map();
         this.draggedElement = null;
         this.draggedCard = null;
+        
+        // Bind dei metodi per mantenere il contesto
+        this.handleZoneClick = this.handleZoneClick.bind(this);
+        this.handleTargetClick = this.handleTargetClick.bind(this);
     }
     
     // Inizializza l'UI
@@ -44,6 +48,37 @@ class UIManager {
                 this.hideTurnChangeModal();
             });
         }
+        
+        // Click globale per deselezionare
+        document.addEventListener('click', (e) => {
+            // Debug per vedere cosa viene cliccato
+            const gameCard = e.target.closest('.game-card');
+            if (gameCard) {
+                console.log('Global click intercepted on game-card:', {
+                    element: gameCard,
+                    classes: gameCard.className,
+                    dataset: gameCard.dataset,
+                    hasSelectedClass: gameCard.classList.contains('selected-card'),
+                    computedBorder: window.getComputedStyle(gameCard).border
+                });
+            }
+            
+            // Debug per zone valide
+            const validZone = e.target.closest('.valid-drop-zone');
+            if (validZone) {
+                console.log('Global click on valid-drop-zone:', {
+                    element: validZone,
+                    classes: validZone.className,
+                    hasHandler: validZone.dataset.tempHandler
+                });
+            }
+            
+            // Se il click non è su una carta o zona valida, deseleziona
+            // IMPORTANTE: Non fare nulla se il click è su una zona valida
+            if (!e.target.closest('.game-card') && !e.target.closest('.valid-drop-zone')) {
+                this.clearSelection();
+            }
+        });
     }
     
     // Metodo principale chiamato dal game engine (alias per renderGameState)
@@ -164,7 +199,7 @@ class UIManager {
                         playerId: playerId,
                         zone: 'firstLine',
                         position: position
-                    });
+                    }, creature);
                     
                     // Aggiungi stato della creatura
                     if (creature.tapped) {
@@ -208,7 +243,7 @@ class UIManager {
                         playerId: playerId,
                         zone: 'secondLine',
                         position: position
-                    });
+                    }, creature);
                     
                     // Aggiungi stato della creatura
                     if (creature.tapped) {
@@ -240,7 +275,7 @@ class UIManager {
                         playerId: playerId,
                         zone: 'structures',
                         position: position
-                    });
+                    }, null, structure);  // Passa l'oggetto struttura
                     
                     this.addFieldCardEventListeners(cardEl, structure, playerId, position);
                     structureSlots[position].appendChild(cardEl);
@@ -249,11 +284,36 @@ class UIManager {
         }
     }
     
-    // Crea elemento carta
-    createCardElement(card, metadata) {
+    // Crea elemento carta (versione semplificata per compatibilità)
+    createCardElement(card, metadata, creature = null, structure = null) {
+        console.log('createCardElement called:', { card: card.name, metadata, hasCreature: !!creature, hasStructure: !!structure });
+        
+        // Se è una creatura sul campo e abbiamo l'oggetto creatura, usa il nuovo sistema
+        if (creature && metadata.zone && (metadata.zone === 'firstLine' || metadata.zone === 'secondLine')) {
+            console.log('Using CardDisplay for creature with creature object');
+            if (this.engine.cardDisplay) {
+                return this.engine.cardDisplay.createCreatureCard(creature, metadata, this.engine.abilities);
+            }
+        }
+        
+        // Se è una struttura e abbiamo l'oggetto struttura, usa il nuovo sistema
+        if (structure && metadata.zone === 'structures' && this.engine.cardDisplay) {
+            console.log('Using CardDisplay for structure with structure object');
+            return this.engine.cardDisplay.createStructureCard(structure, metadata, this.engine.abilities);
+        }
+        
+        // Fallback: prova a recuperare la struttura dalla posizione
+        if (metadata.zone === 'structures' && this.engine.cardDisplay) {
+            const structure = this.getStructureFromLocation(metadata);
+            if (structure) {
+                return this.engine.cardDisplay.createStructureCard(structure, metadata, this.engine.abilities);
+            }
+        }
+        
+        // Altrimenti usa il sistema standard per carte in mano
         const cardEl = document.createElement('div');
         cardEl.className = 'game-card';
-        cardEl.draggable = true;
+        cardEl.draggable = false;
         
         // Aggiungi metadati
         Object.entries(metadata).forEach(([key, value]) => {
@@ -301,11 +361,59 @@ class UIManager {
         return cardEl;
     }
     
+    // Ottieni creatura dalla posizione
+    getCreatureFromLocation(location) {
+        const player = this.engine.state.getPlayer(location.playerId);
+        if (!player) return null;
+        
+        if (location.zone === 'firstLine') {
+            return player.firstLine[location.position];
+        } else if (location.zone === 'secondLine') {
+            return player.secondLine[location.position];
+        }
+        return null;
+    }
+    
+    // Ottieni struttura dalla posizione
+    getStructureFromLocation(location) {
+        const player = this.engine.state.getPlayer(location.playerId);
+        if (!player) return null;
+        
+        if (location.zone === 'structures') {
+            return player.structures[location.position];
+        }
+        return null;
+    }
+    
+    // Aggiorna visualizzazione di una carta specifica
+    updateCardDisplay(target) {
+        const selector = `[data-player-id="${target.playerId}"][data-zone="${target.zone}"][data-position="${target.position}"]`;
+        const oldElement = document.querySelector(selector);
+        
+        if (oldElement) {
+            const newElement = this.createCardElement(target.card || target, {
+                playerId: target.playerId,
+                zone: target.zone,
+                position: target.position
+            });
+            
+            // Copia event listeners
+            const parent = oldElement.parentNode;
+            parent.replaceChild(newElement, oldElement);
+            
+            // Riapplica event listeners
+            if (target.zone === 'firstLine' || target.zone === 'secondLine') {
+                this.addFieldCardEventListeners(newElement, target, target.playerId, target.position);
+            }
+        }
+    }
+    
     // Event listeners per carte in mano
     addHandCardEventListeners(cardEl, card, playerId, index) {
         // Click per selezionare
         cardEl.addEventListener('click', (e) => {
             e.stopPropagation();
+            console.log('Card clicked in hand:', { card: card.name, playerId, index });
             this.selectCard(card, playerId, index);
         });
         
@@ -313,20 +421,6 @@ class UIManager {
         cardEl.addEventListener('dblclick', (e) => {
             e.stopPropagation();
             this.showCardDetail(card);
-        });
-        
-        // Drag and drop
-        cardEl.addEventListener('dragstart', (e) => {
-            e.dataTransfer.effectAllowed = 'move';
-            this.draggedElement = cardEl;
-            this.draggedCard = { card, playerId, index };
-            cardEl.classList.add('dragging');
-        });
-        
-        cardEl.addEventListener('dragend', (e) => {
-            cardEl.classList.remove('dragging');
-            this.draggedElement = null;
-            this.draggedCard = null;
         });
     }
     
@@ -346,8 +440,8 @@ class UIManager {
             // Se siamo in fase di selezione attaccanti
             if ((this.engine.state.phase === 'combat' || this.engine.state.currentPhase === 'combat_declare') && 
                 playerId === this.engine.state.currentPlayer) {
-                console.log('Toggling attacker');
-                this.toggleAttacker(creature, cardEl);
+                console.log('Selecting attacker');
+                this.selectAttacker(creature, cardEl);
             }
             // Se siamo in fase di selezione bloccanti
             else if ((this.engine.state.phase === 'combat' || this.engine.state.currentPhase === 'combat_block') && 
@@ -366,18 +460,48 @@ class UIManager {
     
     // Seleziona una carta in mano
     selectCard(card, playerId, index) {
+        console.log('selectCard called:', { 
+            card: card.name, 
+            playerId, 
+            playerIdType: typeof playerId,
+            index,
+            indexType: typeof index
+        });
+        
         // Deseleziona carta precedente
         document.querySelectorAll('.selected-card').forEach(el => {
             el.classList.remove('selected-card');
         });
         
+        // Rimuovi zone evidenziate precedenti
+        document.querySelectorAll('.valid-drop-zone').forEach(el => {
+            el.classList.remove('valid-drop-zone');
+        });
+        
+        // Rimuovi handler temporanei
+        document.querySelectorAll('[data-temp-handler="true"]').forEach(el => {
+            el.removeEventListener('click', this.handleZoneClick);
+            delete el.dataset.tempHandler;
+        });
+        
         // Seleziona nuova carta
-        const cardEl = document.querySelector(
-            `[data-player-id="${playerId}"][data-zone="hand"][data-position="${index}"]`
-        );
+        const selector = `[data-player-id="${playerId}"][data-zone="hand"][data-position="${index}"]`;
+        console.log('Looking for card with selector:', selector);
+        const cardEl = document.querySelector(selector);
+        console.log('Card element found:', cardEl);
+        
         if (cardEl) {
+            // Forza il refresh delle classi
+            cardEl.offsetHeight; // Trigger reflow
             cardEl.classList.add('selected-card');
             this.selectedCard = { card, playerId, index };
+            console.log('Selected card class added, current classes:', cardEl.className);
+            console.log('Computed border style:', window.getComputedStyle(cardEl).border);
+            
+            // Evidenzia le zone valide per questa carta
+            this.highlightValidZones(card, playerId);
+        } else {
+            console.error('Card element not found with selector:', selector);
         }
     }
     
@@ -594,43 +718,176 @@ class UIManager {
         }
     }
     
-    // Toggle creatura attaccante
-    toggleAttacker(creature, cardEl) {
-        const index = this.attackingCreatures.findIndex(c => 
-            c.position === creature.position && c.playerId === creature.playerId
-        );
+    // Seleziona creatura come attaccante
+    selectAttacker(creature, cardEl) {
+        console.log('selectAttacker called:', creature);
         
-        if (index >= 0) {
-            // Rimuovi da attaccanti
-            this.attackingCreatures.splice(index, 1);
-            cardEl.classList.remove('is-attacking');
-        } else {
-            // Aggiungi ad attaccanti
-            this.attackingCreatures.push(creature);
-            cardEl.classList.add('is-attacking');
+        const zone = cardEl.dataset.zone;
+        const position = parseInt(cardEl.dataset.position);
+        const playerId = parseInt(cardEl.dataset.playerId);
+        
+        // Chiama declareAttacker del game engine
+        const success = this.engine.declareAttacker(playerId, zone, position);
+        
+        if (success) {
+            // Se c'è già un attaccante selezionato, deselezionalo
+            if (this.selectedAttacker) {
+                const prevEl = document.querySelector('.selected-attacker');
+                if (prevEl) prevEl.classList.remove('selected-attacker');
+            }
+            
+            // Seleziona il nuovo attaccante
+            this.selectedAttacker = {
+                creature,
+                cardEl,
+                zone,
+                position,
+                playerId
+            };
+            
+            cardEl.classList.add('selected-attacker');
+            
+            // Mostra messaggio
+            this.showMessage('Seleziona il bersaglio da attaccare', 'info');
+            
+            // Evidenzia i bersagli validi
+            this.highlightValidTargets();
         }
+    }
+    
+    // Evidenzia bersagli validi per l'attaccante selezionato
+    highlightValidTargets() {
+        if (!this.selectedAttacker) return;
+        
+        const opponentId = this.selectedAttacker.playerId === 1 ? 2 : 1;
+        
+        // Evidenzia il giocatore avversario
+        const opponentArea = document.getElementById(`player${opponentId}-area`);
+        if (opponentArea) {
+            opponentArea.classList.add('valid-target');
+            opponentArea.style.cursor = 'pointer';
+            
+            // Aggiungi handler temporaneo per il click
+            opponentArea.dataset.tempHandler = 'true';
+            opponentArea.addEventListener('click', this.handleTargetClick.bind(this));
+        }
+        
+        // Evidenzia le creature avversarie nella prima linea
+        const firstLineCreatures = document.querySelectorAll(
+            `[data-player-id="${opponentId}"][data-zone="firstLine"]`
+        );
+        firstLineCreatures.forEach(el => {
+            el.classList.add('valid-target');
+            el.style.cursor = 'crosshair';
+            // Aggiungi handler per il click
+            el.addEventListener('click', this.handleTargetClick);
+        });
+        
+        // Se l'attaccante può attaccare la seconda linea, evidenziala
+        if (this.selectedAttacker.creature.canAttackSecondLine) {
+            const secondLineCreatures = document.querySelectorAll(
+                `[data-player-id="${opponentId}"][data-zone="secondLine"]`
+            );
+            secondLineCreatures.forEach(el => {
+                el.classList.add('valid-target');
+                el.style.cursor = 'crosshair';
+                el.addEventListener('click', this.handleTargetClick);
+            });
+        }
+    }
+    
+    // Gestisce il click su un bersaglio
+    handleTargetClick(e) {
+        e.stopPropagation();
+        
+        if (!this.selectedAttacker) return;
+        
+        const targetEl = e.currentTarget;
+        
+        // Se è l'area del giocatore
+        if (targetEl.classList.contains('player-area')) {
+            const targetPlayerId = parseInt(targetEl.id.match(/player(\d+)/)[1]);
+            this.declareAttack(this.selectedAttacker, { type: 'player', playerId: targetPlayerId });
+        }
+        // Se è una creatura
+        else if (targetEl.classList.contains('game-card')) {
+            const targetData = {
+                type: 'creature',
+                playerId: parseInt(targetEl.dataset.playerId),
+                zone: targetEl.dataset.zone,
+                position: parseInt(targetEl.dataset.position)
+            };
+            this.declareAttack(this.selectedAttacker, targetData);
+        }
+    }
+    
+    // Dichiara un attacco
+    declareAttack(attacker, target) {
+        console.log('Declaring attack:', { attacker, target });
+        
+        // Chiama selectAttackTarget del game engine
+        const success = this.engine.selectAttackTarget(target);
+        
+        if (success) {
+            // Marca l'attaccante come "is-attacking"
+            attacker.cardEl.classList.add('is-attacking');
+            attacker.cardEl.classList.remove('selected-attacker');
+            
+            // Conta gli attacchi dal game engine
+            const attackCount = this.engine.state.combat.attackers.length;
+            this.showMessage(`${attackCount} attacco/i dichiarati`, 'info');
+        } else {
+            this.showMessage('Bersaglio non valido!', 'error');
+        }
+        
+        // Rimuovi evidenziazione dei bersagli
+        this.clearTargetHighlights();
+        
+        // Reset attaccante selezionato
+        this.selectedAttacker = null;
+    }
+    
+    // Rimuovi evidenziazione bersagli
+    clearTargetHighlights() {
+        document.querySelectorAll('.valid-target').forEach(el => {
+            el.classList.remove('valid-target');
+            el.style.cursor = '';
+            
+            // Rimuovi handler
+            el.removeEventListener('click', this.handleTargetClick);
+            
+            if (el.dataset.tempHandler) {
+                delete el.dataset.tempHandler;
+            }
+        });
     }
     
     // Conferma attaccanti
     confirmAttackers() {
-        if (this.attackingCreatures.length === 0) {
-            // Salta fase di combattimento se non ci sono attaccanti
-            if (this.engine.skipCombat) {
-                this.engine.skipCombat();
-            } else {
-                // Se skipCombat non esiste, passa alla fase successiva
-                this.engine.endTurn();
-            }
-        } else {
-            // Mostra UI per scegliere i bersagli
-            this.showTargetSelectionUI();
+        console.log('confirmAttackers called');
+        
+        // Se c'è un attaccante selezionato ma non ha scelto il bersaglio
+        if (this.selectedAttacker) {
+            this.showMessage('Seleziona un bersaglio per la creatura attaccante!', 'warning');
+            return;
         }
+        
+        // Chiama direttamente confirmAttackers del game engine
+        // Il game engine ha già registrato tutti gli attacchi via declareAttacker/selectAttackTarget
+        this.engine.confirmAttackers();
+        
+        // Pulisci lo stato locale
+        this.declaredAttacks = [];
+        this.selectedAttacker = null;
         
         // Rimuovi pulsante e classi
         const confirmBtn = document.getElementById('confirm-attackers');
         if (confirmBtn) confirmBtn.remove();
         document.querySelectorAll('.can-attack').forEach(el => {
             el.classList.remove('can-attack');
+        });
+        document.querySelectorAll('.is-attacking').forEach(el => {
+            el.classList.remove('is-attacking');
         });
     }
     
@@ -1187,6 +1444,28 @@ class UIManager {
         console.log('updateCombatVisuals chiamato');
     }
     
+    maintainCombatVisuals() {
+        // Mantiene le visualizzazioni durante il combattimento
+        console.log('maintainCombatVisuals chiamato');
+        
+        // Mostra frecce o linee di attacco se necessario
+        if (this.engine.state.combat && this.engine.state.combat.attackers) {
+            this.engine.state.combat.attackers.forEach(attacker => {
+                // Trova l'elemento dell'attaccante
+                const attackerEl = document.querySelector(
+                    `[data-player-id="${attacker.playerId}"][data-zone="${attacker.zone}"][data-position="${attacker.position}"]`
+                );
+                
+                if (attackerEl && attacker.target) {
+                    // Aggiungi effetti visivi per mostrare l'attacco
+                    attackerEl.classList.add('is-attacking-active');
+                    
+                    // TODO: Aggiungere frecce o linee verso il bersaglio
+                }
+            });
+        }
+    }
+    
     showPauseMenu() {
         // TODO: Implementare se necessario
         console.log('showPauseMenu chiamato');
@@ -1195,6 +1474,226 @@ class UIManager {
     hidePauseMenu() {
         // TODO: Implementare se necessario
         console.log('hidePauseMenu chiamato');
+    }
+    
+    // Aggiorna tutto il campo di gioco
+    updateGameField() {
+        // Semplicemente chiama updateBoard con lo stato corrente
+        if (this.engine && this.engine.state) {
+            this.updateBoard(this.engine.state);
+        }
+    }
+    
+    // Nasconde le carte dell'avversario
+    hideOpponentCards(currentPlayerId) {
+        const opponentId = currentPlayerId === 1 ? 2 : 1;
+        
+        // Seleziona tutte le carte nella mano dell'avversario
+        const opponentHandCards = document.querySelectorAll(`#player${opponentId}-hand .game-card`);
+        
+        opponentHandCards.forEach(card => {
+            // Aggiungi classe per nascondere il contenuto
+            card.classList.add('hidden-card');
+            
+            // Sostituisci il contenuto con un dorso carta
+            const svg = card.querySelector('svg');
+            if (svg) {
+                svg.style.opacity = '0';
+            }
+            
+            // Aggiungi un overlay per il dorso
+            if (!card.querySelector('.card-back')) {
+                const cardBack = document.createElement('div');
+                cardBack.className = 'card-back';
+                cardBack.innerHTML = `
+                    <div class="card-back-pattern">
+                        <div class="card-back-logo">LIRYA</div>
+                    </div>
+                `;
+                card.appendChild(cardBack);
+            }
+        });
+    }
+    
+    // Mostra le carte di un giocatore (per quando è il suo turno)
+    showPlayerCards(playerId) {
+        const handCards = document.querySelectorAll(`#player${playerId}-hand .game-card`);
+        
+        handCards.forEach(card => {
+            card.classList.remove('hidden-card');
+            
+            const svg = card.querySelector('svg');
+            if (svg) {
+                svg.style.opacity = '1';
+            }
+            
+            const cardBack = card.querySelector('.card-back');
+            if (cardBack) {
+                cardBack.remove();
+            }
+        });
+    }
+    
+    // Evidenzia le zone valide per una carta
+    highlightValidZones(card, playerId) {
+        if (!card) return;
+        
+        // Rimuovi evidenziazioni precedenti
+        document.querySelectorAll('.valid-drop-zone').forEach(el => {
+            el.classList.remove('valid-drop-zone');
+        });
+        
+        // Solo il giocatore corrente può giocare carte
+        if (playerId !== this.engine.state.currentPlayer) return;
+        
+        switch (card.type) {
+            case 'Personaggio':
+                // Determina la linea appropriata
+                const targetLine = this.getTargetLineForCreature(card);
+                const lineEl = document.querySelector(`#player${playerId}-${targetLine}`);
+                if (lineEl) {
+                    // Trova il container degli slot (.line-slots)
+                    const slotsContainer = lineEl.querySelector('.line-slots');
+                    if (slotsContainer) {
+                        // Evidenzia gli slot vuoti
+                        slotsContainer.querySelectorAll('.card-slot').forEach((slot, index) => {
+                            const zone = targetLine === 'first-line' ? 'firstLine' : 'secondLine';
+                            const occupied = this.engine.state.getPlayer(playerId)[zone][index];
+                            if (!occupied) {
+                                slot.classList.add('valid-drop-zone');
+                                // Aggiungi click handler temporaneo
+                                slot.dataset.tempHandler = 'true';
+                                // Usa capture phase per assicurarsi che venga chiamato prima dell'handler globale
+                                slot.addEventListener('click', this.handleZoneClick, true);
+                            }
+                        });
+                    }
+                }
+                break;
+                
+            case 'Struttura':
+                const structuresEl = document.querySelector(`#player${playerId}-structures`);
+                if (structuresEl) {
+                    // Trova il container degli slot (.structure-slots)
+                    const slotsContainer = structuresEl.querySelector('.structure-slots');
+                    if (slotsContainer) {
+                        slotsContainer.querySelectorAll('.card-slot').forEach((slot, index) => {
+                            const occupied = this.engine.state.getPlayer(playerId).structures[index];
+                            if (!occupied) {
+                                slot.classList.add('valid-drop-zone');
+                                slot.dataset.tempHandler = 'true';
+                                slot.addEventListener('click', this.handleZoneClick, true);
+                            }
+                        });
+                    }
+                }
+                break;
+                
+            case 'Incantesimo':
+            case 'Equipaggiamento':
+                // Questi richiedono target, gestiti diversamente
+                break;
+        }
+    }
+    
+    // Gestisce il click su una zona valida
+    handleZoneClick(e) {
+        e.stopPropagation();
+        const slot = e.currentTarget;
+        
+        console.log('handleZoneClick called:', {
+            slot,
+            hasValidDropZone: slot.classList.contains('valid-drop-zone'),
+            selectedCard: this.selectedCard
+        });
+        
+        // Rimuovi il handler temporaneo
+        if (slot.dataset.tempHandler) {
+            delete slot.dataset.tempHandler;
+            slot.removeEventListener('click', this.handleZoneClick, true);
+        }
+        
+        if (!this.selectedCard || !slot.classList.contains('valid-drop-zone')) {
+            console.log('Aborting: no selected card or not a valid drop zone');
+            return;
+        }
+        
+        const slotsContainer = slot.parentElement; // line-slots o structure-slots
+        const zoneContainer = slotsContainer.parentElement; // element con ID
+        const position = Array.from(slotsContainer.children).indexOf(slot);
+        
+        // Determina la zona dal container ID
+        let zone;
+        if (zoneContainer.id.includes('first-line')) {
+            zone = 'firstLine';
+        } else if (zoneContainer.id.includes('second-line')) {
+            zone = 'secondLine';
+        } else if (zoneContainer.id.includes('structures')) {
+            zone = 'structures';
+        }
+        
+        console.log('Zone click details:', {
+            slotsContainerClass: slotsContainer.className,
+            zoneContainerId: zoneContainer.id,
+            zone,
+            position,
+            selectedCard: this.selectedCard
+        });
+        
+        if (zone) {
+            // Gioca la carta nella posizione selezionata
+            const { playerId, index } = this.selectedCard;
+            
+            // Per ora usa il metodo standard che trova automaticamente uno slot
+            // TODO: Modificare playCard per accettare una posizione specifica
+            const result = this.engine.playCard(playerId, index);
+            console.log('playCard result:', result);
+            
+            // Pulisci la selezione solo se la carta è stata giocata con successo
+            if (result !== false) {
+                this.clearSelection();
+            }
+        }
+    }
+    
+    // Determina la linea target per una creatura
+    getTargetLineForCreature(card) {
+        // Logica per determinare prima o seconda linea in base alla classe
+        const frontLineClasses = ['Guerriero', 'Ranger'];
+        const backLineClasses = ['Mago', 'Chierico'];
+        
+        if (frontLineClasses.includes(card.class)) {
+            return 'first-line';
+        } else if (backLineClasses.includes(card.class)) {
+            return 'second-line';
+        }
+        
+        // Default basato su stats
+        const attack = card.stats?.attack || card.attack || 0;
+        const defense = card.stats?.defense || card.defense || 0;
+        
+        return attack > defense ? 'first-line' : 'second-line';
+    }
+    
+    // Pulisce la selezione corrente
+    clearSelection() {
+        console.log('clearSelection called');
+        this.selectedCard = null;
+        
+        // Rimuovi classi di selezione
+        document.querySelectorAll('.selected-card').forEach(el => {
+            el.classList.remove('selected-card');
+        });
+        
+        // Rimuovi zone evidenziate e handler
+        document.querySelectorAll('.valid-drop-zone').forEach(el => {
+            el.classList.remove('valid-drop-zone');
+            if (el.dataset.tempHandler) {
+                console.log('Removing handler from slot:', el);
+                delete el.dataset.tempHandler;
+                el.removeEventListener('click', this.handleZoneClick, true);
+            }
+        });
     }
 }
 

@@ -331,7 +331,8 @@
     margin: 10px 0;
     flex-wrap: wrap;
     overflow-x: auto;
-    overflow-y: hidden;
+    overflow-y: visible;
+    position: relative;
 }
 
 .player-hand.hidden-cards .game-card {
@@ -487,6 +488,9 @@
     cursor: pointer;
     transition: all 0.3s ease;
     position: relative;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    overflow: visible;
 }
 
 .game-card:hover {
@@ -507,6 +511,48 @@
     100% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6); }
 }
 
+/* Carte selezionate con click */
+.game-card.selected-card {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.8);
+    border: 4px solid #FFD700 !important;
+    animation: selected-pulse-yellow 1.5s infinite;
+    z-index: 10;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.game-card.selected-card svg {
+    border-radius: 4px;
+}
+
+@keyframes selected-pulse-yellow {
+    0% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.8); }
+    50% { box-shadow: 0 8px 35px rgba(255, 215, 0, 1); }
+    100% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.8); }
+}
+
+/* Zone valide per il posizionamento */
+.card-slot.valid-drop-zone {
+    background-color: rgba(76, 175, 80, 0.3);
+    border: 2px dashed #4CAF50;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+    cursor: pointer;
+    animation: zone-pulse 1s infinite;
+}
+
+.card-slot.valid-drop-zone:hover {
+    background-color: rgba(76, 175, 80, 0.5);
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.8);
+    border-color: #66BB6A;
+}
+
+@keyframes zone-pulse {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
 /* Fix per immagini specchiate */
 .game-card image,
 .game-card img {
@@ -520,13 +566,85 @@
 .game-card svg {
     width: 100%;
     height: 100%;
-    border-radius: 8px;
+    border-radius: 6px;
     pointer-events: none;
+    display: block;
 }
 
 /* Assicurati che gli elementi interni non interferiscano con drag/click */
 .game-card * {
     pointer-events: none;
+}
+
+/* Overlay per modificatori e abilità delle carte sul campo */
+.card-overlays {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.modifiers-display {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 4px;
+    padding: 2px 4px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.stat-modifier {
+    display: inline-block;
+    margin: 0 2px;
+}
+
+.ability-icons {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    display: flex;
+    gap: 2px;
+}
+
+.ability-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 16px;
+    font-size: 10px;
+}
+
+/* Overlay salute strutture */
+.structure-health-overlay {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    z-index: 2;
+}
+
+.structure-health-overlay .health-icon {
+    font-size: 16px;
+}
+
+.structure-health-overlay .health-value {
+    color: #4CAF50;
 }
 
 /* Overlay creature */
@@ -904,9 +1022,60 @@
     transform: translateY(-5px);
 }
 
+/* Attaccante selezionato */
+.selected-attacker {
+    border: 4px solid #ff4444 !important;
+    box-shadow: 0 0 30px rgba(255, 68, 68, 1) !important;
+    animation: attacker-pulse 1s infinite;
+    z-index: 15;
+}
+
+@keyframes attacker-pulse {
+    0% { box-shadow: 0 0 30px rgba(255, 68, 68, 1); }
+    50% { box-shadow: 0 0 40px rgba(255, 68, 68, 1); }
+    100% { box-shadow: 0 0 30px rgba(255, 68, 68, 1); }
+}
+
+/* Bersagli validi */
+.valid-target {
+    border: 3px dashed #4CAF50 !important;
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.8);
+    animation: target-pulse 1.5s infinite;
+}
+
+.valid-target.game-card {
+    cursor: crosshair !important;
+}
+
+.valid-target.player-area {
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+@keyframes target-pulse {
+    0% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.8); }
+    50% { box-shadow: 0 0 30px rgba(76, 175, 80, 1); }
+    100% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.8); }
+}
+
 .is-blocking {
     border: 3px solid #4ecdc4;
     box-shadow: 0 0 25px rgba(78, 205, 196, 0.8);
+}
+
+/* Attacco attivo durante la risoluzione */
+.is-attacking-active {
+    animation: attack-pulse 0.5s infinite alternate;
+}
+
+@keyframes attack-pulse {
+    0% { 
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+    }
+    100% { 
+        transform: translateY(-10px) scale(1.1);
+        box-shadow: 0 0 40px rgba(255, 0, 0, 1);
+    }
 }
 
 /* Attaccante selezionato */

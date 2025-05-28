@@ -1,0 +1,376 @@
+/* Stili per il sistema di abilità e modificatori */
+
+/* Modificatori di statistiche */
+.stat-buffed {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.stat-debuffed {
+    color: #F44336;
+    font-weight: bold;
+}
+
+.modifier-positive {
+    color: #4CAF50;
+    font-size: 0.8em;
+    margin-left: 2px;
+}
+
+.modifier-negative {
+    color: #F44336;
+    font-size: 0.8em;
+    margin-left: 2px;
+}
+
+/* Icone abilità */
+.ability-icons {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    gap: 3px;
+}
+
+.ability-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    cursor: help;
+}
+
+.ability-icon.haste {
+    background: #FF9800;
+}
+
+.ability-icon.stealth {
+    background: #9C27B0;
+}
+
+.ability-icon.reach {
+    background: #2196F3;
+}
+
+.ability-icon.mobile {
+    background: #00BCD4;
+}
+
+/* Equipaggiamenti */
+.equipments-list {
+    margin-top: 5px;
+    padding: 3px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.equipment-item {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.equipment-icon {
+    font-size: 12px;
+}
+
+/* Effetti attivi */
+.active-effects {
+    position: absolute;
+    bottom: 30px;
+    left: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 3px;
+    border-radius: 3px;
+    font-size: 0.75em;
+    max-height: 60px;
+    overflow-y: auto;
+}
+
+.active-effect {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2px;
+}
+
+.effect-source {
+    color: #FFC107;
+}
+
+.effect-value {
+    color: #4CAF50;
+}
+
+/* Stati delle carte */
+.game-card.tapped {
+    transform: rotate(90deg);
+    margin: 0 20px;
+}
+
+.game-card.summoning-sickness {
+    opacity: 0.7;
+    border: 2px solid #FF9800;
+}
+
+.game-card.stealth {
+    opacity: 0.6;
+    border: 2px solid #9C27B0;
+    box-shadow: 0 0 10px rgba(156, 39, 176, 0.5);
+}
+
+.game-card.damaged .card-frame {
+    border-color: #F44336;
+}
+
+/* Animazioni */
+.modifier-animation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    font-weight: bold;
+    animation: floatUp 2s ease-out forwards;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.damage-animation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    font-weight: bold;
+    color: #F44336;
+    animation: damageShake 1s ease-out forwards;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.heal-animation {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 28px;
+    font-weight: bold;
+    color: #4CAF50;
+    animation: healPulse 1s ease-out forwards;
+    pointer-events: none;
+    z-index: 100;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -150%);
+    }
+}
+
+@keyframes damageShake {
+    0%, 100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+        opacity: 1;
+    }
+    25% {
+        transform: translate(-55%, -50%) rotate(-5deg);
+    }
+    75% {
+        transform: translate(-45%, -50%) rotate(5deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -100%) scale(0.5);
+    }
+}
+
+@keyframes healPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -100%) scale(0.8);
+        opacity: 0;
+    }
+}
+
+.game-card.shake {
+    animation: cardShake 0.5s;
+}
+
+@keyframes cardShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.game-card.healing {
+    animation: cardGlow 1s;
+}
+
+@keyframes cardGlow {
+    0%, 100% { box-shadow: 0 0 5px rgba(76, 175, 80, 0); }
+    50% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.8); }
+}
+
+/* Statistiche delle carte */
+.card-stats {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
+    display: flex;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 3px 5px;
+    border-radius: 3px;
+}
+
+.stat-attack, .stat-defense, .stat-health {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.stat-attack {
+    color: #FF5722;
+}
+
+.stat-defense {
+    color: #2196F3;
+}
+
+.stat-health {
+    color: #4CAF50;
+}
+
+.current-health.damaged {
+    color: #F44336;
+}
+
+.max-health {
+    font-size: 14px;
+    color: #888;
+}
+
+/* Targeting mode */
+.game-card.valid-target {
+    border: 3px solid #4CAF50;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.8);
+    cursor: pointer;
+}
+
+.game-card.valid-target:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(76, 175, 80, 1);
+}
+
+/* Selezione equipaggiamento */
+.equipment-selection-mode .game-card.creature-card {
+    opacity: 0.5;
+}
+
+.equipment-selection-mode .game-card.valid-equipment-target {
+    opacity: 1;
+    border: 3px solid #FFD700;
+    cursor: pointer;
+}
+
+/* Overlay per abilità attivabili */
+.activated-ability-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.game-card.has-activated-ability:hover .activated-ability-overlay {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.activate-ability-button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.activate-ability-button:hover {
+    background: #45a049;
+}
+
+/* Dorso delle carte nascoste */
+.game-card.hidden-card {
+    position: relative;
+}
+
+.card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.card-back-pattern {
+    width: 90%;
+    height: 90%;
+    border: 2px solid #FFD700;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 215, 0, 0.1) 10px,
+        rgba(255, 215, 0, 0.1) 20px
+    );
+}
+
+.card-back-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transform: rotate(-15deg);
+}

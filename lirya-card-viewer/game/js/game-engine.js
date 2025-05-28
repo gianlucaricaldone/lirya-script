@@ -3,7 +3,8 @@ class GameEngine {
     constructor() {
         this.state = new GameState();
         this.rules = new GameRules(this);
-        this.abilities = new AbilitiesSystem(this);
+        this.abilities = new AbilitiesSystemV2(this);
+        this.cardDisplay = new CardDisplay();
         this.ui = null; // Verrà inizializzato dopo
         this.ai = null; // Per il giocatore CPU
         this.isPaused = false;
@@ -55,7 +56,7 @@ class GameEngine {
         // Aggiorna UI
         this.ui.updateBoard(this.state);
         
-        // Assicura che le carte del giocatore 1 siano visibili all'inizio
+        // Nascondi le carte dell'avversario all'inizio
         this.ui.hideOpponentCards(1);
     }
 
@@ -95,14 +96,8 @@ class GameEngine {
             this.state.drawCards(this.state.currentPlayer, 1);
         }
         
-        // Resetta i contatori delle abilità per turno
-        this.abilities.resetTurnCounters();
-        
-        // Attiva abilità di inizio turno
-        this.abilities.triggerEvent('onTurnStart', { playerId: this.state.currentPlayer });
-        
-        // Applica effetti di inizio turno (retrocompatibilità)
-        this.rules.triggerStartOfTurnEffects();
+        // Attiva il nuovo sistema di abilità per l'inizio turno
+        this.abilities.onTurnStart(this.state.currentPlayer);
         
         // Passa alla fase principale
         this.state.currentPhase = 'main';
@@ -111,6 +106,10 @@ class GameEngine {
         // Aggiorna UI
         this.ui.updateBoard(this.state);
         this.ui.showTurnChange(player.name);
+        
+        // Gestisci visibilità carte
+        this.ui.showPlayerCards(this.state.currentPlayer);
+        this.ui.hideOpponentCards(this.state.currentPlayer);
         
         // Se è il turno della CPU, fai giocare l'AI
         if (player.isAI && this.ai) {
@@ -207,14 +206,9 @@ class GameEngine {
             zone: targetZone,
             position: freeSlot
         };
-        this.abilities.registerCard(card, location);
-
-        // Attiva abilità "quando entra in gioco"
-        try {
-            this.abilities.triggerEvent('onEnterPlay', { card, location });
-        } catch (error) {
-            console.error('Errore durante attivazione abilità:', error);
-        }
+        
+        // Usa il nuovo sistema di abilità
+        this.abilities.onCardPlayed(card, location);
 
         // Applica effetti di entrata (retrocompatibilità)
         this.rules.triggerEnterPlayEffects(card, playerId);
@@ -352,8 +346,14 @@ class GameEngine {
         // Rimuovi dalla mano
         player.hand.splice(cardIndex, 1);
 
-        // Applica bonus alla creatura
-        this.rules.applyEquipment(equipment, target);
+        // Usa il nuovo sistema per equipaggiare
+        this.abilities.equipCreature(equipment, target);
+        
+        // Aggiungi l'equipaggiamento alla lista della creatura
+        if (!target.equipments) {
+            target.equipments = [];
+        }
+        target.equipments.push(equipment);
 
         this.ui.updateBoard(this.state);
         return true;
@@ -797,9 +797,9 @@ class GameEngine {
         // Trova la zona corretta
         let zoneArray;
         if (zone === 'firstLine') {
-            zoneArray = this.state.getPlayer(playerId).field.firstLine;
+            zoneArray = this.state.getPlayer(playerId).firstLine;
         } else if (zone === 'secondLine') {
-            zoneArray = this.state.getPlayer(playerId).field.secondLine;
+            zoneArray = this.state.getPlayer(playerId).secondLine;
         } else {
             console.error('[GameEngine] Zona non valida:', zone);
             return;
@@ -808,18 +808,15 @@ class GameEngine {
         // Rimuovi la carta dalla zona
         const removedCard = zoneArray[position];
         if (removedCard) {
+            const card = removedCard.card || removedCard;
+            
+            // Notifica il sistema di abilità
+            this.abilities.onCardRemoved(card, target);
+            
             zoneArray[position] = null;
             
             // Aggiungi al cimitero
-            this.state.getPlayer(playerId).graveyard.push(removedCard);
-            
-            // Trigger eventi di morte
-            if (this.abilities) {
-                this.abilities.triggerEvent('onDeath', {
-                    card: removedCard,
-                    playerId: playerId
-                });
-            }
+            this.state.getPlayer(playerId).graveyard.push(card);
             
             // Aggiorna UI
             this.ui.updateBoard(this.state);
@@ -832,6 +829,9 @@ class GameEngine {
         
         // Il pulsante Fine Turno ora termina sempre il turno
         // senza passare per la fase di combattimento
+        
+        // Notifica il sistema di abilità della fine del turno
+        this.abilities.onTurnEnd(this.state.currentPlayer);
         
         // Applica effetti di fine turno
         this.rules.triggerEndOfTurnEffects();

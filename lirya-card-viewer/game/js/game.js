@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Inizializza il motore di gioco
     const engine = new GameEngine();
-    const ui = new GameUI(engine);
+    const ui = new UIManager(engine);
     engine.init(ui);
     
     // Inizializza l'UI subito - CardRenderer dovrebbe essere già disponibile
