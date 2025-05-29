@@ -45,19 +45,14 @@
   <!-- Tipo di carta, classe ed elemento -->
   <rect x="60" y="580" width="630" height="50" rx="8" ry="8" fill="#d9ae7e" stroke="#333" stroke-width="1"/>
   
-  <!-- Elemento (simbolo Fuoco) -->
-  <circle cx="90" cy="605" r="20" fill="#e05c41" stroke="#333" stroke-width="1"/>
-  <path id="card-element" d="M90,595 Q85,585 82,600 Q75,585 80,610 Q75,600 90,620 Q105,600 100,610 Q105,585 98,600 Q95,585 90,595" fill="white"/>
+  <!-- Elemento -->
+  {{icon_element}}
   
-  <!-- Classe (simbolo Guerriero) -->
-  <circle cx="150" cy="605" r="20" fill="#8a4b20" stroke="#333" stroke-width="1"/>
-  <path id="card-class" d="M140,595 L160,595 M150,589 L150,621 M143,600 L157,610 M143,610 L157,600" stroke="white" stroke-width="2"/>
+  <!-- Classe -->
+  {{icon_class}}
   
-  <!-- Tipo della carta (simbolo Personaggio) -->
-  <circle cx="660" cy="605" r="20" fill="#6b568c" stroke="#333" stroke-width="1"/>
-  <!-- Simbolo stilizzato di una persona -->
-  <circle cx="660" cy="595" r="6" fill="white"/>
-  <path id="card-type" d="M660,615 L600,600 L650,615 M660,600 L650,620" stroke="white" stroke-width="2.5" fill="none"/>
+  <!-- Tipo della carta -->
+  {{icon_type}}
   
   <!-- Simbolo città-stato (Emberhold) -->
 <!-- 

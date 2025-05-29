@@ -12,12 +12,47 @@ const CardRenderer = (() => {
         Ombra: '#34495e'
     };
 
+    // Colori di sfondo per le icone (versioni più chiare per contrasto)
+    const ICON_BG_COLORS = {
+        // Elementi - colori pastello/chiari
+        element: {
+            Fuoco: '#ffebee',      // Rosa molto chiaro
+            Acqua: '#e3f2fd',      // Azzurro molto chiaro
+            Terra: '#f3e5f5',      // Lavanda molto chiaro
+            Aria: '#e8f5e9',       // Verde molto chiaro
+            Luce: '#fffde7',       // Giallo molto chiaro
+            Ombra: '#eceff1'       // Grigio molto chiaro
+        },
+        // Classi - colori chiari complementari
+        class: {
+            Guerriero: '#efebe9',  // Marrone molto chiaro
+            Mago: '#e8eaf6',       // Indaco molto chiaro
+            Chierico: '#fff8e1',   // Ambra molto chiaro
+            Ranger: '#f1f8e9'      // Verde lime molto chiaro
+        },
+        // Tipi - colori neutri chiari
+        type: {
+            Personaggio: '#fce4ec', // Rosa chiaro
+            Incantesimo: '#e1f5fe', // Ciano chiaro
+            Struttura: '#fbe9e7',   // Arancione molto chiaro
+            Equipaggiamento: '#f5f5f5' // Grigio molto chiaro
+        }
+    };
+
     // Cache per i template SVG
     const svgTemplates = {
         Personaggio: null,
         Incantesimo: null,
         Struttura: null,
         Equipaggiamento: null
+    };
+
+    // Cache per le icone SVG
+    const svgIcons = {
+        element: {},
+        class: {},
+        type: {},
+        rarity: {}
     };
 
     // Aggiungi questa funzione all'inizio del modulo CardRenderer
@@ -109,6 +144,75 @@ const CardRenderer = (() => {
     };
 
     /**
+     * Carica tutte le icone SVG
+     * @param {string} basePath - Percorso base per le icone
+     * @return {Promise} - Promise che si risolve quando tutte le icone sono caricate
+     */
+    const loadIcons = async (basePath = './svg-templates/icon/') => {
+        try {
+            // Assicurati che il basePath finisca con /
+            if (!basePath.endsWith('/')) {
+                basePath += '/';
+            }
+            
+            // Definisci le icone da caricare
+            const iconMappings = {
+                element: {
+                    'Fuoco': 'fire-icon.svg',
+                    'Acqua': 'water-icon.svg',
+                    'Terra': 'earth-icon.svg',
+                    'Aria': 'air-icon.svg',
+                    'Luce': 'light-icon.svg',
+                    'Ombra': 'shadow-icon.svg'
+                },
+                class: {
+                    'Guerriero': 'warrior-icon.svg',
+                    'Mago': 'mage-icon.svg',
+                    'Chierico': 'cleric-icon.svg',
+                    'Ranger': 'ranger-icon.svg'
+                },
+                type: {
+                    'Personaggio': 'character-icon.svg',
+                    'Incantesimo': 'spell-icon.svg',
+                    'Struttura': 'structure-icon.svg',
+                    'Equipaggiamento': 'equipment-icon.svg'
+                },
+                rarity: {
+                    'Comune': 'common.svg',
+                    'Non Comune': 'uncommon.svg',
+                    'Rara': 'rare.svg',
+                    'Ultra Rara': 'ultra-rare.svg',
+                    'Leggenda': 'legendary.svg'
+                }
+            };
+            
+            // Carica tutte le icone
+            const promises = [];
+            
+            for (const [category, icons] of Object.entries(iconMappings)) {
+                for (const [key, filename] of Object.entries(icons)) {
+                    promises.push(
+                        fetch(basePath + filename)
+                            .then(res => res.text())
+                            .then(svgContent => {
+                                svgIcons[category][key] = svgContent;
+                            })
+                            .catch(err => {
+                                console.warn(`Icona non trovata: ${filename}`, err);
+                                svgIcons[category][key] = null;
+                            })
+                    );
+                }
+            }
+            
+            await Promise.all(promises);
+            console.log('Icone SVG caricate con successo');
+        } catch (error) {
+            console.error('Errore nel caricamento delle icone SVG:', error);
+        }
+    };
+
+    /**
      * Carica tutti i template SVG
      * @param {string} basePath - Percorso base per i template (opzionale)
      * @return {Promise} - Promise che si risolve quando tutti i template sono caricati
@@ -141,6 +245,81 @@ const CardRenderer = (() => {
             console.error('Errore nel caricamento dei template SVG:', error);
             throw error;
         }
+    };
+
+    /**
+     * Estrae il colore dominante da un SVG
+     * @param {string} svgContent - Contenuto dell'icona SVG
+     * @return {string} - Colore in formato esadecimale
+     */
+    const extractDominantColor = (svgContent) => {
+        if (!svgContent) return '#808080'; // Grigio di default
+        
+        // Cerca i colori fill nei path
+        const fillMatches = svgContent.match(/fill\s*=\s*["']([^"']+)["']/gi);
+        if (fillMatches && fillMatches.length > 0) {
+            // Prendi il primo colore fill che non sia white, none o transparent
+            for (let match of fillMatches) {
+                const color = match.match(/fill\s*=\s*["']([^"']+)["']/i)[1];
+                if (color && color !== 'white' && color !== '#fff' && color !== '#ffffff' && 
+                    color !== 'none' && color !== 'transparent') {
+                    return color;
+                }
+            }
+        }
+        
+        // Se non trova fill, cerca stroke
+        const strokeMatches = svgContent.match(/stroke\s*=\s*["']([^"']+)["']/gi);
+        if (strokeMatches && strokeMatches.length > 0) {
+            for (let match of strokeMatches) {
+                const color = match.match(/stroke\s*=\s*["']([^"']+)["']/i)[1];
+                if (color && color !== 'white' && color !== '#fff' && color !== '#ffffff' && 
+                    color !== 'none' && color !== 'transparent') {
+                    return color;
+                }
+            }
+        }
+        
+        // Default per tipo di elemento
+        return '#808080';
+    };
+
+    /**
+     * Inserisce un'icona SVG in una posizione specifica
+     * @param {string} svgContent - Contenuto dell'icona SVG
+     * @param {number} x - Coordinata x
+     * @param {number} y - Coordinata y
+     * @param {number} size - Dimensione dell'icona
+     * @param {string} bgColor - Colore di sfondo del cerchio (opzionale)
+     * @return {string} - SVG group con l'icona trasformata
+     */
+    const insertIcon = (svgContent, x, y, size = 40, bgColor = null) => {
+        if (!svgContent) return '';
+        
+        // Estrai tutto il contenuto interno del tag SVG (path, circle, rect, etc.)
+        const contentMatch = svgContent.match(/<svg[^>]*>([\s\S]*?)<\/svg>/i);
+        if (!contentMatch) return '';
+        
+        const innerContent = contentMatch[1];
+        
+        // Se non è specificato un colore di sfondo, estrailo dall'icona
+        if (!bgColor) {
+            bgColor = extractDominantColor(svgContent);
+        }
+        
+        // Calcola la scala basata sulla dimensione desiderata (le icone sono 32x32)
+        const scale = size / 32;
+        const iconRadius = size / 2;
+        
+        // Crea un gruppo con cerchio di sfondo e icona
+        return `<g>
+            <circle cx="${x}" cy="${y}" r="${iconRadius}" fill="${bgColor}" stroke="#333" stroke-width="1"/>
+            <g transform="translate(${x - size/2}, ${y - size/2})">
+                <g transform="scale(${scale})">
+                    ${innerContent}
+                </g>
+            </g>
+        </g>`;
     };
 
     /**
@@ -363,6 +542,15 @@ const CardRenderer = (() => {
             }
         }
 
+        // Per le carte struttura, sostituisci i punti vita
+        if (card.type === 'Struttura') {
+            // Ottieni il valore health dalle stats della struttura
+            const healthValue = card.stats?.health || 0;
+            
+            // Sostituisci il placeholder punti_vita con il valore
+            svg = svg.replace(/{{punti_vita}}/g, String(healthValue));
+        }
+
         // Posizionamento
         svg = svg.replace(/{{posizionamento}}/g, card.placement || '');
 
@@ -442,6 +630,61 @@ const CardRenderer = (() => {
             svg = svg.replace(/{{colore_elemento}}/g, '#95a5a6'); // Colore grigio di default
         }
         
+        // Sostituisci le icone
+        // Icona elemento
+        if (card.element && svgIcons.element[card.element]) {
+            // Coordinate diverse per tipo di carta
+            let elementY = card.type === 'Personaggio' ? 605 : 675;
+            // Usa il colore di sfondo chiaro per l'elemento
+            const elementBgColor = ICON_BG_COLORS.element[card.element] || '#f5f5f5';
+            const elementIcon = insertIcon(svgIcons.element[card.element], 90, elementY, 40, elementBgColor);
+            svg = svg.replace(/{{icon_element}}/g, elementIcon);
+        } else if (card.element === 'Neutrale') {
+            // Per elementi neutrali, mostra un cerchio grigio molto chiaro
+            let elementY = card.type === 'Personaggio' ? 605 : 675;
+            const neutralIcon = `<circle cx="90" cy="${elementY}" r="20" fill="#fafafa" stroke="#333" stroke-width="1"/>`;
+            svg = svg.replace(/{{icon_element}}/g, neutralIcon);
+        } else {
+            svg = svg.replace(/{{icon_element}}/g, '');
+        }
+        
+        // Icona classe (solo per personaggi ed equipaggiamenti)
+        if (card.class && svgIcons.class[card.class]) {
+            // Coordinate diverse per tipo di carta
+            let classX = 150, classY = 605;
+            if (card.type === 'Equipaggiamento') {
+                classX = 90;  // Già a sinistra per gli equipaggiamenti
+                classY = 675;
+            } else if (card.type !== 'Personaggio') {
+                classY = 675;
+            }
+            // Usa il colore di sfondo chiaro per la classe
+            const classBgColor = ICON_BG_COLORS.class[card.class] || '#f5f5f5';
+            const classIcon = insertIcon(svgIcons.class[card.class], classX, classY, 40, classBgColor);
+            svg = svg.replace(/{{icon_class}}/g, classIcon);
+        } else {
+            svg = svg.replace(/{{icon_class}}/g, '');
+        }
+        
+        // Icona tipo
+        if (card.type && svgIcons.type[card.type]) {
+            // Posizione diversa per ogni tipo di carta
+            let typeX = 660, typeY = 605;
+            if (card.type === 'Struttura' || card.type === 'Incantesimo') {
+                typeX = 660;  // Spostata a destra dove prima c'era un'altra icona
+                typeY = 675;
+            } else if (card.type === 'Equipaggiamento') {
+                typeX = 660;
+                typeY = 675;
+            }
+            // Usa il colore di sfondo chiaro per il tipo
+            const typeBgColor = ICON_BG_COLORS.type[card.type] || '#f5f5f5';
+            const typeIcon = insertIcon(svgIcons.type[card.type], typeX, typeY, 40, typeBgColor);
+            svg = svg.replace(/{{icon_type}}/g, typeIcon);
+        } else {
+            svg = svg.replace(/{{icon_type}}/g, '');
+        }
+        
         // Rimuovi eventuali placeholder non sostituiti per evitare "undefined"
         svg = svg.replace(/{{[^}]+}}/g, '');
 
@@ -510,6 +753,20 @@ const CardRenderer = (() => {
                 </div>`;
         }
 
+        // Statistiche per strutture
+        if (card.type === 'Struttura' && card.stats && card.stats.health) {
+            html += `
+                <div class="detail-section">
+                    <h3>Statistiche</h3>
+                    <div class="detail-stats">
+                        <div class="detail-stat">
+                            <span class="detail-stat-value">${card.stats.health}</span>
+                            <span class="detail-stat-label">PV</span>
+                        </div>
+                    </div>
+                </div>`;
+        }
+
         // Abilità
         if (card.abilities && card.abilities.length) {
             html += `<div class="detail-section"><h3>Abilità</h3>`;
@@ -558,6 +815,7 @@ const CardRenderer = (() => {
     // Espone le funzioni pubbliche
     return {
         loadTemplates,
+        loadIcons,
         generateCardSVG,
         generateCardDetails
     };

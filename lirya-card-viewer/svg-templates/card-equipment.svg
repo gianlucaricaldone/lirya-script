@@ -45,13 +45,11 @@
   <!-- Tipo di carta e requisiti -->
   <rect  id="card-element" x="60" y="650" width="630" height="50" rx="8" ry="8" fill="#d0b050" stroke="#333" stroke-width="1"/>
   
-  <!-- Simbolo classe requisito (Guerriero) -->
-  <circle cx="90" cy="675" r="20" fill="#8a4b20" stroke="#333" stroke-width="1"/>
-  <path id="card-class" d="M80,665 L100,665 M90,659 L90,691 M83,670 L97,680 M83,680 L97,670" stroke="white" stroke-width="2"/>
+  <!-- Classe requisito -->
+  {{icon_class}}
   
-  <!-- Tipo (simbolo Equipaggiamento) -->>
-  <circle id="card-class" cx="660" cy="675" r="20" fill="#808080" stroke="#333" stroke-width="1"/>
-  <path id="card-type" d="" stroke="white" fill="none" stroke-width="1.5"/>
+  <!-- Tipo -->
+  {{icon_type}}
 
   <!-- Riquadro per il testo delle abilità -->
   <rect x="60" y="710" width="630" height="275" rx="10" ry="10" fill="#f0e5d0" stroke="#333" stroke-width="2"/>

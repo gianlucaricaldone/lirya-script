@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             // Carica i template SVG
             await CardRenderer.loadTemplates();
+            
+            // Carica le icone SVG
+            await CardRenderer.loadIcons();
 
             // Carica le carte
             await loadCards();

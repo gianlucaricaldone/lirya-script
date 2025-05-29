@@ -45,14 +45,11 @@
   <!-- Tipo di carta ed elemento -->
   <rect x="60" y="650" width="630" height="50" rx="8" ry="8" fill="#80a0e0" stroke="#333" stroke-width="1"/>
   
-  <!-- Elemento (simbolo Fuoco) -->
-  <circle cx="90" cy="675" r="20" fill="#e05c41" stroke="#333" stroke-width="1"/>
-  <path id="card-element" d="M90,665 Q85,655 82,670 Q75,655 80,680 Q75,670 90,690 Q105,670 100,680 Q105,655 98,670 Q95,655 90,665" fill="white"/>
+  <!-- Elemento -->
+  {{icon_element}}
   
-  <!-- Tipo (simbolo Incantesimo) -->
-  <circle cx="600" cy="675" r="20" fill="#5080d0" stroke="#333" stroke-width="1"/>
-  <!-- Simbolo stilizzato di un incantesimo (stella/scintilla) -->
-  <path id="card-class" d="M600,665 L603,675 L615,675 L605,681 L610,690 L600,684 L590,690 L595,681 L585,675 L597,675 Z" fill="white"/>
+  <!-- Tipo -->
+  {{icon_type}}
 
   <!-- Riquadro per il testo delle abilità -->
   <rect x="60" y="710" width="630" height="275" rx="10" ry="10" fill="#f0e5d0" stroke="#333" stroke-width="2"/>

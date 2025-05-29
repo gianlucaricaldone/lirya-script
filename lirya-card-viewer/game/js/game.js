@@ -4,6 +4,21 @@
 let allCards = [];
 
 document.addEventListener('DOMContentLoaded', async function() {
+    // Prima carica i template e le icone
+    try {
+        console.log('Caricamento template SVG...');
+        await CardRenderer.loadTemplates('../svg-templates/');
+        console.log('Template SVG caricati');
+        
+        console.log('Caricamento icone SVG...');
+        await CardRenderer.loadIcons('../svg-templates/icon/');
+        console.log('Icone SVG caricate');
+    } catch (error) {
+        console.error('Errore nel caricamento dei template/icone:', error);
+        alert('Errore nel caricamento delle risorse grafiche. Ricarica la pagina.');
+        return;
+    }
+    
     // Carica i dati delle carte
     try {
         const response = await fetch('../data/cards.json');

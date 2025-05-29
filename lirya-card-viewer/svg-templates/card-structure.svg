@@ -45,20 +45,12 @@
   <!-- Tipo di carta ed elemento -->
   <rect x="60" y="650" width="630" height="50" rx="8" ry="8" fill="#b89976" stroke="#333" stroke-width="1"/>
   
-  <!-- Elemento (simbolo Fuoco) -->
-  <circle cx="90" cy="675" r="20" fill="#e05c41" stroke="#333" stroke-width="1"/>
-  <path d="M90,665 Q85,655 82,670 Q75,655 80,680 Q75,670 90,690 Q105,670 100,680 Q105,655 98,670 Q95,655 90,665" fill="white"/>
+  <!-- Elemento -->
+  {{icon_element}}
   
-  <!-- Tipo (simbolo Struttura) -->
-  <circle cx="600" cy="675" r="20" fill="#8a6642" stroke="#333" stroke-width="1"/>
-  <!-- Simbolo stilizzato di un edificio/torre -->
-  <path d="M590,690 L590,670 L600,660 L610,670 L610,690 Z" fill="white" stroke="white" stroke-width="1"/>
-  <path d="M595,690 L595,675 M605,690 L605,675" stroke="#8a6642" stroke-width="2"/>
+  <!-- Tipo -->
+  {{icon_type}}
   
-  <!-- Simbolo città-stato (Emberhold) -->
-  <circle cx="660" cy="675" r="20" fill="#e05c41" stroke="#333" stroke-width="1"/>
-  <path d="M660,665 L650,675 L660,685 L670,675 Z" fill="white"/>
-  <circle cx="660" cy="675" r="5" fill="white"/>
 
   <!-- Riquadro per il testo delle abilità -->
   <rect x="60" y="710" width="630" height="275" rx="10" ry="10" fill="#f0e5d0" stroke="#333" stroke-width="2"/>
@@ -70,7 +62,14 @@
   <text id="card-ability-effect" x="375" y="820" font-family="Arial" font-size="20" text-anchor="middle" fill="#333">{{abilita_effetto}}</text>
   
   <!-- Testo di ambientazione -->
-  <rect x="90" y="930" width="570" height="55" rx="8" ry="8" fill="#f0e5d0" stroke="#333" stroke-width="0.5" stroke-dasharray="5,5"/>
-  <text id="card-flavor-text" x="375" y="958" font-family="Arial" font-size="16" font-style="italic" text-anchor="middle" fill="#666">{{flavor_text}}</text>
+  <rect x="90" y="880" width="570" height="40" rx="8" ry="8" fill="#f0e5d0" stroke="#333" stroke-width="0.5" stroke-dasharray="5,5"/>
+  <text id="card-flavor-text" x="375" y="905" font-family="Arial" font-size="16" font-style="italic" text-anchor="middle" fill="#666">{{flavor_text}}</text>
+  
+  <!-- Statistiche -->
+  <rect x="60" y="940" width="630" height="60" rx="10" ry="10" fill="#b89976" stroke="#333" stroke-width="1"/>
+  
+  <!-- PV (Punti Vita) -->
+  <circle cx="375" cy="970" r="30" fill="#5cbe41" stroke="#333" stroke-width="2"/>
+  <text id="card-health" x="375" y="980" font-family="Arial" font-size="28" font-weight="bold" text-anchor="middle" fill="white">{{punti_vita}}</text>
   
 </svg>
