@@ -181,8 +181,9 @@ const CardRenderer = (() => {
                     'Comune': 'common.svg',
                     'Non Comune': 'uncommon.svg',
                     'Rara': 'rare.svg',
-                    'Ultra Rara': 'ultra-rare.svg',
-                    'Leggenda': 'legendary.svg'
+                    'Ultra-Rara': 'ultra-rare.svg',     // Con trattino come nel JSON
+                    'Ultra Rara': 'ultra-rare.svg',     // Senza trattino per compatibilità
+                    'Leggendaria': 'legendary.svg'
                 }
             };
             
@@ -357,8 +358,16 @@ const CardRenderer = (() => {
 
         // Sostituisci i valori nel template
 
-        // Nome della carta
-        svg = svg.replace(/{{id}}/g, card.id || '');
+        // ID della carta con totale (es. 1/200)
+        let totalCards = '?';
+        // Prova prima window.allCards (app principale) poi allCards globale (gioco)
+        if (window.allCards && window.allCards.length) {
+            totalCards = window.allCards.length;
+        } else if (typeof allCards !== 'undefined' && allCards.length) {
+            totalCards = allCards.length;
+        }
+        const cardNumber = card.id ? `${card.id} / ${totalCards}` : '';
+        svg = svg.replace(/{{id}}/g, cardNumber);
 
         // Nome della carta
         svg = svg.replace(/{{nome}}/g, card.name || '');
@@ -413,26 +422,8 @@ const CardRenderer = (() => {
         svg = svg.replace(/{{elemento}}/g, card.element || '');
         svg = svg.replace(/{{classe}}/g, card.class || '');
 
-        // Rarità
-        switch (card.rarity) {
-            case "Comune":
-                svg = svg.replace(/{{rarita}}/g, 'C');
-                break;
-            case "Non Comune":
-                svg = svg.replace(/{{rarita}}/g, 'NC');
-                break;
-            case "Rara":
-                svg = svg.replace(/{{rarita}}/g, 'R');
-                break;
-            case "Ultra Rara":
-                svg = svg.replace(/{{rarita}}/g, 'UR');
-                break;
-            case "Leggenda":
-                svg = svg.replace(/{{rarita}}/g, 'L');
-                break;
-            default:
-                svg = svg.replace(/{{rarita}}/g, '');
-        }
+        // Rarità - rimuovi il vecchio placeholder testuale (se presente)
+        svg = svg.replace(/{{rarita}}/g, '');
 
         // Testo di ambientazione
         if (card.flavor_text) {
@@ -683,6 +674,30 @@ const CardRenderer = (() => {
             svg = svg.replace(/{{icon_type}}/g, typeIcon);
         } else {
             svg = svg.replace(/{{icon_type}}/g, '');
+        }
+        
+        // Icona rarità
+        if (card.rarity && svgIcons.rarity[card.rarity]) {
+            // Posizione fissa in alto a destra per tutte le carte
+            const rarityX = 660;
+            const rarityY = 90;
+            const raritySize = 50; // Dimensione maggiore per la rarità
+            
+            // Colori di sfondo per rarità
+            const rarityBgColors = {
+                'Comune': '#e0e0e0',      // Grigio chiaro
+                'Non Comune': '#c0e0c0',   // Verde chiaro
+                'Rara': '#c0d0f0',        // Blu chiaro
+                'Ultra-Rara': '#4a148c',   // Viola scuro (con trattino)
+                'Ultra Rara': '#4a148c',   // Viola scuro (senza trattino)
+                'Leggendaria': '#f0e0c0'   // Oro chiaro
+            };
+            
+            const rarityBgColor = rarityBgColors[card.rarity] || '#f5f5f5';
+            const rarityIcon = insertIcon(svgIcons.rarity[card.rarity], rarityX, rarityY, raritySize, rarityBgColor);
+            svg = svg.replace(/{{icon_rarity}}/g, rarityIcon);
+        } else {
+            svg = svg.replace(/{{icon_rarity}}/g, '');
         }
         
         // Rimuovi eventuali placeholder non sostituiti per evitare "undefined"

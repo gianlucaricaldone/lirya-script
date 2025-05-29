@@ -18,8 +18,7 @@
   <text id="card-cost" x="90" y="100" font-family="Arial" font-size="32" font-weight="bold" text-anchor="middle" fill="#333">{{costo}}</text>
   
   <!-- Rarità -->
-  <circle cx="660" cy="90" r="25" fill="#7a9a7a" stroke="#333" stroke-width="1"/>
-  <text id="card-rarity" x="660" y="100" font-family="Arial" font-size="20" font-weight="bold" text-anchor="middle" fill="white">{{rarita}}</text>
+  {{icon_rarity}}
 
   <!-- Illustrazione -->
   <defs>
@@ -39,7 +38,7 @@
   
   <!-- Numero di serie e Set di appartenenza -->
   <rect x="60" y="610" width="630" height="30" rx="5" ry="5" fill="#e8d080" stroke="#333" stroke-width="0.5" stroke-dasharray="5,5"/>
-  <text id="card-id" x="650" y="630" font-family="Arial" font-size="16" text-anchor="end" fill="#666">{{id}}</text>
+  <text id="card-id" x="680" y="630" font-family="Arial" font-size="16" text-anchor="end" fill="#666">{{id}}</text>
   <text id="card-series" x="100" y="630" font-family="Arial" font-size="16" font-style="italic" text-anchor="start" fill="#666">{{set}}</text>
   
   <!-- Tipo di carta e requisiti -->
